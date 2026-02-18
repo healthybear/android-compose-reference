@@ -1,0 +1,10 @@
+{
+  "name": "compose-reference",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter web dev",
+    "build:demos": "cd compose-demos && ./gradlew wasmJsBrowserDistribution",
+    "build:web": "pnpm --filter web build",
+    "build": "pnpm run build:demos && pnpm run build:web"
+  }
+}

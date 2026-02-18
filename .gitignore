@@ -1,0 +1,28 @@
+# Node
+node_modules/
+dist/
+.pnpm-store/
+
+# Vite
+web/dist/
+web/.vite/
+
+# Gradle
+compose-demos/.gradle/
+compose-demos/build/
+compose-demos/local.properties
+
+# Gradle wrapper jar（需手动下载或由 CI 提供）
+compose-demos/gradle/wrapper/gradle-wrapper.jar
+
+# Wasm 编译产物（由 Gradle 自动生成）
+web/public/demos/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.iml
+.vscode/
