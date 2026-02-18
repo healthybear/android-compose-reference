@@ -4,7 +4,8 @@
       "Bash(powershell -Command \"Set-Location ''e:\\\\workspace\\\\AndroidComposeReference''; npm install 2>&1 | Out-String\")",
       "Bash(powershell -Command \"Set-Location ''e:\\\\workspace\\\\AndroidComposeReference\\\\web''; npx vue-tsc --noEmit 2>&1 | Out-String\")",
       "Bash(powershell -Command \"Set-Location ''e:\\\\workspace\\\\AndroidComposeReference\\\\web''; npm install 2>&1 | Out-String\")",
-      "Bash(powershell -Command \"git -C ''e:\\\\workspace\\\\AndroidComposeReference'' log --oneline -5 2>&1 | Out-String\")"
+      "Bash(powershell -Command \"git -C ''e:\\\\workspace\\\\AndroidComposeReference'' log --oneline -5 2>&1 | Out-String\")",
+      "Bash(powershell -Command:*)"
     ]
   }
 }
