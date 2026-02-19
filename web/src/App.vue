@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { Search, Moon, Sunny, HomeFilled } from '@element-plus/icons-vue'
+import { Search, Moon, Sunny, HomeFilled, Fold, Expand } from '@element-plus/icons-vue'
 import { useTheme } from '@/composables/useTheme'
 import { useSearch } from '@/composables/useSearch'
 import { allComponents, categories } from '@/data/components'
@@ -11,6 +11,7 @@ const { isDark, toggle } = useTheme()
 const { query, results } = useSearch()
 
 const searchVisible = ref(false)
+const collapsed = ref(false)
 
 function goToComponent(id: string) {
   searchVisible.value = false
@@ -20,16 +21,19 @@ function goToComponent(id: string) {
 </script>
 
 <template>
-  <el-container class="app-container">
+  <el-container class="h-screen overflow-hidden">
     <!-- 顶部 Header -->
-    <el-header class="app-header">
-      <div class="header-left">
-        <router-link to="/" class="logo">
-          <span class="logo-icon">🚀</span>
-          <span class="logo-text">Compose 速查</span>
+    <el-header class="flex items-center justify-between gap-4 w-full">
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <el-tooltip :content="collapsed ? '展开侧边栏' : '收起侧边栏'">
+          <el-button :icon="collapsed ? Expand : Fold" text circle @click="collapsed = !collapsed" />
+        </el-tooltip>
+        <router-link to="/" class="flex items-center gap-2 no-underline text-el-text font-semibold text-base">
+          <span class="text-xl">🚀</span>
+          <span>Compose 速查</span>
         </router-link>
       </div>
-      <div class="header-center">
+      <div class="flex-1 max-w-[400px]">
         <el-popover
           v-model:visible="searchVisible"
           placement="bottom"
@@ -43,42 +47,45 @@ function goToComponent(id: string) {
               placeholder="搜索组件..."
               :prefix-icon="Search"
               clearable
-              class="search-input"
+              class="w-full"
               @focus="searchVisible = true"
             />
           </template>
-          <div v-if="query && results.length === 0" class="search-empty">
-            未找到匹配的组件
-          </div>
-          <div v-else-if="query" class="search-results">
+          <el-empty v-if="query && results.length === 0" description="未找到匹配的组件" :image-size="60" />
+          <el-scrollbar v-else-if="query" max-height="360px">
             <div
               v-for="item in results"
               :key="item.id"
-              class="search-result-item"
+              class="flex items-center gap-2 px-3 py-[10px] cursor-pointer rounded-md transition-colors hover:bg-el-fill-light"
               @click="goToComponent(item.id)"
             >
-              <span class="result-name">{{ item.name }}</span>
+              <span class="font-semibold min-w-[80px]">{{ item.name }}</span>
               <el-tag size="small" type="info">{{ item.category }}</el-tag>
-              <span class="result-desc">{{ item.description }}</span>
+              <span class="text-el-text-secondary text-[13px] overflow-hidden text-ellipsis whitespace-nowrap">{{ item.description }}</span>
             </div>
-          </div>
+          </el-scrollbar>
         </el-popover>
       </div>
-      <div class="header-right">
+      <div class="flex-shrink-0">
         <el-tooltip :content="isDark ? '切换浅色' : '切换深色'">
           <el-button :icon="isDark ? Sunny : Moon" circle @click="toggle" />
         </el-tooltip>
       </div>
     </el-header>
 
-    <el-container class="main-container">
+    <el-container class="h-[calc(100vh-60px)] overflow-hidden">
       <!-- 侧边栏 -->
-      <el-aside width="220px" class="app-aside">
+      <el-aside
+        :width="collapsed ? '64px' : '220px'"
+        class="border-r border-el-border bg-el-bg overflow-hidden transition-[width] duration-300"
+      >
         <el-scrollbar>
           <el-menu
             :router="true"
             :default-active="$route.path"
-            class="side-menu"
+            :collapse="collapsed"
+            :collapse-transition="false"
+            class="!border-r-none h-full"
           >
             <el-menu-item index="/">
               <el-icon><HomeFilled /></el-icon>
@@ -103,9 +110,11 @@ function goToComponent(id: string) {
       </el-aside>
 
       <!-- 主内容区 -->
-      <el-main class="app-main">
+      <el-main class="!p-0 overflow-hidden">
         <el-scrollbar>
-          <router-view />
+          <div class="p-8 min-h-full">
+            <router-view />
+          </div>
         </el-scrollbar>
       </el-main>
     </el-container>
@@ -116,110 +125,5 @@ function goToComponent(id: string) {
 html, body, #app {
   height: 100%;
   margin: 0;
-}
-
-.app-container {
-  height: 100vh;
-  overflow: hidden;
-}
-
-.app-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  border-bottom: 1px solid var(--el-border-color);
-  background: var(--el-bg-color);
-  padding: 0 24px;
-  height: 60px !important;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.header-left { flex-shrink: 0; }
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  color: var(--el-text-color-primary);
-  font-weight: 600;
-  font-size: 16px;
-}
-
-.logo-icon { font-size: 20px; }
-
-.header-center {
-  flex: 1;
-  max-width: 400px;
-}
-
-.search-input { width: 100%; }
-
-.header-right { flex-shrink: 0; }
-
-.main-container {
-  height: calc(100vh - 60px);
-  overflow: hidden;
-}
-
-.app-aside {
-  border-right: 1px solid var(--el-border-color);
-  background: var(--el-bg-color);
-  overflow: hidden;
-}
-
-.side-menu {
-  border-right: none;
-  height: 100%;
-}
-
-.app-main {
-  padding: 0;
-  overflow: hidden;
-}
-
-.app-main .el-scrollbar__view {
-  padding: 32px;
-  min-height: 100%;
-}
-
-.search-results {
-  max-height: 360px;
-  overflow-y: auto;
-}
-
-.search-result-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 12px;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: background 0.15s;
-}
-
-.search-result-item:hover {
-  background: var(--el-fill-color-light);
-}
-
-.result-name {
-  font-weight: 600;
-  min-width: 80px;
-}
-
-.result-desc {
-  color: var(--el-text-color-secondary);
-  font-size: 13px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.search-empty {
-  padding: 24px;
-  text-align: center;
-  color: var(--el-text-color-secondary);
 }
 </style>

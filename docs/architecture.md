@@ -13,10 +13,12 @@ AndroidComposeReference/
 
 ## 前端（web/）
 
+技术栈：Vue 3 + Element Plus 2.9 + UnoCSS（原子样式）+ Shiki（代码高亮）
+
 ```
 src/
-├── App.vue               # 布局外壳：Header + 侧边栏 + 主内容区
-├── main.ts               # 入口，注册 Element Plus / Router / Pinia
+├── App.vue               # 布局外壳：Header + 可收缩侧边栏 + 主内容区
+├── main.ts               # 入口，注册 Element Plus / Router / Pinia，引入 virtual:uno.css
 ├── router/index.ts       # Hash 路由：/ 首页，/component/:id 详情页
 ├── data/
 │   ├── types.ts          # ComponentEntry 等类型定义
@@ -40,10 +42,13 @@ src/
 
 ```
 src/wasmJsMain/kotlin/
-├── Main.kt               # 入口：读取 ?demo= 参数，路由到对应 Demo
+├── Main.kt               # 入口：读取 ?demo= 参数，路由到对应 Demo，注入中文字体
 └── demos/
     ├── ButtonDemo.kt
     └── TextDemo.kt
+src/commonMain/composeResources/
+└── font/
+    └── NotoSansSC-Regular.otf   # 中文字体，通过 Res.font 加载注入 MaterialTheme
 ```
 
 `Main.kt` 同时监听来自 Vue 的 `postMessage`，实现主题同步：

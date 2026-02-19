@@ -27,15 +27,10 @@ async function copyCode() {
 </script>
 
 <template>
-  <div class="code-block">
-    <div class="code-toolbar">
-      <span class="code-lang">{{ lang ?? 'kotlin' }}</span>
-      <el-button
-        size="small"
-        :type="copied ? 'success' : 'default'"
-        text
-        @click="copyCode"
-      >
+  <div class="border border-el-border rounded-lg overflow-hidden my-3">
+    <div class="flex items-center justify-between px-3 py-1.5 bg-el-fill-light border-b border-el-border">
+      <span class="text-xs text-el-text-secondary font-mono">{{ lang ?? 'kotlin' }}</span>
+      <el-button size="small" :type="copied ? 'success' : 'default'" text @click="copyCode">
         {{ copied ? '已复制' : '复制' }}
       </el-button>
     </div>
@@ -44,28 +39,6 @@ async function copyCode() {
 </template>
 
 <style scoped>
-.code-block {
-  border: 1px solid var(--el-border-color);
-  border-radius: 8px;
-  overflow: hidden;
-  margin: 12px 0;
-}
-
-.code-toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 6px 12px;
-  background: var(--el-fill-color-light);
-  border-bottom: 1px solid var(--el-border-color);
-}
-
-.code-lang {
-  font-size: 12px;
-  color: var(--el-text-color-secondary);
-  font-family: monospace;
-}
-
 .code-content :deep(pre) {
   margin: 0;
   padding: 16px;

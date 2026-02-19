@@ -5,7 +5,7 @@ Vue 3 + Element Plus 文档站，Compose Multiplatform (Kotlin/Wasm) 交互预�
 ## 项目结构
 
 ```
-web/              Vue 3 + Vite 前端
+web/              Vue 3 + Vite 前端（Element Plus + UnoCSS）
 compose-demos/    Kotlin/Wasm Demo 源码（Compose Multiplatform）
 ```
 
@@ -40,6 +40,44 @@ cd compose-demos
 pnpm build:demos   # 编译 Wasm（需要 JDK）
 pnpm build:web     # 打包 Vue
 ```
+
+---
+
+## 常见问题
+
+### gradle-wrapper.jar 缺失
+
+**报错**：`错误: 找不到或无法加载主类 org.gradle.wrapper.GradleWrapperMain`
+
+`gradle/wrapper/gradle-wrapper.jar` 未提交到仓库（被 .gitignore 排除）。从 GitHub 下载对应版本：
+
+```bash
+# 查看当前需要的版本
+cat compose-demos/gradle/wrapper/gradle-wrapper.properties | grep distributionUrl
+
+# 下载 jar（以 8.11.1 为例）
+curl -L "https://github.com/gradle/gradle/raw/v8.11.1/gradle/wrapper/gradle-wrapper.jar" \
+  -o compose-demos/gradle/wrapper/gradle-wrapper.jar
+```
+
+### 编译内存不足
+
+**报错**：`Not enough memory to run compilation. Try to increase it via 'gradle.properties'`
+
+`compose-demos/gradle.properties` 中已配置：
+
+```properties
+kotlin.daemon.jvmargs=-Xmx2g
+org.gradle.jvmargs=-Xmx2g -XX:MaxMetaspaceSize=512m
+```
+
+如果仍然失败，可适当调大（机器内存充足时改为 `-Xmx4g`）。
+
+### Compose Wasm 中文不显示
+
+Compose for Web 不内置中文字体。项目已将 Noto Sans SC 字体打包进 `compose-demos/src/commonMain/composeResources/font/`，通过 `Res.font` 加载并注入 `MaterialTheme`。
+
+如需更换字体，替换该目录下的 `.otf` 文件，并更新 `Main.kt` 中的引用名称，重新编译即可。
 
 ---
 

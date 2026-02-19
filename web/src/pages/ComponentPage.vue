@@ -13,7 +13,6 @@ const component = computed(() =>
   allComponents.find(c => c.id === route.params.id)
 )
 
-// 上一个 / 下一个导航
 const currentIndex = computed(() =>
   allComponents.findIndex(c => c.id === route.params.id)
 )
@@ -26,70 +25,54 @@ const nextComp = computed(() =>
 </script>
 
 <template>
-  <div v-if="component" class="component-page">
+  <div v-if="component" class="max-w-[860px]">
     <!-- 页头 -->
-    <div class="page-header">
+    <div class="mb-2">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
         <el-breadcrumb-item>{{ component.category }}</el-breadcrumb-item>
         <el-breadcrumb-item>{{ component.name }}</el-breadcrumb-item>
       </el-breadcrumb>
-      <h1 class="comp-title">{{ component.name }}</h1>
-      <p class="comp-desc">{{ component.description }}</p>
-      <div class="comp-tags">
+      <h1 class="text-[28px] font-bold mt-3 mb-2 text-el-text">{{ component.name }}</h1>
+      <p class="text-[15px] text-el-text-secondary m-0 mb-3 leading-relaxed">{{ component.description }}</p>
+      <el-space wrap>
         <el-tag type="info" size="small">{{ component.category }}</el-tag>
-        <el-tag
-          v-for="tag in component.tags.slice(0, 4)"
-          :key="tag"
-          size="small"
-          style="margin-left: 6px"
-        >{{ tag }}</el-tag>
-      </div>
+        <el-tag v-for="tag in component.tags.slice(0, 4)" :key="tag" size="small">{{ tag }}</el-tag>
+      </el-space>
     </div>
 
     <el-divider />
 
-    <!-- 交互预览（如果有 Wasm Demo） -->
+    <!-- 交互预览 -->
     <template v-if="component.demoId">
-      <h2 class="section-title">效果预览</h2>
+      <h2 class="text-lg font-semibold m-0 mb-3 text-el-text">效果预览</h2>
       <WasmDemo :demo-id="component.demoId" />
       <el-divider />
     </template>
 
     <!-- 参数说明 -->
     <template v-if="component.params.length > 0">
-      <h2 class="section-title">参数</h2>
+      <h2 class="text-lg font-semibold m-0 mb-3 text-el-text">参数</h2>
       <ParamsTable :params="component.params" />
       <el-divider />
     </template>
 
     <!-- 代码示例 -->
-    <h2 class="section-title">代码示例</h2>
-    <div
-      v-for="(example, i) in component.examples"
-      :key="i"
-      class="example-block"
-    >
-      <h3 class="example-title">{{ example.title }}</h3>
-      <p v-if="example.description" class="example-desc">{{ example.description }}</p>
+    <h2 class="text-lg font-semibold m-0 mb-3 text-el-text">代码示例</h2>
+    <div v-for="(example, i) in component.examples" :key="i" class="mb-6">
+      <h3 class="text-[15px] font-semibold m-0 mb-1 text-el-text-regular">{{ example.title }}</h3>
+      <p v-if="example.description" class="text-[13px] text-el-text-secondary m-0 mb-2">{{ example.description }}</p>
       <CodeBlock :code="example.code" />
     </div>
 
     <!-- 上一个 / 下一个 -->
     <el-divider />
-    <div class="page-nav">
-      <el-button
-        v-if="prevComp"
-        @click="router.push(`/component/${prevComp.id}`)"
-      >
+    <div class="flex justify-between pb-8">
+      <el-button v-if="prevComp" @click="router.push(`/component/${prevComp.id}`)">
         ← {{ prevComp.name }}
       </el-button>
       <span v-else />
-      <el-button
-        v-if="nextComp"
-        type="primary"
-        @click="router.push(`/component/${nextComp.id}`)"
-      >
+      <el-button v-if="nextComp" type="primary" @click="router.push(`/component/${nextComp.id}`)">
         {{ nextComp.name }} →
       </el-button>
     </div>
@@ -97,63 +80,3 @@ const nextComp = computed(() =>
 
   <el-empty v-else description="组件不存在" />
 </template>
-
-<style scoped>
-.component-page {
-  max-width: 860px;
-}
-
-.page-header {
-  margin-bottom: 8px;
-}
-
-.comp-title {
-  font-size: 28px;
-  font-weight: 700;
-  margin: 12px 0 8px;
-  color: var(--el-text-color-primary);
-}
-
-.comp-desc {
-  font-size: 15px;
-  color: var(--el-text-color-secondary);
-  margin: 0 0 12px;
-  line-height: 1.6;
-}
-
-.comp-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.section-title {
-  font-size: 18px;
-  font-weight: 600;
-  margin: 0 0 12px;
-  color: var(--el-text-color-primary);
-}
-
-.example-block {
-  margin-bottom: 24px;
-}
-
-.example-title {
-  font-size: 15px;
-  font-weight: 600;
-  margin: 0 0 4px;
-  color: var(--el-text-color-regular);
-}
-
-.example-desc {
-  font-size: 13px;
-  color: var(--el-text-color-secondary);
-  margin: 0 0 8px;
-}
-
-.page-nav {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 32px;
-}
-</style>

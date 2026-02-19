@@ -23,14 +23,12 @@ kotlin {
     }
 
     sourceSets {
-        val wasmJsMain by getting {
-            dependencies {
-                implementation(compose.runtime)
-                implementation(compose.ui)
-                implementation(compose.foundation)
-                implementation(compose.material3)
-                implementation(compose.components.resources)
-            }
+        commonMain.dependencies {
+            implementation(compose.runtime)
+            implementation(compose.ui)
+            implementation(compose.foundation)
+            implementation(compose.material3)
+            implementation(compose.components.resources)
         }
     }
 }
