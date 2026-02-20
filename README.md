@@ -1,18 +1,59 @@
 # Jetpack Compose 速查站
 
-Vue 3 + Element Plus 文档站，Compose Multiplatform (Kotlin/Wasm) 交互预览。
+一个面向 Android 开发者的 Jetpack Compose 学习与速查工具，帮助你快速熟悉 Kotlin 语法和 Compose UI 开发。
+
+- **组件速查**：涵盖 Layout、Material3、Foundation、Animation、Gestures、State、Navigation 等分类，每个组件附带参数说明与代码示例
+- **快速上手指南**：从环境搭建到导航、状态管理、主题、语义无障碍等 9 篇系统性教程
+- **交互预览**：部分组件内嵌 Compose Multiplatform (Kotlin/Wasm) 实时演示
+- **相关组件推荐**：基于 tag 相似度自动推荐关联组件
+- **全文搜索**：按组件名、分类、关键词即时过滤
+- **深色模式 / 响应式**：支持桌面、平板、手机
+
+## 技术栈
+
+| 层 | 技术 |
+|---|---|
+| 前端框架 | Vue 3 + TypeScript + Vite |
+| UI 组件库 | Element Plus 2.9 |
+| 样式 | UnoCSS (Tailwind 兼容语法) |
+| 路由 | Vue Router 4 (Hash 模式) |
+| 代码高亮 | Shiki (github-light / github-dark) |
+| 交互预览 | Compose Multiplatform / Kotlin Wasm |
 
 ## 项目结构
 
 ```
-web/              Vue 3 + Vite 前端（Element Plus + UnoCSS）
-compose-demos/    Kotlin/Wasm Demo 源码（Compose Multiplatform）
-docs/             项目文档（架构、数据模型、开发进度）
+AndroidComposeReference/
+├── web/                        Vue 3 前端
+│   └── src/
+│       ├── data/
+│       │   ├── components/     组件数据（按分类分目录）
+│       │   │   ├── layout/
+│       │   │   ├── material/
+│       │   │   ├── foundation/
+│       │   │   ├── animation/
+│       │   │   ├── gestures/
+│       │   │   ├── state/
+│       │   │   ├── navigation/
+│       │   │   └── ...
+│       │   ├── guides/         快速上手指南数据
+│       │   └── types.ts        数据类型定义
+│       ├── pages/              路由页面
+│       ├── components/         通用组件（CodeBlock、ParamsTable 等）
+│       ├── composables/        组合式函数（搜索、主题、相关组件）
+│       └── router/
+├── compose-demos/              Kotlin/Wasm 交互 Demo 源码
+└── docs/                       架构与开发文档
 ```
 
 ## 快速开始
 
-### 1. 安装依赖并启动 Vue 开发服务器
+### 前置要求
+
+- Node.js 18+，pnpm（`npm i -g pnpm`）
+- 编译 Wasm Demo 还需要 JDK 17+
+
+### 启动开发服务器
 
 ```bash
 pnpm install
@@ -21,7 +62,9 @@ pnpm dev
 
 访问 http://localhost:5173
 
-### 2. 编译 Compose Demo（需要 JDK 17+）
+**局域网访问**（手机/平板调试）：`vite.config.ts` 已配置 `server.host: true`，启动后终端会打印 `Network: http://192.168.x.x:5173`，同局域网设备直接访问该地址即可。
+
+### 编译 Compose Wasm Demo（可选）
 
 ```bash
 cd compose-demos
@@ -33,9 +76,9 @@ cd compose-demos
 ./gradlew wasmJsBrowserDistribution
 ```
 
-编译完成后产物自动复制到 `web/public/demos/`，刷新页面即可看到交互预览。
+产物自动复制到 `web/public/demos/`，刷新页面即可看到交互预览。
 
-### 3. 生产构建
+### 生产构建
 
 ```bash
 pnpm build:demos   # 编译 Wasm（需要 JDK）
@@ -44,49 +87,11 @@ pnpm build:web     # 打包 Vue
 
 ---
 
-## 常见问题
+## 开发指南
 
-### gradle-wrapper.jar 缺失
+### 添加组件条目
 
-**报错**：`错误: 找不到或无法加载主类 org.gradle.wrapper.GradleWrapperMain`
-
-`gradle/wrapper/gradle-wrapper.jar` 未提交到仓库（被 .gitignore 排除）。从 GitHub 下载对应版本：
-
-```bash
-# 查看当前需要的版本
-cat compose-demos/gradle/wrapper/gradle-wrapper.properties | grep distributionUrl
-
-# 下载 jar（以 8.11.1 为例）
-curl -L "https://github.com/gradle/gradle/raw/v8.11.1/gradle/wrapper/gradle-wrapper.jar" \
-  -o compose-demos/gradle/wrapper/gradle-wrapper.jar
-```
-
-### 编译内存不足
-
-**报错**：`Not enough memory to run compilation. Try to increase it via 'gradle.properties'`
-
-`compose-demos/gradle.properties` 中已配置：
-
-```properties
-kotlin.daemon.jvmargs=-Xmx2g
-org.gradle.jvmargs=-Xmx2g -XX:MaxMetaspaceSize=512m
-```
-
-如果仍然失败，可适当调大（机器内存充足时改为 `-Xmx4g`）。
-
-### Compose Wasm 中文不显示
-
-Compose for Web 不内置中文字体。项目已将 Noto Sans SC 字体打包进 `compose-demos/src/commonMain/composeResources/font/`，通过 `Res.font` 加载并注入 `MaterialTheme`。
-
-如需更换字体，替换该目录下的 `.otf` 文件，并更新 `Main.kt` 中的引用名称，重新编译即可。
-
----
-
-## 开发示例：添加一个新组件条目
-
-以添加 `LazyColumn` 为例。
-
-**第一步**：在对应分类目录（如 [web/src/data/components/lazy-list/](web/src/data/components/lazy-list/)）新建或编辑组件文件，导出组件数据：
+在对应分类目录（如 [web/src/data/components/lazy-list/](web/src/data/components/lazy-list/)）新建文件：
 
 ```ts
 // web/src/data/components/lazy-list/lazy-column.ts
@@ -101,12 +106,6 @@ export const lazyColumnEntry: ComponentEntry = {
   params: [
     { name: 'modifier', type: 'Modifier', default: 'Modifier', description: '修饰符' },
     {
-      name: 'state',
-      type: 'LazyListState',
-      default: 'rememberLazyListState()',
-      description: '列表滚动状态',
-    },
-    {
       name: 'content',
       type: 'LazyListScope.() -> Unit',
       required: true,
@@ -118,7 +117,7 @@ export const lazyColumnEntry: ComponentEntry = {
       title: '基础用法',
       code: `LazyColumn {
     items(100) { index ->
-        Text("Item $index")
+        Text("Item ${'$'}index")
     }
 }`,
     },
@@ -126,72 +125,56 @@ export const lazyColumnEntry: ComponentEntry = {
 }
 ```
 
-**第二步**：在该分类的 `index.ts` 中引入并导出：
+然后在该分类的 `index.ts` 中引入并加入数组，保存后 Vite 热更新立即生效。
 
-```ts
-// web/src/data/components/lazy-list/index.ts
-import { lazyColumnEntry } from './lazy-column'
-// ...其他导入
+### 添加 Compose 交互 Demo
 
-export const lazyListComponents = [lazyColumnEntry, /* ... */]
-```
-
-保存后 Vite 热更新，侧边栏和首页立即出现 `LazyColumn`。
-
----
-
-## 开发示例：添加一个 Compose 交互 Demo
-
-继续以 `LazyColumn` 为例，给它加一个可交互的 Wasm 预览。
-
-**第一步**：新建 [compose-demos/src/wasmJsMain/kotlin/demos/LazyColumnDemo.kt](compose-demos/src/wasmJsMain/kotlin/demos/LazyColumnDemo.kt)：
+**第一步**：新建 Kotlin 文件 `compose-demos/src/wasmJsMain/kotlin/demos/LazyColumnDemo.kt`：
 
 ```kotlin
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-
 @Composable
 fun LazyColumnDemo() {
-    val items = remember { (1..30).map { "Item $it" } }
-
-    LazyColumn(
-        modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(8.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp)
-    ) {
-        items(items) { item ->
-            Card(modifier = Modifier.fillMaxWidth()) {
-                Text(
-                    text = item,
-                    modifier = Modifier.padding(12.dp)
-                )
-            }
-        }
+    LazyColumn(modifier = Modifier.fillMaxSize()) {
+        items(30) { i -> Text("Item $i", modifier = Modifier.padding(12.dp)) }
     }
 }
 ```
 
-**第二步**：在 [compose-demos/src/wasmJsMain/kotlin/Main.kt](compose-demos/src/wasmJsMain/kotlin/Main.kt) 的 `when` 里注册：
+**第二步**：在 `Main.kt` 的 `when` 分支里注册：
 
 ```kotlin
 "lazy-column" -> LazyColumnDemo()
 ```
 
-**第三步**：在组件数据里加上 `demoId`：
+**第三步**：组件数据加上 `demoId: 'lazy-column'`，重新编译即可。
 
-```ts
-demoId: 'lazy-column',
-```
+### 添加快速上手指南
 
-**第四步**：重新编译（自动复制到 Vue）：
+编辑 [web/src/data/guides/index.ts](web/src/data/guides/index.ts)，按 `GuideEntry` 类型追加一条记录，`steps` 数组中每一步支持 `code`（Kotlin 代码块）、`tip`（提示文字）、`previewUrl`（iframe 预览链接）字段。
+
+---
+
+## 常见问题
+
+### gradle-wrapper.jar 缺失
+
+**报错**：`错误: 找不到或无法加载主类 org.gradle.wrapper.GradleWrapperMain`
+
+`gradle-wrapper.jar` 未提交到仓库，手动下载：
 
 ```bash
-cd compose-demos && ./gradlew.bat wasmJsBrowserDistribution
+# 查看所需版本
+cat compose-demos/gradle/wrapper/gradle-wrapper.properties | grep distributionUrl
+
+# 下载（以 8.11.1 为例）
+curl -L "https://github.com/gradle/gradle/raw/v8.11.1/gradle/wrapper/gradle-wrapper.jar" \
+  -o compose-demos/gradle/wrapper/gradle-wrapper.jar
 ```
 
-刷新页面，`LazyColumn` 详情页底部会出现可滚动的交互预览。
+### 编译内存不足
+
+`compose-demos/gradle.properties` 中已配置 `-Xmx2g`，内存充足时可改为 `-Xmx4g`。
+
+### Compose Wasm 中文不显示
+
+项目已将 Noto Sans SC 字体打包进 `compose-demos/src/commonMain/composeResources/font/`，通过 `Res.font` 加载并注入 `MaterialTheme`。如需更换字体，替换该目录下的 `.otf` 文件并更新 `Main.kt` 中的引用名称，重新编译即可。
