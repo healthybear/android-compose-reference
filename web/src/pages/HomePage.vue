@@ -16,6 +16,34 @@ const categoryColors: Record<string, string> = {
   Gestures: '',
   State: '',
 }
+
+const DEMO_IDS = new Set([
+  'button', 'text', 'image', 'icon', 'canvas',
+  'column', 'row', 'box', 'box-with-constraints', 'spacer', 'flow-row', 'flow-column',
+  'lazy-column', 'lazy-row', 'lazy-vertical-grid', 'lazy-horizontal-grid',
+  'horizontal-pager', 'vertical-pager',
+  'modifier-size', 'modifier-padding', 'modifier-background', 'modifier-clickable',
+  'modifier-offset', 'modifier-scroll',
+  'material-theme', 'color-scheme', 'typography', 'shapes',
+  'outlined-button', 'text-button', 'filled-tonal-button', 'elevated-button',
+  'icon-button', 'floating-action-button', 'extended-fab',
+  'assist-chip', 'filter-chip', 'input-chip', 'suggestion-chip',
+  'card', 'elevated-card', 'outlined-card',
+  'badge', 'list-item', 'horizontal-divider',
+  'dropdown-menu', 'exposed-dropdown-menu',
+  'text-field', 'outlined-text-field',
+  'checkbox', 'radio-button', 'switch', 'slider', 'range-slider',
+  'alert-dialog', 'basic-alert-dialog', 'snackbar',
+  'circular-progress', 'linear-progress', 'swipe-to-dismiss',
+  'top-app-bar', 'bottom-app-bar', 'navigation-drawer', 'permanent-navigation-drawer',
+  'animated-visibility', 'animated-content', 'crossfade', 'animate-as-state',
+  'update-transition', 'infinite-transition',
+  'modifier-draggable', 'modifier-transformable',
+  'detect-tap-gestures', 'detect-drag-gestures',
+  'remember', 'derived-state-of', 'launched-effect', 'side-effect',
+  'disposable-effect', 'produce-state', 'composition-local',
+  'custom-layout', 'subcompose-layout', 'draw-modifier', 'brush',
+])
 </script>
 
 <template>
@@ -52,7 +80,7 @@ const categoryColors: Record<string, string> = {
             <div class="text-base font-semibold mb-1.5 text-el-text">{{ comp.name }}</div>
             <div class="text-[13px] text-el-text-secondary leading-relaxed mb-3 line-clamp-2">{{ comp.description }}</div>
             <div class="flex items-center justify-between">
-              <el-tag v-if="comp.demoId" size="small" type="success">可预览</el-tag>
+              <el-tag v-if="DEMO_IDS.has(comp.id)" size="small" type="success">可预览</el-tag>
               <span v-else />
               <span class="text-xs text-el-text-placeholder">{{ comp.params.length }} 个参数</span>
             </div>

@@ -1,16 +1,56 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { allComponents } from '@/data/components'
 import CodeBlock from '@/components/CodeBlock.vue'
 import ParamsTable from '@/components/ParamsTable.vue'
 import WasmDemo from '@/components/WasmDemo.vue'
 import { useRelatedComponents } from '@/composables/useRelatedComponents'
+import { ArrowRight, Loading } from '@element-plus/icons-vue'
+
+const DEMO_IDS = new Set([
+  'button', 'text', 'image', 'icon', 'canvas',
+  'column', 'row', 'box', 'box-with-constraints', 'spacer', 'flow-row', 'flow-column',
+  'lazy-column', 'lazy-row', 'lazy-vertical-grid', 'lazy-horizontal-grid',
+  'horizontal-pager', 'vertical-pager',
+  'modifier-size', 'modifier-padding', 'modifier-background', 'modifier-clickable',
+  'modifier-offset', 'modifier-scroll',
+  'material-theme', 'color-scheme', 'typography', 'shapes',
+  'outlined-button', 'text-button', 'filled-tonal-button', 'elevated-button',
+  'icon-button', 'floating-action-button', 'extended-fab',
+  'assist-chip', 'filter-chip', 'input-chip', 'suggestion-chip',
+  'card', 'elevated-card', 'outlined-card',
+  'badge', 'list-item', 'horizontal-divider',
+  'dropdown-menu', 'exposed-dropdown-menu',
+  'text-field', 'outlined-text-field',
+  'checkbox', 'radio-button', 'switch', 'slider', 'range-slider',
+  'alert-dialog', 'basic-alert-dialog', 'snackbar',
+  'circular-progress', 'linear-progress', 'swipe-to-dismiss',
+  'top-app-bar', 'bottom-app-bar', 'navigation-drawer', 'permanent-navigation-drawer',
+  'animated-visibility', 'animated-content', 'crossfade', 'animate-as-state',
+  'update-transition', 'infinite-transition',
+  'modifier-draggable', 'modifier-transformable',
+  'detect-tap-gestures', 'detect-drag-gestures',
+  'remember', 'derived-state-of', 'launched-effect', 'side-effect',
+  'disposable-effect', 'produce-state', 'composition-local',
+  'custom-layout', 'subcompose-layout', 'draw-modifier', 'brush',
+])
+
+// demoId 到文件名的特殊映射（不符合通用规则的）
+const DEMO_FILE_OVERRIDES: Record<string, string> = {
+  'floating-action-button': 'FabDemo.kt',
+  'modifier-draggable': 'DraggableDemo.kt',
+  'modifier-transformable': 'TransformableDemo.kt',
+}
+
+function demoIdToFilename(id: string): string {
+  if (DEMO_FILE_OVERRIDES[id]) return DEMO_FILE_OVERRIDES[id]
+  return id.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join('') + 'Demo.kt'
+}
 
 const route = useRoute()
 const router = useRouter()
 
-// 一次遍历同时拿到 index 和 component，避免两次全量搜索
 const currentIndex = computed(() =>
   allComponents.findIndex(c => c.id === route.params.id)
 )
@@ -23,6 +63,38 @@ const prevComp = computed(() =>
 const nextComp = computed(() =>
   currentIndex.value < allComponents.length - 1 ? allComponents[currentIndex.value + 1] : null
 )
+
+const hasDemo = computed(() => !!component.value && DEMO_IDS.has(component.value.id))
+
+// 预览源码
+const sourceExpanded = ref(false)
+const sourceCode = ref('')
+const sourceLoading = ref(false)
+
+watch([hasDemo, component], async ([demo, comp]) => {
+  sourceExpanded.value = false
+  sourceCode.value = ''
+  if (!demo || !comp) return
+}, { immediate: true })
+
+async function loadSource() {
+  if (sourceCode.value || !component.value) return
+  sourceLoading.value = true
+  try {
+    const filename = demoIdToFilename(component.value.id)
+    const res = await fetch(`/demo-sources/${filename}`)
+    sourceCode.value = res.ok ? await res.text() : '// 源码加载失败'
+  } catch {
+    sourceCode.value = '// 源码加载失败'
+  } finally {
+    sourceLoading.value = false
+  }
+}
+
+function toggleSource() {
+  sourceExpanded.value = !sourceExpanded.value
+  if (sourceExpanded.value) loadSource()
+}
 
 const relatedComponents = useRelatedComponents(() => component.value)
 </script>
@@ -42,9 +114,22 @@ const relatedComponents = useRelatedComponents(() => component.value)
     <el-divider />
 
     <!-- 交互预览 -->
-    <template v-if="component.demoId">
+    <template v-if="hasDemo">
       <h2 class="text-lg font-semibold m-0 mb-3 text-el-text">效果预览</h2>
-      <WasmDemo :demo-id="component.demoId" />
+      <WasmDemo :demo-id="component.id" />
+      <div
+        class="flex items-center gap-1.5 text-[13px] text-el-text-secondary cursor-pointer select-none mb-3 hover:text-el-text transition-colors"
+        @click="toggleSource"
+      >
+        <el-icon :class="sourceExpanded ? 'rotate-90' : ''" class="transition-transform">
+          <ArrowRight />
+        </el-icon>
+        <span>{{ sourceExpanded ? '收起' : '查看' }}预览源码</span>
+        <el-icon v-if="sourceLoading"><Loading /></el-icon>
+      </div>
+      <div v-if="sourceExpanded" class="mb-4">
+        <CodeBlock v-if="sourceCode" :code="sourceCode" lang="kotlin" />
+      </div>
       <el-divider />
     </template>
 
