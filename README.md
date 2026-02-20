@@ -7,6 +7,7 @@ Vue 3 + Element Plus 文档站，Compose Multiplatform (Kotlin/Wasm) 交互预�
 ```
 web/              Vue 3 + Vite 前端（Element Plus + UnoCSS）
 compose-demos/    Kotlin/Wasm Demo 源码（Compose Multiplatform）
+docs/             项目文档（架构、数据模型、开发进度）
 ```
 
 ## 快速开始
@@ -85,13 +86,16 @@ Compose for Web 不内置中文字体。项目已将 Noto Sans SC 字体打包�
 
 以添加 `LazyColumn` 为例。
 
-**第一步**：在 [web/src/data/components/index.ts](web/src/data/components/index.ts) 追加一条数据：
+**第一步**：在对应分类目录（如 [web/src/data/components/lazy-list/](web/src/data/components/lazy-list/)）新建或编辑组件文件，导出组件数据：
 
 ```ts
-{
+// web/src/data/components/lazy-list/lazy-column.ts
+import type { ComponentEntry } from '../../types'
+
+export const lazyColumnEntry: ComponentEntry = {
   id: 'lazy-column',
   name: 'LazyColumn',
-  category: 'Layout',
+  category: 'LazyList',
   description: '只渲染可见区域的垂直滚动列表，适合大量数据场景。',
   tags: ['lazy', 'list', 'scroll', 'recyclerview'],
   params: [
@@ -118,19 +122,18 @@ Compose for Web 不内置中文字体。项目已将 Noto Sans SC 字体打包�
     }
 }`,
     },
-    {
-      title: '带 key 优化',
-      code: `LazyColumn {
-    items(
-        items = myList,
-        key = { it.id }
-    ) { item ->
-        Text(item.name)
-    }
-}`,
-    },
   ],
-},
+}
+```
+
+**第二步**：在该分类的 `index.ts` 中引入并导出：
+
+```ts
+// web/src/data/components/lazy-list/index.ts
+import { lazyColumnEntry } from './lazy-column'
+// ...其他导入
+
+export const lazyListComponents = [lazyColumnEntry, /* ... */]
 ```
 
 保存后 Vite 热更新，侧边栏和首页立即出现 `LazyColumn`。

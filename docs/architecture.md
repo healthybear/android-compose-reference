@@ -23,7 +23,14 @@ src/
 ├── data/
 │   ├── types.ts          # ComponentEntry 等类型定义
 │   └── components/
-│       └── index.ts      # 所有组件条目数据（用户在此添加内容）
+│       ├── index.ts      # 汇总入口：componentGroups、composeVersion、sampleComponents
+│       ├── foundation/   # 基础组件（Text、Image、Icon、Canvas）
+│       ├── layout/       # 布局（Column、Row、Box、Spacer、FlowRow、FlowColumn 等）
+│       ├── lazy-list/    # 列表与网格（LazyColumn、LazyRow、Grid、Pager 等）
+│       ├── modifier/     # Modifier（size、padding、background、clickable 等）
+│       ├── theme/        # 主题（MaterialTheme、ColorScheme、Typography、Shapes）
+│       ├── material/     # Material 组件（Button 等）
+│       └── form/         # 表单（TextField、Checkbox、Switch、Slider 等）
 ├── composables/
 │   ├── useTheme.ts       # 亮/暗主题，持久化到 localStorage
 │   └── useSearch.ts      # 内存搜索，匹配 name / description / tags / category
@@ -35,6 +42,8 @@ src/
     ├── HomePage.vue      # 组件卡片网格，按分类分组
     └── ComponentPage.vue # 组件详情：参数表 + 代码示例 + 交互预览
 ```
+
+每个分类目录下有独立的 `index.ts` 导出该分类的组件数组，由顶层 `components/index.ts` 统一聚合到 `sampleComponents`。
 
 ## Kotlin/Wasm（compose-demos/）
 

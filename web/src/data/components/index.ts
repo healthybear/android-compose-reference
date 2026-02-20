@@ -6,6 +6,13 @@ import { modifierComponents } from './modifier/index'
 import { themeComponents } from './theme/index'
 import { materialComponents } from './material/index'
 import { formComponents } from './form/index'
+import { feedbackComponents } from './feedback/index'
+import { navigationComponents } from './navigation/index'
+import { animationComponents } from './animation/index'
+import { gesturesComponents } from './gestures/index'
+import { stateComponents } from './state/index'
+import { advancedComponents } from './advanced/index'
+import { ecosystemComponents } from './ecosystem/index'
 
 // 当前内容基于此版本，如需更新请同步修改
 export const composeVersion: ComposeVersion = {
@@ -40,6 +47,13 @@ export const sampleComponents = [
   ...themeComponents,
   ...materialComponents,
   ...formComponents,
+  ...feedbackComponents,
+  ...navigationComponents,
+  ...animationComponents,
+  ...gesturesComponents,
+  ...stateComponents,
+  ...advancedComponents,
+  ...ecosystemComponents,
 ]
 
 export const allComponents = sampleComponents
