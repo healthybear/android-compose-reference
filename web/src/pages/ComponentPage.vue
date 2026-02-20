@@ -5,6 +5,7 @@ import { allComponents } from '@/data/components'
 import CodeBlock from '@/components/CodeBlock.vue'
 import ParamsTable from '@/components/ParamsTable.vue'
 import WasmDemo from '@/components/WasmDemo.vue'
+import { useRelatedComponents } from '@/composables/useRelatedComponents'
 
 const route = useRoute()
 const router = useRouter()
@@ -22,6 +23,8 @@ const prevComp = computed(() =>
 const nextComp = computed(() =>
   currentIndex.value < allComponents.length - 1 ? allComponents[currentIndex.value + 1] : null
 )
+
+const relatedComponents = useRelatedComponents(() => component.value)
 </script>
 
 <template>
@@ -64,6 +67,25 @@ const nextComp = computed(() =>
       <p v-if="example.description" class="text-[13px] text-el-text-secondary m-0 mb-2">{{ example.description }}</p>
       <CodeBlock :code="example.code" />
     </div>
+
+    <!-- 相关组件 -->
+    <template v-if="relatedComponents.length > 0">
+      <el-divider />
+      <h2 class="text-lg font-semibold m-0 mb-4 text-el-text">相关组件</h2>
+      <div class="grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-3 mb-6">
+        <el-card
+          v-for="rel in relatedComponents"
+          :key="rel.id"
+          class="cursor-pointer transition-transform hover:-translate-y-0.5"
+          shadow="hover"
+          @click="router.push(`/component/${rel.id}`)"
+        >
+          <div class="text-sm font-semibold mb-1 text-el-text">{{ rel.name }}</div>
+          <div class="text-[12px] text-el-text-secondary leading-relaxed line-clamp-2">{{ rel.description }}</div>
+          <el-tag size="small" type="info" class="mt-2">{{ rel.category }}</el-tag>
+        </el-card>
+      </div>
+    </template>
 
     <!-- 上一个 / 下一个 -->
     <el-divider />

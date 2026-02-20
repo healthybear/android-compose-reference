@@ -11,6 +11,14 @@ export default createRouter({
       path: '/component/:id',
       component: () => import('@/pages/ComponentPage.vue'),
     },
+    {
+      path: '/guide',
+      component: () => import('@/pages/GuidesPage.vue'),
+    },
+    {
+      path: '/guide/:id',
+      component: () => import('@/pages/GuideDetailPage.vue'),
+    },
   ],
   scrollBehavior: () => ({ top: 0 }),
 })

@@ -52,3 +52,21 @@ export interface ComposeVersion {
   runtime: string
   foundation: string
 }
+
+export interface GuideStep {
+  title: string
+  content: string
+  code?: string
+  tip?: string
+  previewUrl?: string  // iframe 预览地址
+}
+
+export interface GuideEntry {
+  id: string
+  title: string
+  description: string
+  icon: string
+  difficulty: 'beginner' | 'intermediate' | 'advanced'
+  steps: GuideStep[]
+  relatedComponents?: string[]
+}

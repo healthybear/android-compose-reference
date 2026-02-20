@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { Search, Moon, Sunny, HomeFilled, Fold, Expand } from '@element-plus/icons-vue'
+import { Search, Moon, Sunny, HomeFilled, Fold, Expand, Reading } from '@element-plus/icons-vue'
 import { useTheme } from '@/composables/useTheme'
 import { useSearch } from '@/composables/useSearch'
 import { allComponents, componentGroups, composeVersion } from '@/data/components'
@@ -100,7 +100,7 @@ function groupComponents(categories: string[]) {
         <el-scrollbar>
           <el-menu
             :router="true"
-            :default-active="$route.path"
+            :default-active="$route.path.startsWith('/guide') ? '/guide' : $route.path"
             :collapse="collapsed"
             :collapse-transition="false"
             class="!border-r-none h-full"
@@ -108,6 +108,10 @@ function groupComponents(categories: string[]) {
             <el-menu-item index="/">
               <el-icon><HomeFilled /></el-icon>
               <span>首页</span>
+            </el-menu-item>
+            <el-menu-item index="/guide">
+              <el-icon><Reading /></el-icon>
+              <span>快速上手</span>
             </el-menu-item>
             <el-divider />
             <el-sub-menu
