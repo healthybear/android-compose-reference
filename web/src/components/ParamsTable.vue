@@ -7,7 +7,8 @@ defineProps<{
 </script>
 
 <template>
-  <el-table :data="params" border stripe class="w-full my-3">
+  <div class="overflow-x-auto my-3">
+  <el-table :data="params" border stripe class="w-full">
     <el-table-column prop="name" label="参数" width="160">
       <template #default="{ row }">
         <code class="code-tag text-el-primary">{{ row.name }}</code>
@@ -27,4 +28,5 @@ defineProps<{
     </el-table-column>
     <el-table-column prop="description" label="说明" />
   </el-table>
+  </div>
 </template>

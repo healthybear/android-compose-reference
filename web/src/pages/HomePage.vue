@@ -41,7 +41,7 @@ const categoryColors: Record<string, string> = {
         <div class="mb-4">
           <el-tag :type="(categoryColors[cat] as any) || 'primary'" size="large">{{ cat }}</el-tag>
         </div>
-        <div class="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-4">
+        <div class="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-4">
           <el-card
             v-for="comp in results.filter(c => c.category === cat)"
             :key="comp.id"

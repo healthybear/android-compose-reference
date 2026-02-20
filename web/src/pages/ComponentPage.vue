@@ -67,7 +67,7 @@ const relatedComponents = useRelatedComponents(() => component.value)
     <template v-if="relatedComponents.length > 0">
       <el-divider />
       <h2 class="text-lg font-semibold m-0 mb-4 text-el-text">相关组件</h2>
-      <div class="grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-3 mb-6">
+      <div class="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-3 mb-6">
         <el-card
           v-for="rel in relatedComponents"
           :key="rel.id"

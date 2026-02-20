@@ -17,7 +17,7 @@ const difficultyMap = {
     <p class="text-[15px] text-el-text-secondary m-0 mb-6 leading-relaxed">
       从零开始学习 Jetpack Compose，掌握核心概念与实践技巧。
     </p>
-    <div class="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-4">
+    <div class="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-4">
       <el-card
         v-for="guide in guides"
         :key="guide.id"

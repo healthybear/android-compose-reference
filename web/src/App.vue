@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { Search, Moon, Sunny, HomeFilled, Fold, Expand, Reading } from '@element-plus/icons-vue'
+import { Search, Moon, Sunny, HomeFilled, Fold, Expand, Reading, Close } from '@element-plus/icons-vue'
 import { useTheme } from '@/composables/useTheme'
 import { useSearch } from '@/composables/useSearch'
 import { allComponents, componentGroups, composeVersion } from '@/data/components'
@@ -15,8 +15,24 @@ const searchVisible = ref(false)
 const collapsed = ref(false)
 const mainScrollbar = ref()
 
+// 移动端侧边栏抽屉
+const isMobile = ref(false)
+const drawerOpen = ref(false)
+
+function checkMobile() {
+  isMobile.value = window.innerWidth < 768
+  if (isMobile.value) collapsed.value = true
+}
+
+onMounted(() => {
+  checkMobile()
+  window.addEventListener('resize', checkMobile)
+})
+onUnmounted(() => window.removeEventListener('resize', checkMobile))
+
 watch(() => route.path, () => {
   mainScrollbar.value?.setScrollTop(0)
+  if (isMobile.value) drawerOpen.value = false
 })
 
 function goToComponent(id: string) {
@@ -28,21 +44,27 @@ function goToComponent(id: string) {
 function groupComponents(categories: string[]) {
   return allComponents.filter(c => categories.includes(c.category))
 }
+
+function toggleSidebar() {
+  if (isMobile.value) {
+    drawerOpen.value = !drawerOpen.value
+  } else {
+    collapsed.value = !collapsed.value
+  }
+}
 </script>
 
 <template>
   <el-container class="h-screen overflow-hidden">
     <!-- 顶部 Header -->
-    <el-header class="flex items-center justify-between gap-4 w-full">
+    <el-header class="flex items-center justify-between gap-2 md:gap-4 w-full">
       <div class="flex items-center gap-2 flex-shrink-0">
-        <el-tooltip :content="collapsed ? '展开侧边栏' : '收起侧边栏'">
-          <el-button :icon="collapsed ? Expand : Fold" text circle @click="collapsed = !collapsed" />
-        </el-tooltip>
+        <el-button :icon="isMobile ? (drawerOpen ? Close : Expand) : (collapsed ? Expand : Fold)" text circle @click="toggleSidebar" />
         <router-link to="/" class="flex items-center gap-2 no-underline text-el-text font-semibold text-base">
           <span class="text-xl">🚀</span>
-          <span>Compose 速查</span>
+          <span class="hidden sm:inline">Compose 速查</span>
         </router-link>
-        <el-tooltip placement="bottom">
+        <el-tooltip placement="bottom" class="hidden md:inline-flex">
           <template #content>
             <div class="text-xs leading-6">
               <div>Compose BOM &nbsp;<b>{{ composeVersion.bom }}</b></div>
@@ -52,7 +74,7 @@ function groupComponents(categories: string[]) {
               <div>Foundation &nbsp;<b>{{ composeVersion.foundation }}</b></div>
             </div>
           </template>
-          <el-tag size="small" type="info" class="cursor-default select-none">
+          <el-tag size="small" type="info" class="cursor-default select-none hidden md:inline-flex">
             BOM {{ composeVersion.bom }}
           </el-tag>
         </el-tooltip>
@@ -61,7 +83,7 @@ function groupComponents(categories: string[]) {
         <el-popover
           v-model:visible="searchVisible"
           placement="bottom"
-          :width="480"
+          :width="isMobile ? 300 : 480"
           trigger="click"
           popper-class="search-popover"
         >
@@ -84,67 +106,80 @@ function groupComponents(categories: string[]) {
               @click="goToComponent(item.id)"
             >
               <span class="font-semibold min-w-[80px]">{{ item.name }}</span>
-              <el-tag size="small" type="info">{{ item.category }}</el-tag>
+              <el-tag size="small" type="info" class="hidden sm:inline-flex">{{ item.category }}</el-tag>
               <span class="text-el-text-secondary text-[13px] overflow-hidden text-ellipsis whitespace-nowrap">{{ item.description }}</span>
             </div>
           </el-scrollbar>
         </el-popover>
       </div>
       <div class="flex-shrink-0">
-        <el-tooltip :content="isDark ? '切换浅色' : '切换深色'">
-          <el-button :icon="isDark ? Sunny : Moon" circle @click="toggle" />
-        </el-tooltip>
+        <el-button :icon="isDark ? Sunny : Moon" circle @click="toggle" />
       </div>
     </el-header>
 
-    <el-container class="h-[calc(100vh-60px)] overflow-hidden">
-      <!-- 侧边栏 -->
-      <el-aside
-        :width="collapsed ? '64px' : '220px'"
-        class="border-r border-el-border bg-el-bg overflow-hidden transition-[width] duration-300"
-      >
-        <el-scrollbar>
-          <el-menu
-            :router="true"
-            :default-active="$route.path.startsWith('/guide') ? '/guide' : $route.path"
-            :collapse="collapsed"
-            :collapse-transition="false"
-            class="!border-r-none h-full"
-          >
-            <el-menu-item index="/">
-              <el-icon><HomeFilled /></el-icon>
-              <span>首页</span>
-            </el-menu-item>
-            <el-menu-item index="/guide">
-              <el-icon><Reading /></el-icon>
-              <span>快速上手</span>
-            </el-menu-item>
-            <el-divider />
-            <el-sub-menu
-              v-for="group in componentGroups"
-              :key="group.label"
-              :index="group.label"
+    <el-container class="h-[calc(100vh-60px)] overflow-hidden relative">
+      <!-- 移动端遮罩 -->
+      <Transition name="fade">
+        <div
+          v-if="isMobile && drawerOpen"
+          class="absolute inset-0 bg-black/40 z-10"
+          @click="drawerOpen = false"
+        />
+      </Transition>
+
+      <!-- 侧边栏（桌面端正常流，移动端绝对定位抽屉） -->
+      <Transition name="slide">
+        <el-aside
+          v-show="!isMobile || drawerOpen"
+          :width="isMobile ? '240px' : (collapsed ? '64px' : '220px')"
+          :class="[
+            'border-r border-el-border bg-el-bg overflow-hidden transition-[width] duration-300',
+            isMobile ? 'absolute top-0 left-0 h-full z-20 shadow-xl' : ''
+          ]"
+        >
+          <el-scrollbar>
+            <el-menu
+              :router="true"
+              :default-active="$route.path.startsWith('/guide') ? '/guide' : $route.path"
+              :collapse="!isMobile && collapsed"
+              :collapse-transition="false"
+              class="!border-r-none h-full"
             >
-              <template #title>
-                <el-icon><component :is="group.icon" /></el-icon>
-                <span>{{ group.label }}</span>
-              </template>
-              <el-menu-item
-                v-for="comp in groupComponents(group.categories)"
-                :key="comp.id"
-                :index="`/component/${comp.id}`"
-              >
-                {{ comp.name }}
+              <el-menu-item index="/">
+                <el-icon><HomeFilled /></el-icon>
+                <span>首页</span>
               </el-menu-item>
-            </el-sub-menu>
-          </el-menu>
-        </el-scrollbar>
-      </el-aside>
+              <el-menu-item index="/guide">
+                <el-icon><Reading /></el-icon>
+                <span>快速上手</span>
+              </el-menu-item>
+              <el-divider />
+              <el-sub-menu
+                v-for="group in componentGroups"
+                :key="group.label"
+                :index="group.label"
+              >
+                <template #title>
+                  <el-icon><component :is="group.icon" /></el-icon>
+                  <span>{{ group.label }}</span>
+                </template>
+                <el-menu-item
+                  v-for="comp in groupComponents(group.categories)"
+                  :key="comp.id"
+                  :index="`/component/${comp.id}`"
+                >
+                  {{ comp.name }}
+                </el-menu-item>
+              </el-sub-menu>
+            </el-menu>
+          </el-scrollbar>
+        </el-aside>
+      </Transition>
 
       <!-- 主内容区 -->
       <el-main class="!p-0 overflow-hidden">
         <el-scrollbar ref="mainScrollbar">
-          <div class="p-8 min-h-full">
+          <div class="p-4 md:p-8 min-h-full">
             <router-view />
           </div>
         </el-scrollbar>
@@ -158,4 +193,12 @@ html, body, #app {
   height: 100%;
   margin: 0;
 }
+</style>
+
+<style scoped>
+.fade-enter-active, .fade-leave-active { transition: opacity 0.25s; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
+
+.slide-enter-active, .slide-leave-active { transition: transform 0.25s ease; }
+.slide-enter-from, .slide-leave-to { transform: translateX(-100%); }
 </style>
