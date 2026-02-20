@@ -9,6 +9,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * ModifierPaddingDemo 演示 Modifier.padding 的各种用法。
+ *
+ * padding 在组件内容与其边界之间添加空白间距，是最常用的布局 Modifier 之一。
+ * 它通过缩小子组件可用的约束空间来实现内边距效果。
+ *
+ * 四种重载形式：
+ * - `padding(all)` — 四边相同间距
+ * - `padding(horizontal, vertical)` — 水平/垂直方向分别设置
+ * - `padding(start, top, end, bottom)` — 四边独立设置（支持 RTL）
+ * - `padding(PaddingValues)` — 接受 PaddingValues 对象（如 Scaffold 的 innerPadding）
+ *
+ * 重要：Modifier 的顺序影响最终效果。
+ * `background → padding` 表示背景包含内边距区域（背景更大）；
+ * `padding → background` 表示背景只覆盖内容区域（背景更小）。
+ */
 @Composable
 fun ModifierPaddingDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

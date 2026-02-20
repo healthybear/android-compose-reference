@@ -12,6 +12,19 @@ import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.unit.dp
 
+/**
+ * CanvasDemo 演示 Compose [Canvas] 的底层绘图 API。
+ *
+ * 涵盖以下知识点：
+ * 1. drawRect / drawRoundRect：绘制实心、描边、圆角矩形。
+ * 2. drawCircle：绘制实心圆、描边圆、径向渐变圆。
+ * 3. drawLine：绘制普通线、粗线、斜线、渐变线。
+ * 4. [Path]：通过路径绘制三角形、折线、贝塞尔曲线。
+ * 5. [Brush] 渐变填充：线性渐变覆盖整个 Canvas 区域。
+ *
+ * Canvas 坐标系以左上角为原点，x 向右，y 向下，单位为像素（px）。
+ * 在 DrawScope 中可通过 size 属性获取当前 Canvas 的宽高。
+ */
 @Composable
 fun CanvasDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
@@ -19,6 +32,8 @@ fun CanvasDemo() {
         Text("Canvas 示例", style = MaterialTheme.typography.titleMedium)
 
         // ── 1. drawRect ───────────────────────────────────────
+        // style 参数默认为 Fill（实心），传入 Stroke(width) 则变为描边
+        // topLeft + size 定义矩形区域；省略则默认填满整个 Canvas
         SectionLabel("drawRect — 矩形")
         val primary = MaterialTheme.colorScheme.primary
         val secondary = MaterialTheme.colorScheme.secondary
@@ -49,6 +64,8 @@ fun CanvasDemo() {
         HorizontalDivider()
 
         // ── 2. drawCircle ─────────────────────────────────────
+        // center 默认为 Canvas 中心；radius 为半径（px）
+        // 可传入 Brush 代替 color 实现渐变圆
         SectionLabel("drawCircle — 圆形")
         val error = MaterialTheme.colorScheme.error
         Canvas(modifier = Modifier.fillMaxWidth().height(80.dp)) {
@@ -76,6 +93,8 @@ fun CanvasDemo() {
         HorizontalDivider()
 
         // ── 3. drawLine ───────────────────────────────────────
+        // strokeWidth 单位为 px；cap 参数控制线端样式（Butt/Round/Square）
+        // 可传入 Brush 实现渐变线效果
         SectionLabel("drawLine — 直线")
         Canvas(modifier = Modifier.fillMaxWidth().height(80.dp)) {
             // 普通直线
@@ -115,6 +134,9 @@ fun CanvasDemo() {
         HorizontalDivider()
 
         // ── 4. Path 绘制 ──────────────────────────────────────
+        // Path 是一系列绘图指令的集合，支持直线、曲线、弧线等
+        // moveTo — 移动画笔（不绘制）；lineTo — 画直线；close() — 闭合路径
+        // cubicTo(x1,y1, x2,y2, x3,y3) — 三次贝塞尔曲线，(x1,y1)(x2,y2) 为控制点
         SectionLabel("Path — 路径绘制")
         Canvas(modifier = Modifier.fillMaxWidth().height(100.dp)) {
             // 三角形
@@ -147,6 +169,8 @@ fun CanvasDemo() {
         HorizontalDivider()
 
         // ── 5. Brush 渐变填充 ─────────────────────────────────
+        // Brush 可替代 color 参数用于任何绘图函数
+        // linearGradient 默认从左到右；也可指定 start/end Offset 控制方向
         SectionLabel("Brush — 渐变填充")
         Canvas(modifier = Modifier.fillMaxWidth().height(60.dp)) {
             // 线性渐变

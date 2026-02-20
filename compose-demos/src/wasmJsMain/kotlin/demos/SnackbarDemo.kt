@@ -6,6 +6,24 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * SnackbarDemo 演示 Material3 Snackbar 的用法。
+ *
+ * Snackbar 是轻量级的临时消息提示，从屏幕底部弹出，
+ * 短暂显示后自动消失，可选包含一个操作按钮。
+ *
+ * Compose 中 Snackbar 的使用模式：
+ * 1. 创建 [SnackbarHostState]（通常用 remember）
+ * 2. 在布局中放置 [SnackbarHost]，传入 hostState
+ * 3. 在协程中调用 `hostState.showSnackbar(message, actionLabel, duration)` 显示
+ * 4. `showSnackbar` 是挂起函数，会等待 Snackbar 消失后返回 [SnackbarResult]
+ *
+ * SnackbarResult：
+ * - `ActionPerformed`：用户点击了操作按钮
+ * - `Dismissed`：Snackbar 自动消失或被手动关闭
+ *
+ * 注意：showSnackbar 必须在协程中调用，通常配合 LaunchedEffect 或 rememberCoroutineScope。
+ */
 @Composable
 fun SnackbarDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

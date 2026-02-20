@@ -9,6 +9,27 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * DisposableEffectDemo 演示 DisposableEffect 的生命周期管理用法。
+ *
+ * DisposableEffect 用于在组件生命周期内执行需要"清理"的副作用，
+ * 例如注册监听器、订阅事件流、绑定外部资源等。
+ *
+ * 核心特性：
+ * - 进入组合树时执行 effect lambda
+ * - 离开组合树时执行 `onDispose { }` 中的清理逻辑
+ * - key 变化时：先执行旧的 onDispose，再执行新的 effect
+ *
+ * 与 LaunchedEffect 的区别：
+ * - LaunchedEffect：异步，可挂起，适合协程操作
+ * - DisposableEffect：同步，不可挂起，专为"注册/注销"模式设计
+ *
+ * 典型用途：
+ * - 注册/注销 EventBus 监听器
+ * - 添加/移除 Window 事件监听
+ * - 绑定/解绑外部 SDK 回调
+ * - 模拟 Android View 的 onAttach/onDetach 生命周期
+ */
 @Composable
 fun DisposableEffectDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

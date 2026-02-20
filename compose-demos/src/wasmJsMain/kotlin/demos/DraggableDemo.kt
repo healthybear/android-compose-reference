@@ -16,6 +16,24 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import kotlin.math.roundToInt
 
+/**
+ * DraggableDemo 演示 Modifier.draggable 的单轴拖拽手势用法。
+ *
+ * Modifier.draggable 是处理单轴拖拽的高级 API，比底层的 pointerInput 更简洁，
+ * 但只支持水平（Horizontal）或垂直（Vertical）单一方向。
+ *
+ * 核心 API：
+ * - [Modifier.draggable]：绑定拖拽手势，需指定 orientation 和 state
+ * - [rememberDraggableState]：创建拖拽状态，lambda 接收每帧位移增量 delta（px）
+ * - [LocalDensity]：用于 dp ↔ px 单位换算（手势回调返回 px，布局使用 dp）
+ *
+ * 与 detectDragGestures 的区别：
+ * - draggable：高级 API，单轴，代码简洁
+ * - detectDragGestures：底层 API，支持任意方向自由拖拽，灵活性更高
+ *
+ * 边界限制：使用 coerceIn(min, max) 将偏移量限制在合法范围内，
+ * 防止滑块拖出轨道边界。
+ */
 @Composable
 fun DraggableDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

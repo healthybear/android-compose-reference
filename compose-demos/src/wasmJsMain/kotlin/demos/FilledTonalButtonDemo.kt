@@ -9,6 +9,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * FilledTonalButtonDemo 演示 [FilledTonalButton] 的用法。
+ *
+ * FilledTonalButton 使用 secondaryContainer 作为背景色，
+ * 视觉权重低于 [Button]（primary）但高于 [OutlinedButton]，
+ * 适合与主要操作同屏但需要降低视觉竞争的次要操作，
+ * 例如"下载"与"分享"并排时，两者均非最高优先级。
+ */
 @Composable
 fun FilledTonalButtonDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

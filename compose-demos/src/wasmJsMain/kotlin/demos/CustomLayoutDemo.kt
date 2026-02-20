@@ -12,6 +12,22 @@ import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
+/**
+ * CustomLayoutDemo 演示使用 Layout API 实现完全自定义的布局逻辑。
+ *
+ * Compose 布局系统分三个阶段：组合（Composition）→ 测量（Measurement）→ 放置（Placement）。
+ * Layout API 让开发者直接介入测量和放置阶段，实现任意布局算法。
+ *
+ * Layout 的工作流程：
+ * 1. `measurables` — 子项列表，调用 `measure(constraints)` 得到 Placeable
+ * 2. `constraints` — 父级传入的尺寸约束（minWidth/maxWidth/minHeight/maxHeight）
+ * 3. `layout(width, height) { }` — 声明自身尺寸，在 lambda 中调用 `placeRelative` 放置子项
+ *
+ * 关键技巧：
+ * - `constraints.copy(minWidth = 0, minHeight = 0)` 放宽约束，允许子项按内容收缩
+ * - `placeRelative` 自动处理 RTL 布局方向（推荐），`place` 不处理 RTL
+ * - `coerceAtMost(constraints.maxWidth)` 防止总尺寸超出父级约束
+ */
 @Composable
 fun CustomLayoutDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

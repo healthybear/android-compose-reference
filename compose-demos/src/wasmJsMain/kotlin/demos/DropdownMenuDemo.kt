@@ -7,6 +7,22 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.unit.dp
 
+/**
+ * DropdownMenuDemo 演示 Material3 DropdownMenu 的用法。
+ *
+ * DropdownMenu 是点击触发的浮动菜单，从锚点元素附近弹出，
+ * 包含一组 DropdownMenuItem，用户选择后菜单关闭。
+ *
+ * 核心 API：
+ * - [DropdownMenu]：菜单容器，`expanded` 控制显示/隐藏，`onDismissRequest` 处理关闭
+ * - [DropdownMenuItem]：菜单项，`text` 为标签，`onClick` 为点击回调
+ *   可选 `leadingIcon` / `trailingIcon` 添加图标
+ * - 通常将 DropdownMenu 放在 Box 中，与触发按钮共享同一个 Box 作为锚点
+ *
+ * 状态管理：
+ * 用 `var expanded by remember { mutableStateOf(false) }` 控制菜单开关，
+ * 点击触发按钮时 `expanded = true`，选择菜单项或点击外部时 `expanded = false`。
+ */
 @Composable
 fun DropdownMenuDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

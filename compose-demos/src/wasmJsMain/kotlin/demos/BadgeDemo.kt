@@ -9,6 +9,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * BadgeDemo 演示 Material3 Badge 和 BadgedBox 的用法。
+ *
+ * Badge 是角标组件，通常叠加在图标右上角，用于显示未读数量或状态提示。
+ *
+ * 核心 API：
+ * - [BadgedBox]：容器组件，将 Badge 定位在内容的右上角
+ *   - `badge` 参数：角标内容插槽
+ *   - `content` 参数：被标注的主体内容（通常是 Icon）
+ * - [Badge]：角标本身，可以是：
+ *   - 空 Badge（无内容）：显示为小红点，表示"有新内容"
+ *   - 带数字 Badge：显示具体数量（如未读消息数）
+ *   - 带文字 Badge：显示"NEW"等标签
+ *
+ * 数字显示规范：超过 99 时通常显示 "99+"，避免角标过宽。
+ */
 @Composable
 fun BadgeDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

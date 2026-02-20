@@ -13,6 +13,25 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * CrossfadeDemo 演示 Crossfade 的交叉淡入淡出切换效果。
+ *
+ * Crossfade 是 AnimatedContent 的简化版，专注于淡入淡出切换，
+ * 当 targetState 变化时，旧内容淡出的同时新内容淡入。
+ *
+ * 核心参数：
+ * - `targetState`：驱动内容切换的状态
+ * - `animationSpec`：控制淡入淡出的时间曲线（默认 tween(300)）
+ * - `label`：调试标签
+ * - content lambda 接收当前正在渲染的状态值（动画期间可能是旧值或新值）
+ *
+ * Crossfade vs AnimatedContent：
+ * - Crossfade：只支持淡入淡出，代码更简洁，语义更清晰
+ * - AnimatedContent：支持自定义方向性动画（滑入滑出等），功能更强大
+ * - 只需要淡入淡出时，优先使用 Crossfade
+ *
+ * 典型用途：图片切换、页面切换、图标状态切换。
+ */
 @Composable
 fun CrossfadeDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

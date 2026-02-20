@@ -10,6 +10,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 
+/**
+ * ProduceStateDemo 演示 produceState 的异步数据加载用法。
+ *
+ * produceState 将非 Compose 的异步数据源（协程、Flow、回调等）
+ * 转换为 Compose State，是连接异步世界与 Compose 状态系统的桥梁。
+ *
+ * 核心 API：
+ * - [produceState]：在协程中计算值，结果作为 State 返回
+ *   - `initialValue`：State 的初始值（在异步结果到来前显示）
+ *   - `key`：key 变化时重新执行 producer lambda
+ *   - producer lambda 中通过 `value = ...` 更新状态
+ * - `awaitDispose { }` 可选，在组件离开组合树时执行清理
+ *
+ * 与 LaunchedEffect + mutableStateOf 的对比：
+ * - produceState 更简洁，将"启动协程"和"持有状态"合并为一步
+ * - 适合"一次性加载"或"响应 key 变化重新加载"的场景
+ *
+ * 典型用途：模拟网络请求、数据库查询、文件读取等异步操作的加载状态管理。
+ */
 @Composable
 fun ProduceStateDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

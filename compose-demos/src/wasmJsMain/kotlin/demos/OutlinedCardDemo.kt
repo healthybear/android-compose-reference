@@ -6,6 +6,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * OutlinedCardDemo 演示 Material3 OutlinedCard 的用法。
+ *
+ * OutlinedCard 使用边框轮廓代替阴影来区分内容区域，
+ * 背景透明（使用 surface 色），适合扁平化设计风格。
+ *
+ * 三种 Card 变体对比：
+ * - Card（Filled）：填充背景 + 轻微阴影，最常用
+ * - ElevatedCard：更高阴影，视觉层级更强
+ * - OutlinedCard：边框轮廓，无阴影，适合浅色背景上的内容分组
+ *
+ * 使用场景：
+ * - 表单中的分组容器
+ * - 需要与背景融合但又要有边界感的内容区域
+ * - 与 ElevatedCard 并排展示时提供视觉对比
+ *
+ * border 参数：使用 `CardDefaults.outlinedCardBorder()` 获取标准边框样式，
+ * 也可以传入自定义 BorderStroke。
+ */
 @Composable
 fun OutlinedCardDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

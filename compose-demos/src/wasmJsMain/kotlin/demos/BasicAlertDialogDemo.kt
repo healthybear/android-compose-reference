@@ -12,6 +12,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 
+/**
+ * BasicAlertDialogDemo 演示 Material3 BasicAlertDialog 的用法。
+ *
+ * BasicAlertDialog 是完全自定义内容的对话框容器，
+ * 不提供预定义的标题/正文/按钮布局，开发者可以在 content lambda 中
+ * 放置任意 Composable，实现复杂的自定义对话框。
+ *
+ * 与 AlertDialog 的区别：
+ * - AlertDialog：有固定的 title/text/confirmButton/dismissButton 插槽，适合标准确认框
+ * - BasicAlertDialog：content 完全自由，适合自定义表单、选择器、图片预览等
+ *
+ * 注意：BasicAlertDialog 是实验性 API（@ExperimentalMaterial3Api），
+ * 使用时需要 @OptIn(ExperimentalMaterial3Api::class)。
+ *
+ * 对话框背景和圆角需要手动添加（通常用 Surface 或 Card 包裹内容）。
+ */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BasicAlertDialogDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

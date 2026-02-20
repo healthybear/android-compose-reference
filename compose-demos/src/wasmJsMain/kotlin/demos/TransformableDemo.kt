@@ -14,6 +14,25 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import kotlin.math.roundToInt
 
+/**
+ * TransformableDemo 演示 Modifier.transformable 的多点触控变换手势。
+ *
+ * Modifier.transformable 同时处理三种多指手势：
+ * - 缩放（pinch to zoom）：两指捏合/张开
+ * - 旋转（rotation）：两指旋转
+ * - 平移（pan）：两指整体移动
+ *
+ * 核心 API：
+ * - [rememberTransformableState]：创建变换状态，lambda 接收三个增量参数：
+ *   - `zoomChange`：缩放因子（>1 放大，<1 缩小），乘法累积
+ *   - `panChange`：平移增量（Offset），加法累积
+ *   - `rotationChange`：旋转增量（度），加法累积
+ * - [Modifier.transformable]：将变换手势绑定到组件
+ * - [Modifier.graphicsLayer]：在 GPU 渲染层应用变换，不触发重新布局，性能更好
+ *
+ * 关键设计：变换数据存储在 State 中，通过 graphicsLayer 应用到渲染层，
+ * 组件在布局中的占位空间不变，只有视觉位置/大小/角度改变。
+ */
 @Composable
 fun TransformableDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
@@ -65,7 +84,7 @@ fun TransformableDemo() {
         }
 
         Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-            Text("缩放：${"%.2f".format(scale)}x", style = MaterialTheme.typography.bodySmall,
+            Text("缩放：${scale.fmt()}x", style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant)
             Text("旋转：${rotation.roundToInt()}°", style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant)
@@ -90,3 +109,4 @@ fun TransformableDemo() {
         )
     }
 }
+

@@ -16,6 +16,23 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import kotlin.math.roundToInt
 
+/**
+ * ModifierOffsetDemo 演示 Modifier.offset 的用法及其与 padding 的区别。
+ *
+ * offset 将组件在视觉上平移指定距离，但不影响布局占位空间。
+ * 这意味着其他组件不会感知到 offset 的存在，可能导致视觉重叠。
+ *
+ * 两种形式：
+ * - `offset(x, y)` — 静态偏移，单位 dp，在布局阶段计算
+ * - `offset { IntOffset(x, y) }` — 动态偏移，单位 px，在绘制阶段计算，
+ *   性能更好（不触发重新布局），适合动画和手势驱动的偏移
+ *
+ * offset vs padding 的核心区别：
+ * - padding 缩小子组件的可用约束空间，影响布局，其他组件会为其让位
+ * - offset 只改变绘制位置，不影响布局，可能与其他组件重叠
+ *
+ * 典型用途：徽标定位、拖拽手势、视差滚动效果。
+ */
 @Composable
 fun ModifierOffsetDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

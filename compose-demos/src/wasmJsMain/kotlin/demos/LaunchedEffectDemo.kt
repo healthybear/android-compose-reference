@@ -10,6 +10,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 
+/**
+ * LaunchedEffectDemo 演示 LaunchedEffect 的协程副作用用法。
+ *
+ * LaunchedEffect 在 Compose 的协程作用域中启动挂起函数块，
+ * 生命周期与组件绑定：进入组合树时启动，离开时自动取消。
+ *
+ * key 机制（核心）：
+ * - key 变化时，旧协程被取消，新协程立即启动
+ * - `key = Unit`：永不变化，只在首次组合时执行一次（相当于 onCreate）
+ * - `key = someState`：someState 变化时重新执行，实现响应式异步操作
+ * - 多个 key：任意一个变化都会重新执行
+ *
+ * 防抖效果：key 变化时取消旧协程，配合 delay() 可实现输入防抖——
+ * 用户快速输入时中间的请求被取消，只有最终停止输入后才真正发起请求。
+ *
+ * 与 SideEffect 的区别：
+ * - LaunchedEffect：异步，可挂起，适合协程操作
+ * - SideEffect：同步，每次重组都执行，适合同步外部状态
+ */
 @Composable
 fun LaunchedEffectDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

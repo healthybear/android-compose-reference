@@ -12,6 +12,20 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+/**
+ * ModifierBackgroundDemo 演示 Modifier.background 的各种用法。
+ *
+ * Modifier.background 为组件绘制背景色或渐变，支持两种形式：
+ * - `background(color, shape)` — 纯色背景，shape 参数控制圆角/形状
+ * - `background(brush, shape)` — 渐变背景，brush 可以是线性/径向/扫描渐变
+ *
+ * 常用 Shape：
+ * - [RoundedCornerShape]：圆角矩形，参数为圆角半径（dp 或百分比）
+ * - [CircleShape]：圆形（等价于 RoundedCornerShape(50%)）
+ *
+ * 注意：background 在 Modifier 链中的位置决定背景的范围。
+ * 放在 padding 之前，背景包含内边距区域；放在 padding 之后，背景只覆盖内容。
+ */
 @Composable
 fun ModifierBackgroundDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

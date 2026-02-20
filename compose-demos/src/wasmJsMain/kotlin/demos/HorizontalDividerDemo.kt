@@ -9,6 +9,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * HorizontalDividerDemo 演示 Material3 HorizontalDivider 的用法。
+ *
+ * HorizontalDivider 是水平分隔线，用于在列表项、卡片内容之间添加视觉分隔。
+ *
+ * 核心参数：
+ * - `thickness`：线条厚度（默认 1.dp）
+ * - `color`：线条颜色（默认 outlineVariant）
+ * - `modifier`：可通过 padding 实现缩进效果
+ *
+ * 缩进分隔线：
+ * 使用 `Modifier.padding(start = 72.dp)` 可以实现左侧缩进，
+ * 常用于列表项中，与 leadingContent（头像/图标）对齐，
+ * 视觉上将分隔线与内容文字对齐而非从最左侧开始。
+ *
+ * 注意：VerticalDivider 用于垂直方向的分隔（如 Row 中分隔两列内容）。
+ */
 @Composable
 fun HorizontalDividerDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

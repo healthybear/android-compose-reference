@@ -12,6 +12,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * ModifierScrollDemo 演示 verticalScroll 和 horizontalScroll 的用法。
+ *
+ * scroll 系列 Modifier 让固定内容的容器变得可滚动，适合内容量已知且不太多的场景。
+ * 对于大量数据（列表、网格），应使用 LazyColumn/LazyRow，它们按需组合子项，性能更好。
+ *
+ * 核心 API：
+ * - [Modifier.verticalScroll]：垂直方向滚动，需要传入 [ScrollState]
+ * - [Modifier.horizontalScroll]：水平方向滚动，同样需要 [ScrollState]
+ * - [rememberScrollState]：创建并记住 ScrollState，持有当前滚动位置（像素）
+ *
+ * ScrollState 的用途：
+ * - 读取 `value`（当前滚动位置）和 `maxValue`（最大可滚动距离）
+ * - 调用 `animateScrollTo(px)` 或 `scrollTo(px)` 编程式滚动
+ * - 监听滚动位置变化（如显示"回到顶部"按钮）
+ */
 @Composable
 fun ModifierScrollDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

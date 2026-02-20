@@ -8,6 +8,22 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * NavigationDrawerDemo 演示 Material3 ModalNavigationDrawer 的用法。
+ *
+ * ModalNavigationDrawer 是模态侧边抽屉，点击菜单图标时从左侧滑入，
+ * 点击遮罩层或关闭按钮时收起，适合移动端的主导航场景。
+ *
+ * 核心 API：
+ * - [ModalNavigationDrawer]：抽屉容器，`drawerContent` 插槽放置导航内容
+ * - [DrawerState] / [rememberDrawerState]：控制抽屉开关状态
+ *   - `drawerState.open()` / `drawerState.close()`：挂起函数，带动画
+ *   - `drawerState.isOpen` / `drawerState.isClosed`：当前状态
+ * - [ModalDrawerSheet]：抽屉内容的标准容器，提供正确的宽度和背景
+ * - [NavigationDrawerItem]：抽屉内的导航项，支持 selected 高亮状态
+ *
+ * 注意：open/close 是挂起函数，需要在协程中调用（rememberCoroutineScope）。
+ */
 @Composable
 fun NavigationDrawerDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

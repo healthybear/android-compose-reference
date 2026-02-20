@@ -8,6 +8,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * ListItemDemo 演示 Material3 ListItem 的用法。
+ *
+ * ListItem 是标准的列表项组件，遵循 Material3 规范，
+ * 提供固定的布局结构：左侧内容 + 主文字 + 副文字 + 右侧内容。
+ *
+ * 核心参数：
+ * - `headlineContent`：主标题（必填）
+ * - `supportingContent`：副标题/描述文字（可选，显示在主标题下方）
+ * - `overlineContent`：上方小标签（可选，显示在主标题上方）
+ * - `leadingContent`：左侧内容（通常是 Icon 或头像）
+ * - `trailingContent`：右侧内容（通常是 IconButton、Switch 或文字）
+ *
+ * 三种高度变体（由内容决定）：
+ * - 单行：只有 headlineContent
+ * - 双行：headlineContent + supportingContent（一行）
+ * - 三行：headlineContent + supportingContent（两行）或 overlineContent + headlineContent
+ */
 @Composable
 fun ListItemDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

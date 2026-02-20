@@ -14,6 +14,24 @@ import androidx.compose.ui.unit.dp
 
 private enum class BoxState { Small, Large }
 
+/**
+ * UpdateTransitionDemo 演示 updateTransition 的多属性联动动画。
+ *
+ * updateTransition 是 Compose 中实现"状态驱动多属性同步动画"的核心 API。
+ * 当状态（targetState）变化时，所有通过 transition.animateXxx 声明的属性
+ * 会同步开始动画，保证多个属性的动画在时间上协调一致。
+ *
+ * 核心 API：
+ * - [updateTransition]：创建 Transition 对象，绑定到目标状态
+ * - `transition.animateColor { state -> ... }`：为颜色属性声明动画
+ * - `transition.animateDp { state -> ... }`：为 Dp 属性声明动画
+ * - `transition.animateFloat { state -> ... }`：为 Float 属性声明动画
+ * - 每个 animateXxx 的 lambda 接收当前状态，返回该状态下的目标值
+ *
+ * 与 animateXxxAsState 的区别：
+ * - animateXxxAsState：单个属性的独立动画，各自独立触发
+ * - updateTransition：多个属性共享同一个状态机，动画同步触发，适合复杂状态切换
+ */
 @Composable
 fun UpdateTransitionDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

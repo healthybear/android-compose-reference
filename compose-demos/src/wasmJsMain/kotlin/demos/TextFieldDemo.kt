@@ -8,6 +8,23 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * TextFieldDemo 演示 Material3 TextField（填充样式）的核心用法。
+ *
+ * TextField 是 Material3 中的文本输入组件，默认使用填充（Filled）样式，
+ * 底部有下划线，背景为 surfaceVariant 色。
+ *
+ * 核心参数：
+ * - `value` / `onValueChange`：受控输入，状态由外部持有
+ * - `label`：浮动标签，聚焦时上移，未聚焦且无内容时作为占位提示
+ * - `placeholder`：占位文字，仅在聚焦且无内容时显示（与 label 互补）
+ * - `leadingIcon` / `trailingIcon`：前置/后置图标插槽
+ * - `isError`：错误状态，将边框和标签变为 error 颜色
+ * - `supportingText`：底部辅助文字，可用于显示错误信息或字数统计
+ * - `singleLine`：单行模式，回车键触发 IME Action 而非换行
+ *
+ * 与 OutlinedTextField 的区别：样式不同，功能参数完全一致。
+ */
 @Composable
 fun TextFieldDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

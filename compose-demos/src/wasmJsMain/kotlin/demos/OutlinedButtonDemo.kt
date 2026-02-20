@@ -10,6 +10,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * OutlinedButtonDemo 演示 [OutlinedButton] 的用法。
+ *
+ * OutlinedButton 使用描边而非填充背景来区分边界，视觉权重介于
+ * FilledTonalButton 与 TextButton 之间，适合与主要操作并列的次要操作，
+ * 例如"取消"与"确认"同排时，"取消"使用 OutlinedButton。
+ */
 @Composable
 fun OutlinedButtonDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

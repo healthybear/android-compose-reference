@@ -8,6 +8,22 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * OutlinedTextFieldDemo 演示 Material3 OutlinedTextField（轮廓样式）的核心用法。
+ *
+ * OutlinedTextField 与 TextField 功能完全相同，区别仅在于视觉样式：
+ * 使用边框轮廓代替底部下划线，背景透明，更适合卡片、对话框等浅色背景场景。
+ *
+ * 核心参数（与 TextField 完全一致）：
+ * - `value` / `onValueChange`：受控输入
+ * - `label`：浮动标签（聚焦时嵌入边框顶部）
+ * - `placeholder`：占位文字
+ * - `leadingIcon` / `trailingIcon`：前置/后置图标
+ * - `isError`：错误状态（边框变为 error 颜色）
+ * - `supportingText`：底部辅助/错误文字
+ * - `keyboardOptions`：键盘类型（数字、邮箱、密码等）
+ * - `visualTransformation`：视觉变换（如 PasswordVisualTransformation 隐藏密码）
+ */
 @Composable
 fun OutlinedTextFieldDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

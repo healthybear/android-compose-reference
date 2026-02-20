@@ -16,6 +16,23 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.gestures.detectDragGestures
 import kotlin.math.roundToInt
 
+/**
+ * DetectDragGesturesDemo 演示 detectDragGestures 的自由拖拽手势用法。
+ *
+ * detectDragGestures 是处理任意方向拖拽的底层 API，通过 pointerInput 调用，
+ * 支持双轴自由拖拽（区别于 Modifier.draggable 的单轴限制）。
+ *
+ * 四个生命周期回调：
+ * - `onDragStart(startPosition)`：手势开始，参数为起始触摸点坐标
+ * - `onDrag(change, dragAmount)`：手势进行中，每帧调用
+ *   - `change.consume()`：标记事件已消费，阻止事件向父组件传递
+ *   - `dragAmount`：本帧相对上一帧的位移增量（Offset，单位 px）
+ * - `onDragEnd()`：手势正常结束（手指抬起）
+ * - `onDragCancel()`：手势被系统取消
+ *
+ * 边界限制：使用 coerceIn 将坐标限制在容器范围内，
+ * `size` 属性在 pointerInput 作用域内可直接访问，表示当前组件的像素尺寸。
+ */
 @Composable
 fun DetectDragGesturesDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

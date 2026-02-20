@@ -5,8 +5,26 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.unit.dp
 
+/**
+ * CheckboxDemo 演示 Material3 Checkbox 的各种用法。
+ *
+ * Checkbox 是三态选择控件，支持：
+ * - 选中（checked = true）
+ * - 未选中（checked = false）
+ * - 半选/不确定（TriStateCheckbox 的 ToggleableState.Indeterminate）
+ *
+ * 核心 API：
+ * - [Checkbox]：二态复选框，`checked` + `onCheckedChange` 受控
+ * - [TriStateCheckbox]：三态复选框，`state` 参数为 [ToggleableState]
+ *
+ * 典型用法：
+ * - 单个 Checkbox：独立的开关选项
+ * - 全选/半选：父级 TriStateCheckbox 反映子项的整体选中状态，
+ *   当部分子项选中时显示 Indeterminate（半选）状态
+ */
 @Composable
 fun CheckboxDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

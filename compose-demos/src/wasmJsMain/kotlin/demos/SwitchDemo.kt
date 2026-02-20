@@ -9,6 +9,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * SwitchDemo 演示 Material3 Switch 的用法。
+ *
+ * Switch 是二态开关控件，视觉上比 Checkbox 更直观地表达"开/关"语义，
+ * 常用于设置页面的功能开关（如通知、深色模式、自动同步等）。
+ *
+ * 核心参数：
+ * - `checked`：当前开关状态
+ * - `onCheckedChange`：状态变化回调，传入新的布尔值
+ * - `thumbContent`：自定义滑块内容（Material3 新增），可放置图标
+ *   选中时显示勾选图标、未选中时显示关闭图标，增强状态可读性
+ * - `enabled`：禁用状态
+ *
+ * thumbContent 使用注意：图标尺寸应使用 SwitchDefaults.IconSize，
+ * 否则图标可能超出滑块边界。
+ */
 @Composable
 fun SwitchDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

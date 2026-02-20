@@ -6,6 +6,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * ElevatedCardDemo 演示 Material3 ElevatedCard 的用法。
+ *
+ * ElevatedCard 是带有阴影的卡片变体，通过更高的 elevation（阴影高度）
+ * 在视觉上与背景产生更强的层次感，适合需要突出显示的内容区域。
+ *
+ * 三种 Card 变体对比：
+ * - Card（Filled）：填充背景 + 轻微阴影，最常用，适合大多数场景
+ * - ElevatedCard：更高阴影，视觉层级更强，适合需要强调的内容
+ * - OutlinedCard：边框轮廓，无阴影，适合扁平化设计风格
+ *
+ * elevation 参数：
+ * 使用 `CardDefaults.elevatedCardElevation(defaultElevation = Xdp)` 自定义阴影高度，
+ * 不同状态（pressed、focused、hovered）可以设置不同的阴影值。
+ */
 @Composable
 fun ElevatedCardDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

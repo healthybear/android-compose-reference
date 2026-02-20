@@ -8,6 +8,25 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * FilterChipDemo 演示 Material3 FilterChip 的用法。
+ *
+ * FilterChip 用于让用户从一组选项中筛选内容，持有"选中/未选中"的二元状态。
+ * 选中时通常显示勾选图标，视觉上与未选中状态有明显区别。
+ *
+ * 核心参数：
+ * - `selected`：选中状态（FilterChip 的核心参数）
+ * - `onClick`：点击回调，通常用于切换 selected 状态
+ * - `label`：标签内容
+ * - `leadingIcon`：前置图标（选中时显示勾选图标，未选中时为 null）
+ *
+ * 多选模式：
+ * 用 `mutableStateListOf` 管理选中项集合，
+ * 每个 FilterChip 的 `selected = (item in selectedList)`，
+ * 点击时添加/移除对应项，实现多选切换。
+ *
+ * 变体：[ElevatedFilterChip] 带阴影，功能与 FilterChip 完全一致。
+ */
 @Composable
 fun FilterChipDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

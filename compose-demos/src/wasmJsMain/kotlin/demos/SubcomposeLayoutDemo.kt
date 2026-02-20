@@ -10,6 +10,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.SubcomposeLayout
 import androidx.compose.ui.unit.dp
 
+/**
+ * SubcomposeLayoutDemo 演示 SubcomposeLayout 的延迟组合能力。
+ *
+ * SubcomposeLayout 允许在测量阶段按需延迟组合子内容，
+ * 使后续子项的组合可以依赖前面子项的测量结果。
+ *
+ * 与普通 Layout 的核心区别：
+ * - 普通 Layout：所有子项在组合阶段就已确定，测量时只能调整尺寸
+ * - SubcomposeLayout：子项在测量阶段通过 `subcompose(slotId) { }` 按需创建，
+ *   可以将第一个子项的测量结果作为第二个子项组合时的输入
+ *
+ * 典型使用场景：
+ * - Badge 定位（先知道图标尺寸，再确定徽标位置）
+ * - 自适应布局（Body 宽度跟随 Header 内容宽度）
+ * - Scaffold 的插槽系统（TopBar 高度决定内容区域的 padding）
+ *
+ * 注意：SubcomposeLayout 比普通 Layout 有更高的性能开销，
+ * 因为它在测量阶段触发额外的组合过程，应仅在真正需要时使用。
+ */
 @Composable
 fun SubcomposeLayoutDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

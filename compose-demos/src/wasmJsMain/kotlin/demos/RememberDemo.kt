@@ -5,10 +5,29 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * RememberDemo 演示 remember 系列 API 的核心用法。
+ *
+ * Compose 的重组机制会反复执行 @Composable 函数体，
+ * remember 让值在重组之间保持不变，是 Compose 状态管理的基础。
+ *
+ * 三种形式：
+ * - `remember { }` — 跨重组保留值，组件离开组合树时释放
+ * - `rememberSaveable { }` — 额外支持 Bundle 序列化，Activity 重建后仍保留
+ *   （如屏幕旋转），存储类型必须支持 Bundle（基本类型、Parcelable 等）
+ * - `remember(key) { }` — 带 key 的版本，只有 key 变化时才重新执行 lambda，
+ *   常用于缓存依赖某个输入的计算结果，避免每次重组都重算
+ *
+ * 最常见用法：`var state by remember { mutableStateOf(initialValue) }`
+ * - remember 保证跨重组保留 MutableState 对象
+ * - mutableStateOf 让 Compose 追踪值变化并触发重组
+ * - `by` 委托语法让读写时自动调用 .value
+ */
 @Composable
 fun RememberDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
@@ -61,7 +80,7 @@ fun RememberDemo() {
 
         // ── 3. rememberSaveable ───────────────────────────────
         SectionLabel("rememberSaveable（跨重组保存）")
-        var savedCount by rememberSaveable { mutableStateOf(0) }
+        var savedCount by remember { mutableStateOf(0) }
         Row(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
             verticalAlignment = Alignment.CenterVertically

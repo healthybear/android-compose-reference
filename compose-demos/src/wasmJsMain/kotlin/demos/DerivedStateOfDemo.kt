@@ -3,12 +3,33 @@ package demos
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * DerivedStateOfDemo 演示 derivedStateOf 的性能优化用法。
+ *
+ * derivedStateOf 从一个或多个已有 State 派生出新的 State，
+ * 只有当 lambda 内读取的 State 变化且计算结果也变化时，才触发依赖该派生 State 的重组。
+ *
+ * 核心优势：
+ * 如果直接在组合函数中写 `val x = someState.value > 100`，
+ * 每次 someState 变化都会导致整个函数重组；
+ * 用 derivedStateOf 包裹后，只有 x 的布尔值真正翻转时才触发重组，
+ * 大幅减少不必要的 UI 更新。
+ *
+ * 必须用 `remember { derivedStateOf { } }` 包裹，
+ * 否则每次重组都会创建新的派生状态对象，失去缓存效果。
+ *
+ * 典型用途：
+ * - 列表过滤/统计（从列表派生 count、isEmpty 等）
+ * - 表单验证（从输入字段派生 canSubmit 状态）
+ * - 滚动阈值判断（scrollState.value > 100 → showScrollTop）
+ */
 @Composable
 fun DerivedStateOfDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

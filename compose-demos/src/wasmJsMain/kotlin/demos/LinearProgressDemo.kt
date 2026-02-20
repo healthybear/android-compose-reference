@@ -6,6 +6,24 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * LinearProgressDemo 演示 Material3 LinearProgressIndicator 的用法。
+ *
+ * LinearProgressIndicator 是水平线形进度指示器，同样有两种模式：
+ * - 不确定进度（Indeterminate）：波浪形无限动画，表示"正在处理"
+ * - 确定进度（Determinate）：从左到右填充，显示具体进度
+ *
+ * 核心参数：
+ * - 不传 `progress` → 不确定模式
+ * - 传入 `progress: () -> Float` → 确定模式（0f=空，1f=满）
+ * - `color`：进度条颜色
+ * - `trackColor`：背景轨道颜色
+ * - `strokeCap`：线条端点样式（Round/Butt）
+ *
+ * LinearProgressIndicator vs CircularProgressIndicator：
+ * - 线形适合页面加载、文件下载等有明确进度的场景
+ * - 圆形适合按钮内嵌、小区域内的加载状态
+ */
 @Composable
 fun LinearProgressDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

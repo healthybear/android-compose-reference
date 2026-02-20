@@ -9,6 +9,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * ElevatedButtonDemo 演示 [ElevatedButton] 的用法。
+ *
+ * ElevatedButton 通过阴影（elevation）而非填充色来与背景区分，
+ * 适合放置在有色背景（如图片、卡片）上，需要按钮可见但不抢夺焦点的场景。
+ * 其视觉权重低于 [Button] 和 [FilledTonalButton]，高于 [OutlinedButton]。
+ */
 @Composable
 fun ElevatedButtonDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

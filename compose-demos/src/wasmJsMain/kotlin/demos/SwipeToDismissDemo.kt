@@ -12,6 +12,26 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+/**
+ * SwipeToDismissDemo 演示 Material3 SwipeToDismissBox 的用法。
+ *
+ * SwipeToDismissBox 为列表项添加左滑/右滑手势，滑动时显示背景操作区域，
+ * 常用于"左滑删除"、"右滑归档"等列表交互模式。
+ *
+ * 核心 API：
+ * - [SwipeToDismissBox]：容器组件，`state` 参数持有滑动状态
+ * - [rememberSwipeToDismissBoxState]：创建滑动状态，`confirmValueChange` 回调
+ *   决定是否允许滑动到某个目标状态（可在此做删除确认逻辑）
+ * - `backgroundContent`：滑动时露出的背景层（通常是操作按钮/图标）
+ * - `content`：前景内容（列表项本身）
+ *
+ * SwipeToDismissBoxValue：
+ * - `Settled`：静止状态（未滑动）
+ * - `StartToEnd`：从左向右滑动
+ * - `EndToStart`：从右向左滑动（最常用，对应"左滑删除"）
+ *
+ * 注意：SwipeToDismissBox 是实验性 API，需要 @OptIn(ExperimentalMaterial3Api::class)。
+ */
 @Composable
 fun SwipeToDismissDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

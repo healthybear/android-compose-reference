@@ -8,6 +8,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.CanvasBasedWindow
 import compose_demos.generated.resources.Res
 import compose_demos.generated.resources.NotoSansSC_Regular
+import demos.*
+import demos.VerticalPagerDemo
 import kotlinx.browser.window
 import org.jetbrains.compose.resources.Font
 import org.w3c.dom.MessageEvent
@@ -97,7 +99,9 @@ fun main() {
                         "material-theme"       -> MaterialThemeDemo()
                         "color-scheme"         -> ColorSchemeDemo()
                         "typography"           -> TypographyDemo()
-                        "shapes"               -> ShapesDemo()
+                        "shapes"               -> {
+                            ShapesDemo()
+                        }
                         "outlined-button"      -> OutlinedButtonDemo()
                         "text-button"          -> TextButtonDemo()
                         "filled-tonal-button"  -> FilledTonalButtonDemo()

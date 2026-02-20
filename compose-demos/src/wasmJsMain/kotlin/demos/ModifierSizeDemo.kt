@@ -9,6 +9,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * ModifierSizeDemo 演示 Compose 中控制组件尺寸的核心 Modifier。
+ *
+ * 尺寸相关 Modifier 是布局系统的基础，决定组件在父容器中占用的空间：
+ * - [Modifier.size]：同时设置宽高为固定 dp 值
+ * - [Modifier.width] / [Modifier.height]：单独设置宽或高
+ * - [Modifier.fillMaxWidth] / [Modifier.fillMaxHeight] / [Modifier.fillMaxSize]：
+ *   填充父容器的可用宽度/高度/全部空间，可传入 0f~1f 的比例参数
+ * - [Modifier.wrapContentSize]：收缩到内容所需的最小尺寸，忽略父容器的最小尺寸约束
+ *
+ * 关键概念：Compose 布局约束（Constraints）
+ * 父容器向子组件传递 minWidth/maxWidth/minHeight/maxHeight 约束，
+ * 子组件在约束范围内决定自身尺寸。fillMaxWidth 等 Modifier 通过
+ * 将自身尺寸设为约束的最大值来实现"填满"效果。
+ */
 @Composable
 fun ModifierSizeDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

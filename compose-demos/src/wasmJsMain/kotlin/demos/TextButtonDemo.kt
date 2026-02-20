@@ -9,6 +9,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * TextButtonDemo 演示 [TextButton] 的用法。
+ *
+ * TextButton 无背景、无边框，是五种按钮中视觉权重最低的，
+ * 适合用于不需要强调的辅助操作，例如对话框底部的"取消"/"确认"，
+ * 或内联于文本段落中的操作链接。
+ */
 @Composable
 fun TextButtonDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

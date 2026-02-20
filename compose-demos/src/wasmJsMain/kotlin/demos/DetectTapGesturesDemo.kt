@@ -11,6 +11,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 
+/**
+ * DetectTapGesturesDemo 演示 detectTapGestures 的各种点击手势识别。
+ *
+ * detectTapGestures 是处理点击类手势的底层 API，通过 pointerInput 调用，
+ * 支持四种手势回调（均可选）：
+ * - `onTap`：单击（快速按下抬起）
+ * - `onDoubleTap`：双击（在系统双击时间窗口内连续点击两次）
+ * - `onLongPress`：长按（按下超过约 400ms）
+ * - `onPress`：按下时立即触发（最早的回调，是挂起函数）
+ *
+ * 与高级 API 的对比：
+ * - `clickable`：只支持单击，有 Ripple，适合标准按钮
+ * - `combinedClickable`：支持单击+双击+长按，封装程度高
+ * - `detectTapGestures`：最底层，无默认视觉反馈，完全自定义
+ *
+ * 注意：同时注册 onTap 和 onDoubleTap 时，单击会有短暂延迟（等待双击判定窗口）。
+ * 只注册 onTap 时，单击响应更即时。
+ */
 @Composable
 fun DetectTapGesturesDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

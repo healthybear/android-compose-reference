@@ -9,6 +9,26 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * SideEffectDemo 演示 SideEffect 的使用场景与执行时机。
+ *
+ * SideEffect 在每次成功重组完成后同步执行，没有 key 参数，
+ * 用于将 Compose 内部状态"推送"给不受 Compose 管理的外部对象。
+ *
+ * 核心特性：
+ * - 每次成功重组后都会执行（不像 LaunchedEffect 有 key 控制）
+ * - 同步执行，不可挂起
+ * - 只在"成功提交"的重组后执行（被丢弃的重组不触发）
+ *
+ * 与 LaunchedEffect 的区别：
+ * - SideEffect：同步，每次重组都执行，用于同步外部状态
+ * - LaunchedEffect：异步，key 变化时执行，用于异步操作
+ *
+ * 典型用途：
+ * - 将 Compose 状态同步到 Analytics SDK（如页面浏览统计）
+ * - 更新非 Compose 管理的外部计数器/日志系统
+ * - 将 Compose 状态推送给 JavaScript 互操作层（Wasm 场景）
+ */
 @Composable
 fun SideEffectDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

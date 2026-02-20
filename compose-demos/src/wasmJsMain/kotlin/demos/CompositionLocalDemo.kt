@@ -16,6 +16,24 @@ private val LocalAccentColor = compositionLocalOf { Color(0xFF6750A4) }
 private val LocalCardElevation = compositionLocalOf { 4.dp }
 private val LocalUserName = compositionLocalOf { "访客" }
 
+/**
+ * CompositionLocalDemo 演示 CompositionLocal 的隐式参数传递机制。
+ *
+ * CompositionLocal 允许在组合树中"隐式"地向下传递数据，
+ * 无需通过每一层函数参数显式传递（避免 prop drilling）。
+ *
+ * 两种创建方式：
+ * - `compositionLocalOf { defaultValue }` — 值变化时只重组读取该值的组件（推荐）
+ * - `staticCompositionLocalOf { defaultValue }` — 值变化时重组整个 Provider 子树
+ *   （适合极少变化的值，如字体、屏幕方向）
+ *
+ * 使用模式：
+ * 1. 在文件顶层声明 `val LocalXxx = compositionLocalOf { defaultValue }`
+ * 2. 用 `CompositionLocalProvider(LocalXxx provides value) { ... }` 提供值
+ * 3. 在子组件中用 `LocalXxx.current` 读取当前值
+ *
+ * 典型用途：主题颜色、字体、语言、当前用户信息、依赖注入。
+ */
 @Composable
 fun CompositionLocalDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

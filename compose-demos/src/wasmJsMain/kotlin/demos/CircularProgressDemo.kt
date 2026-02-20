@@ -8,6 +8,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * CircularProgressDemo 演示 Material3 CircularProgressIndicator 的用法。
+ *
+ * CircularProgressIndicator 是圆形进度指示器，有两种模式：
+ * - 不确定进度（Indeterminate）：无限旋转动画，表示"正在处理，时长未知"
+ * - 确定进度（Determinate）：显示具体进度值（0f~1f），表示"已完成 X%"
+ *
+ * 核心参数：
+ * - 不传 `progress` 参数 → 不确定模式（无限旋转）
+ * - 传入 `progress: () -> Float` → 确定模式（显示进度）
+ * - `strokeWidth`：圆弧线条宽度
+ * - `color`：进度弧颜色（默认 primary）
+ * - `trackColor`：背景轨道颜色（默认 surfaceVariant）
+ *
+ * 动画技巧：使用 animateFloatAsState 对 progress 值做平滑过渡，
+ * 避免进度条跳变，提升视觉体验。
+ */
 @Composable
 fun CircularProgressDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

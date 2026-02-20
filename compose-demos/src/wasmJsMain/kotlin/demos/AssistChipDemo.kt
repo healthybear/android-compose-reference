@@ -7,6 +7,25 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 
+/**
+ * AssistChipDemo 演示 Material3 AssistChip 的用法。
+ *
+ * AssistChip 是四种 Chip 之一，专门用于"辅助操作"场景：
+ * 引导用户执行与当前上下文相关的操作（如"设置"、"分享"、"导航"），
+ * 本身不持有选中/未选中状态（区别于 FilterChip）。
+ *
+ * 核心参数：
+ * - `onClick`：点击回调
+ * - `label`：标签内容插槽
+ * - `leadingIcon`：前置图标（使用 AssistChipDefaults.IconSize 约束尺寸）
+ * - `enabled`：禁用状态
+ *
+ * 变体：
+ * - [AssistChip]：标准样式，无阴影
+ * - [ElevatedAssistChip]：带阴影，视觉层级更高，适合浅色背景
+ *
+ * 典型用途：快捷操作建议、智能助手推荐操作。
+ */
 @Composable
 fun AssistChipDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
@@ -16,7 +35,7 @@ fun AssistChipDemo() {
         SectionLabel("基础用法")
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             AssistChip(onClick = {}, label = { Text("操作建议") })
-            AssistChip(onClick = {}, label = { Text("禁用"), }, enabled = false)
+            AssistChip(onClick = {}, label = { Text("禁用") }, enabled = false)
         }
 
         HorizontalDivider()

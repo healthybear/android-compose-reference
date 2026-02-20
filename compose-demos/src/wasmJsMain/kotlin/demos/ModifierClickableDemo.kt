@@ -12,6 +12,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * ModifierClickableDemo 演示 Modifier.clickable 和 combinedClickable 的用法。
+ *
+ * clickable 是为任意组件添加点击交互的标准方式，自动提供：
+ * - Ripple 水波纹视觉反馈（Material Design 规范）
+ * - 无障碍语义（将组件标记为可点击）
+ * - 键盘/遥控器焦点支持
+ *
+ * 两种 API：
+ * - [Modifier.clickable]：只处理单击，最常用
+ * - [Modifier.combinedClickable]：同时处理单击、双击、长按（需要 @OptIn ExperimentalFoundationApi）
+ *
+ * 禁用 Ripple：传入 `indication = null` 和自定义 `interactionSource` 可关闭水波纹，
+ * 适合不需要视觉反馈的场景（如透明遮罩层）。
+ *
+ * enabled 参数：设为 false 时组件不响应点击，且 Ripple 也不显示。
+ */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ModifierClickableDemo() {

@@ -8,6 +8,24 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * PermanentNavigationDrawerDemo 演示 Material3 PermanentNavigationDrawer 的用法。
+ *
+ * PermanentNavigationDrawer 是常驻侧边栏，始终可见，不需要手势触发，
+ * 适合平板、桌面端等宽屏设备的导航布局。
+ *
+ * 与 ModalNavigationDrawer 的区别：
+ * - ModalNavigationDrawer：模态，需要手势/按钮触发，有遮罩层，适合手机
+ * - PermanentNavigationDrawer：常驻，始终显示，占用固定宽度，适合宽屏
+ *
+ * 核心参数：
+ * - `drawerContent`：侧边栏内容插槽（通常是 PermanentDrawerSheet + NavigationDrawerItem 列表）
+ * - `content`：主内容区域，与侧边栏并排显示
+ *
+ * 响应式布局建议：
+ * 使用 BoxWithConstraints 检测屏幕宽度，宽屏用 PermanentNavigationDrawer，
+ * 窄屏用 ModalNavigationDrawer，实现自适应导航。
+ */
 @Composable
 fun PermanentNavigationDrawerDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

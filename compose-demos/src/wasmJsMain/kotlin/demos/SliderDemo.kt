@@ -1,12 +1,32 @@
 package demos
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.automirrored.filled.VolumeDown
+import androidx.compose.material.icons.automirrored.filled.VolumeOff
+import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kotlin.math.roundToInt
 
+/**
+ * SliderDemo 演示 Material3 Slider 的用法。
+ *
+ * Slider 是连续值选择控件，用户通过拖动滑块在指定范围内选择数值。
+ *
+ * 核心参数：
+ * - `value`：当前值（Float）
+ * - `onValueChange`：值变化回调，每帧拖动都会触发
+ * - `valueRange`：值范围，默认 0f..1f
+ * - `steps`：离散步数，将范围分为 (steps+1) 个区间，
+ *   设置后滑块只能停在离散位置（如 steps=4 表示 5 个可选值）
+ * - `onValueChangeFinished`：拖动结束时触发，适合做网络请求等耗时操作
+ *
+ * 连续值 vs 离散值：
+ * - 不设 steps：连续滑动，适合音量、亮度等精细调节
+ * - 设置 steps：离散跳跃，适合评分（1-5星）、数量选择等场景
+ */
 @Composable
 fun SliderDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
@@ -67,11 +87,11 @@ fun SliderDemo() {
         ) {
             Icon(
                 imageVector = if (volume == 0f)
-                    androidx.compose.material.icons.Icons.Filled.VolumeOff
+                    androidx.compose.material.icons.Icons.AutoMirrored.Filled.VolumeOff
                 else if (volume < 0.5f)
-                    androidx.compose.material.icons.Icons.Filled.VolumeDown
+                    androidx.compose.material.icons.Icons.AutoMirrored.Filled.VolumeDown
                 else
-                    androidx.compose.material.icons.Icons.Filled.VolumeUp,
+                    androidx.compose.material.icons.Icons.AutoMirrored.Filled.VolumeUp,
                 contentDescription = null
             )
             Slider(

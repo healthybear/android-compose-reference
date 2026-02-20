@@ -18,6 +18,23 @@ import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
+/**
+ * DrawModifierDemo 演示 Compose 中三种主要的自定义绘制方式。
+ *
+ * 三种绘制 API 对比：
+ * - `drawBehind { }` — 在组件内容后面（背景层）绘制，不影响布局，适合自定义背景/边框
+ * - `drawWithContent { }` — 可控制绘制顺序，必须手动调用 `drawContent()` 绘制组件内容，
+ *   适合水印、遮罩、高亮效果
+ * - `Canvas { }` — 独立绘制区域 Composable，不包含子组件，适合图表、进度条等纯图形
+ *
+ * DrawScope 常用属性：
+ * - `size`：当前绘制区域的尺寸（Width × Height）
+ * - `center`：绘制区域中心点坐标
+ * - `Dp.toPx()`：将 dp 转换为像素（在 DrawScope 内可直接调用）
+ *
+ * 注意：drawWithContent 中如果忘记调用 drawContent()，组件内容将不可见！
+ * 绘制操作不触发重组，性能开销极低。
+ */
 @Composable
 fun DrawModifierDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

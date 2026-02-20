@@ -4,7 +4,18 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import demos.SectionLabel
 
+/**
+ * ButtonDemo 演示 Material3 中各种按钮组件的用法与视觉差异。
+ *
+ * Material3 按钮层级（由强到弱）：
+ * - [Button]（Filled）— 最高强调，用于主要操作
+ * - [ElevatedButton] — 带阴影，用于需要与背景区分的操作
+ * - [FilledTonalButton] — 次要强调，使用 secondaryContainer 色
+ * - [OutlinedButton] — 中等强调，带边框
+ * - [TextButton] — 最低强调，无背景无边框
+ */
 @Composable
 fun ButtonDemo() {
     var count by remember { mutableStateOf(0) }
@@ -15,6 +26,8 @@ fun ButtonDemo() {
 
         Text("Button 示例", style = MaterialTheme.typography.titleMedium)
 
+        // 五种按钮共用相同的 onClick / enabled / colors 参数接口，仅外观不同，
+        // 选择哪种取决于操作在当前页面的重要程度（视觉层级）。
         // ── 1. 五种样式 ───────────────────────────────────
         SectionLabel("五种样式")
         Row(
@@ -30,6 +43,8 @@ fun ButtonDemo() {
 
         HorizontalDivider()
 
+        // enabled = false 时按钮自动应用 disabledContainerColor / disabledContentColor，
+        // 无需手动处理颜色；加载中模式通过 enabled = !loading 防止重复触发。
         // ── 2. 禁用 & 加载中 ──────────────────────────────
         SectionLabel("状态：正常 / 禁用 / 加载中")
         Row(
@@ -58,6 +73,8 @@ fun ButtonDemo() {
 
         HorizontalDivider()
 
+        // 将状态绑定到 onClick 是 Compose 响应式模型的核心：
+        // 状态变化 → 重组 → UI 自动更新，无需手动刷新视图。
         // ── 3. 交互计数 ───────────────────────────────────
         SectionLabel("交互计数")
         Row(
@@ -76,6 +93,8 @@ fun ButtonDemo() {
 
         HorizontalDivider()
 
+        // ButtonDefaults.buttonColors() 允许覆盖 containerColor / contentColor，
+        // 实现切换态视觉反馈，比手动设置背景色更符合 Material3 规范。
         // ── 4. 切换状态按钮 ───────────────────────────────
         SectionLabel("切换状态")
         Row(
@@ -107,6 +126,8 @@ fun ButtonDemo() {
 
         HorizontalDivider()
 
+        // FAB 系列与普通按钮的核心区别：FAB 悬浮于内容之上（elevation），
+        // 始终可见，用于页面级主操作；普通按钮内嵌于布局流中。
         // ── 5. FAB ────────────────────────────────────────
         SectionLabel("FloatingActionButton")
         Row(
@@ -125,11 +146,3 @@ fun ButtonDemo() {
     }
 }
 
-@Composable
-private fun SectionLabel(text: String) {
-    Text(
-        text,
-        style = MaterialTheme.typography.labelMedium,
-        color = MaterialTheme.colorScheme.outline
-    )
-}

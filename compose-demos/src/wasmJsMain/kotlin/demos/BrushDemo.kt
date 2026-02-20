@@ -13,6 +13,24 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.unit.dp
 
+/**
+ * BrushDemo 演示 Compose 中 Brush 的各种渐变类型及使用方式。
+ *
+ * Brush 的四种渐变类型：
+ * - `linearGradient` — 线性渐变，沿直线方向过渡（水平/垂直/对角）
+ * - `radialGradient` — 径向渐变，从中心点向外扩散
+ * - `sweepGradient` — 扫描渐变，围绕中心点旋转（类似色轮）
+ * - `verticalGradient` — 垂直渐变（linearGradient 的垂直方向快捷方式）
+ *
+ * Brush 的使用场景：
+ * - `Modifier.background(brush)` — 组件背景渐变
+ * - `DrawScope.drawRect(brush = brush)` — Canvas 中填充渐变矩形
+ * - `DrawScope.drawCircle(brush = brush)` — Canvas 中填充渐变圆形
+ *
+ * colorStops 精确控制：
+ * `colorStops = arrayOf(0.0f to Color(...), 0.5f to Color(...), 1.0f to Color(...))`
+ * 可以精确指定每个颜色在渐变中的位置（0f 为起点，1f 为终点）。
+ */
 @Composable
 fun BrushDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

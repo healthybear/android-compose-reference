@@ -10,6 +10,26 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * CardDemo 演示 Material3 Card 的基础用法。
+ *
+ * Card 是 Material Design 中用于展示相关信息的容器组件，默认带有圆角和轻微阴影（Tonal elevation）。
+ * 内部可放置任意 Composable，常见布局为标题 + 正文 + 操作按钮。
+ *
+ * 三种变体（本文件演示基础 Card，其余见 ElevatedCardDemo / OutlinedCardDemo）：
+ * - [Card]：默认填充样式，使用 surface 颜色 + tonal elevation
+ * - [ElevatedCard]：更高阴影，视觉层次更突出
+ * - [OutlinedCard]：描边样式，无阴影，适合扁平化设计
+ *
+ * 可点击 Card：
+ * - 传入 `onClick` 参数即可让整张卡片响应点击，自动添加 Ripple 反馈
+ * - 适合列表项、导航入口等场景
+ *
+ * 内容布局建议：
+ * - 封面图放在 Card 顶部（使用 Box + Canvas 或 Image）
+ * - 文字内容用 Column + padding(16.dp) 包裹
+ * - 操作按钮放在底部 Row 中
+ */
 @Composable
 fun CardDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

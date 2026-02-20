@@ -7,6 +7,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * RadioButtonDemo 演示 Material3 RadioButton 的用法。
+ *
+ * RadioButton 用于在一组互斥选项中选择一个，通常配合 Row/Column 组成单选组。
+ * 与 Checkbox 不同，RadioButton 本身不持有状态，需要外部管理选中项。
+ *
+ * 核心 API：
+ * - [RadioButton]：单个单选按钮，`selected` 参数控制选中状态
+ * - 通常将 RadioButton + Text 放在 Row 中，并对整个 Row 添加 clickable，
+ *   扩大点击区域，提升可用性
+ *
+ * 实现单选组的模式：
+ * 用一个 `var selectedOption by remember { mutableStateOf(...) }` 状态，
+ * 每个 RadioButton 的 `selected = (option == selectedOption)`，
+ * `onClick = { selectedOption = option }`。
+ */
 @Composable
 fun RadioButtonDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

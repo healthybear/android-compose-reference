@@ -14,6 +14,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 
+/**
+ * AnimateAsStateDemo 演示 animateXxxAsState 系列状态驱动动画。
+ *
+ * animateXxxAsState 是 Compose 中最简单的动画方式：
+ * 将普通状态值包装为带动画的状态，当 targetValue 改变时自动插值过渡。
+ *
+ * 常用 API：
+ * - [animateDpAsState]：Dp 尺寸平滑过渡
+ * - [animateColorAsState]：Color 颜色平滑过渡（在 ARGB 空间插值）
+ * - [animateFloatAsState]：Float 浮点值平滑过渡（透明度、旋转角度等）
+ * - 还有 animateIntAsState、animateSizeAsState、animateOffsetAsState 等
+ *
+ * animationSpec 参数决定插值方式：
+ * - [spring]：弹簧物理模拟，有自然弹性感，DampingRatioMediumBouncy 为中等弹性
+ * - [tween]：固定时长缓动曲线，适合需要精确控制时长的场景
+ *
+ * animateContentSize：Modifier 扩展，自动检测内容尺寸变化并做动画，
+ * 无需手动指定目标尺寸，适合动态内容场景。
+ */
 @Composable
 fun AnimateAsStateDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

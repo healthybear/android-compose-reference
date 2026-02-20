@@ -6,6 +6,21 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.unit.dp
 import kotlin.math.roundToInt
 
+/**
+ * RangeSliderDemo 演示 Material3 RangeSlider 的用法。
+ *
+ * RangeSlider 是区间选择控件，有两个滑块分别控制范围的起始值和结束值，
+ * 常用于价格区间筛选、时间段选择等场景。
+ *
+ * 核心参数：
+ * - `value`：当前区间，类型为 `ClosedFloatingPointRange<Float>`（如 20f..80f）
+ * - `onValueChange`：区间变化回调，参数为新的 ClosedFloatingPointRange
+ * - `valueRange`：可选范围，默认 0f..1f
+ * - `steps`：离散步数（同 Slider）
+ *
+ * 注意：RangeSlider 是实验性 API（@ExperimentalMaterial3Api），
+ * 使用时需要 @OptIn(ExperimentalMaterial3Api::class)。
+ */
 @Composable
 fun RangeSliderDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

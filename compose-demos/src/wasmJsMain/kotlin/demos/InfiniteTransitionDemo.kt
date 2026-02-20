@@ -15,6 +15,26 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.unit.dp
 
+/**
+ * InfiniteTransitionDemo 演示 rememberInfiniteTransition 的无限循环动画。
+ *
+ * InfiniteTransition 用于创建持续循环播放的动画，无需手动触发，
+ * 组件进入组合树时自动开始，离开时自动停止。
+ *
+ * 核心 API：
+ * - [rememberInfiniteTransition]：创建 InfiniteTransition 实例
+ * - `infiniteTransition.animateFloat(initialValue, targetValue, animationSpec)`：
+ *   声明一个无限循环的 Float 动画
+ * - `infiniteTransition.animateColor(...)`：无限循环的颜色动画
+ * - [infiniteRepeatable]：无限重复的动画规格，包含：
+ *   - `animation`：单次动画（tween/keyframes 等）
+ *   - `repeatMode`：重复模式（Restart=从头开始，Reverse=来回往返）
+ *
+ * 典型用途：
+ * - 脉冲效果（缩放循环）：表示"正在录音"、"实时状态"
+ * - 旋转动画：加载指示器、刷新图标
+ * - 颜色呼吸：强调某个元素
+ */
 @Composable
 fun InfiniteTransitionDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
@@ -38,7 +58,7 @@ fun InfiniteTransitionDemo() {
                 modifier = Modifier.size(48.dp).scale(scale)
                     .background(MaterialTheme.colorScheme.primary, CircleShape)
             )
-            Text("scale: ${"%.2f".format(scale)}", style = MaterialTheme.typography.bodySmall,
+            Text("scale: ${scale.fmt()}", style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
 

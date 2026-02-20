@@ -9,6 +9,24 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * InputChipDemo 演示 Material3 InputChip 的用法。
+ *
+ * InputChip 代表用户已输入或选择的值，例如邮件收件人、搜索标签等。
+ * 通常带有删除按钮（trailingIcon），允许用户移除该条目。
+ *
+ * 核心参数：
+ * - `selected`：选中状态（InputChip 通常固定为 false，不需要选中语义）
+ * - `onClick`：点击回调
+ * - `label`：标签内容
+ * - `leadingIcon`：前置图标（通常是头像或类型图标）
+ * - `trailingIcon`：后置图标（通常是删除按钮 IconButton + Close 图标）
+ *
+ * 删除模式：
+ * 在 trailingIcon 中放置 IconButton，点击时从列表中移除对应项。
+ * 使用 `mutableStateListOf` 管理列表，增删操作自动触发重组。
+ * 遍历时用 `toList()` 创建快照，避免并发修改异常。
+ */
 @Composable
 fun InputChipDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

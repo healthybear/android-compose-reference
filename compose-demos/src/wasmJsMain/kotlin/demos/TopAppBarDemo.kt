@@ -8,6 +8,23 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * TopAppBarDemo 演示 Material3 TopAppBar 系列组件的用法。
+ *
+ * Material3 提供四种 TopAppBar 变体，适用于不同场景：
+ * - [CenterAlignedTopAppBar]：标题居中，适合简单页面
+ * - [TopAppBar]：标题左对齐，最常用
+ * - [MediumTopAppBar]：中等高度，标题在折叠时居左，展开时在下方
+ * - [LargeTopAppBar]：大标题，适合内容详情页
+ *
+ * 核心参数：
+ * - `title`：标题插槽
+ * - `navigationIcon`：左侧导航图标（通常是返回箭头或菜单图标）
+ * - `actions`：右侧操作区域（RowScope，可放多个 IconButton）
+ * - `scrollBehavior`：滚动行为，配合 Scaffold 实现滚动时折叠/隐藏效果
+ * - `colors`：自定义颜色（containerColor、titleContentColor 等）
+ */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopAppBarDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

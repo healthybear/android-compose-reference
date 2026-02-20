@@ -10,6 +10,25 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * AnimatedVisibilityDemo 演示 AnimatedVisibility 的显示/隐藏过渡动画。
+ *
+ * AnimatedVisibility 在组件显示/隐藏时自动播放过渡动画，
+ * 与直接用 if 判断相比，它保证退出动画完整播放后才移除组件。
+ *
+ * 核心参数：
+ * - `visible`：控制显示/隐藏的布尔状态
+ * - `enter`：进入动画（默认 fadeIn + expandIn）
+ * - `exit`：退出动画（默认 fadeOut + shrinkOut）
+ *
+ * 常用动画效果（可用 `+` 组合）：
+ * - [fadeIn] / [fadeOut]：透明度渐变
+ * - [slideInVertically] / [slideOutVertically]：垂直滑动，lambda 参数为偏移量
+ * - [expandVertically] / [shrinkVertically]：高度展开/收起（影响布局空间）
+ * - [expandHorizontally] / [shrinkHorizontally]：宽度展开/收起
+ *
+ * 组合示例：`enter = fadeIn() + expandHorizontally()` 同时淡入并水平展开。
+ */
 @Composable
 fun AnimatedVisibilityDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

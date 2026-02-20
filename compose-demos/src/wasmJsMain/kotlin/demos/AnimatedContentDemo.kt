@@ -12,6 +12,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
+/**
+ * AnimatedContentDemo 演示 AnimatedContent 的内容切换动画。
+ *
+ * AnimatedContent 在 targetState 变化时，以动画方式切换显示的内容，
+ * 旧内容退出的同时新内容进入，两者在动画期间同时存在于组合树中。
+ *
+ * 核心参数：
+ * - `targetState`：驱动内容切换的状态（任意类型）
+ * - `transitionSpec`：定义 ContentTransform，使用 `togetherWith` 中缀函数
+ *   将 EnterTransition 和 ExitTransition 组合：`enter togetherWith exit`
+ * - `label`：调试标签，用于 Android Studio 动画检查工具
+ *
+ * 方向感动画技巧：
+ * 在 transitionSpec 中比较 targetState 和 initialState，
+ * 根据新旧值的大小关系选择不同的滑动方向，使动画具有语义方向感。
+ *
+ * SizeTransform：使用 `using SizeTransform(clip = false)` 让容器尺寸也参与动画，
+ * 适合从小组件展开为大组件的场景。
+ */
 @Composable
 fun AnimatedContentDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {

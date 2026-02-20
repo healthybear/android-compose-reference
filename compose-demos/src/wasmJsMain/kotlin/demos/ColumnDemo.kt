@@ -10,6 +10,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+/**
+ * ColumnDemo 演示了 Compose 中 Column 布局的核心用法。
+ *
+ * Column 是垂直线性布局容器，类似于 Android View 体系中的垂直 LinearLayout。
+ * 本示例涵盖三个关键知识点：
+ *  1. verticalArrangement —— 控制子项在主轴（垂直方向）上的分布方式
+ *  2. horizontalAlignment —— 控制子项在交叉轴（水平方向）上的对齐方式
+ *  3. Modifier.weight()   —— 让子项按比例瓜分剩余空间，实现弹性布局
+ *
+ * 学习建议：对比每种 Arrangement / Alignment 的视觉效果，理解它们的差异。
+ */
 @Composable
 fun ColumnDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
@@ -17,6 +28,9 @@ fun ColumnDemo() {
         Text("Column 示例", style = MaterialTheme.typography.titleMedium)
 
         // ── 1. verticalArrangement 对比 ───────────────────────
+        // verticalArrangement 决定子项在 Column 主轴方向（垂直）上如何分布空间。
+        // Top/Center/Bottom 是绝对定位；SpaceBetween/SpaceAround/SpaceEvenly 则均匀分配间距。
+        // 注意：只有容器高度大于所有子项高度之和时，Arrangement 才会产生可见效果。
         SectionLabel("verticalArrangement 对比")
         Text(
             "容器高度固定 120 dp，放入 3 个色块",
@@ -73,6 +87,9 @@ fun ColumnDemo() {
         HorizontalDivider()
 
         // ── 2. horizontalAlignment 对比 ───────────────────────
+        // horizontalAlignment 控制子项在交叉轴（水平方向）上的对齐位置。
+        // Start 靠左、CenterHorizontally 居中、End 靠右。
+        // 这里用三条宽度递减的色块直观展示对齐效果，宽度不同才能看出差异。
         SectionLabel("horizontalAlignment 对比")
         Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
             listOf(
@@ -114,6 +131,9 @@ fun ColumnDemo() {
         HorizontalDivider()
 
         // ── 3. weight 填充 ────────────────────────────────────
+        // Modifier.weight(n) 让子项按权重比例瓜分父容器的剩余空间。
+        // 此处三个色块权重为 1:2:1，意味着中间色块的高度是两侧的两倍。
+        // weight 只在父容器尺寸确定（如 fillMaxHeight 或固定高度）时才生效。
         SectionLabel("weight — 按比例分配高度")
         Row(
             modifier = Modifier.height(120.dp),

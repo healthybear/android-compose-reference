@@ -18,6 +18,21 @@ private val groupedItems = mapOf(
     "C 组" to (1..5).map { "C-$it" },
 )
 
+/**
+ * LazyColumnDemo 演示了 Jetpack Compose 中 LazyColumn 的两种核心用法。
+ *
+ * LazyColumn 是 Compose 的高性能垂直滚动列表，只渲染当前可见的条目（类似 RecyclerView），
+ * 适合展示数量不确定或较多的列表数据。
+ *
+ * 本示例涵盖：
+ * 1. 基础滚动列表：使用 itemsIndexed 渲染带序号的交替色条目
+ * 2. stickyHeader：实现分组吸顶效果，滚动时组标题固定在顶部
+ *
+ * 学习要点：
+ * - LazyColumn 的 verticalArrangement 控制条目间距，避免手动添加 Spacer
+ * - itemsIndexed 比 items 多提供 index 参数，方便实现斑马纹等索引相关逻辑
+ * - stickyHeader 是 LazyListScope 的扩展函数，只在 LazyColumn/LazyRow 内可用
+ */
 @Composable
 fun LazyColumnDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
@@ -25,6 +40,8 @@ fun LazyColumnDemo() {
         Text("LazyColumn 示例", style = MaterialTheme.typography.titleMedium)
 
         // ── 1. 基础滚动列表 ───────────────────────────────────
+        // 使用 itemsIndexed 遍历列表，index 用于实现交替背景色（斑马纹）
+        // height(200.dp) 限制列表高度，超出部分可滚动查看，避免撑满整个屏幕
         SectionLabel("基础列表（40 条，可滚动）")
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(6.dp),
@@ -60,6 +77,9 @@ fun LazyColumnDemo() {
         HorizontalDivider()
 
         // ── 2. stickyHeader ───────────────────────────────────
+        // stickyHeader 让分组标题在滚动时"粘"在列表顶部，直到下一个分组标题将其顶走
+        // 这是 LazyListScope 的特有能力，普通 Column 无法实现此效果
+        // 注意：stickyHeader 的背景色应与列表背景区分，否则视觉上无法体现"吸顶"感
         SectionLabel("stickyHeader — 分组吸顶")
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(4.dp),

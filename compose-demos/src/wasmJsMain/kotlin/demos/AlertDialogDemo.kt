@@ -8,6 +8,24 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * AlertDialogDemo 演示 Material3 AlertDialog 的用法。
+ *
+ * AlertDialog 是标准的确认/取消对话框，遵循 Material3 规范，
+ * 包含标题、正文、图标和操作按钮等固定插槽。
+ *
+ * 核心参数：
+ * - `onDismissRequest`：点击对话框外部或按返回键时触发，通常用于关闭对话框
+ * - `title`：标题插槽
+ * - `text`：正文内容插槽
+ * - `icon`：顶部图标插槽（可选）
+ * - `confirmButton`：确认按钮插槽（通常是 TextButton 或 Button）
+ * - `dismissButton`：取消按钮插槽（可选）
+ *
+ * 与 BasicAlertDialog 的区别：
+ * AlertDialog 提供预定义的布局结构（标题+正文+按钮），
+ * BasicAlertDialog 允许完全自定义内容布局。
+ */
 @Composable
 fun AlertDialogDemo() {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
