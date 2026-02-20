@@ -27,7 +27,7 @@ Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         progress = { progress },
         modifier = Modifier.fillMaxWidth()
     )
-    Text("${(progress * 100).toInt()}%")
+    Text("\${(progress * 100).toInt()}%")
     Button(onClick = { progress = (progress + 0.1f).coerceAtMost(1f) }) {
         Text("+10%")
     }

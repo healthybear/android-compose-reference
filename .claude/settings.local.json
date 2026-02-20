@@ -12,7 +12,8 @@
       "Bash(./gradlew.bat:*)",
       "Bash(python3:*)",
       "Bash(node -e:*)",
-      "Bash(npx vue-tsc:*)"
+      "Bash(npx vue-tsc:*)",
+      "WebFetch(domain:maven.google.com)"
     ]
   }
 }

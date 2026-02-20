@@ -46,7 +46,7 @@ val timerFlow = flow {
 @Composable
 fun Timer() {
     val seconds by timerFlow.collectAsState(initial = 0)
-    Text("已运行：${seconds}s")
+    Text("已运行：\${seconds}s")
 }`,
     },
   ],

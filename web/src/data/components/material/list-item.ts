@@ -41,7 +41,7 @@ export const listItemComponent: ComponentEntry = {
             leadingContent = {
                 AsyncImage(model = item.avatarUrl, contentDescription = null, modifier = Modifier.size(40.dp).clip(CircleShape))
             },
-            modifier = Modifier.clickable { navController.navigate("detail/${item.id}") }
+            modifier = Modifier.clickable { navController.navigate("detail/\${item.id}") }
         )
         HorizontalDivider()
     }

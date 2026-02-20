@@ -25,7 +25,7 @@ export const produceStateComponent: ComponentEntry = {
 when (val state = uiState) {
     is Result.Loading  -> CircularProgressIndicator()
     is Result.Success  -> Text(state.data.name)
-    is Result.Failure  -> Text("加载失败：${state.error.message}")
+    is Result.Failure  -> Text("加载失败：\${state.error.message}")
 }`,
     },
     {
@@ -37,7 +37,7 @@ val location by produceState<Location?>(initialValue = null) {
     awaitDispose { locationManager.removeUpdates(listener) }
 }
 
-location?.let { Text("位置：${it.latitude}, ${it.longitude}") }`,
+location?.let { Text("位置：\${it.latitude}, \${it.longitude}") }`,
     },
   ],
 }
