@@ -12,7 +12,7 @@ export function useSearch() {
       (c) =>
         c.name.toLowerCase().includes(q) ||
         c.description.toLowerCase().includes(q) ||
-        c.tags.some((t) => t.includes(q)) ||
+        c.tags.some((t) => t.toLowerCase().includes(q)) ||
         c.category.toLowerCase().includes(q)
     )
   })

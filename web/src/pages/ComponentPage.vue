@@ -10,12 +10,12 @@ import { useRelatedComponents } from '@/composables/useRelatedComponents'
 const route = useRoute()
 const router = useRouter()
 
-const component = computed(() =>
-  allComponents.find(c => c.id === route.params.id)
-)
-
+// 一次遍历同时拿到 index 和 component，避免两次全量搜索
 const currentIndex = computed(() =>
   allComponents.findIndex(c => c.id === route.params.id)
+)
+const component = computed(() =>
+  currentIndex.value >= 0 ? allComponents[currentIndex.value] : undefined
 )
 const prevComp = computed(() =>
   currentIndex.value > 0 ? allComponents[currentIndex.value - 1] : null
@@ -31,11 +31,6 @@ const relatedComponents = useRelatedComponents(() => component.value)
   <div v-if="component" class="max-w-[860px]">
     <!-- 页头 -->
     <div class="mb-2">
-      <!-- <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item>{{ component.category }}</el-breadcrumb-item>
-        <el-breadcrumb-item>{{ component.name }}</el-breadcrumb-item>
-      </el-breadcrumb> -->
       <h1 class="text-[28px] font-bold mt-3 mb-2 text-el-text">{{ component.name }}</h1>
       <p class="text-[15px] text-el-text-secondary m-0 mb-3 leading-relaxed">{{ component.description }}</p>
       <el-space wrap>

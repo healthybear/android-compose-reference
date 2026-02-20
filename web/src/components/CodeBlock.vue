@@ -9,14 +9,22 @@ const props = defineProps<{
 
 const { isDark } = useTheme()
 const highlighted = ref('')
+const loading = ref(true)
 const copied = ref(false)
 
 watchEffect(async () => {
-  const { codeToHtml } = await import('shiki')
-  highlighted.value = await codeToHtml(props.code, {
-    lang: props.lang ?? 'kotlin',
-    theme: isDark.value ? 'github-dark' : 'github-light',
-  })
+  loading.value = true
+  try {
+    const { codeToHtml } = await import('shiki')
+    highlighted.value = await codeToHtml(props.code, {
+      lang: props.lang ?? 'kotlin',
+      theme: isDark.value ? 'github-dark' : 'github-light',
+    })
+  } catch {
+    highlighted.value = `<pre><code>${props.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`
+  } finally {
+    loading.value = false
+  }
 })
 
 async function copyCode() {
@@ -34,7 +42,10 @@ async function copyCode() {
         {{ copied ? '已复制' : '复制' }}
       </el-button>
     </div>
-    <div class="code-content" v-html="highlighted" />
+    <div v-if="loading" class="px-4 py-3 text-el-text-placeholder text-sm font-mono animate-pulse">
+      加载中...
+    </div>
+    <div v-else class="code-content" v-html="highlighted" />
   </div>
 </template>
 

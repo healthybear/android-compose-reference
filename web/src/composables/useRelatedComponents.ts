@@ -9,11 +9,10 @@ export function useRelatedComponents(current: () => ComponentEntry | undefined) 
     const currentTags = new Set(comp.tags)
     return allComponents
       .filter(c => c.id !== comp.id)
-      .map(c => ({
-        component: c,
-        score: c.tags.filter(t => currentTags.has(t)).length + (c.category === comp.category ? 2 : 0),
-        sharedTags: c.tags.filter(t => currentTags.has(t)).length,
-      }))
+      .map(c => {
+        const sharedTags = c.tags.filter(t => currentTags.has(t)).length
+        return { component: c, score: sharedTags + (c.category === comp.category ? 2 : 0), sharedTags }
+      })
       .filter(({ sharedTags }) => sharedTags >= 1)
       .sort((a, b) => b.score - a.score)
       .slice(0, 6)

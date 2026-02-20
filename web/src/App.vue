@@ -1,17 +1,23 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, watch } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { Search, Moon, Sunny, HomeFilled, Fold, Expand, Reading } from '@element-plus/icons-vue'
 import { useTheme } from '@/composables/useTheme'
 import { useSearch } from '@/composables/useSearch'
 import { allComponents, componentGroups, composeVersion } from '@/data/components'
 
 const router = useRouter()
+const route = useRoute()
 const { isDark, toggle } = useTheme()
 const { query, results } = useSearch()
 
 const searchVisible = ref(false)
 const collapsed = ref(false)
+const mainScrollbar = ref()
+
+watch(() => route.path, () => {
+  mainScrollbar.value?.setScrollTop(0)
+})
 
 function goToComponent(id: string) {
   searchVisible.value = false
@@ -137,7 +143,7 @@ function groupComponents(categories: string[]) {
 
       <!-- 主内容区 -->
       <el-main class="!p-0 overflow-hidden">
-        <el-scrollbar>
+        <el-scrollbar ref="mainScrollbar">
           <div class="p-8 min-h-full">
             <router-view />
           </div>

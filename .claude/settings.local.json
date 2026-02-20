@@ -16,7 +16,8 @@
       "WebFetch(domain:maven.google.com)",
       "Bash(./gradlew:*)",
       "Bash(git update-index:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(\"e:/workspace/AndroidComposeReference/web/src/composables/useRelatedComponents.ts\":*)"
     ]
   }
 }

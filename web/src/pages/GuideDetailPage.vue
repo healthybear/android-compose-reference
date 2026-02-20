@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, watchEffect } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { ArrowLeft, ArrowRight } from '@element-plus/icons-vue'
 import { guides } from '@/data/guides'
 import { allComponents } from '@/data/components'
 import type { ComponentEntry } from '@/data/types'
@@ -10,6 +11,13 @@ const route = useRoute()
 const router = useRouter()
 
 const guide = computed(() => guides.find(g => g.id === route.params.id))
+
+// 指南不存在时重定向回列表页
+watchEffect(() => {
+  if (route.params.id && !guide.value) {
+    router.replace('/guide')
+  }
+})
 
 const currentIndex = computed(() => guides.findIndex(g => g.id === route.params.id))
 const prevGuide = computed(() => currentIndex.value > 0 ? guides[currentIndex.value - 1] : null)
