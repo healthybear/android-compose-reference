@@ -1,19 +1,31 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { useTheme } from '@/composables/useTheme'
 import { Monitor } from '@element-plus/icons-vue'
 
-defineProps<{
+const props = defineProps<{
   demoId: string
   height?: number
 }>()
 
 const { isDark } = useTheme()
 const iframeRef = ref<HTMLIFrameElement | null>(null)
+const iframeHeight = ref(props.height ?? 480)
 
 watch(isDark, (val) => {
   iframeRef.value?.contentWindow?.postMessage({ type: 'theme', dark: val }, '*')
 })
+
+function onMessage(e: MessageEvent) {
+  if (e.source !== iframeRef.value?.contentWindow) return
+  const data = e.data as { type?: string; height?: number }
+  if (data?.type === 'height' && typeof data.height === 'number' && data.height > 0) {
+    iframeHeight.value = data.height + 48 // 加 padding 余量
+  }
+}
+
+onMounted(() => window.addEventListener('message', onMessage))
+onUnmounted(() => window.removeEventListener('message', onMessage))
 </script>
 
 <template>
@@ -25,7 +37,7 @@ watch(isDark, (val) => {
     <iframe
       ref="iframeRef"
       :src="`/demos/index.html?demo=${demoId}`"
-      :height="height ?? 320"
+      :style="{ height: iframeHeight + 'px' }"
       width="100%"
       frameborder="0"
       loading="lazy"
