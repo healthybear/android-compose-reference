@@ -10,6 +10,7 @@ import compose_demos.generated.resources.Res
 import compose_demos.generated.resources.NotoSansSC_Regular
 import demos.*
 import demos.VerticalPagerDemo
+import kotlinx.browser.document
 import kotlinx.browser.window
 import org.jetbrains.compose.resources.Font
 import org.w3c.dom.MessageEvent
@@ -19,6 +20,17 @@ private external interface ThemeMessage : JsAny {
     val type: String?
     val dark: Boolean?
 }
+
+private fun reportHeight() {
+    val canvas = document.getElementById("ComposeTarget")
+    if (canvas != null) {
+        val h = canvas.scrollHeight
+        window.parent.postMessage(buildHeightMessage(h), "*")
+    }
+}
+
+private fun buildHeightMessage(height: Int): JsAny =
+    js("({ type: 'height', height: height })")
 
 @OptIn(ExperimentalComposeUiApi::class)
 fun main() {
@@ -66,6 +78,7 @@ fun main() {
         val colorScheme = if (isDark.value) darkColorScheme() else lightColorScheme()
 
         MaterialTheme(colorScheme = colorScheme, typography = typography) {
+            SideEffect { reportHeight() }
             Surface(
                 modifier = Modifier.fillMaxSize(),
                 color = MaterialTheme.colorScheme.background
