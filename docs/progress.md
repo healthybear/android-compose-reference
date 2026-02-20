@@ -48,6 +48,9 @@
 | Spacer | `spacer` | ✅ |
 | FlowRow | `flow-row` | ✅ |
 | FlowColumn | `flow-column` | ✅ |
+| ConstraintLayout | `constraint-layout` | ✅ |
+| Surface | `surface` | ✅ |
+| Popup | `popup` | ✅ |
 
 ### ✅ 列表与网格（LazyList）
 
@@ -59,6 +62,7 @@
 | LazyHorizontalGrid | `lazy-horizontal-grid` | ✅ |
 | HorizontalPager | `horizontal-pager` | ✅ |
 | VerticalPager | `vertical-pager` | ✅ |
+| LazyVerticalStaggeredGrid | `lazy-staggered-grid` | ✅ |
 
 ### ✅ 基础组件（Foundation）
 
@@ -68,6 +72,7 @@
 | Image | `image` | ✅ |
 | Icon | `icon` | ✅ |
 | Canvas | `canvas` | ✅ |
+| SelectionContainer | `selection-container` | ✅ |
 
 ### ✅ Modifier（Modifier）
 
@@ -80,6 +85,8 @@
 | offset / graphicsLayer | `modifier-offset` | ✅ |
 | scrollable / nestedScroll | `modifier-scroll` | ✅ |
 | semantics（无障碍） | `modifier-semantics` | ✅ |
+| pointerInput | `modifier-pointer-input` | ✅ |
+| alpha / rotate / scale / graphicsLayer | `modifier-graphics` | ✅ |
 
 ### ✅ 主题（Theme）
 
@@ -107,6 +114,8 @@
 | RangeSlider | `range-slider` | ✅ |
 | FocusRequester | `focus-requester` | ✅ |
 | KeyboardOptions / KeyboardActions | `keyboard-options` | ✅ |
+| DatePicker / DatePickerDialog / DateRangePicker | `date-picker` | ✅ |
+| TimePicker / TimeInput | `time-picker` | ✅ |
 
 ### ✅ Material 组件（Material）
 
@@ -130,8 +139,10 @@
 | ListItem | `list-item` | ✅ |
 | Badge | `badge` | ✅ |
 | HorizontalDivider | `horizontal-divider` | ✅ |
+| VerticalDivider | `vertical-divider` | ✅ |
 | DropdownMenu | `dropdown-menu` | ✅ |
 | ExposedDropdownMenuBox | `exposed-dropdown-menu` | ✅ |
+| SegmentedButton | `segmented-button` | ✅ |
 
 ### ✅ 反馈（Feedback）
 
@@ -143,9 +154,10 @@
 | LinearProgressIndicator | `linear-progress` | ✅ |
 | CircularProgressIndicator | `circular-progress` | ✅ |
 | ModalBottomSheet | `modal-bottom-sheet` | ✅ |
-| Tooltip（PlainTooltip） | `tooltip` | ✅ |
+| TooltipBox | `tooltip` | ✅ |
 | PullToRefreshBox | `pull-to-refresh` | ✅ |
 | SwipeToDismissBox | `swipe-to-dismiss` | ✅ |
+| BottomSheetScaffold | `bottom-sheet-scaffold` | ✅ |
 
 ### ✅ 导航（Navigation）
 
@@ -154,6 +166,7 @@
 | Scaffold | `scaffold` | ✅ |
 | TopAppBar | `top-app-bar` | ✅ |
 | CenterAlignedTopAppBar | `center-aligned-top-app-bar` | ✅ |
+| MediumTopAppBar | `medium-top-app-bar` | ✅ |
 | LargeTopAppBar | `large-top-app-bar` | ✅ |
 | BottomAppBar | `bottom-app-bar` | ✅ |
 | NavigationBar | `navigation-bar` | ✅ |

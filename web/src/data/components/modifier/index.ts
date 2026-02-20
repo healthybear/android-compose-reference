@@ -5,6 +5,8 @@ import { modifierClickableComponent } from './clickable'
 import { modifierOffsetComponent } from './offset'
 import { modifierScrollComponent } from './scroll'
 import { modifierSemanticsComponent } from './semantics'
+import { pointerInputComponent } from './pointer-input'
+import { graphicsModifierComponent } from './graphics'
 
 export const modifierComponents = [
   modifierSizeComponent,
@@ -14,4 +16,6 @@ export const modifierComponents = [
   modifierOffsetComponent,
   modifierScrollComponent,
   modifierSemanticsComponent,
+  pointerInputComponent,
+  graphicsModifierComponent,
 ]

@@ -5,6 +5,9 @@ import { boxWithConstraintsComponent } from './box-with-constraints'
 import { spacerComponent } from './spacer'
 import { flowRowComponent } from './flow-row'
 import { flowColumnComponent } from './flow-column'
+import { constraintLayoutComponent } from './constraint-layout'
+import { surfaceComponent } from './surface'
+import { popupComponent } from './popup'
 
 export const layoutComponents = [
   columnComponent,
@@ -14,4 +17,7 @@ export const layoutComponents = [
   spacerComponent,
   flowRowComponent,
   flowColumnComponent,
+  constraintLayoutComponent,
+  surfaceComponent,
+  popupComponent,
 ]

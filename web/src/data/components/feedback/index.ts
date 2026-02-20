@@ -7,6 +7,7 @@ import { modalBottomSheetComponent } from './modal-bottom-sheet'
 import { tooltipComponent } from './tooltip'
 import { pullToRefreshComponent } from './pull-to-refresh'
 import { swipeToDismissComponent } from './swipe-to-dismiss'
+import { bottomSheetScaffoldComponent } from './bottom-sheet-scaffold'
 
 export const feedbackComponents = [
   alertDialogComponent,
@@ -18,4 +19,5 @@ export const feedbackComponents = [
   tooltipComponent,
   pullToRefreshComponent,
   swipeToDismissComponent,
+  bottomSheetScaffoldComponent,
 ]

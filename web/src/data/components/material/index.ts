@@ -16,8 +16,10 @@ import { outlinedCardComponent } from './outlined-card'
 import { listItemComponent } from './list-item'
 import { badgeComponent } from './badge'
 import { horizontalDividerComponent } from './horizontal-divider'
+import { verticalDividerComponent } from './vertical-divider'
 import { dropdownMenuComponent } from './dropdown-menu'
 import { exposedDropdownMenuComponent } from './exposed-dropdown-menu'
+import { segmentedButtonComponent } from './segmented-button'
 
 export const materialComponents = [
   buttonComponent,
@@ -38,6 +40,8 @@ export const materialComponents = [
   listItemComponent,
   badgeComponent,
   horizontalDividerComponent,
+  verticalDividerComponent,
   dropdownMenuComponent,
   exposedDropdownMenuComponent,
+  segmentedButtonComponent,
 ]

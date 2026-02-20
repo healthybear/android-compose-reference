@@ -9,6 +9,8 @@ import { sliderComponent } from './slider'
 import { rangeSliderComponent } from './range-slider'
 import { focusRequesterComponent } from './focus-requester'
 import { keyboardOptionsComponent } from './keyboard-options'
+import { datePickerComponent } from './date-picker'
+import { timePickerComponent } from './time-picker'
 
 export const formComponents = [
   textFieldComponent,
@@ -22,4 +24,6 @@ export const formComponents = [
   rangeSliderComponent,
   focusRequesterComponent,
   keyboardOptionsComponent,
+  datePickerComponent,
+  timePickerComponent,
 ]

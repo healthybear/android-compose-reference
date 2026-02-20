@@ -28,11 +28,11 @@ const nextComp = computed(() =>
   <div v-if="component" class="max-w-[860px]">
     <!-- 页头 -->
     <div class="mb-2">
-      <el-breadcrumb separator="/">
+      <!-- <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
         <el-breadcrumb-item>{{ component.category }}</el-breadcrumb-item>
         <el-breadcrumb-item>{{ component.name }}</el-breadcrumb-item>
-      </el-breadcrumb>
+      </el-breadcrumb> -->
       <h1 class="text-[28px] font-bold mt-3 mb-2 text-el-text">{{ component.name }}</h1>
       <p class="text-[15px] text-el-text-secondary m-0 mb-3 leading-relaxed">{{ component.description }}</p>
       <el-space wrap>
