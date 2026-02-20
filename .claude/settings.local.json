@@ -13,7 +13,10 @@
       "Bash(python3:*)",
       "Bash(node -e:*)",
       "Bash(npx vue-tsc:*)",
-      "WebFetch(domain:maven.google.com)"
+      "WebFetch(domain:maven.google.com)",
+      "Bash(./gradlew:*)",
+      "Bash(git update-index:*)",
+      "Bash(git add:*)"
     ]
   }
 }

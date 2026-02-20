@@ -10,9 +10,13 @@ export const modalBottomSheetComponent: ComponentEntry = {
     { name: 'onDismissRequest', type: '() -> Unit', required: true, description: '面板关闭时的回调（下滑或点击遮罩）' },
     { name: 'modifier', type: 'Modifier', default: 'Modifier', description: '修饰符' },
     { name: 'sheetState', type: 'SheetState', default: 'rememberModalBottomSheetState()', description: '面板状态，可控制展开/收起' },
+    { name: 'sheetMaxWidth', type: 'Dp', default: 'BottomSheetDefaults.SheetMaxWidth', description: '面板最大宽度，平板/大屏场景下限制宽度' },
     { name: 'shape', type: 'Shape', default: 'BottomSheetDefaults.ExpandedShape', description: '面板形状，默认顶部圆角' },
     { name: 'containerColor', type: 'Color', default: 'BottomSheetDefaults.ContainerColor', description: '面板背景色' },
+    { name: 'tonalElevation', type: 'Dp', default: 'BottomSheetDefaults.Elevation', description: '色调高度，影响 surface tonal 颜色' },
+    { name: 'scrimColor', type: 'Color', default: 'BottomSheetDefaults.ScrimColor', description: '遮罩颜色' },
     { name: 'dragHandle', type: '@Composable (() -> Unit)?', default: '{ BottomSheetDefaults.DragHandle() }', description: '顶部拖拽把手，设为 null 可隐藏' },
+    { name: 'contentWindowInsets', type: '@Composable () -> WindowInsets', default: 'BottomSheetDefaults.windowInsets', description: '内容区域的窗口内边距，edge-to-edge 时需配置' },
     { name: 'content', type: '@Composable ColumnScope.() -> Unit', required: true, description: '面板内容' },
   ],
   examples: [

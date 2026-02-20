@@ -12,6 +12,8 @@ export const topAppBarComponent: ComponentEntry = {
     { name: 'navigationIcon', type: '@Composable () -> Unit', default: '{}', description: '左侧导航图标，通常为返回按钮' },
     { name: 'actions', type: '@Composable RowScope.() -> Unit', default: '{}', description: '右侧操作按钮区域' },
     { name: 'colors', type: 'TopAppBarColors', default: 'TopAppBarDefaults.topAppBarColors()', description: '颜色配置' },
+    { name: 'expandedHeight', type: 'Dp', default: 'TopAppBarDefaults.TopAppBarExpandedHeight', description: '展开时的高度' },
+    { name: 'windowInsets', type: 'WindowInsets', default: 'TopAppBarDefaults.windowInsets', description: '窗口内边距，edge-to-edge 时控制与状态栏的间距' },
     { name: 'scrollBehavior', type: 'TopAppBarScrollBehavior?', default: 'null', description: '滚动联动行为，需配合 nestedScroll 使用' },
   ],
   examples: [

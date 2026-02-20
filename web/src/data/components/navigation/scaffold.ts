@@ -14,6 +14,7 @@ export const scaffoldComponent: ComponentEntry = {
     { name: 'floatingActionButton', type: '@Composable () -> Unit', default: '{}', description: 'FAB 插槽' },
     { name: 'floatingActionButtonPosition', type: 'FabPosition', default: 'FabPosition.End', description: 'FAB 位置，End 或 Center' },
     { name: 'containerColor', type: 'Color', default: 'MaterialTheme.colorScheme.background', description: '背景色' },
+    { name: 'contentWindowInsets', type: 'WindowInsets', default: 'ScaffoldDefaults.contentWindowInsets', description: '内容区域的窗口内边距，edge-to-edge 时控制内容与系统栏的间距' },
     { name: 'content', type: '@Composable (PaddingValues) -> Unit', required: true, description: '页面内容，必须将 paddingValues 应用到内容避免遮挡' },
   ],
   examples: [

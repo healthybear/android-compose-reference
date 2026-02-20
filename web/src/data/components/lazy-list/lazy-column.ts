@@ -12,6 +12,8 @@ export const lazyColumnComponent: ComponentEntry = {
     { name: 'contentPadding', type: 'PaddingValues', default: 'PaddingValues(0.dp)', description: '内容区域内边距' },
     { name: 'reverseLayout', type: 'Boolean', default: 'false', description: '是否反向排列（从底部开始）' },
     { name: 'verticalArrangement', type: 'Arrangement.Vertical', default: 'Arrangement.Top', description: '子项垂直排列方式' },
+    { name: 'horizontalAlignment', type: 'Alignment.Horizontal', default: 'Alignment.Start', description: '子项水平对齐方式' },
+    { name: 'userScrollEnabled', type: 'Boolean', default: 'true', description: '是否允许用户手势滚动，false 时仍可程序化滚动' },
     { name: 'content', type: 'LazyListScope.() -> Unit', required: true, description: '列表内容，使用 item/items DSL' },
   ],
   examples: [
@@ -39,7 +41,28 @@ export const lazyColumnComponent: ComponentEntry = {
 }`,
     },
     {
-      title: '滚动到指定位置',
+      title: '混合类型列表（contentType 优化）',
+      code: `sealed class FeedItem {
+    data class Header(val title: String) : FeedItem()
+    data class Post(val id: Int, val text: String) : FeedItem()
+}
+
+LazyColumn {
+    items(
+        items = feedItems,
+        key = { item -> when (item) {
+            is FeedItem.Header -> "header_\${item.title}"
+            is FeedItem.Post -> "post_\${item.id}"
+        }},
+        contentType = { item -> item::class }  // 相同类型复用组合项
+    ) { item ->
+        when (item) {
+            is FeedItem.Header -> Text(item.title, style = MaterialTheme.typography.titleMedium)
+            is FeedItem.Post -> ListItem(headlineContent = { Text(item.text) })
+        }
+    }
+}`,
+    },
       code: `val state = rememberLazyListState()
 val scope = rememberCoroutineScope()
 

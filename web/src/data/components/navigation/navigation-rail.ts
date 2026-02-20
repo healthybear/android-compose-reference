@@ -9,6 +9,7 @@ export const navigationRailComponent: ComponentEntry = {
   params: [
     { name: 'modifier', type: 'Modifier', default: 'Modifier', description: '修饰符' },
     { name: 'containerColor', type: 'Color', default: 'NavigationRailDefaults.ContainerColor', description: '背景色' },
+    { name: 'windowInsets', type: 'WindowInsets', default: 'NavigationRailDefaults.windowInsets', description: '窗口内边距，edge-to-edge 时控制与系统栏的间距' },
     { name: 'header', type: '@Composable (ColumnScope.() -> Unit)?', default: 'null', description: '顶部区域，可放置 FAB 或 Logo' },
     { name: 'content', type: '@Composable ColumnScope.() -> Unit', required: true, description: '导航项内容，通常为多个 NavigationRailItem' },
   ],

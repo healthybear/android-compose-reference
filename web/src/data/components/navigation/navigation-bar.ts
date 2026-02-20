@@ -11,6 +11,7 @@ export const navigationBarComponent: ComponentEntry = {
     { name: 'containerColor', type: 'Color', default: 'NavigationBarDefaults.containerColor', description: '背景色' },
     { name: 'contentColor', type: 'Color', default: 'MaterialTheme.colorScheme.contentColorFor(containerColor)', description: '内容颜色' },
     { name: 'tonalElevation', type: 'Dp', default: 'NavigationBarDefaults.Elevation', description: '色调高度' },
+    { name: 'windowInsets', type: 'WindowInsets', default: 'NavigationBarDefaults.windowInsets', description: '窗口内边距，edge-to-edge 时控制与导航栏的间距' },
     { name: 'content', type: '@Composable RowScope.() -> Unit', required: true, description: '导航项内容，通常为多个 NavigationBarItem' },
   ],
   examples: [

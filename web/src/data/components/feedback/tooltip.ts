@@ -2,9 +2,9 @@ import type { ComponentEntry } from '../../types'
 
 export const tooltipComponent: ComponentEntry = {
   id: 'tooltip',
-  name: 'PlainTooltip',
+  name: 'TooltipBox',
   category: 'Feedback',
-  description: '纯文字气泡提示，长按触发显示在目标组件附近，用于解释图标或操作的含义。',
+  description: '气泡提示容器，长按触发显示在目标组件附近。内部使用 PlainTooltip（纯文字）或 RichTooltip（富文本+操作按钮）作为提示内容。',
   tags: ['tooltip', 'hint', 'popup', 'longpress', '提示气泡'],
   params: [
     { name: 'tooltip', type: '@Composable TooltipScope.() -> Unit', required: true, description: 'Tooltip 内容，通常为 PlainTooltip { Text(...) }' },

@@ -16,11 +16,11 @@ import { ecosystemComponents } from './ecosystem/index'
 
 // 当前内容基于此版本，如需更新请同步修改
 export const composeVersion: ComposeVersion = {
-  bom: '2024.09.00',
-  ui: '1.7.0',
-  material3: '1.3.0',
-  runtime: '1.7.0',
-  foundation: '1.7.0',
+  bom: '2026.02.00',
+  ui: '1.10.3',
+  material3: '1.4.0',
+  runtime: '1.10.3',
+  foundation: '1.10.3',
 }
 
 export const componentGroups: ComponentGroup[] = [

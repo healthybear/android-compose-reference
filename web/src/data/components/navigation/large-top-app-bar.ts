@@ -12,6 +12,9 @@ export const largeTopAppBarComponent: ComponentEntry = {
     { name: 'navigationIcon', type: '@Composable () -> Unit', default: '{}', description: '左侧导航图标' },
     { name: 'actions', type: '@Composable RowScope.() -> Unit', default: '{}', description: '右侧操作按钮' },
     { name: 'colors', type: 'TopAppBarColors', default: 'TopAppBarDefaults.largeTopAppBarColors()', description: '颜色配置' },
+    { name: 'collapsedHeight', type: 'Dp', default: 'TopAppBarDefaults.TopAppBarExpandedHeight', description: '折叠后的高度' },
+    { name: 'expandedHeight', type: 'Dp', default: 'TopAppBarDefaults.LargeAppBarExpandedHeight', description: '展开时的高度' },
+    { name: 'windowInsets', type: 'WindowInsets', default: 'TopAppBarDefaults.windowInsets', description: '窗口内边距，edge-to-edge 时控制与状态栏的间距' },
     { name: 'scrollBehavior', type: 'TopAppBarScrollBehavior?', default: 'null', description: '滚动联动行为，通常用 exitUntilCollapsedScrollBehavior' },
   ],
   examples: [

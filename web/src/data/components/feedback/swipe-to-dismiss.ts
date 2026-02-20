@@ -4,7 +4,7 @@ export const swipeToDismissComponent: ComponentEntry = {
   id: 'swipe-to-dismiss',
   name: 'SwipeToDismissBox',
   category: 'Feedback',
-  description: 'M3 1.3+ 左右滑动删除/操作容器，滑动时在背景层显示操作提示，松手后触发回调。',
+  description: '左右滑动删除/操作容器，滑动时在背景层显示操作提示，松手后触发回调，符合 Material3 规范。',
   tags: ['swipe', 'dismiss', 'delete', 'gesture', '滑动删除'],
   params: [
     { name: 'state', type: 'SwipeToDismissBoxState', required: true, description: '滑动状态，由 rememberSwipeToDismissBoxState() 创建' },
@@ -54,7 +54,7 @@ LazyColumn {
       code: `SwipeToDismissBox(
     state = dismissState,
     backgroundContent = {
-        val direction = dismissState.dismissDirection
+        val direction = dismissState.targetValue
         val color = when (direction) {
             SwipeToDismissBoxValue.StartToEnd -> Color.Green.copy(alpha = 0.3f)
             SwipeToDismissBoxValue.EndToStart -> Color.Red.copy(alpha = 0.3f)

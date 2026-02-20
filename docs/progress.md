@@ -9,7 +9,7 @@
 | 项目 | 文件 | 说明 |
 |------|------|------|
 | 类型定义 | `web/src/data/types.ts` | `ComponentCategory`（14个）、`ComponentGroup`、`ComposeVersion` |
-| 分组配置 | `web/src/data/components/index.ts` | `componentGroups` 13个分组，`composeVersion` BOM 2024.09.00 |
+| 分组配置 | `web/src/data/components/index.ts` | `componentGroups` 13个分组，`composeVersion` BOM 2026.02.00 |
 | 侧边栏 | `web/src/App.vue` | 改为 `el-sub-menu` 分组结构，header 添加版本 badge |
 | 分类数据目录 | `web/src/data/components/<category>/` | 各分类独立子目录，含 `index.ts` 导出 |
 
@@ -213,6 +213,50 @@
 | Coil AsyncImage | `coil-async-image` | ✅ |
 | Navigation Compose | `navigation-compose` | ✅ |
 | Lottie | `lottie` | ✅ |
+
+---
+
+---
+
+## BOM 2026.02.00 版本升级审查
+
+> 从 BOM `2024.09.00`（ui 1.7.0 / material3 1.3.0）升级到 `2026.02.00`（ui 1.10.3 / material3 1.4.0），需逐一核查以下组件的 API 变化。
+
+### 🔴 高优先级（已知有 breaking change）
+
+| 组件 | 文件 | 变化说明 | 状态 |
+|------|------|---------|------|
+| SwipeToDismissBox | `feedback/swipe-to-dismiss.ts` | `dismissDirection` → `targetValue` | ✅ |
+| PullToRefreshBox | `feedback/pull-to-refresh.ts` | 描述更新，API 稳定 | ✅ |
+| Modifier.anchoredDraggable | `gestures/modifier-swipeable.ts` | `animationSpec` → `snapAnimationSpec` + `decayAnimationSpec` | ✅ |
+| BasicTextField | `form/basic-text-field.ts` | 重写为新 `TextFieldState` API，`decorationBox` → `decorator`，`singleLine` → `lineLimits` | ✅ |
+
+### 🟡 中优先级（可能有新参数或小变化）
+
+| 组件 | 文件 | 变化说明 | 状态 |
+|------|------|---------|------|
+| ModalBottomSheet | `feedback/modal-bottom-sheet.ts` | 补充 `sheetMaxWidth`、`tonalElevation`、`scrimColor`、`contentWindowInsets` | ✅ |
+| Scaffold | `navigation/scaffold.ts` | 补充 `contentWindowInsets` | ✅ |
+| TopAppBar | `navigation/top-app-bar.ts` | 补充 `expandedHeight`、`windowInsets` | ✅ |
+| LargeTopAppBar | `navigation/large-top-app-bar.ts` | 补充 `collapsedHeight`、`expandedHeight`、`windowInsets` | ✅ |
+| NavigationBar | `navigation/navigation-bar.ts` | 补充 `windowInsets` | ✅ |
+| NavigationRail | `navigation/navigation-rail.ts` | 补充 `windowInsets` | ✅ |
+| SearchBar | `form/search-bar.ts` | 补充 `shape`、`colors`、`windowInsets` 等参数，新增 `DockedSearchBar` 示例 | ✅ |
+| Tooltip | `feedback/tooltip.ts` | `name` 更正为 `TooltipBox`，描述更新 | ✅ |
+| LazyColumn / LazyRow | `lazy-list/lazy-column.ts` 等 | 补充 `horizontalAlignment`、`userScrollEnabled`，新增 `contentType` 示例 | ✅ |
+
+### 🟢 低优先级（变化较小，可按需更新）
+
+| 分类 | 状态 |
+|------|------|
+| Layout（Column/Row/Box 等） | ⬜ |
+| Foundation（Text/Image/Icon/Canvas） | ⬜ |
+| Modifier | ⬜ |
+| Theme | ⬜ |
+| Animation | ⬜ |
+| State | ⬜ |
+| Advanced | ⬜ |
+| Ecosystem | ⬜ |
 
 ---
 

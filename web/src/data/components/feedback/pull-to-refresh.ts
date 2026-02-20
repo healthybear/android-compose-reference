@@ -4,7 +4,7 @@ export const pullToRefreshComponent: ComponentEntry = {
   id: 'pull-to-refresh',
   name: 'PullToRefreshBox',
   category: 'Feedback',
-  description: 'M3 1.3+ 下拉刷新容器，包裹可滚动内容，下拉时显示刷新指示器并触发刷新回调。',
+  description: '下拉刷新容器，包裹可滚动内容，下拉时显示刷新指示器并触发刷新回调，符合 Material3 规范。',
   tags: ['pull-to-refresh', 'refresh', 'swipe', 'list', '下拉刷新'],
   params: [
     { name: 'isRefreshing', type: 'Boolean', required: true, description: '是否正在刷新，控制指示器显示' },

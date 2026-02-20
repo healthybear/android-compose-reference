@@ -4,7 +4,7 @@ export const swipeableComponent: ComponentEntry = {
   id: 'modifier-swipeable',
   name: 'Modifier.anchoredDraggable',
   category: 'Gestures',
-  description: '将组件拖拽限制在预定义的锚点之间，松手后自动吸附到最近锚点，适合抽屉、底部面板、开关等场景。（旧版 API 为 swipeable，新版为 anchoredDraggable）',
+  description: '将组件拖拽限制在预定义的锚点之间，松手后自动吸附到最近锚点，适合抽屉、底部面板、开关等场景。',
   tags: ['gesture', 'swipe', 'anchor', 'snap', '锚点拖拽'],
   params: [
     { name: 'state', type: 'AnchoredDraggableState<T>', required: true, description: '锚点拖拽状态，包含当前值和锚点定义' },
@@ -27,7 +27,8 @@ val state = remember {
         },
         positionalThreshold = { distance -> distance * 0.5f },
         velocityThreshold = { with(density) { 100.dp.toPx() } },
-        animationSpec = tween()
+        snapAnimationSpec = tween(),
+        decayAnimationSpec = exponentialDecay()
     )
 }
 
