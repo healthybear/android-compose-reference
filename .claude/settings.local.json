@@ -9,7 +9,10 @@
       "Bash(pnpm add:*)",
       "Bash(curl:*)",
       "Bash(./gradlew.bat dependencies:*)",
-      "Bash(./gradlew.bat:*)"
+      "Bash(./gradlew.bat:*)",
+      "Bash(python3:*)",
+      "Bash(node -e:*)",
+      "Bash(npx vue-tsc:*)"
     ]
   }
 }

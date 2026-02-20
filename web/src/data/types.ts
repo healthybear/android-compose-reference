@@ -25,9 +25,30 @@ export interface ComponentEntry {
 
 export type ComponentCategory =
   | 'Layout'
-  | 'Material'
+  | 'LazyList'
   | 'Foundation'
+  | 'Modifier'
+  | 'Theme'
+  | 'Form'
+  | 'Material'
+  | 'Feedback'
+  | 'Navigation'
   | 'Animation'
-  | 'Text'
   | 'Gestures'
   | 'State'
+  | 'Advanced'
+  | 'Ecosystem'
+
+export interface ComponentGroup {
+  label: string
+  icon: string
+  categories: ComponentCategory[]
+}
+
+export interface ComposeVersion {
+  bom: string
+  ui: string
+  material3: string
+  runtime: string
+  foundation: string
+}

@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router'
 import { Search, Moon, Sunny, HomeFilled, Fold, Expand } from '@element-plus/icons-vue'
 import { useTheme } from '@/composables/useTheme'
 import { useSearch } from '@/composables/useSearch'
-import { allComponents, categories } from '@/data/components'
+import { allComponents, componentGroups, composeVersion } from '@/data/components'
 
 const router = useRouter()
 const { isDark, toggle } = useTheme()
@@ -17,6 +17,10 @@ function goToComponent(id: string) {
   searchVisible.value = false
   query.value = ''
   router.push(`/component/${id}`)
+}
+
+function groupComponents(categories: string[]) {
+  return allComponents.filter(c => categories.includes(c.category))
 }
 </script>
 
@@ -32,6 +36,20 @@ function goToComponent(id: string) {
           <span class="text-xl">🚀</span>
           <span>Compose 速查</span>
         </router-link>
+        <el-tooltip placement="bottom">
+          <template #content>
+            <div class="text-xs leading-6">
+              <div>Compose BOM &nbsp;<b>{{ composeVersion.bom }}</b></div>
+              <div>UI &nbsp;<b>{{ composeVersion.ui }}</b></div>
+              <div>Material3 &nbsp;<b>{{ composeVersion.material3 }}</b></div>
+              <div>Runtime &nbsp;<b>{{ composeVersion.runtime }}</b></div>
+              <div>Foundation &nbsp;<b>{{ composeVersion.foundation }}</b></div>
+            </div>
+          </template>
+          <el-tag size="small" type="info" class="cursor-default select-none">
+            BOM {{ composeVersion.bom }}
+          </el-tag>
+        </el-tooltip>
       </div>
       <div class="flex-1 max-w-[400px]">
         <el-popover
@@ -92,19 +110,23 @@ function goToComponent(id: string) {
               <span>首页</span>
             </el-menu-item>
             <el-divider />
-            <el-menu-item-group
-              v-for="cat in categories"
-              :key="cat"
-              :title="cat"
+            <el-sub-menu
+              v-for="group in componentGroups"
+              :key="group.label"
+              :index="group.label"
             >
+              <template #title>
+                <el-icon><component :is="group.icon" /></el-icon>
+                <span>{{ group.label }}</span>
+              </template>
               <el-menu-item
-                v-for="comp in allComponents.filter(c => c.category === cat)"
+                v-for="comp in groupComponents(group.categories)"
                 :key="comp.id"
                 :index="`/component/${comp.id}`"
               >
                 {{ comp.name }}
               </el-menu-item>
-            </el-menu-item-group>
+            </el-sub-menu>
           </el-menu>
         </el-scrollbar>
       </el-aside>
