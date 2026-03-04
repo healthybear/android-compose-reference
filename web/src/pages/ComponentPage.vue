@@ -142,7 +142,7 @@ const relatedComponents = useRelatedComponents(() => component.value)
 
     <!-- 代码示例 -->
     <h2 class="text-lg font-semibold m-0 mb-3 text-el-text">代码示例</h2>
-    <div v-for="(example, i) in component.examples" :key="i" class="mb-6">
+    <div v-for="(example, i) in component.examples" :key="`${component.id}-${i}`" class="mb-6">
       <h3 class="text-[15px] font-semibold m-0 mb-1 text-el-text-regular">{{ example.title }}</h3>
       <p v-if="example.description" class="text-[13px] text-el-text-secondary m-0 mb-2">{{ example.description }}</p>
       <CodeBlock :code="example.code" />
