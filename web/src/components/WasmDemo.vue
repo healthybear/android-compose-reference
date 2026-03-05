@@ -6,11 +6,13 @@ import { Monitor } from '@element-plus/icons-vue'
 const props = defineProps<{
   demoId: string
   height?: number
+  maxHeight?: number
 }>()
 
 const { isDark } = useTheme()
 const iframeRef = ref<HTMLIFrameElement | null>(null)
 const iframeHeight = ref(props.height ?? 480)
+const maxHeight = props.maxHeight ?? 600 // 默认最大高度 600px
 
 watch(isDark, (val) => {
   iframeRef.value?.contentWindow?.postMessage({ type: 'theme', dark: val }, '*')
@@ -20,7 +22,8 @@ function onMessage(e: MessageEvent) {
   if (e.source !== iframeRef.value?.contentWindow) return
   const data = e.data as { type?: string; height?: number }
   if (data?.type === 'height' && typeof data.height === 'number' && data.height > 0) {
-    iframeHeight.value = data.height + 48 // 加 padding 余量
+    const calculatedHeight = data.height + 48 // 加 padding 余量
+    iframeHeight.value = Math.min(calculatedHeight, maxHeight) // 限制最大高度
   }
 }
 
@@ -42,7 +45,7 @@ onUnmounted(() => window.removeEventListener('message', onMessage))
       frameborder="0"
       loading="lazy"
       sandbox="allow-scripts allow-same-origin"
-      class="block bg-el-bg"
+      class="block bg-el-bg overflow-auto"
     />
   </div>
 </template>
