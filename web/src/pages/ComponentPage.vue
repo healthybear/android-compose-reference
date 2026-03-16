@@ -1,4 +1,14 @@
 <script setup lang="ts">
+/**
+ * 组件详情页
+ *
+ * 功能：
+ * 1. 展示 Compose 组件的详细文档（参数、示例、描述）
+ * 2. 提供 WASM 交互预览（支持的组件）
+ * 3. 按需加载预览源码（从 /demo-sources/ 获取）
+ * 4. 推荐相关组件（基于标签和分类相似度）
+ * 5. 支持上一个/下一个组件导航
+ */
 import { computed, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { allComponents } from '@/data/components'
@@ -8,6 +18,11 @@ import WasmDemo from '@/components/WasmDemo.vue'
 import { useRelatedComponents } from '@/composables/useRelatedComponents'
 import { ArrowRight, Loading } from '@element-plus/icons-vue'
 
+// 支持 WASM 交互预览的组件 ID 集合
+// 维护说明：
+// 1. 新增 demo 时需同步添加到此集合
+// 2. ID 格式为 kebab-case（如 'floating-action-button'）
+// 3. 对应的 Kotlin 文件需存在于 compose-demos 项目中
 const DEMO_IDS = new Set([
   'button', 'text', 'image', 'icon', 'canvas',
   'column', 'row', 'box', 'box-with-constraints', 'spacer', 'flow-row', 'flow-column',
@@ -36,13 +51,18 @@ const DEMO_IDS = new Set([
   'custom-layout', 'subcompose-layout', 'draw-modifier', 'brush',
 ])
 
-// demoId 到文件名的特殊映射（不符合通用规则的）
+// demoId 到 Kotlin 文件名的特殊映射
+// 用于处理不符合通用命名规则的 demo 文件
+// 例如：'floating-action-button' -> 'FabDemo.kt'（而非 'FloatingActionButtonDemo.kt'）
 const DEMO_FILE_OVERRIDES: Record<string, string> = {
   'floating-action-button': 'FabDemo.kt',
   'modifier-draggable': 'DraggableDemo.kt',
   'modifier-transformable': 'TransformableDemo.kt',
 }
 
+// 将 demoId 转换为 Kotlin 文件名
+// 规则：kebab-case -> PascalCase + 'Demo.kt'
+// 示例：'text-button' -> 'TextButtonDemo.kt'
 function demoIdToFilename(id: string): string {
   if (DEMO_FILE_OVERRIDES[id]) return DEMO_FILE_OVERRIDES[id]
   return id.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join('') + 'Demo.kt'
@@ -71,12 +91,19 @@ const sourceExpanded = ref(false)
 const sourceCode = ref('')
 const sourceLoading = ref(false)
 
+// 监听组件切换，重置源码展示状态
+// 原因：避免切换组件时显示上一个组件的源码
 watch([hasDemo, component], async ([demo, comp]) => {
-  sourceExpanded.value = false
-  sourceCode.value = ''
+  sourceExpanded.value = false  // 收起源码面板
+  sourceCode.value = ''         // 清空已加载的源码
   if (!demo || !comp) return
 }, { immediate: true })
 
+// 异步加载 demo 源码
+// 流程：
+// 1. 根据 demoId 计算文件名（通过 demoIdToFilename）
+// 2. 从 /demo-sources/ 目录获取 Kotlin 源文件
+// 3. 处理加载失败情况（显示错误提示）
 async function loadSource() {
   if (sourceCode.value || !component.value) return
   sourceLoading.value = true

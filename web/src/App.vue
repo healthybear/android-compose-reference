@@ -1,4 +1,13 @@
 <script setup lang="ts">
+/**
+ * 应用主布局组件
+ *
+ * 功能：
+ * 1. 响应式布局：桌面端侧边栏 + 移动端抽屉
+ * 2. 顶部导航栏：搜索、主题切换、版本信息
+ * 3. 侧边栏：组件分组导航
+ * 4. 路由切换时自动滚动到顶部
+ */
 import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { Search, Moon, Sunny, HomeFilled, Fold, Expand, Reading, Close } from '@element-plus/icons-vue'
@@ -15,13 +24,15 @@ const searchVisible = ref(false)
 const collapsed = ref(false)
 const mainScrollbar = ref()
 
-// 移动端侧边栏抽屉
-const isMobile = ref(false)
-const drawerOpen = ref(false)
+// 移动端侧边栏抽屉状态
+const isMobile = ref(false)       // 是否为移动端（宽度 < 768px）
+const drawerOpen = ref(false)     // 抽屉是否打开
 
+// 检测是否为移动端
+// 移动端自动折叠侧边栏，改用抽屉模式
 function checkMobile() {
   isMobile.value = window.innerWidth < 768
-  if (isMobile.value) collapsed.value = true
+  if (isMobile.value) collapsed.value = true  // 移动端强制折叠
 }
 
 onMounted(() => {
@@ -30,9 +41,10 @@ onMounted(() => {
 })
 onUnmounted(() => window.removeEventListener('resize', checkMobile))
 
+// 路由切换时的处理
 watch(() => route.path, () => {
-  mainScrollbar.value?.setScrollTop(0)
-  if (isMobile.value) drawerOpen.value = false
+  mainScrollbar.value?.setScrollTop(0)        // 滚动到顶部
+  if (isMobile.value) drawerOpen.value = false  // 移动端自动关闭抽屉
 })
 
 function goToComponent(id: string) {
@@ -45,6 +57,9 @@ function groupComponents(categories: string[]) {
   return allComponents.filter(c => categories.includes(c.category))
 }
 
+// 切换侧边栏显示状态
+// 桌面端：折叠/展开侧边栏
+// 移动端：打开/关闭抽屉
 function toggleSidebar() {
   if (isMobile.value) {
     drawerOpen.value = !drawerOpen.value
