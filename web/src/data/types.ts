@@ -7,7 +7,8 @@
  * - CodeExample: 代码示例
  * - ComponentCategory: 组件分类枚举
  * - ComponentGroup: 组件分组（用于侧边栏导航）
- * - ComposeVersion: Compose 版本信息
+ * - ComposeVersion: Android 文档 Compose 版本信息
+ * - WasmRuntimeVersion: Wasm Demo 运行时版本信息
  * - GuideEntry: 教程条目
  */
 
@@ -95,6 +96,14 @@ export interface ComposeVersion {
   material3: string    // Material3 版本
   runtime: string      // Runtime 版本
   foundation: string   // Foundation 版本
+}
+
+/**
+ * Wasm Demo 实际使用的 Compose Multiplatform 运行时版本
+ */
+export interface WasmRuntimeVersion {
+  composeMultiplatform: string
+  kotlin: string
 }
 
 /**

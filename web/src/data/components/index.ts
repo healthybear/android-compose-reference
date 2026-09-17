@@ -7,7 +7,7 @@
  * 3. 配置侧边栏分组结构
  * 4. 导出统一的组件列表供全局使用
  */
-import type { ComponentGroup, ComposeVersion } from '../types'
+import type { ComponentGroup, ComposeVersion, WasmRuntimeVersion } from '../types'
 import { foundationComponents } from './foundation/index'
 import { layoutComponents } from './layout/index'
 import { lazyListComponents } from './lazy-list/index'
@@ -23,14 +23,19 @@ import { stateComponents } from './state/index'
 import { advancedComponents } from './advanced/index'
 import { ecosystemComponents } from './ecosystem/index'
 
-// 当前文档基于的 Compose 版本
-// 维护说明：更新 Compose 版本时需同步修改此处
+// Android Jetpack Compose 文档目标版本
 export const composeVersion: ComposeVersion = {
   bom: '2026.02.00',
   ui: '1.10.3',
   material3: '1.4.0',
   runtime: '1.10.3',
   foundation: '1.10.3',
+}
+
+// Kotlin/Wasm Demo 的实际运行时版本（与 Android 文档版本独立维护）
+export const wasmRuntimeVersion: WasmRuntimeVersion = {
+  composeMultiplatform: '1.8.0',
+  kotlin: '2.1.10',
 }
 
 // 侧边栏分组配置

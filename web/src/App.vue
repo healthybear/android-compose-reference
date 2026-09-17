@@ -13,7 +13,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { Search, Moon, Sunny, HomeFilled, Fold, Expand, Reading, Close } from '@element-plus/icons-vue'
 import { useTheme } from '@/composables/useTheme'
 import { useSearch } from '@/composables/useSearch'
-import { allComponents, componentGroups, composeVersion } from '@/data/components'
+import { allComponents, componentGroups, composeVersion, wasmRuntimeVersion } from '@/data/components'
 
 const router = useRouter()
 const route = useRoute()
@@ -82,15 +82,23 @@ function toggleSidebar() {
         <el-tooltip placement="bottom" class="hidden md:inline-flex">
           <template #content>
             <div class="text-xs leading-6">
-              <div>Compose BOM &nbsp;<b>{{ composeVersion.bom }}</b></div>
+              <div>Android 文档 · Compose BOM &nbsp;<b>{{ composeVersion.bom }}</b></div>
               <div>UI &nbsp;<b>{{ composeVersion.ui }}</b></div>
               <div>Material3 &nbsp;<b>{{ composeVersion.material3 }}</b></div>
               <div>Runtime &nbsp;<b>{{ composeVersion.runtime }}</b></div>
               <div>Foundation &nbsp;<b>{{ composeVersion.foundation }}</b></div>
+              <div class="mt-1 pt-1 border-t border-el-border">Wasm Demo · Compose Multiplatform &nbsp;<b>{{ wasmRuntimeVersion.composeMultiplatform }}</b></div>
+              <div>Wasm Demo · Kotlin &nbsp;<b>{{ wasmRuntimeVersion.kotlin }}</b></div>
             </div>
           </template>
           <el-tag size="small" type="info" class="cursor-default select-none hidden md:inline-flex">
-            BOM {{ composeVersion.bom }}
+            Android BOM {{ composeVersion.bom }}
+          </el-tag>
+        </el-tooltip>
+        <el-tooltip placement="bottom" class="hidden md:inline-flex">
+          <template #content>Wasm Demo 运行时：Compose Multiplatform {{ wasmRuntimeVersion.composeMultiplatform }} · Kotlin {{ wasmRuntimeVersion.kotlin }}</template>
+          <el-tag size="small" type="success" class="cursor-default select-none hidden md:inline-flex ml-1">
+            Wasm {{ wasmRuntimeVersion.composeMultiplatform }}
           </el-tag>
         </el-tooltip>
       </div>

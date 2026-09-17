@@ -9,6 +9,11 @@
 - **全文搜索**：按组件名、分类、关键词即时过滤
 - **深色模式 / 响应式**：支持桌面、平板、手机
 
+### 版本说明
+
+- **Android 文档版本**：Compose BOM `2026.02.00`（Compose UI `1.10.3`、Material3 `1.4.0`），用于页面中的 Android/Jetpack Compose 代码说明。
+- **Wasm Demo 运行时版本**：Compose Multiplatform `1.8.0` + Kotlin `2.1.10`，用于网页交互预览。两套版本独立维护，在线 Demo 不代表 Android BOM 的实际依赖解析结果。
+
 ## 技术栈
 
 | 层 | 技术 |

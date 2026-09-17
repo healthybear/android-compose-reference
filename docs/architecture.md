@@ -15,6 +15,8 @@ AndroidComposeReference/
 
 技术栈：Vue 3 + Element Plus 2.9 + UnoCSS（原子样式）+ Shiki（代码高亮）
 
+版本边界：页面文档面向 Android Jetpack Compose，当前目标版本为 Compose BOM `2026.02.00`（UI `1.10.3`）；交互预览运行在 Compose Multiplatform/Wasm（Compose Multiplatform `1.8.0`、Kotlin `2.1.10`）。两套版本分别维护，升级时需分别验证。
+
 ```
 src/
 ├── App.vue               # 布局外壳：Header + 可收缩侧边栏 + 主内容区
@@ -23,7 +25,7 @@ src/
 ├── data/
 │   ├── types.ts          # ComponentEntry 等类型定义
 │   └── components/
-│       ├── index.ts      # 汇总入口：componentGroups、composeVersion、sampleComponents
+│       ├── index.ts      # 汇总入口：componentGroups、composeVersion、wasmRuntimeVersion、sampleComponents
 │       ├── foundation/   # 基础组件（Text、Image、Icon、Canvas）
 │       ├── layout/       # 布局（Column、Row、Box、Spacer、FlowRow、FlowColumn 等）
 │       ├── lazy-list/    # 列表与网格（LazyColumn、LazyRow、Grid、Pager 等）

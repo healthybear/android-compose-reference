@@ -207,7 +207,7 @@
 - 校验组件和指南的 `relatedComponents` 引用真实组件，并报告具体文件和行号。
 - 已接入根 `pnpm run build`，CI 默认执行；Demo 跨项目一致性继续由 `validate:demos` 负责。
 
-### [ ] OPT-007 区分 Android 文档版本与 Wasm 运行时版本
+### [x] OPT-007 区分 Android 文档版本与 Wasm 运行时版本
 
 **问题**
 
@@ -226,6 +226,11 @@
 - 页面可同时查看两套版本信息。
 - README、架构文档和部署文档描述一致。
 - 不再使用单一“Compose 版本”概括两个平台。
+
+**完成结果**
+
+- 页面 Header 并列标明 Android 文档 BOM 与 Wasm Demo 运行时版本。
+- `README.md`、架构文档和部署文档统一说明两套版本的用途与独立维护关系。
 
 ### [ ] OPT-008 修正文档与实现的偏差
 
@@ -544,6 +549,7 @@
 | 2026-09-17 | P0 产物验证 | 增加 `verify:dist`，校验 Web、Demo 入口、JS 和 Wasm 产物 | 完整构建通过；首页、Demo 与 Wasm HTTP 冒烟检查通过 |
 | 2026-09-17 | OPT-005 | 将 85 项 Web Demo 元数据收敛到 `ComponentEntry.demo`，新增 Kotlin `DemoRegistry` 和一致性校验 | Web 与 Wasm 生产构建通过；`validate:demos` 校验 85 项一致 |
 | 2026-09-17 | OPT-006 | 新增基于 TypeScript AST 的组件/指南结构与引用校验，并接入根构建 | `validate:data` 校验 116 个组件、9 个指南通过 |
+| 2026-09-17 | OPT-007 | 页面与文档并列标明 Android 文档 Compose 版本和 Wasm Demo 运行时版本 | 版本边界说明已统一，Web 构建与数据校验通过 |
 
 ## 维护规则
 
