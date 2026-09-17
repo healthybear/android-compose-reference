@@ -177,7 +177,7 @@
 - 校验已接入根 `pnpm run build`，因此 CI 构建默认执行。
 - Wasm 分发任务改为清理后同步，并校验最终目录不存在未被 JS 引用的陈旧 Wasm hash。
 
-### [ ] OPT-006 增加内容数据校验
+### [x] OPT-006 增加内容数据校验
 
 **问题**
 
@@ -199,6 +199,13 @@
 - 根目录提供单独的校验命令。
 - 人为制造重复 ID、错误引用或缺失 Demo 文件时，校验会失败并指出具体条目。
 - CI 默认执行该校验。
+
+**完成结果**
+
+- 新增 `pnpm run validate:data`，使用 TypeScript AST 校验 116 个组件和 9 个指南。
+- 校验组件与指南 ID 唯一、kebab-case 格式、分类和难度枚举、必填字段、参数/示例/标签结构及重复项。
+- 校验组件和指南的 `relatedComponents` 引用真实组件，并报告具体文件和行号。
+- 已接入根 `pnpm run build`，CI 默认执行；Demo 跨项目一致性继续由 `validate:demos` 负责。
 
 ### [ ] OPT-007 区分 Android 文档版本与 Wasm 运行时版本
 
@@ -536,6 +543,7 @@
 | 2026-09-17 | OPT-004 | 增加 GitHub Actions 三平台矩阵、依赖缓存、产物验证和构建产物上传 | 工作流静态校验通过；远端矩阵待首次运行 |
 | 2026-09-17 | P0 产物验证 | 增加 `verify:dist`，校验 Web、Demo 入口、JS 和 Wasm 产物 | 完整构建通过；首页、Demo 与 Wasm HTTP 冒烟检查通过 |
 | 2026-09-17 | OPT-005 | 将 85 项 Web Demo 元数据收敛到 `ComponentEntry.demo`，新增 Kotlin `DemoRegistry` 和一致性校验 | Web 与 Wasm 生产构建通过；`validate:demos` 校验 85 项一致 |
+| 2026-09-17 | OPT-006 | 新增基于 TypeScript AST 的组件/指南结构与引用校验，并接入根构建 | `validate:data` 校验 116 个组件、9 个指南通过 |
 
 ## 维护规则
 

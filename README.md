@@ -87,6 +87,12 @@ pnpm run build
 
 构建产物位于 `web/dist/`。GitHub Actions 工作流会在 Windows、macOS 和 Linux 上执行相同命令，配置见 `.github/workflows/build.yml`。当前 Git 远端为 Gitee，需要镜像或推送到 GitHub 后才能实际运行该工作流。
 
+提交组件或指南数据前，可以单独运行内容校验：
+
+```bash
+pnpm run validate:data
+```
+
 ---
 
 ## 开发指南

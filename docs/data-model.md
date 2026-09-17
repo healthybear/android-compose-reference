@@ -2,6 +2,8 @@
 
 组件条目的 TypeScript 类型定义，位于 [web/src/data/types.ts](../web/src/data/types.ts)。
 
+修改组件或指南数据后，运行 `pnpm run validate:data` 检查字段结构、ID、分类和关联引用。
+
 ## ComponentEntry
 
 | 字段 | 类型 | 必填 | 说明 |
