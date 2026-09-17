@@ -50,6 +50,14 @@ jobs:
           java-version: '17'
           cache: gradle
 
+      - name: Set up Python for font subsetting
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install FontTools
+        run: python -m pip install fonttools
+
       - name: Install Web dependencies
         run: pnpm install --frozen-lockfile
 

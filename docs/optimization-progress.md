@@ -312,7 +312,7 @@
 - 无未使用的运行时依赖。
 - 主入口 JS/CSS 体积低于初始基线，且构建无新增警告。
 
-### [ ] OPT-011 建立 Wasm 性能基线
+### [x] OPT-011 建立 Wasm 性能基线
 
 **问题**
 
@@ -331,7 +331,27 @@
 - 后续 Wasm 优化有明确对照基线。
 - CI 可对关键产物设置合理的体积上限。
 
-### [ ] OPT-012 子集化 Compose 中文字体
+**完成结果**
+
+- 新增 `pnpm run measure:wasm`：以本机 Chrome/Chromium 直接加载生产 Demo，临时静态服务器提供正确的 Wasm MIME 类型和长期缓存响应头；脚本分别采集全新浏览器配置文件的冷启动，以及同一配置文件重载后的缓存命中结果。可通过 `CHROME_PATH` 指定浏览器。
+- `Main.kt` 在 Compose 首个 `SideEffect` 写入 `compose-demo:first-frame` 性能标记。该指标表示首个 Compose 帧可见；它不等价于业务交互完成时间。
+- 基线环境：macOS、Google Chrome 153.0.8010.37、Node 22.19.0、本地回环网络、`button` Demo、未启用网络节流。桌面基线使用默认视口；移动基线使用固定 Pixel 7（412 × 915、DPR 3）Chrome 视口仿真。后者用于稳定地覆盖移动布局与缓存路径，但仍使用桌面 CPU，不应当作为真机性能结论。每次运行都会使用新的浏览器配置文件，避免历史缓存污染冷启动结果。
+
+| 桌面指标 | 冷启动 | 缓存命中 |
+|---|---:|---:|
+| 首个 Compose 帧 | 557.0 ms | 203.4 ms |
+| Navigation Timing | 291.3 ms | 54.9 ms |
+| JS / 两个 Wasm / 字体的传输 | 14.54 MB（本地未压缩） | 0 B |
+| 请求数（唯一资源） | 4 | 4（均来自缓存） |
+
+| Pixel 7 视口仿真 | 冷启动 | 缓存命中 |
+|---|---:|---:|
+| 首个 Compose 帧 | 495.1 ms | 175.8 ms |
+| Navigation Timing | 255.0 ms | 45.1 ms |
+
+- 运行命令：先执行 `pnpm run build:demos`，再执行 `pnpm run measure:wasm`（桌面）或 `pnpm run measure:wasm:mobile`（移动视口仿真）。该脚本输出每项资源的 `transferBytes` 与耗时，后续可在固定设备和网络条件下重复记录。
+
+### [x] OPT-012 子集化 Compose 中文字体
 
 **问题**
 
@@ -350,7 +370,14 @@
 - 字体产物明显小于 7.9 MB。
 - 字符集合生成过程可重复，而非手工维护二进制文件。
 
-### [ ] OPT-013 评估并拆分 Wasm Demo bundle
+**完成结果**
+
+- 原始 Noto Sans SC OTF 移至 `compose-demos/fonts/`；其 SIL Open Font License 1.1 说明与再生成步骤保存在同目录的 `LICENSE.md`，不会再被作为 Web 资源直接分发。
+- Gradle 的 `generateSubsetFont` 会在 Compose 资源访问器和 Wasm 编译前运行 Node 脚本；脚本收集全部 Wasm Kotlin 源码字符与 ASCII/常用标点后，使用 FontTools 生成 `build/generated/composeResources/font/NotoSansSC-Regular.otf`。三平台 CI 已自动安装 FontTools。
+- 当前生成字符集 1,067 个 Unicode 字符，字体从 8,331,336 B 缩至 287,416 B（减少 96.5%）。用 FontTools 校验后，源字体本来支持的全部 1,058 个所需字符均存在于子集中；9 个源字体本就不含的 emoji、韩文等字符继续由系统字体回退。
+- Chrome 实测冷启动字体传输为 287,716 B（含响应头），缓存命中为 0 B；`button` Demo 已完成真实 Canvas 首帧采样。
+
+### [~] OPT-013 评估并拆分 Wasm Demo bundle
 
 **问题**
 
@@ -368,6 +395,23 @@
 - 有拆包前后传输体积、请求数、首帧时间和缓存复用对比。
 - 常用 Demo 的首次加载明显改善。
 - 构建配置和 Demo 路由仍可由自动校验覆盖。
+
+**当前评估（2026-09-17）**
+
+- 生产构建现有 5 个首访传输资源：`compose-demos.js`、Kotlin/Compose 应用 Wasm、Skiko 图形运行时 Wasm，以及首次使用时加载的中文字体（HTML 忽略不计）。同一 iframe 下的任意 Demo 都会复用这些带内容 hash 的静态文件。
+- Kotlin/Compose 应用 Wasm 与 Skiko Wasm 已经是两个独立请求；前者包含 `DemoRegistry` 的 85 个 Demo，后者是各 Demo 共同需要的图形运行时。当前 Kotlin/Wasm 可执行目标不能把多个按分类编译的应用连接为一个共享的 Compose 运行时；若按分类构建多个入口，将重复编译 Kotlin/Compose 代码，并提高请求数和缓存复杂度。
+
+| 资源 | 原始大小 | gzip（`gzip -9`） | 结论 |
+|---|---:|---:|---|
+| Kotlin/Compose 应用 Wasm | 5,284,089 B | 1,277,185 B | 当前包含所有 Demo 的唯一应用入口 |
+| Skiko 图形运行时 Wasm | 8,401,120 B | 3,252,786 B | 所有 Demo 共用，已独立缓存 |
+| `compose-demos.js` | 561,365 B | 101,559 B | 负责加载上述两个 Wasm |
+| Noto Sans SC 字体 | 8,331,336 B | 7,226,257 B | 当前首访最大成本，待 OPT-012 子集化 |
+
+**决定与后续条件**
+
+- 当前不按 Foundation、Layout、Material 等分类拆分 Wasm Demo：在中文字体未子集化前，这不会改善常用 Demo 首次加载，反而会重复 Compose 应用代码、增加入口和请求数。
+- OPT-011 与 OPT-012 已完成；下一步将在相同 Chrome、设备和网络条件下比较单入口与少量分类入口。只有常用 Demo 首次加载有明确改善且公共运行时不重复传输时才实施拆分。
 
 ### [ ] OPT-014 完善静态资源压缩与缓存
 
@@ -604,6 +648,9 @@
 | 2026-09-17 | OPT-007 | 页面与文档并列标明 Android 文档 Compose 版本和 Wasm Demo 运行时版本 | 版本边界说明已统一，Web 构建与数据校验通过 |
 | 2026-09-17 | OPT-008 | 修正文档统计、架构与新增内容流程，并让 Demo 校验覆盖进度表 | `validate:data`、`validate:demos`、Web 构建通过 |
 | 2026-09-17 | OPT-009 | Shiki 改为仅加载 Kotlin 与两套 GitHub 主题的 Core 单例，并修复异步高亮竞态 | Web 生产构建通过；`assets/` 从 283 个文件降至 9 个 |
+| 2026-09-17 | OPT-011 | 新增 Chrome 实测 Wasm 冷启动与缓存命中基线脚本及 Compose 首帧标记 | `button` Demo 冷启动 557.0 ms，缓存命中 203.4 ms |
+| 2026-09-17 | OPT-012 | 构建时根据 Wasm Kotlin 源码生成 Noto Sans SC 子集字体，并在 CI 安装 FontTools | 字体从 8,331,336 B 降至 287,416 B；字符集校验通过 |
+| 2026-09-17 | OPT-013 | 测量 Wasm 首访资源并评估分类拆包，暂保留单一应用入口 | 已记录原始/gzip 大小；OPT-011、OPT-012 基线已具备，待分类入口对比 |
 | 2026-09-17 | OPT-018 | 收紧 iframe sandbox 与 postMessage 的 origin、source 和消息结构校验 | Web/Wasm 完整构建与产物校验通过 |
 | 2026-09-17 | OPT-023 | 迁移弃用的双向图标与 ExposedDropdownMenu 锚点 API | Wasm Kotlin 强制重编译无弃用警告 |
 

@@ -81,6 +81,10 @@ private fun reportHeight() {
 private fun buildHeightMessage(height: Int): JsAny =
     js("({ type: 'compose-demo:height', height: height })")
 
+private fun markFirstFrame() {
+    js("performance.mark('compose-demo:first-frame')")
+}
+
 /**
  * 程序主入口
  *
@@ -134,8 +138,15 @@ fun main() {
         val colorScheme = if (isDark.value) darkColorScheme() else lightColorScheme()
 
         MaterialTheme(colorScheme = colorScheme, typography = typography) {
+            val hasReportedFirstFrame = remember { mutableStateOf(false) }
             // 每次重组后向父页面报告高度（用于 iframe 自适应）
-            SideEffect { reportHeight() }
+            SideEffect {
+                if (!hasReportedFirstFrame.value) {
+                    markFirstFrame()
+                    hasReportedFirstFrame.value = true
+                }
+                reportHeight()
+            }
 
             Surface(
                 modifier = Modifier.fillMaxSize(),

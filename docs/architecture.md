@@ -64,9 +64,11 @@ src/wasmJsMain/kotlin/
     ├── ButtonDemo.kt
     ├── TextDemo.kt
     └── ...               # 当前共 85 个已注册 Demo
-src/commonMain/composeResources/
-└── font/
-    └── NotoSansSC-Regular.otf   # 中文字体，通过 Res.font 加载注入 MaterialTheme
+fonts/
+├── NotoSansSC-Regular.otf       # 源字体（SIL OFL 1.1）
+└── LICENSE.md
+build/generated/composeResources/font/
+└── NotoSansSC-Regular.otf       # 构建时生成的子集字体，通过 Res.font 加载
 ```
 
 `Main.kt` 在 Wasm 启动阶段注册 `postMessage` 监听并发送 `compose-demo:ready`，Vue 收到后同步当前主题；Wasm 应用主题后返回 `compose-demo:theme-applied` 确认。通信双方只接受与当前页面同源、且来自预期窗口对象的消息；主题和高度协议使用 `compose-demo:theme` 与 `compose-demo:height`，并校验字段类型与范围：

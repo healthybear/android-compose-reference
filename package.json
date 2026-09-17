@@ -11,6 +11,8 @@
     "validate:data": "node scripts/validate-data.mjs",
     "validate:demos": "node scripts/validate-demos.mjs",
     "build:demos": "node scripts/run-gradle.mjs wasmJsBrowserDistribution",
+    "measure:wasm": "node scripts/measure-wasm-perf.mjs",
+    "measure:wasm:mobile": "node scripts/measure-wasm-perf.mjs --mobile",
     "build:web": "pnpm --filter web build",
     "verify:dist": "node scripts/verify-dist.mjs",
     "build": "pnpm run validate:demos && pnpm run validate:data && pnpm run build:demos && pnpm run build:web && pnpm run verify:dist"

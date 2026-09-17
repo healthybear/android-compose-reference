@@ -1,6 +1,7 @@
 @file:OptIn(ExperimentalWasmDsl::class)
 
 import org.gradle.api.tasks.Sync
+import org.gradle.api.tasks.Exec
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
@@ -36,6 +37,34 @@ kotlin {
             implementation(compose.components.resources)
         }
     }
+}
+
+compose.resources {
+    customDirectory(
+        sourceSetName = "commonMain",
+        directoryProvider = layout.buildDirectory.dir("generated/composeResources"),
+    )
+}
+
+val generateSubsetFont by tasks.registering(Exec::class) {
+    group = "compose-demos"
+    description = "Generate the Noto Sans SC subset used by Wasm demos."
+    inputs.file("fonts/NotoSansSC-Regular.otf")
+    inputs.file("scripts/subset-font.mjs")
+    inputs.dir("src/wasmJsMain/kotlin")
+    outputs.file(layout.buildDirectory.file("generated/composeResources/font/NotoSansSC-Regular.otf"))
+    commandLine("node", "scripts/subset-font.mjs")
+}
+
+tasks.matching {
+    it.name in setOf(
+        "generateResourceAccessorsForCommonMain",
+        "prepareComposeResourcesTaskForCommonMain",
+        "copyNonXmlValueResourcesForCommonMain",
+        "compileKotlinWasmJs",
+    )
+}.configureEach {
+    dependsOn(generateSubsetFont)
 }
 
 // 编译完成后自动复制产物到 Vue 的 public/demos/

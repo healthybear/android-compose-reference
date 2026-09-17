@@ -200,4 +200,4 @@ pnpm run build:demos
 
 ### Compose Wasm 中文不显示
 
-项目已将 Noto Sans SC 字体打包进 `compose-demos/src/commonMain/composeResources/font/`，通过 `Res.font` 加载并注入 `MaterialTheme`。如需更换字体，替换该目录下的 `.otf` 文件并更新 `Main.kt` 中的引用名称，重新编译即可。
+项目从 `compose-demos/fonts/NotoSansSC-Regular.otf` 生成仅含 Demo 所需字符的字体子集，并通过 `Res.font` 注入 `MaterialTheme`。源字体的许可证与再生成说明见 `compose-demos/fonts/LICENSE.md`；构建前需执行一次 `python -m pip install fonttools`（CI 已自动安装）。
