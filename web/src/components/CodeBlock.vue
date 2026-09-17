@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue'
+import { ref, watch } from 'vue'
 import { useTheme } from '@/composables/useTheme'
+import { highlightKotlin, type CodeTheme } from '@/utils/codeHighlighter'
 
 const props = defineProps<{
   code: string
@@ -11,21 +12,25 @@ const { isDark } = useTheme()
 const highlighted = ref('')
 const loading = ref(true)
 const copied = ref(false)
+let highlightRequest = 0
 
-watchEffect(async () => {
+function fallbackCode(code: string) {
+  return `<pre><code>${code.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`
+}
+
+watch([() => props.code, () => props.lang, isDark], async () => {
+  const request = ++highlightRequest
   loading.value = true
   try {
-    const { codeToHtml } = await import('shiki')
-    highlighted.value = await codeToHtml(props.code, {
-      lang: props.lang ?? 'kotlin',
-      theme: isDark.value ? 'github-dark' : 'github-light',
-    })
+    const theme: CodeTheme = isDark.value ? 'github-dark' : 'github-light'
+    const html = await highlightKotlin(props.code, theme)
+    if (request === highlightRequest) highlighted.value = html
   } catch {
-    highlighted.value = `<pre><code>${props.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`
+    if (request === highlightRequest) highlighted.value = fallbackCode(props.code)
   } finally {
-    loading.value = false
+    if (request === highlightRequest) loading.value = false
   }
-})
+}, { immediate: true })
 
 async function copyCode() {
   await navigator.clipboard.writeText(props.code)

@@ -259,7 +259,7 @@
 
 ## P1：加载与包体性能
 
-### [ ] OPT-009 缩减 Shiki 产物
+### [x] OPT-009 缩减 Shiki 产物
 
 **问题**
 
@@ -278,6 +278,20 @@
 - 代码高亮、主题切换和复制功能正常。
 - 不再输出大量无关语言与主题 chunk。
 - 记录优化前后的 `dist/` 大小、文件数和首次高亮耗时。
+
+**完成结果**
+
+- 新增 `codeHighlighter.ts`，改用 Shiki Core 与 JavaScript 正则引擎；共享单例仅注册文档实际展示的 Kotlin、`github-dark` 和 `github-light`。
+- `CodeBlock` 以显式响应式监听替代异步 `watchEffect`，通过请求序号忽略过期结果，保证代码或主题快速切换时不会被旧的高亮结果覆盖；复制功能保持不变。
+- 本机（Node 22）执行生产构建后，首次调用 Kotlin 高亮为 76.1 ms；该值为 Node 侧 Core 初始化及首次 `codeToHtml` 的测量，不代表浏览器端到端加载耗时。
+
+| 指标 | 优化前 | 优化后 |
+|---|---:|---:|
+| `dist/` 大小 | 约 44 MB | 34 MB |
+| `dist/` 文件数 | 未记录 | 105 |
+| `dist/assets/` 文件数 | 283 | 9 |
+| 最大 Shiki 相关 chunk | 约 1.38 MB（gzip 约 423 KB） | 198,582 B（gzip 60,931 B） |
+| 首次 Kotlin 高亮（本机 Node 22） | 未记录 | 76.1 ms |
 
 ### [ ] OPT-010 按需加载 Element Plus 并清理依赖
 
@@ -589,6 +603,7 @@
 | 2026-09-17 | OPT-006 | 新增基于 TypeScript AST 的组件/指南结构与引用校验，并接入根构建 | `validate:data` 校验 116 个组件、9 个指南通过 |
 | 2026-09-17 | OPT-007 | 页面与文档并列标明 Android 文档 Compose 版本和 Wasm Demo 运行时版本 | 版本边界说明已统一，Web 构建与数据校验通过 |
 | 2026-09-17 | OPT-008 | 修正文档统计、架构与新增内容流程，并让 Demo 校验覆盖进度表 | `validate:data`、`validate:demos`、Web 构建通过 |
+| 2026-09-17 | OPT-009 | Shiki 改为仅加载 Kotlin 与两套 GitHub 主题的 Core 单例，并修复异步高亮竞态 | Web 生产构建通过；`assets/` 从 283 个文件降至 9 个 |
 | 2026-09-17 | OPT-018 | 收紧 iframe sandbox 与 postMessage 的 origin、source 和消息结构校验 | Web/Wasm 完整构建与产物校验通过 |
 | 2026-09-17 | OPT-023 | 迁移弃用的双向图标与 ExposedDropdownMenu 锚点 API | Wasm Kotlin 强制重编译无弃用警告 |
 
