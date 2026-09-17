@@ -2,6 +2,7 @@ package demos
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -36,7 +37,7 @@ fun TopAppBarDemo() {
             title = { Text("页面标题") },
             navigationIcon = {
                 IconButton(onClick = {}) {
-                    Icon(Icons.Filled.ArrowBack, contentDescription = "返回")
+                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "返回")
                 }
             },
             actions = {
@@ -70,7 +71,7 @@ fun TopAppBarDemo() {
             title = { Text("Medium 标题") },
             navigationIcon = {
                 IconButton(onClick = {}) {
-                    Icon(Icons.Filled.ArrowBack, contentDescription = "返回")
+                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "返回")
                 }
             },
             actions = {
@@ -86,7 +87,7 @@ fun TopAppBarDemo() {
             title = { Text("Large 大标题") },
             navigationIcon = {
                 IconButton(onClick = {}) {
-                    Icon(Icons.Filled.ArrowBack, contentDescription = "返回")
+                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "返回")
                 }
             },
             actions = {
@@ -102,7 +103,7 @@ fun TopAppBarDemo() {
             title = { Text("自定义颜色") },
             navigationIcon = {
                 IconButton(onClick = {}) {
-                    Icon(Icons.Filled.ArrowBack, contentDescription = "返回")
+                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "返回")
                 }
             },
             colors = TopAppBarDefaults.centerAlignedTopAppBarColors(

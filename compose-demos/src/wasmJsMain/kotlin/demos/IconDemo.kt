@@ -2,6 +2,7 @@ package demos
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
@@ -44,7 +45,7 @@ fun IconDemo() {
             Icons.Filled.Add         to "Add",
             Icons.Filled.Close       to "Close",
             Icons.Filled.Check       to "Check",
-            Icons.Filled.ArrowBack   to "ArrowBack",
+            Icons.AutoMirrored.Filled.ArrowBack to "ArrowBack",
             Icons.Filled.Menu        to "Menu",
         )
         // 每行 4 个

@@ -2,6 +2,7 @@ package demos
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Message
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -53,7 +54,7 @@ fun BadgeDemo() {
                 Icon(Icons.Filled.Notifications, contentDescription = "通知")
             }
             BadgedBox(badge = { Badge() }) {
-                Icon(Icons.Filled.Message, contentDescription = "消息")
+                Icon(Icons.AutoMirrored.Filled.Message, contentDescription = "消息")
             }
         }
 

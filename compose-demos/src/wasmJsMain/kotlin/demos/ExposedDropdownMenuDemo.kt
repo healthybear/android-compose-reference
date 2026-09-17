@@ -48,7 +48,9 @@ fun ExposedDropdownMenuDemo() {
                 label = { Text("选择水果") },
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded1) },
                 colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors(),
-                modifier = Modifier.menuAnchor().fillMaxWidth()
+                modifier = Modifier
+                    .menuAnchor(MenuAnchorType.PrimaryNotEditable, enabled = true)
+                    .fillMaxWidth()
             )
             ExposedDropdownMenu(
                 expanded = expanded1,
@@ -83,7 +85,9 @@ fun ExposedDropdownMenuDemo() {
                 label = { Text("搜索技术栈") },
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded2) },
                 colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors(),
-                modifier = Modifier.menuAnchor().fillMaxWidth()
+                modifier = Modifier
+                    .menuAnchor(MenuAnchorType.PrimaryEditable, enabled = true)
+                    .fillMaxWidth()
             )
             if (filtered.isNotEmpty()) {
                 ExposedDropdownMenu(
@@ -120,7 +124,9 @@ fun ExposedDropdownMenuDemo() {
                 label = { Text("尺寸") },
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded3) },
                 colors = ExposedDropdownMenuDefaults.textFieldColors(),
-                modifier = Modifier.menuAnchor().fillMaxWidth()
+                modifier = Modifier
+                    .menuAnchor(MenuAnchorType.PrimaryNotEditable, enabled = true)
+                    .fillMaxWidth()
             )
             ExposedDropdownMenu(
                 expanded = expanded3,

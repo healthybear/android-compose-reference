@@ -550,7 +550,7 @@
 - 形成明确决策记录；没有产品需求时可标记为 `[-]`。
 - 如实施离线能力，新版本更新和 Wasm 缓存不会互相冲突。
 
-### [ ] OPT-023 清理 Compose API 弃用警告
+### [x] OPT-023 清理 Compose API 弃用警告
 
 **问题**
 
@@ -566,6 +566,12 @@
 
 - 上述文件不再产生弃用警告。
 - 对应 Demo 的行为和主要视觉效果保持一致。
+
+**完成结果**
+
+- 双向 Material 图标已从 `Icons.Filled` 迁移到会依据阅读方向镜像的 `Icons.AutoMirrored.Filled`，视觉语义保持一致，并支持 RTL 布局。
+- `ExposedDropdownMenuBox` 的三个锚点改用带 `MenuAnchorType` 和 `enabled` 参数的 API：两个只读选择框使用 `PrimaryNotEditable`，可编辑过滤框使用 `PrimaryEditable`。
+- 已以 `compileKotlinWasmJs --rerun-tasks --warning-mode all` 复核，上述五个 Demo 不再输出弃用警告。
 
 ---
 
@@ -584,6 +590,7 @@
 | 2026-09-17 | OPT-007 | 页面与文档并列标明 Android 文档 Compose 版本和 Wasm Demo 运行时版本 | 版本边界说明已统一，Web 构建与数据校验通过 |
 | 2026-09-17 | OPT-008 | 修正文档统计、架构与新增内容流程，并让 Demo 校验覆盖进度表 | `validate:data`、`validate:demos`、Web 构建通过 |
 | 2026-09-17 | OPT-018 | 收紧 iframe sandbox 与 postMessage 的 origin、source 和消息结构校验 | Web/Wasm 完整构建与产物校验通过 |
+| 2026-09-17 | OPT-023 | 迁移弃用的双向图标与 ExposedDropdownMenu 锚点 API | Wasm Kotlin 强制重编译无弃用警告 |
 
 ## 维护规则
 
