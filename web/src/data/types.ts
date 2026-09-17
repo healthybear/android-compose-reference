@@ -31,6 +31,11 @@ export interface CodeExample {
   title: string         // 示例标题
   code: string          // Kotlin 代码
   description?: string  // 示例说明（可选）
+  /**
+   * 说明性片段可省略 import、宿主函数或上下文，不单独作为 Kotlin 文件编译。
+   * 需要可编译的完整参考实现时，使用同一组件的 `demo` 源码。
+   */
+  kind?: 'explanatory'
 }
 
 /**
@@ -38,7 +43,11 @@ export interface CodeExample {
  */
 export interface ComponentDemo {
   id: string          // URL 和 Kotlin DemoRegistry 使用的唯一 ID
-  sourceFile: string  // demos/ 目录下的 Kotlin 源文件名
+  /**
+   * demos/ 目录下、由 wasmJsBrowserDistribution 编译的完整 Kotlin 参考示例。
+   * 页面展示的“预览源码”直接读取该受控文件，而不是复制一份字符串。
+   */
+  sourceFile: string
 }
 
 /**
@@ -113,6 +122,8 @@ export interface GuideStep {
   title: string         // 步骤标题
   content: string       // 步骤内容
   code?: string         // 示例代码（可选）
+  /** 指南中的代码默认为说明性片段，允许省略上下文。 */
+  codeKind?: 'explanatory'
   tip?: string          // 提示信息（可选）
   previewUrl?: string   // iframe 预览地址（可选）
 }

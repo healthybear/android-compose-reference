@@ -20,7 +20,62 @@ const validCategories = new Set([
   'Feedback', 'Navigation', 'Animation', 'Gestures', 'State', 'Advanced', 'Ecosystem',
 ])
 const validDifficulties = new Set(['beginner', 'intermediate', 'advanced'])
+const validExampleKinds = new Set(['explanatory'])
 const idPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
+const exampleCounts = { explanatory: 0 }
+
+function validateKotlinSnippet(source, property, field) {
+  if (!ts.isPropertyAssignment(property) || !isStringLiteral(property.initializer)) return
+  const code = property.initializer.text
+  const where = location(source, property)
+  if (code.includes('```')) errors.push(`${where}: ${field} must not include Markdown code fences`)
+  if (/<(?:script|style|iframe)\\b/i.test(code)) errors.push(`${where}: ${field} must contain Kotlin, not HTML`)
+
+  const pairs = { '(': ')', '[': ']', '{': '}' }
+  const stack = []
+  let quote = null
+  let lineComment = false
+  let blockComment = false
+  for (let index = 0; index < code.length; index += 1) {
+    const char = code[index]
+    const next = code[index + 1]
+    if (lineComment) {
+      if (char === '\\n') lineComment = false
+      continue
+    }
+    if (blockComment) {
+      if (char === '*' && next === '/') { blockComment = false; index += 1 }
+      continue
+    }
+    if (quote) {
+      if (char === '\\\\') { index += 1; continue }
+      if (char === quote) quote = null
+      continue
+    }
+    if (char === '/' && next === '/') { lineComment = true; index += 1; continue }
+    if (char === '/' && next === '*') { blockComment = true; index += 1; continue }
+    if (char === '\"' || char === "'") { quote = char; continue }
+    if (pairs[char]) stack.push(pairs[char])
+    else if (char === ')' || char === ']' || char === '}') {
+      if (stack.pop() !== char) {
+        errors.push(`${where}: ${field} has unbalanced delimiters`)
+        return
+      }
+    }
+  }
+  // 说明性片段可以有意省略外层 lambda、函数或类的结尾；因此仅拒绝
+  // 不可能由省略上下文修复的“提前闭合”分隔符，不要求栈最终为空。
+}
+
+function validateExampleKind(source, object, field) {
+  const property = objectProperty(object, field)
+  if (!property) return 'explanatory'
+  const kind = stringValue(source, object, field)
+  if (kind && !validExampleKinds.has(kind)) {
+    errors.push(`${location(source, property)}: field '${field}' must be 'explanatory'`)
+  }
+  return kind
+}
 
 function listFiles(directory, predicate) {
   return readdirSync(directory).flatMap((name) => {
@@ -183,8 +238,12 @@ function validateComponent(source, object) {
         continue
       }
       stringValue(source, element, 'title')
+      const code = objectProperty(element, 'code')
       stringValue(source, element, 'code')
       stringValue(source, element, 'description', false)
+      validateExampleKind(source, element, 'kind')
+      if (code) validateKotlinSnippet(source, code, `examples[${index}].code`)
+      exampleCounts.explanatory += 1
     }
   }
 }
@@ -241,7 +300,13 @@ function validateGuide(source, object, index) {
     }
     stringValue(source, element, 'title')
     stringValue(source, element, 'content')
+    const code = objectProperty(element, 'code')
     stringValue(source, element, 'code', false)
+    validateExampleKind(source, element, 'codeKind')
+    if (code) {
+      validateKotlinSnippet(source, code, `guides[${index}].steps[${stepIndex}].code`)
+      exampleCounts.explanatory += 1
+    }
     stringValue(source, element, 'tip', false)
     const previewUrl = stringValue(source, element, 'previewUrl', false)
     if (previewUrl && !previewUrl.startsWith('/demos/index.html?demo=')) {
@@ -297,4 +362,6 @@ if (errors.length > 0) {
   process.exit(1)
 }
 
-console.log(`Validated ${components.size} components and ${guideIds.size} guides with schema and reference checks.`)
+console.log(
+  `Validated ${components.size} components, ${guideIds.size} guides, and ${exampleCounts.explanatory} explanatory Kotlin snippets with schema and static checks.`,
+)

@@ -492,7 +492,7 @@
 - 子组件以明确的 TypeScript props/emits 传递数据和交互命令；搜索浮层显示状态仍由 `App.vue` 统一持有。
 - `useResponsiveLayout` 统一管理移动断点与 `resize` 监听的注册/清理；简单布尔值与搜索关键词使用 `shallowRef`，主滚动容器使用类型化 `useTemplateRef`。
 
-### [ ] OPT-020 验证文档代码示例的正确性
+### [x] OPT-020 验证文档代码示例的正确性
 
 **问题**
 
@@ -509,6 +509,12 @@
 
 - 每个高优先级组件至少有一个受构建验证的完整示例。
 - Compose 版本升级时 CI 能发现关键示例失效。
+
+**完成结果**
+
+- `demo.sourceFile` 现在被明确约定为完整、受 `wasmJsBrowserDistribution` 编译的参考示例；组件页面直接读取该 Kotlin 源码展示，避免与页面字符串副本漂移。
+- `validate:data` 为组件示例与教程片段增加分类值、Markdown/HTML 和提前闭合分隔符的最小静态校验；所有既有短片段默认是 `explanatory`。
+- 新增 [代码示例审查清单](code-example-review.md)，定义 Android 文档版本与 Wasm 运行时版本升级时的检查命令和人工复核项；CI 的 `build` 已串联数据校验、Demo 映射校验和 Wasm 编译。
 
 ---
 

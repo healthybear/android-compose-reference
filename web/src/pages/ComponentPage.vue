@@ -85,7 +85,8 @@ const relatedComponents = useRelatedComponents(() => component.value)
 
     <!-- 交互预览 -->
     <template v-if="demo">
-      <h2 class="text-lg font-semibold m-0 mb-3 text-el-text">效果预览</h2>
+      <h2 class="text-lg font-semibold m-0 mb-1 text-el-text">已构建验证的完整示例</h2>
+      <p class="text-[13px] text-el-text-secondary m-0 mb-3">此预览及其源码随 Wasm Demo 一同编译。</p>
       <WasmDemo :demo-id="demo.id" />
       <el-button
         text
@@ -114,7 +115,8 @@ const relatedComponents = useRelatedComponents(() => component.value)
     </template>
 
     <!-- 代码示例 -->
-    <h2 class="text-lg font-semibold m-0 mb-3 text-el-text">代码示例</h2>
+    <h2 class="text-lg font-semibold m-0 mb-1 text-el-text">说明性代码片段</h2>
+    <p class="text-[13px] text-el-text-secondary m-0 mb-3">片段为讲解而省略了部分上下文；可编译实现请查看上方完整示例。</p>
     <div v-for="(example, i) in component.examples" :key="`${component.id}-${i}`" class="mb-6">
       <h3 class="text-[15px] font-semibold m-0 mb-1 text-el-text-regular">{{ example.title }}</h3>
       <p v-if="example.description" class="text-[13px] text-el-text-secondary m-0 mb-2">{{ example.description }}</p>
