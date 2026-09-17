@@ -8,15 +8,15 @@
 
 | 工具 | 版本要求 |
 |------|----------|
-| JDK | 17 或以上 |
-| Node.js | 18 或以上 |
-| pnpm | 9 或以上 |
+| JDK | 17 |
+| Node.js | 22.x（推荐 22.19.0） |
+| pnpm | 10.15.1 |
 
 ```bash
 # 验证环境
-java -version    # 需要 17+
-node -v          # 需要 18+
-pnpm -v          # 需要 9+
+java -version    # 需要 17
+node -v          # 需要 22.x
+pnpm -v          # 需要 10.15.1
 ```
 
 ---
@@ -36,11 +36,11 @@ pnpm install
 pnpm run build:demos
 ```
 
-等价于 `cd compose-demos && ./gradlew wasmJsBrowserDistribution`。
+该命令会在 Windows 上调用 `gradlew.bat`，在 macOS/Linux 上调用 `gradlew`。
 
 编译完成后，Gradle 会自动将产物复制到 `web/public/demos/`，包括：
 - `compose-demos.js`
-- `*.wasm` 文件（约 30MB+）
+- `*.wasm` 文件（当前 2 个，合计约 13 MiB）
 - `composeResources/`（字体等资源）
 
 > 首次编译需要下载 Gradle 依赖，耗时较长。后续增量编译会快很多。
@@ -62,6 +62,8 @@ pnpm run build
 ```
 
 等价于依次执行 `build:demos` 和 `build:web`。
+
+仓库提供 `.github/workflows/build.yml`，在 Ubuntu、macOS 和 Windows 上执行同一构建。当前 Git 远端为 Gitee，因此需要先镜像或推送到 GitHub 才能运行该 GitHub Actions 工作流。
 
 ---
 

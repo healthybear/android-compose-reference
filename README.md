@@ -50,8 +50,14 @@ AndroidComposeReference/
 
 ### 前置要求
 
-- Node.js 18+，pnpm（`npm i -g pnpm`）
-- 编译 Wasm Demo 还需要 JDK 17+
+- Node.js 22.x（推荐 22.19.0）
+- pnpm 10.15.1，可通过 Corepack 安装
+- 编译 Wasm Demo 还需要 JDK 17
+
+```bash
+corepack enable
+corepack prepare pnpm@10.15.1 --activate
+```
 
 ### 启动开发服务器
 
@@ -67,23 +73,19 @@ pnpm dev
 ### 编译 Compose Wasm Demo（可选）
 
 ```bash
-cd compose-demos
-
-# Windows
-./gradlew.bat wasmJsBrowserDistribution
-
-# macOS / Linux
-./gradlew wasmJsBrowserDistribution
+pnpm run build:demos
 ```
 
+该命令会在 Windows 上调用 `gradlew.bat`，在 macOS/Linux 上调用 `gradlew`。
 产物自动复制到 `web/public/demos/`，刷新页面即可看到交互预览。
 
 ### 生产构建
 
 ```bash
-pnpm build:demos   # 编译 Wasm（需要 JDK）
-pnpm build:web     # 打包 Vue
+pnpm run build
 ```
+
+构建产物位于 `web/dist/`。GitHub Actions 工作流会在 Windows、macOS 和 Linux 上执行相同命令，配置见 `.github/workflows/build.yml`。当前 Git 远端为 Gitee，需要镜像或推送到 GitHub 后才能实际运行该工作流。
 
 ---
 
@@ -155,21 +157,6 @@ fun LazyColumnDemo() {
 ---
 
 ## 常见问题
-
-### gradle-wrapper.jar 缺失
-
-**报错**：`错误: 找不到或无法加载主类 org.gradle.wrapper.GradleWrapperMain`
-
-`gradle-wrapper.jar` 未提交到仓库，手动下载：
-
-```bash
-# 查看所需版本
-cat compose-demos/gradle/wrapper/gradle-wrapper.properties | grep distributionUrl
-
-# 下载（以 8.11.1 为例）
-curl -L "https://github.com/gradle/gradle/raw/v8.11.1/gradle/wrapper/gradle-wrapper.jar" \
-  -o compose-demos/gradle/wrapper/gradle-wrapper.jar
-```
 
 ### 编译内存不足
 

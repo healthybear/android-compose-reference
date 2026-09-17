@@ -1,10 +1,16 @@
 {
   "name": "compose-reference",
   "private": true,
+  "packageManager": "pnpm@10.15.1",
+  "engines": {
+    "node": ">=22.0.0 <23",
+    "pnpm": ">=10.15.1 <11"
+  },
   "scripts": {
     "dev": "pnpm --filter web dev",
-    "build:demos": "cd compose-demos && ./gradlew wasmJsBrowserDistribution",
+    "build:demos": "node scripts/run-gradle.mjs wasmJsBrowserDistribution",
     "build:web": "pnpm --filter web build",
-    "build": "pnpm run build:demos && pnpm run build:web"
+    "verify:dist": "node scripts/verify-dist.mjs",
+    "build": "pnpm run build:demos && pnpm run build:web && pnpm run verify:dist"
   }
 }

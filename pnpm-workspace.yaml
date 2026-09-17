@@ -1,2 +1,9 @@
 packages:
   - web
+
+engineStrict: true
+
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - esbuild
+  - vue-demi
