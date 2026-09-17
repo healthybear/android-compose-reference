@@ -2,7 +2,7 @@
 
 组件条目的 TypeScript 类型定义，位于 [web/src/data/types.ts](../web/src/data/types.ts)。
 
-修改组件或指南数据后，运行 `pnpm run validate:data` 检查字段结构、ID、分类和关联引用。
+修改组件或指南数据后，运行 `pnpm run validate:data` 检查字段结构、ID、分类和关联引用。修改 Demo 时还需运行 `pnpm run validate:demos`，校验组件元数据、Kotlin 注册表、源码文件与 Demo 进度表。
 
 ## ComponentEntry
 
@@ -24,7 +24,29 @@
 | `id` | `string` | ✅ | URL 参数和 Kotlin `DemoRegistry` 使用的唯一 ID |
 | `sourceFile` | `string` | ✅ | `demos/` 目录下用于源码展示的 Kotlin 文件名 |
 
-新增或修改 Demo 后，运行 `pnpm run validate:demos` 检查组件元数据、注册表和源码文件是否一致。
+新增或修改 Demo 后，运行 `pnpm run validate:demos` 检查组件元数据、注册表、源码文件和 `docs/demo-progress.md` 是否一致。
+
+## GuideEntry
+
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `id` | `string` | ✅ | 唯一 kebab-case 标识，用于 `/#/guide/:id` 路由 |
+| `title` | `string` | ✅ | 指南标题 |
+| `description` | `string` | ✅ | 指南摘要 |
+| `icon` | `string` | ✅ | Element Plus 图标名称 |
+| `difficulty` | `beginner \| intermediate \| advanced` | ✅ | 难度级别 |
+| `steps` | `GuideStep[]` | ✅ | 指南步骤，至少一项 |
+| `relatedComponents` | `string[]` | ❌ | 已存在的组件 ID 列表 |
+
+## GuideStep
+
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `title` | `string` | ✅ | 步骤标题 |
+| `content` | `string` | ✅ | 步骤说明 |
+| `code` | `string` | ❌ | Kotlin 示例代码 |
+| `tip` | `string` | ❌ | 补充提示 |
+| `previewUrl` | `string` | ❌ | iframe 预览地址 |
 
 ## ComponentParam
 

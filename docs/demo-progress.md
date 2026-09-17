@@ -2,7 +2,7 @@
 
 每个 Demo 对应 `compose-demos/src/wasmJsMain/kotlin/demos/` 下一个 `.kt` 文件，
 在 `DemoRegistry.kt` 中注册，并在组件数据的 `demo` 字段中声明 `id` 和 `sourceFile`。
-运行 `pnpm run validate:demos` 可以检查三者是否一致。
+运行 `pnpm run validate:demos` 可以检查三者及本文档中已完成条目、汇总数字是否一致。
 
 图例：`[ ]` 待做 · `[x]` 已完成 · `[-]` 跳过（不适合 Wasm 演示）
 
@@ -222,7 +222,9 @@
 
 ## 汇总
 
-- 总计需要新建 Demo：**62 个**
-- 已完成（需增强）：**2 个**（ButtonDemo、TextDemo）
-- 已完成（新建）：**60 个**
-- 跳过：**8 个**
+- 组件文档条目：**116**
+- 已完成并注册 Demo：**85**
+- 明确跳过项：**8**
+- 交互预览覆盖：**85 / 116**（约 73.3%）
+
+> 统计口径：组件数来自 Web 组件数据；Demo 数以组件 `demo` 元数据、`DemoRegistry.kt`、Kotlin 源文件和上方 `[x]` 表格四方一致为准。`pnpm run validate:demos` 会在任一处遗漏或汇总数字过期时失败。

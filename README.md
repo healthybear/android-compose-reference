@@ -138,7 +138,13 @@ export const lazyColumnEntry: ComponentEntry = {
 }
 ```
 
-然后在该分类的 `index.ts` 中引入并加入数组，保存后 Vite 热更新立即生效。
+然后在该分类的 `index.ts` 中引入并加入数组。若是新增分类，还需在顶层 `web/src/data/components/index.ts` 中加入分类分组、导入分类数组并展开到 `sampleComponents`。
+
+运行内容校验确认 ID、字段和关联引用有效：
+
+```bash
+pnpm run validate:data
+```
 
 ### 添加 Compose 交互 Demo
 
@@ -167,11 +173,22 @@ fun LazyColumnDemo() {
 demo: { id: 'lazy-column', sourceFile: 'LazyColumnDemo.kt' },
 ```
 
-运行 `pnpm run validate:demos` 检查组件元数据、Kotlin 注册表和源码文件是否一致，再重新构建。
+**第四步**：在 [docs/demo-progress.md](docs/demo-progress.md) 的对应分组增加 `[x]` 条目，并更新文末汇总数字。
+
+最后校验四处数据并重新编译 Wasm Demo：
+
+```bash
+pnpm run validate:demos
+pnpm run build:demos
+```
+
+启动 Web 后访问 `/#/component/lazy-column`，确认交互预览与“查看预览源码”均可用。提交前可运行 `pnpm run build` 完成全部校验、Wasm/Web 构建和产物检查。
 
 ### 添加快速上手指南
 
 编辑 [web/src/data/guides/index.ts](web/src/data/guides/index.ts)，按 `GuideEntry` 类型追加一条记录，`steps` 数组中每一步支持 `code`（Kotlin 代码块）、`tip`（提示文字）、`previewUrl`（iframe 预览链接）字段。
+
+完成后运行 `pnpm run validate:data`，并访问 `/#/guide/<指南 ID>` 检查正文、前后导航和相关组件链接。
 
 ---
 

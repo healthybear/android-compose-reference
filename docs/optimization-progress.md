@@ -232,7 +232,7 @@
 - 页面 Header 并列标明 Android 文档 BOM 与 Wasm Demo 运行时版本。
 - `README.md`、架构文档和部署文档统一说明两套版本的用途与独立维护关系。
 
-### [ ] OPT-008 修正文档与实现的偏差
+### [x] OPT-008 修正文档与实现的偏差
 
 **问题**
 
@@ -248,6 +248,12 @@
 
 - 按文档从零新增一个组件和 Demo 可以成功构建并展示。
 - 文档统计可由校验脚本生成或验证。
+
+**完成结果**
+
+- `demo-progress.md` 已按当前 116 个组件、85 个已注册 Demo 和 8 个明确跳过项修正汇总。
+- `validate:demos` 现在同时校验进度表的 `[x]` 条目、源码文件名和汇总数字，文档漂移会直接导致校验失败。
+- README 已补齐新增组件、Demo 和指南的实际操作、校验、构建与访问路径；架构和数据模型文档同步当前路由、指南页面与 `DemoRegistry`。
 
 ---
 
@@ -550,6 +556,7 @@
 | 2026-09-17 | OPT-005 | 将 85 项 Web Demo 元数据收敛到 `ComponentEntry.demo`，新增 Kotlin `DemoRegistry` 和一致性校验 | Web 与 Wasm 生产构建通过；`validate:demos` 校验 85 项一致 |
 | 2026-09-17 | OPT-006 | 新增基于 TypeScript AST 的组件/指南结构与引用校验，并接入根构建 | `validate:data` 校验 116 个组件、9 个指南通过 |
 | 2026-09-17 | OPT-007 | 页面与文档并列标明 Android 文档 Compose 版本和 Wasm Demo 运行时版本 | 版本边界说明已统一，Web 构建与数据校验通过 |
+| 2026-09-17 | OPT-008 | 修正文档统计、架构与新增内容流程，并让 Demo 校验覆盖进度表 | `validate:data`、`validate:demos`、Web 构建通过 |
 
 ## 维护规则
 

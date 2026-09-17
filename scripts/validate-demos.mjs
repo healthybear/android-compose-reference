@@ -8,6 +8,7 @@ const webDir = join(repositoryDir, 'web')
 const componentsDir = join(webDir, 'src', 'data', 'components')
 const demosDir = join(repositoryDir, 'compose-demos', 'src', 'wasmJsMain', 'kotlin', 'demos')
 const registryFile = join(demosDir, 'DemoRegistry.kt')
+const demoProgressFile = join(repositoryDir, 'docs', 'demo-progress.md')
 const requireFromWeb = createRequire(join(webDir, 'package.json'))
 const ts = requireFromWeb('typescript')
 
@@ -139,11 +140,63 @@ for (const sourceFile of demoSourceFiles) {
   }
 }
 
+const progressText = readFileSync(demoProgressFile, 'utf8')
+const completedRowPattern = /^\| \[x\] \| `([^`]+)` \| `([^`]+)` \|/gm
+const documentedDemos = new Map()
+
+for (const match of progressText.matchAll(completedRowPattern)) {
+  const [, sourceFile, demoId] = match
+  if (documentedDemos.has(demoId)) {
+    errors.push(`${demoProgressFile}: duplicate completed Demo ID '${demoId}'`)
+  }
+  documentedDemos.set(demoId, sourceFile)
+}
+
+for (const [demoId, metadata] of webDemos) {
+  const documentedSource = documentedDemos.get(demoId)
+  if (!documentedSource) {
+    errors.push(`${demoProgressFile}: Demo ID '${demoId}' is missing from the completed rows`)
+  } else if (documentedSource !== metadata.sourceFile) {
+    errors.push(
+      `${demoProgressFile}: Demo ID '${demoId}' documents '${documentedSource}', expected '${metadata.sourceFile}'`,
+    )
+  }
+}
+
+for (const demoId of documentedDemos.keys()) {
+  if (!webDemos.has(demoId)) {
+    errors.push(`${demoProgressFile}: completed Demo ID '${demoId}' is missing from component metadata`)
+  }
+}
+
+function documentedCount(pattern, expected, label) {
+  const match = progressText.match(pattern)
+  if (!match) {
+    errors.push(`${demoProgressFile}: missing summary value '${label}'`)
+  } else if (Number(match[1]) !== expected) {
+    errors.push(`${demoProgressFile}: ${label} is ${match[1]}, expected ${expected}`)
+  }
+}
+
+const skippedCount = [...progressText.matchAll(/^\| \[-\] \|/gm)].length
+documentedCount(/- 组件文档条目：\*\*(\d+)\*\*/, componentIds.size, '组件文档条目')
+documentedCount(/- 已完成并注册 Demo：\*\*(\d+)\*\*/, webDemos.size, '已完成并注册 Demo')
+documentedCount(/- 明确跳过项：\*\*(\d+)\*\*/, skippedCount, '明确跳过项')
+
+const coverage = progressText.match(/- 交互预览覆盖：\*\*(\d+) \/ (\d+)\*\*/)
+if (!coverage) {
+  errors.push(`${demoProgressFile}: missing summary value '交互预览覆盖'`)
+} else if (Number(coverage[1]) !== webDemos.size || Number(coverage[2]) !== componentIds.size) {
+  errors.push(
+    `${demoProgressFile}: 交互预览覆盖 is ${coverage[1]} / ${coverage[2]}, expected ${webDemos.size} / ${componentIds.size}`,
+  )
+}
+
 if (errors.length > 0) {
   for (const error of errors) console.error(`- ${error}`)
   process.exit(1)
 }
 
 console.log(
-  `Validated ${webDemos.size} Demo metadata entries, registry entries, and Kotlin source files.`,
+  `Validated ${webDemos.size} Demo metadata, registry, Kotlin source, and progress document entries.`,
 )
