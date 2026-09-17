@@ -134,6 +134,8 @@ export const lazyColumnEntry: ComponentEntry = {
 **第一步**：新建 Kotlin 文件 `compose-demos/src/wasmJsMain/kotlin/demos/LazyColumnDemo.kt`：
 
 ```kotlin
+package demos
+
 @Composable
 fun LazyColumnDemo() {
     LazyColumn(modifier = Modifier.fillMaxSize()) {
@@ -142,13 +144,19 @@ fun LazyColumnDemo() {
 }
 ```
 
-**第二步**：在 `Main.kt` 的 `when` 分支里注册：
+**第二步**：在 `DemoRegistry.kt` 中注册：
 
 ```kotlin
-"lazy-column" -> LazyColumnDemo()
+"lazy-column" to { LazyColumnDemo() },
 ```
 
-**第三步**：组件数据加上 `demoId: 'lazy-column'`，重新编译即可。
+**第三步**：在组件数据中声明 Demo ID 与源码文件：
+
+```ts
+demo: { id: 'lazy-column', sourceFile: 'LazyColumnDemo.kt' },
+```
+
+运行 `pnpm run validate:demos` 检查组件元数据、Kotlin 注册表和源码文件是否一致，再重新构建。
 
 ### 添加快速上手指南
 

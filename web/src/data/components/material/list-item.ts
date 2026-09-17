@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const listItemComponent: ComponentEntry = {
   id: 'list-item',
+  demo: { id: 'list-item', sourceFile: 'ListItemDemo.kt' },
   name: 'ListItem',
   category: 'Material',
   description: 'Material Design 列表项，支持标题、副标题、前置/后置内容插槽，符合 Material3 规范的标准列表行。',

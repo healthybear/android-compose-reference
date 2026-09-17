@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const switchComponent: ComponentEntry = {
   id: 'switch',
+  demo: { id: 'switch', sourceFile: 'SwitchDemo.kt' },
   name: 'Switch',
   category: 'Form',
   description: '开关切换组件，用于二元状态的开/关控制，对应 View 系统的 SwitchCompat。',

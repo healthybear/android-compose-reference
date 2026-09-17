@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const assistChipComponent: ComponentEntry = {
   id: 'assist-chip',
+  demo: { id: 'assist-chip', sourceFile: 'AssistChipDemo.kt' },
   name: 'AssistChip',
   category: 'Material',
   description: '辅助操作 Chip，用于触发与当前内容相关的辅助动作，如"添加到日历"、"分享"等。',

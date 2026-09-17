@@ -38,5 +38,5 @@ export const textComponent: ComponentEntry = {
 )`,
     },
   ],
-  demoId: 'text',
+  demo: { id: 'text', sourceFile: 'TextDemo.kt' },
 }

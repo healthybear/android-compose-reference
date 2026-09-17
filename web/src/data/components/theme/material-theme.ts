@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const materialThemeComponent: ComponentEntry = {
   id: 'material-theme',
+  demo: { id: 'material-theme', sourceFile: 'MaterialThemeDemo.kt' },
   name: 'MaterialTheme',
   category: 'Theme',
   description: 'Material3 主题提供者，向子树注入 colorScheme、typography、shapes，是 M3 应用的根节点。',

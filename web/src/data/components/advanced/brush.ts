@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const brushComponent: ComponentEntry = {
   id: 'brush',
+  demo: { id: 'brush', sourceFile: 'BrushDemo.kt' },
   name: 'Brush',
   category: 'Advanced',
   description: '创建渐变画笔，用于 background、drawBehind、文字着色等场景，支持线性渐变、径向渐变和扫描渐变。',

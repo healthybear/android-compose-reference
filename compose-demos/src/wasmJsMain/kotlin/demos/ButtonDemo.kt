@@ -1,10 +1,11 @@
+package demos
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import demos.SectionLabel
 
 /**
  * ButtonDemo 演示 Material3 中各种按钮组件的用法与视觉差异。
@@ -145,4 +146,3 @@ fun ButtonDemo() {
         }
     }
 }
-

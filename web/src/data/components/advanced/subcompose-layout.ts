@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const subcomposeLayoutComponent: ComponentEntry = {
   id: 'subcompose-layout',
+  demo: { id: 'subcompose-layout', sourceFile: 'SubcomposeLayoutDemo.kt' },
   name: 'SubcomposeLayout',
   category: 'Advanced',
   description: '允许在测量阶段动态组合子内容，可根据父组件约束条件决定渲染哪些子组件，BoxWithConstraints 内部即使用此 API。',

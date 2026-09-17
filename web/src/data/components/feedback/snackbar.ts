@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const snackbarComponent: ComponentEntry = {
   id: 'snackbar',
+  demo: { id: 'snackbar', sourceFile: 'SnackbarDemo.kt' },
   name: 'Snackbar / SnackbarHost',
   category: 'Feedback',
   description: '底部短暂提示条，通过 SnackbarHostState 触发，配合 Scaffold 的 snackbarHost 插槽使用。',

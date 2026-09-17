@@ -33,6 +33,14 @@ export interface CodeExample {
 }
 
 /**
+ * Compose Wasm Demo 元数据
+ */
+export interface ComponentDemo {
+  id: string          // URL 和 Kotlin DemoRegistry 使用的唯一 ID
+  sourceFile: string  // demos/ 目录下的 Kotlin 源文件名
+}
+
+/**
  * 组件条目
  * 表示一个 Compose 组件的完整文档
  */
@@ -43,7 +51,7 @@ export interface ComponentEntry {
   description: string     // 组件描述
   params: ComponentParam[]  // 参数列表
   examples: CodeExample[]   // 代码示例列表
-  demoId?: string         // WASM demo ID（可选，有则显示交互预览）
+  demo?: ComponentDemo    // Wasm Demo 元数据（可选，有则显示交互预览）
   tags: string[]          // 标签（用于搜索和相关推荐）
 }
 

@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const rowComponent: ComponentEntry = {
   id: 'row',
+  demo: { id: 'row', sourceFile: 'RowDemo.kt' },
   name: 'Row',
   category: 'Layout',
   description: '将子元素水平排列的布局容器。',

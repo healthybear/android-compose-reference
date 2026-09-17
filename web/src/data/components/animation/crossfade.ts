@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const crossfadeComponent: ComponentEntry = {
   id: 'crossfade',
+  demo: { id: 'crossfade', sourceFile: 'CrossfadeDemo.kt' },
   name: 'Crossfade',
   category: 'Animation',
   description: '在不同内容之间执行淡入淡出交叉过渡，是 AnimatedContent 的简化版，适合简单的内容切换场景。',

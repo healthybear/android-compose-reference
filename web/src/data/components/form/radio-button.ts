@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const radioButtonComponent: ComponentEntry = {
   id: 'radio-button',
+  demo: { id: 'radio-button', sourceFile: 'RadioButtonDemo.kt' },
   name: 'RadioButton',
   category: 'Form',
   description: '单选按钮，同组内互斥选择，通常配合 Row 和文字标签使用。',

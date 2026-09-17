@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const outlinedTextFieldComponent: ComponentEntry = {
   id: 'outlined-text-field',
+  demo: { id: 'outlined-text-field', sourceFile: 'OutlinedTextFieldDemo.kt' },
   name: 'OutlinedTextField',
   category: 'Form',
   description: '描边风格的文本输入框，与 TextField 参数相同，外观为带边框的轮廓样式。',

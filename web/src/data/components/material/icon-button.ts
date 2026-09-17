@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const iconButtonComponent: ComponentEntry = {
   id: 'icon-button',
+  demo: { id: 'icon-button', sourceFile: 'IconButtonDemo.kt' },
   name: 'IconButton',
   category: 'Material',
   description: '仅包含图标的可点击按钮，常用于工具栏操作、AppBar 动作等场景。',

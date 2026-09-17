@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const flowRowComponent: ComponentEntry = {
   id: 'flow-row',
+  demo: { id: 'flow-row', sourceFile: 'FlowRowDemo.kt' },
   name: 'FlowRow',
   category: 'Layout',
   description: '水平流式布局，子元素超出宽度时自动换行，类似 CSS flexbox wrap。',

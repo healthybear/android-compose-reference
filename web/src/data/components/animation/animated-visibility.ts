@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const animatedVisibilityComponent: ComponentEntry = {
   id: 'animated-visibility',
+  demo: { id: 'animated-visibility', sourceFile: 'AnimatedVisibilityDemo.kt' },
   name: 'AnimatedVisibility',
   category: 'Animation',
   description: '为子组件的显示/隐藏添加进入和退出动画，支持淡入淡出、滑动、缩放等内置过渡效果。',

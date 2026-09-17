@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const iconComponent: ComponentEntry = {
   id: 'icon',
+  demo: { id: 'icon', sourceFile: 'IconDemo.kt' },
   name: 'Icon',
   category: 'Foundation',
   description: '显示 Material 图标或矢量图的组件，自动应用主题色。',

@@ -9,7 +9,7 @@
  * 4. 推荐相关组件（基于标签和分类相似度）
  * 5. 支持上一个/下一个组件导航
  */
-import { computed, ref, watch } from 'vue'
+import { computed, shallowRef, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { allComponents } from '@/data/components'
 import CodeBlock from '@/components/CodeBlock.vue'
@@ -17,56 +17,6 @@ import ParamsTable from '@/components/ParamsTable.vue'
 import WasmDemo from '@/components/WasmDemo.vue'
 import { useRelatedComponents } from '@/composables/useRelatedComponents'
 import { ArrowRight, Loading } from '@element-plus/icons-vue'
-
-// 支持 WASM 交互预览的组件 ID 集合
-// 维护说明：
-// 1. 新增 demo 时需同步添加到此集合
-// 2. ID 格式为 kebab-case（如 'floating-action-button'）
-// 3. 对应的 Kotlin 文件需存在于 compose-demos 项目中
-const DEMO_IDS = new Set([
-  'button', 'text', 'image', 'icon', 'canvas',
-  'column', 'row', 'box', 'box-with-constraints', 'spacer', 'flow-row', 'flow-column',
-  'lazy-column', 'lazy-row', 'lazy-vertical-grid', 'lazy-horizontal-grid',
-  'horizontal-pager', 'vertical-pager',
-  'modifier-size', 'modifier-padding', 'modifier-background', 'modifier-clickable',
-  'modifier-offset', 'modifier-scroll',
-  'material-theme', 'color-scheme', 'typography', 'shapes',
-  'outlined-button', 'text-button', 'filled-tonal-button', 'elevated-button',
-  'icon-button', 'floating-action-button', 'extended-fab',
-  'assist-chip', 'filter-chip', 'input-chip', 'suggestion-chip',
-  'card', 'elevated-card', 'outlined-card',
-  'badge', 'list-item', 'horizontal-divider',
-  'dropdown-menu', 'exposed-dropdown-menu',
-  'text-field', 'outlined-text-field',
-  'checkbox', 'radio-button', 'switch', 'slider', 'range-slider',
-  'alert-dialog', 'basic-alert-dialog', 'snackbar',
-  'circular-progress', 'linear-progress', 'swipe-to-dismiss',
-  'top-app-bar', 'bottom-app-bar', 'navigation-drawer', 'permanent-navigation-drawer',
-  'animated-visibility', 'animated-content', 'crossfade', 'animate-as-state',
-  'update-transition', 'infinite-transition',
-  'modifier-draggable', 'modifier-transformable',
-  'detect-tap-gestures', 'detect-drag-gestures',
-  'remember', 'derived-state-of', 'launched-effect', 'side-effect',
-  'disposable-effect', 'produce-state', 'composition-local',
-  'custom-layout', 'subcompose-layout', 'draw-modifier', 'brush',
-])
-
-// demoId 到 Kotlin 文件名的特殊映射
-// 用于处理不符合通用命名规则的 demo 文件
-// 例如：'floating-action-button' -> 'FabDemo.kt'（而非 'FloatingActionButtonDemo.kt'）
-const DEMO_FILE_OVERRIDES: Record<string, string> = {
-  'floating-action-button': 'FabDemo.kt',
-  'modifier-draggable': 'DraggableDemo.kt',
-  'modifier-transformable': 'TransformableDemo.kt',
-}
-
-// 将 demoId 转换为 Kotlin 文件名
-// 规则：kebab-case -> PascalCase + 'Demo.kt'
-// 示例：'text-button' -> 'TextButtonDemo.kt'
-function demoIdToFilename(id: string): string {
-  if (DEMO_FILE_OVERRIDES[id]) return DEMO_FILE_OVERRIDES[id]
-  return id.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join('') + 'Demo.kt'
-}
 
 const route = useRoute()
 const router = useRouter()
@@ -84,32 +34,26 @@ const nextComp = computed(() =>
   currentIndex.value < allComponents.length - 1 ? allComponents[currentIndex.value + 1] : null
 )
 
-const hasDemo = computed(() => !!component.value && DEMO_IDS.has(component.value.id))
+const demo = computed(() => component.value?.demo)
 
 // 预览源码
-const sourceExpanded = ref(false)
-const sourceCode = ref('')
-const sourceLoading = ref(false)
+const sourceExpanded = shallowRef(false)
+const sourceCode = shallowRef('')
+const sourceLoading = shallowRef(false)
 
 // 监听组件切换，重置源码展示状态
 // 原因：避免切换组件时显示上一个组件的源码
-watch([hasDemo, component], async ([demo, comp]) => {
+watch(() => component.value?.id, () => {
   sourceExpanded.value = false  // 收起源码面板
   sourceCode.value = ''         // 清空已加载的源码
-  if (!demo || !comp) return
 }, { immediate: true })
 
 // 异步加载 demo 源码
-// 流程：
-// 1. 根据 demoId 计算文件名（通过 demoIdToFilename）
-// 2. 从 /demo-sources/ 目录获取 Kotlin 源文件
-// 3. 处理加载失败情况（显示错误提示）
 async function loadSource() {
-  if (sourceCode.value || !component.value) return
+  if (sourceCode.value || !demo.value) return
   sourceLoading.value = true
   try {
-    const filename = demoIdToFilename(component.value.id)
-    const res = await fetch(`/demo-sources/${filename}`)
+    const res = await fetch(`/demo-sources/${demo.value.sourceFile}`)
     sourceCode.value = res.ok ? await res.text() : '// 源码加载失败'
   } catch {
     sourceCode.value = '// 源码加载失败'
@@ -141,9 +85,9 @@ const relatedComponents = useRelatedComponents(() => component.value)
     <el-divider />
 
     <!-- 交互预览 -->
-    <template v-if="hasDemo">
+    <template v-if="demo">
       <h2 class="text-lg font-semibold m-0 mb-3 text-el-text">效果预览</h2>
-      <WasmDemo :demo-id="component.id" />
+      <WasmDemo :demo-id="demo.id" />
       <div
         class="flex items-center gap-1.5 text-[13px] text-el-text-secondary cursor-pointer select-none mb-3 hover:text-el-text transition-colors"
         @click="toggleSource"

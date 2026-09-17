@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const modifierPaddingComponent: ComponentEntry = {
   id: 'modifier-padding',
+  demo: { id: 'modifier-padding', sourceFile: 'ModifierPaddingDemo.kt' },
   name: 'Modifier.padding',
   category: 'Modifier',
   description: '为组件添加内边距，支持四边统一、水平/垂直、或各边单独设置。',

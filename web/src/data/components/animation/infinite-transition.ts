@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const infiniteTransitionComponent: ComponentEntry = {
   id: 'infinite-transition',
+  demo: { id: 'infinite-transition', sourceFile: 'InfiniteTransitionDemo.kt' },
   name: 'rememberInfiniteTransition',
   category: 'Animation',
   description: '创建无限循环动画，适合加载指示器、呼吸灯、闪烁效果等持续运行的动画场景。',

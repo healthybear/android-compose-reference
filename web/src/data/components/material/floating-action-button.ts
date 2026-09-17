@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const fabComponent: ComponentEntry = {
   id: 'floating-action-button',
+  demo: { id: 'floating-action-button', sourceFile: 'FabDemo.kt' },
   name: 'FloatingActionButton',
   category: 'Material',
   description: '悬浮操作按钮，代表页面的主要操作，通常放置在 Scaffold 的 floatingActionButton 插槽中。',

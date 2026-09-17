@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const columnComponent: ComponentEntry = {
   id: 'column',
+  demo: { id: 'column', sourceFile: 'ColumnDemo.kt' },
   name: 'Column',
   category: 'Layout',
   description: '将子元素垂直排列的布局容器。',

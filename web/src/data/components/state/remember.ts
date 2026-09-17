@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const rememberComponent: ComponentEntry = {
   id: 'remember',
+  demo: { id: 'remember', sourceFile: 'RememberDemo.kt' },
   name: 'remember / rememberSaveable',
   category: 'State',
   description: 'remember 在重组间保留状态；rememberSaveable 额外在 Activity 重建（旋转屏幕、进程恢复）后保留状态。',

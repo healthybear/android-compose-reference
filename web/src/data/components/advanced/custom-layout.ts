@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const customLayoutComponent: ComponentEntry = {
   id: 'custom-layout',
+  demo: { id: 'custom-layout', sourceFile: 'CustomLayoutDemo.kt' },
   name: 'Layout（自定义布局）',
   category: 'Advanced',
   description: '完全自定义测量和放置逻辑的布局组件，通过 MeasurePolicy 控制子组件的尺寸和位置。',

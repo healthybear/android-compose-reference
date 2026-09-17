@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const modifierOffsetComponent: ComponentEntry = {
   id: 'modifier-offset',
+  demo: { id: 'modifier-offset', sourceFile: 'ModifierOffsetDemo.kt' },
   name: 'Modifier.offset / graphicsLayer',
   category: 'Modifier',
   description: 'offset 偏移组件位置；graphicsLayer 在绘制层做变换（缩放、旋转、透明度），不影响布局。',

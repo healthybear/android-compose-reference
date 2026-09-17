@@ -1,5 +1,6 @@
 @file:OptIn(ExperimentalWasmDsl::class)
 
+import org.gradle.api.tasks.Sync
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
@@ -39,12 +40,25 @@ kotlin {
 
 // 编译完成后自动复制产物到 Vue 的 public/demos/
 val webPublicDemosDir = rootProject.file("../web/public/demos")
+val productionDistributionDir = layout.buildDirectory.dir("dist/wasmJs/productionExecutable")
+val developmentDistributionDir = layout.buildDirectory.dir("dist/wasmJs/developmentExecutable")
+val productionWebpackDir = layout.buildDirectory.dir("kotlin-webpack/wasmJs/productionExecutable")
+val developmentWebpackDir = layout.buildDirectory.dir("kotlin-webpack/wasmJs/developmentExecutable")
 
-val copyDemosToVue by tasks.registering(Copy::class) {
+tasks.named("wasmJsBrowserProductionWebpack") {
+    doFirst { delete(productionDistributionDir, productionWebpackDir) }
+}
+
+tasks.named("wasmJsBrowserDevelopmentWebpack") {
+    doFirst { delete(developmentDistributionDir, developmentWebpackDir) }
+}
+
+val copyDemosToVue by tasks.registering(Sync::class) {
     group = "compose-demos"
-    description = "Copy Wasm build output to Vue public/demos/"
+    description = "Sync Wasm build output to Vue public/demos/"
+    outputs.upToDateWhen { false }
 
-    from(layout.buildDirectory.dir("dist/wasmJs/productionExecutable"))
+    from(productionDistributionDir)
     into(webPublicDemosDir)
 }
 
@@ -53,9 +67,10 @@ tasks.named("wasmJsBrowserDistribution") {
 }
 
 // 开发模式也支持复制（可选）
-val copyDemosToVueDev by tasks.registering(Copy::class) {
+val copyDemosToVueDev by tasks.registering(Sync::class) {
     group = "compose-demos"
-    from(layout.buildDirectory.dir("dist/wasmJs/developmentExecutable"))
+    outputs.upToDateWhen { false }
+    from(developmentDistributionDir)
     into(webPublicDemosDir)
 }
 

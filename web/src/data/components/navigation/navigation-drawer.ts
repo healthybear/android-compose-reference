@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const modalNavigationDrawerComponent: ComponentEntry = {
   id: 'navigation-drawer',
+  demo: { id: 'navigation-drawer', sourceFile: 'NavigationDrawerDemo.kt' },
   name: 'ModalNavigationDrawer',
   category: 'Navigation',
   description: '模态侧边导航抽屉，从左侧滑入并带遮罩层，适合手机端的主导航菜单，关闭时内容区域可正常交互。',

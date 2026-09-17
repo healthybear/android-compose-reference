@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const draggableComponent: ComponentEntry = {
   id: 'modifier-draggable',
+  demo: { id: 'modifier-draggable', sourceFile: 'DraggableDemo.kt' },
   name: 'Modifier.draggable',
   category: 'Gestures',
   description: '为组件添加单轴（水平或垂直）拖拽手势，通过 DraggableState 追踪拖拽偏移量。',

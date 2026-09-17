@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const rangeSliderComponent: ComponentEntry = {
   id: 'range-slider',
+  demo: { id: 'range-slider', sourceFile: 'RangeSliderDemo.kt' },
   name: 'RangeSlider',
   category: 'Form',
   description: '范围滑动条，同时选择一个范围的起始值和结束值。',

@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const flowColumnComponent: ComponentEntry = {
   id: 'flow-column',
+  demo: { id: 'flow-column', sourceFile: 'FlowColumnDemo.kt' },
   name: 'FlowColumn',
   category: 'Layout',
   description: '垂直流式布局，子元素超出高度时自动换列。',

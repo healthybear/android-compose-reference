@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const bottomAppBarComponent: ComponentEntry = {
   id: 'bottom-app-bar',
+  demo: { id: 'bottom-app-bar', sourceFile: 'BottomAppBarDemo.kt' },
   name: 'BottomAppBar',
   category: 'Navigation',
   description: '底部应用栏，放置操作按钮，可与 FAB 配合使用，适合操作密集型页面（如编辑器、播放器）。',

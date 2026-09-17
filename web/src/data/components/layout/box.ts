@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const boxComponent: ComponentEntry = {
   id: 'box',
+  demo: { id: 'box', sourceFile: 'BoxDemo.kt' },
   name: 'Box',
   category: 'Layout',
   description: '将子元素叠加放置的布局容器，类似 FrameLayout。',

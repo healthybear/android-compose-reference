@@ -1,7 +1,8 @@
 # Compose Demo 进度表
 
 每个 Demo 对应 `compose-demos/src/wasmJsMain/kotlin/demos/` 下一个 `.kt` 文件，
-并在 `Main.kt` 的 `when` 分支中注册，组件数据里加上 `demoId`。
+在 `DemoRegistry.kt` 中注册，并在组件数据的 `demo` 字段中声明 `id` 和 `sourceFile`。
+运行 `pnpm run validate:demos` 可以检查三者是否一致。
 
 图例：`[ ]` 待做 · `[x]` 已完成 · `[-]` 跳过（不适合 Wasm 演示）
 

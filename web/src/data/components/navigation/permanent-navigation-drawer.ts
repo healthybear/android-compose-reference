@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const permanentNavigationDrawerComponent: ComponentEntry = {
   id: 'permanent-navigation-drawer',
+  demo: { id: 'permanent-navigation-drawer', sourceFile: 'PermanentNavigationDrawerDemo.kt' },
   name: 'PermanentNavigationDrawer',
   category: 'Navigation',
   description: '永久固定的侧边导航抽屉，始终可见不可关闭，适合平板或桌面端的宽屏布局。',

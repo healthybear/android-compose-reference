@@ -77,5 +77,5 @@ Button(onClick = { scope.launch { state.animateScrollToItem(50) } }) {
 }`,
     },
   ],
-  demoId: 'lazy-column',
+  demo: { id: 'lazy-column', sourceFile: 'LazyColumnDemo.kt' },
 }

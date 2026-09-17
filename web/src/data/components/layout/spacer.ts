@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const spacerComponent: ComponentEntry = {
   id: 'spacer',
+  demo: { id: 'spacer', sourceFile: 'SpacerDemo.kt' },
   name: 'Spacer',
   category: 'Layout',
   description: '占位用的空白组件，通过 Modifier 指定尺寸，常用于 Row/Column 中添加间距。',

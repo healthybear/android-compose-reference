@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const basicAlertDialogComponent: ComponentEntry = {
   id: 'basic-alert-dialog',
+  demo: { id: 'basic-alert-dialog', sourceFile: 'BasicAlertDialogDemo.kt' },
   name: 'BasicAlertDialog',
   category: 'Feedback',
   description: 'M3 完全自定义对话框容器，不预设任何插槽，适合需要自定义布局的复杂对话框场景。',

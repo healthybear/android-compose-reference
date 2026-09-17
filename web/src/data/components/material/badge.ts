@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const badgeComponent: ComponentEntry = {
   id: 'badge',
+  demo: { id: 'badge', sourceFile: 'BadgeDemo.kt' },
   name: 'Badge / BadgedBox',
   category: 'Material',
   description: 'BadgedBox 在子组件右上角叠加 Badge 徽标，用于显示未读数量或状态提示。',

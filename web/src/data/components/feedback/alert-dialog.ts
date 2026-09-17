@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const alertDialogComponent: ComponentEntry = {
   id: 'alert-dialog',
+  demo: { id: 'alert-dialog', sourceFile: 'AlertDialogDemo.kt' },
   name: 'AlertDialog',
   category: 'Feedback',
   description: 'Material3 标准警告对话框，包含图标、标题、正文和操作按钮插槽，适合需要用户确认的场景。',

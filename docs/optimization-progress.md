@@ -142,7 +142,7 @@
 
 ## P1：数据与版本一致性
 
-### [ ] OPT-005 统一 Demo 元数据来源
+### [x] OPT-005 统一 Demo 元数据来源
 
 **问题**
 
@@ -168,6 +168,14 @@
 - 删除两个页面中的重复 `DEMO_IDS`。
 - 不再依赖文件名猜测与特殊覆盖表加载源码。
 - 新增一个 Demo 时只需更新组件数据、Registry 和源码，并由自动校验防止遗漏。
+
+**完成结果**
+
+- 85 个可预览组件都使用 `demo: { id, sourceFile }` 声明元数据，首页和详情页直接从组件数据派生展示与加载逻辑。
+- 新增 `DemoRegistry.kt`，`Main.kt` 不再包含大型 Demo `when` 分支。
+- 新增 `pnpm run validate:demos`，检查组件与 Demo ID 唯一性、元数据与注册表一致性、源码文件存在性及未注册源码。
+- 校验已接入根 `pnpm run build`，因此 CI 构建默认执行。
+- Wasm 分发任务改为清理后同步，并校验最终目录不存在未被 JS 引用的陈旧 Wasm hash。
 
 ### [ ] OPT-006 增加内容数据校验
 
@@ -216,8 +224,8 @@
 
 **问题**
 
-- `demo-progress.md` 仍要求给组件数据增加 `demoId`，实际多数条目没有填写。
-- 部分统计和新增流程已与当前 85 个 Demo 的实现不一致。
+- `demo-progress.md` 的汇总统计仍与当前 85 个 Demo 的实现不一致。
+- 部分组件和 Demo 统计尚未由脚本自动生成，可能继续漂移。
 
 **优化方案**
 
@@ -527,6 +535,7 @@
 | 2026-09-17 | OPT-003 | 固定 Node 22.19.0、pnpm 10.15.1、JDK 17，并增加跨平台 Gradle 启动脚本 | macOS 根目录一键构建通过 |
 | 2026-09-17 | OPT-004 | 增加 GitHub Actions 三平台矩阵、依赖缓存、产物验证和构建产物上传 | 工作流静态校验通过；远端矩阵待首次运行 |
 | 2026-09-17 | P0 产物验证 | 增加 `verify:dist`，校验 Web、Demo 入口、JS 和 Wasm 产物 | 完整构建通过；首页、Demo 与 Wasm HTTP 冒烟检查通过 |
+| 2026-09-17 | OPT-005 | 将 85 项 Web Demo 元数据收敛到 `ComponentEntry.demo`，新增 Kotlin `DemoRegistry` 和一致性校验 | Web 与 Wasm 生产构建通过；`validate:demos` 校验 85 项一致 |
 
 ## 维护规则
 

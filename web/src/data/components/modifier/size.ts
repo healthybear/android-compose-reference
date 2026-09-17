@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const modifierSizeComponent: ComponentEntry = {
   id: 'modifier-size',
+  demo: { id: 'modifier-size', sourceFile: 'ModifierSizeDemo.kt' },
   name: 'Modifier.size / fillMax*',
   category: 'Modifier',
   description: '控制组件尺寸的修饰符，包括固定尺寸、填充父容器、限制范围等。',

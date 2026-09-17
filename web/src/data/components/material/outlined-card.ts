@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const outlinedCardComponent: ComponentEntry = {
   id: 'outlined-card',
+  demo: { id: 'outlined-card', sourceFile: 'OutlinedCardDemo.kt' },
   name: 'OutlinedCard',
   category: 'Material',
   description: '带边框的卡片，无阴影，通过描边与背景区分，适合扁平化设计风格。',

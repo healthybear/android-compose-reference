@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const sliderComponent: ComponentEntry = {
   id: 'slider',
+  demo: { id: 'slider', sourceFile: 'SliderDemo.kt' },
   name: 'Slider',
   category: 'Form',
   description: '滑动条，在连续或离散范围内选择单个值，对应 View 系统的 SeekBar。',

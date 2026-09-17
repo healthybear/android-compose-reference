@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const suggestionChipComponent: ComponentEntry = {
   id: 'suggestion-chip',
+  demo: { id: 'suggestion-chip', sourceFile: 'SuggestionChipDemo.kt' },
   name: 'SuggestionChip',
   category: 'Material',
   description: '建议 Chip，展示系统或 AI 生成的建议内容，供用户快速选择，不带选中状态。',

@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const transformableComponent: ComponentEntry = {
   id: 'modifier-transformable',
+  demo: { id: 'modifier-transformable', sourceFile: 'TransformableDemo.kt' },
   name: 'Modifier.transformable',
   category: 'Gestures',
   description: '同时处理缩放、旋转、平移三种多点触控手势，适合图片查看器、地图等需要自由变换的场景。',

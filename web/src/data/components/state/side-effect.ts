@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const sideEffectComponent: ComponentEntry = {
   id: 'side-effect',
+  demo: { id: 'side-effect', sourceFile: 'SideEffectDemo.kt' },
   name: 'SideEffect',
   category: 'State',
   description: '每次重组成功后同步执行副作用，用于将 Compose 状态同步到非 Compose 管理的对象（如 Analytics、View 系统）。',

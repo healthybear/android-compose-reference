@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const swipeToDismissComponent: ComponentEntry = {
   id: 'swipe-to-dismiss',
+  demo: { id: 'swipe-to-dismiss', sourceFile: 'SwipeToDismissDemo.kt' },
   name: 'SwipeToDismissBox',
   category: 'Feedback',
   description: '左右滑动删除/操作容器，滑动时在背景层显示操作提示，松手后触发回调，符合 Material3 规范。',

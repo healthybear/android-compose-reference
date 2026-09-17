@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const launchedEffectComponent: ComponentEntry = {
   id: 'launched-effect',
+  demo: { id: 'launched-effect', sourceFile: 'LaunchedEffectDemo.kt' },
   name: 'LaunchedEffect',
   category: 'State',
   description: '在 Composable 中启动协程执行副作用，key 变化时取消并重启协程，组件离开组合时自动取消。',

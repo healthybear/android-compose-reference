@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const textFieldComponent: ComponentEntry = {
   id: 'text-field',
+  demo: { id: 'text-field', sourceFile: 'TextFieldDemo.kt' },
   name: 'TextField',
   category: 'Form',
   description: '填充风格的文本输入框，支持浮动标签、占位符、前后图标、错误状态等。',

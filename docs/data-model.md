@@ -12,8 +12,17 @@
 | `description` | `string` | ✅ | 一句话描述 |
 | `params` | `ComponentParam[]` | ✅ | 参数列表，可为空数组 |
 | `examples` | `CodeExample[]` | ✅ | 代码示例列表 |
-| `demoId` | `string` | ❌ | 对应 Wasm Demo 的 ID，有值时显示交互预览 |
+| `demo` | `ComponentDemo` | ❌ | Wasm Demo 元数据，有值时显示交互预览 |
 | `tags` | `string[]` | ✅ | 搜索关键词 |
+
+## ComponentDemo
+
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `id` | `string` | ✅ | URL 参数和 Kotlin `DemoRegistry` 使用的唯一 ID |
+| `sourceFile` | `string` | ✅ | `demos/` 目录下用于源码展示的 Kotlin 文件名 |
+
+新增或修改 Demo 后，运行 `pnpm run validate:demos` 检查组件元数据、注册表和源码文件是否一致。
 
 ## ComponentParam
 
@@ -40,6 +49,7 @@ import type { ComponentEntry } from '../types'
 
 export const myEntry: ComponentEntry = {
   id: 'surface',
+  demo: { id: 'surface', sourceFile: 'SurfaceDemo.kt' },
   name: 'Surface',
   category: 'Material',
   description: 'Material Design 的基础容器，提供背景色、圆角和阴影。',

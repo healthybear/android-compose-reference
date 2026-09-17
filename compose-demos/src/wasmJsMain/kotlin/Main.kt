@@ -18,8 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.CanvasBasedWindow
 import compose_demos.generated.resources.Res
 import compose_demos.generated.resources.NotoSansSC_Regular
-import demos.*
-import demos.VerticalPagerDemo
+import demos.DemoRegistry
 import kotlinx.browser.document
 import kotlinx.browser.window
 import org.jetbrains.compose.resources.Font
@@ -148,134 +147,7 @@ fun main() {
                 // 添加 24dp 内边距
                 Box(modifier = Modifier.padding(24.dp)) {
                     // ========== 6. 根据 demoId 渲染对应的组件 ==========
-                    // 这是一个大的 when 表达式，根据不同的 demoId 展示不同的组件示例
-                    when (demoId) {
-                        // 基础组件
-                        "button"               -> ButtonDemo()
-                        "text"                 -> TextDemo()
-                        "image"                -> ImageDemo()
-                        "icon"                 -> IconDemo()
-                        "canvas"               -> CanvasDemo()
-
-                        // 布局组件
-                        "column"               -> ColumnDemo()
-                        "row"                  -> RowDemo()
-                        "box"                  -> BoxDemo()
-                        "box-with-constraints" -> BoxWithConstraintsDemo()
-                        "spacer"               -> SpacerDemo()
-                        "flow-row"             -> FlowRowDemo()
-                        "flow-column"          -> FlowColumnDemo()
-
-                        // 列表组件
-                        "lazy-column"          -> LazyColumnDemo()
-                        "lazy-row"             -> LazyRowDemo()
-                        "lazy-vertical-grid"   -> LazyVerticalGridDemo()
-                        "lazy-horizontal-grid" -> LazyHorizontalGridDemo()
-                        "horizontal-pager"     -> HorizontalPagerDemo()
-                        "vertical-pager"       -> VerticalPagerDemo()
-
-                        // Modifier 修饰符
-                        "modifier-size"        -> ModifierSizeDemo()
-                        "modifier-padding"     -> ModifierPaddingDemo()
-                        "modifier-background"  -> ModifierBackgroundDemo()
-                        "modifier-clickable"   -> ModifierClickableDemo()
-                        "modifier-offset"      -> ModifierOffsetDemo()
-                        "modifier-scroll"      -> ModifierScrollDemo()
-
-                        // 主题相关
-                        "material-theme"       -> MaterialThemeDemo()
-                        "color-scheme"         -> ColorSchemeDemo()
-                        "typography"           -> TypographyDemo()
-                        "shapes"               -> {
-                            ShapesDemo()
-                        }
-
-                        // 按钮变体
-                        "outlined-button"      -> OutlinedButtonDemo()
-                        "text-button"          -> TextButtonDemo()
-                        "filled-tonal-button"  -> FilledTonalButtonDemo()
-                        "elevated-button"      -> ElevatedButtonDemo()
-                        "icon-button"          -> IconButtonDemo()
-                        "floating-action-button" -> FabDemo()
-                        "extended-fab"         -> ExtendedFabDemo()
-
-                        // Chip 组件
-                        "assist-chip"          -> AssistChipDemo()
-                        "filter-chip"          -> FilterChipDemo()
-                        "input-chip"           -> InputChipDemo()
-                        "suggestion-chip"      -> SuggestionChipDemo()
-
-                        // Card 卡片
-                        "card"                 -> CardDemo()
-                        "elevated-card"        -> ElevatedCardDemo()
-                        "outlined-card"        -> OutlinedCardDemo()
-
-                        // 其他 UI 组件
-                        "badge"                -> BadgeDemo()
-                        "list-item"            -> ListItemDemo()
-                        "horizontal-divider"   -> HorizontalDividerDemo()
-                        "dropdown-menu"        -> DropdownMenuDemo()
-                        "exposed-dropdown-menu" -> ExposedDropdownMenuDemo()
-
-                        // 输入组件
-                        "text-field"           -> TextFieldDemo()
-                        "outlined-text-field"  -> OutlinedTextFieldDemo()
-                        "checkbox"             -> CheckboxDemo()
-                        "radio-button"         -> RadioButtonDemo()
-                        "switch"               -> SwitchDemo()
-                        "slider"               -> SliderDemo()
-                        "range-slider"         -> RangeSliderDemo()
-
-                        // 对话框和提示
-                        "alert-dialog"         -> AlertDialogDemo()
-                        "basic-alert-dialog"   -> BasicAlertDialogDemo()
-                        "snackbar"             -> SnackbarDemo()
-
-                        // 进度指示器
-                        "circular-progress"    -> CircularProgressDemo()
-                        "linear-progress"      -> LinearProgressDemo()
-
-                        // 手势和交互
-                        "swipe-to-dismiss"     -> SwipeToDismissDemo()
-
-                        // 导航组件
-                        "top-app-bar"          -> TopAppBarDemo()
-                        "bottom-app-bar"       -> BottomAppBarDemo()
-                        "navigation-drawer"    -> NavigationDrawerDemo()
-                        "permanent-navigation-drawer" -> PermanentNavigationDrawerDemo()
-
-                        // 动画
-                        "animated-visibility"  -> AnimatedVisibilityDemo()
-                        "animated-content"     -> AnimatedContentDemo()
-                        "crossfade"            -> CrossfadeDemo()
-                        "animate-as-state"     -> AnimateAsStateDemo()
-                        "update-transition"    -> UpdateTransitionDemo()
-                        "infinite-transition"  -> InfiniteTransitionDemo()
-
-                        // 手势检测
-                        "modifier-draggable"   -> DraggableDemo()
-                        "modifier-transformable" -> TransformableDemo()
-                        "detect-tap-gestures"  -> DetectTapGesturesDemo()
-                        "detect-drag-gestures" -> DetectDragGesturesDemo()
-
-                        // 状态管理
-                        "remember"             -> RememberDemo()
-                        "derived-state-of"     -> DerivedStateOfDemo()
-                        "launched-effect"      -> LaunchedEffectDemo()
-                        "side-effect"          -> SideEffectDemo()
-                        "disposable-effect"    -> DisposableEffectDemo()
-                        "produce-state"        -> ProduceStateDemo()
-                        "composition-local"    -> CompositionLocalDemo()
-
-                        // 自定义布局和绘制
-                        "custom-layout"        -> CustomLayoutDemo()
-                        "subcompose-layout"    -> SubcomposeLayoutDemo()
-                        "draw-modifier"        -> DrawModifierDemo()
-                        "brush"                -> BrushDemo()
-
-                        // 未找到对应的 demo
-                        else                   -> Text("Demo '$demoId' not found")
-                    }
+                    DemoRegistry.Render(demoId)
                 }
             }
         }

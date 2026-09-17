@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const modifierClickableComponent: ComponentEntry = {
   id: 'modifier-clickable',
+  demo: { id: 'modifier-clickable', sourceFile: 'ModifierClickableDemo.kt' },
   name: 'Modifier.clickable / combinedClickable',
   category: 'Modifier',
   description: '为任意组件添加点击交互，支持单击、长按、双击。',

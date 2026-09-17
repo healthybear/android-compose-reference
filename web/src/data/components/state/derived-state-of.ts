@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const derivedStateOfComponent: ComponentEntry = {
   id: 'derived-state-of',
+  demo: { id: 'derived-state-of', sourceFile: 'DerivedStateOfDemo.kt' },
   name: 'derivedStateOf',
   category: 'State',
   description: '从一个或多个状态派生出新状态，只有派生结果变化时才触发重组，避免不必要的重组开销。',

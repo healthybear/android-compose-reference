@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const boxWithConstraintsComponent: ComponentEntry = {
   id: 'box-with-constraints',
+  demo: { id: 'box-with-constraints', sourceFile: 'BoxWithConstraintsDemo.kt' },
   name: 'BoxWithConstraints',
   category: 'Layout',
   description: '可在内容中读取父容器约束（maxWidth/maxHeight）的 Box，适合响应式布局。',

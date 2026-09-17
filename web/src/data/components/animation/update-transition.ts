@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const updateTransitionComponent: ComponentEntry = {
   id: 'update-transition',
+  demo: { id: 'update-transition', sourceFile: 'UpdateTransitionDemo.kt' },
   name: 'updateTransition',
   category: 'Animation',
   description: '管理多个动画值同步过渡的 API，适合一个状态变化需要同时驱动多个属性动画的场景。',

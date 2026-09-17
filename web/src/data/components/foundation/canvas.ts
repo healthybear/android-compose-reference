@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const canvasComponent: ComponentEntry = {
   id: 'canvas',
+  demo: { id: 'canvas', sourceFile: 'CanvasDemo.kt' },
   name: 'Canvas',
   category: 'Foundation',
   description: '提供 DrawScope 进行自定义 2D 绘制，对应 View 系统的 onDraw()。',

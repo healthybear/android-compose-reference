@@ -37,5 +37,5 @@ export const buttonComponent: ComponentEntry = {
 }`,
     },
   ],
-  demoId: 'button',
+  demo: { id: 'button', sourceFile: 'ButtonDemo.kt' },
 }

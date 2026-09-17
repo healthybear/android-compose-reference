@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const modifierScrollComponent: ComponentEntry = {
   id: 'modifier-scroll',
+  demo: { id: 'modifier-scroll', sourceFile: 'ModifierScrollDemo.kt' },
   name: 'Modifier.verticalScroll / nestedScroll',
   category: 'Modifier',
   description: 'verticalScroll/horizontalScroll 为 Column/Row 添加滚动；nestedScroll 处理嵌套滚动协调，如 TopAppBar 联动。',

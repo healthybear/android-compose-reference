@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const lazyRowComponent: ComponentEntry = {
   id: 'lazy-row',
+  demo: { id: 'lazy-row', sourceFile: 'LazyRowDemo.kt' },
   name: 'LazyRow',
   category: 'LazyList',
   description: '水平方向的懒加载列表，对应 RecyclerView（水平）。',

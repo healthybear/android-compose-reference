@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const lazyHorizontalGridComponent: ComponentEntry = {
   id: 'lazy-horizontal-grid',
+  demo: { id: 'lazy-horizontal-grid', sourceFile: 'LazyHorizontalGridDemo.kt' },
   name: 'LazyHorizontalGrid',
   category: 'LazyList',
   description: '水平方向的懒加载网格，固定行数，横向滚动。',

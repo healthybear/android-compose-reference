@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const drawModifierComponent: ComponentEntry = {
   id: 'draw-modifier',
+  demo: { id: 'draw-modifier', sourceFile: 'DrawModifierDemo.kt' },
   name: 'drawBehind / drawWithContent',
   category: 'Advanced',
   description: 'drawBehind 在组件背后绘制自定义图形；drawWithContent 可在组件内容前后插入绘制，两者都使用 Canvas DrawScope API。',

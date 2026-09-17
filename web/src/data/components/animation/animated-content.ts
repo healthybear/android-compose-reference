@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const animatedContentComponent: ComponentEntry = {
   id: 'animated-content',
+  demo: { id: 'animated-content', sourceFile: 'AnimatedContentDemo.kt' },
   name: 'AnimatedContent',
   category: 'Animation',
   description: '当目标状态变化时，为内容切换添加动画过渡，适合数字变化、页面切换、内容替换等场景。',

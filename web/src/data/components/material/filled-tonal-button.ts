@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const filledTonalButtonComponent: ComponentEntry = {
   id: 'filled-tonal-button',
+  demo: { id: 'filled-tonal-button', sourceFile: 'FilledTonalButtonDemo.kt' },
   name: 'FilledTonalButton',
   category: 'Material',
   description: '使用次要容器色填充的按钮，强调程度介于 Button 和 OutlinedButton 之间。',

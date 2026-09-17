@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const verticalPagerComponent: ComponentEntry = {
   id: 'vertical-pager',
+  demo: { id: 'vertical-pager', sourceFile: 'VerticalPagerDemo.kt' },
   name: 'VerticalPager',
   category: 'LazyList',
   description: '垂直翻页容器，每次滚动一整页，常用于短视频流、竖向引导页。',

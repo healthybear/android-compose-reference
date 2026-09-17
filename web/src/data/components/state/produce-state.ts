@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const produceStateComponent: ComponentEntry = {
   id: 'produce-state',
+  demo: { id: 'produce-state', sourceFile: 'ProduceStateDemo.kt' },
   name: 'produceState',
   category: 'State',
   description: '将非 Compose 的异步数据源（Flow、suspend 函数、回调）转换为 Compose State，在协程中更新值。',

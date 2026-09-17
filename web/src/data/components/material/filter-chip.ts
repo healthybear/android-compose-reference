@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const filterChipComponent: ComponentEntry = {
   id: 'filter-chip',
+  demo: { id: 'filter-chip', sourceFile: 'FilterChipDemo.kt' },
   name: 'FilterChip',
   category: 'Material',
   description: '过滤 Chip，带选中状态，用于从一组选项中筛选内容，选中时显示勾选图标。',

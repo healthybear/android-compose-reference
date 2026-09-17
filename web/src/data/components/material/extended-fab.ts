@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const extendedFabComponent: ComponentEntry = {
   id: 'extended-fab',
+  demo: { id: 'extended-fab', sourceFile: 'ExtendedFabDemo.kt' },
   name: 'ExtendedFloatingActionButton',
   category: 'Material',
   description: '带文字标签的扩展悬浮操作按钮，比普通 FAB 更具描述性，支持滚动时自动收缩。',

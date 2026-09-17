@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const disposableEffectComponent: ComponentEntry = {
   id: 'disposable-effect',
+  demo: { id: 'disposable-effect', sourceFile: 'DisposableEffectDemo.kt' },
   name: 'DisposableEffect',
   category: 'State',
   description: '需要清理的副作用，在 key 变化或组件离开组合时执行 onDispose 清理块，适合注册/注销监听器。',

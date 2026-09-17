@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const topAppBarComponent: ComponentEntry = {
   id: 'top-app-bar',
+  demo: { id: 'top-app-bar', sourceFile: 'TopAppBarDemo.kt' },
   name: 'TopAppBar',
   category: 'Navigation',
   description: '标准顶部应用栏，单行高度，支持导航图标、标题和操作按钮，可配合 scrollBehavior 实现滚动联动。',

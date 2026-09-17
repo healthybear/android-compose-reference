@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const compositionLocalComponent: ComponentEntry = {
   id: 'composition-local',
+  demo: { id: 'composition-local', sourceFile: 'CompositionLocalDemo.kt' },
   name: 'CompositionLocal',
   category: 'Advanced',
   description: '隐式地向组合树中传递数据，无需逐层传参，适合主题、语言、用户信息等全局共享数据。',

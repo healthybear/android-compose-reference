@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const exposedDropdownMenuComponent: ComponentEntry = {
   id: 'exposed-dropdown-menu',
+  demo: { id: 'exposed-dropdown-menu', sourceFile: 'ExposedDropdownMenuDemo.kt' },
   name: 'ExposedDropdownMenuBox',
   category: 'Material',
   description: '暴露式下拉选择框，将 TextField 与下拉菜单结合，用于表单中的单项选择场景。',

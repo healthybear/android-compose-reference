@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const dropdownMenuComponent: ComponentEntry = {
   id: 'dropdown-menu',
+  demo: { id: 'dropdown-menu', sourceFile: 'DropdownMenuDemo.kt' },
   name: 'DropdownMenu',
   category: 'Material',
   description: '下拉菜单，锚定在触发元素附近弹出，包含一组 DropdownMenuItem 操作项。',

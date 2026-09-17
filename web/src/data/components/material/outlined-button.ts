@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const outlinedButtonComponent: ComponentEntry = {
   id: 'outlined-button',
+  demo: { id: 'outlined-button', sourceFile: 'OutlinedButtonDemo.kt' },
   name: 'OutlinedButton',
   category: 'Material',
   description: '带边框的次要操作按钮，适合与主按钮并列使用的取消/次要操作。',

@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const elevatedCardComponent: ComponentEntry = {
   id: 'elevated-card',
+  demo: { id: 'elevated-card', sourceFile: 'ElevatedCardDemo.kt' },
   name: 'ElevatedCard',
   category: 'Material',
   description: '带明显阴影的卡片，通过阴影高度与背景区分，适合需要突出层次感的内容。',

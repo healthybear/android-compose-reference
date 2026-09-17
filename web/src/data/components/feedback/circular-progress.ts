@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const circularProgressComponent: ComponentEntry = {
   id: 'circular-progress',
+  demo: { id: 'circular-progress', sourceFile: 'CircularProgressDemo.kt' },
   name: 'CircularProgressIndicator',
   category: 'Feedback',
   description: '圆形进度指示器，支持确定进度和不确定旋转动画，常用于按钮加载态或全屏加载遮罩。',

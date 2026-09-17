@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const animateAsStateComponent: ComponentEntry = {
   id: 'animate-as-state',
+  demo: { id: 'animate-as-state', sourceFile: 'AnimateAsStateDemo.kt' },
   name: 'animate*AsState',
   category: 'Animation',
   description: '将普通状态值转换为带动画的状态，值变化时自动执行补间动画，是最简单的动画 API。',

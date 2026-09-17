@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const checkboxComponent: ComponentEntry = {
   id: 'checkbox',
+  demo: { id: 'checkbox', sourceFile: 'CheckboxDemo.kt' },
   name: 'Checkbox',
   category: 'Form',
   description: '复选框，支持选中、未选中、不确定三种状态，通常配合文字标签使用。',

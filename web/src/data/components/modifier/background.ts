@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const modifierBackgroundComponent: ComponentEntry = {
   id: 'modifier-background',
+  demo: { id: 'modifier-background', sourceFile: 'ModifierBackgroundDemo.kt' },
   name: 'Modifier.background / border / clip',
   category: 'Modifier',
   description: '控制组件背景色、边框和形状裁剪的修饰符。',

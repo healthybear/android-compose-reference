@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const horizontalDividerComponent: ComponentEntry = {
   id: 'horizontal-divider',
+  demo: { id: 'horizontal-divider', sourceFile: 'HorizontalDividerDemo.kt' },
   name: 'HorizontalDivider',
   category: 'Material',
   description: '水平分割线，用于在列表项、内容区块之间添加视觉分隔，支持自定义厚度和颜色。',

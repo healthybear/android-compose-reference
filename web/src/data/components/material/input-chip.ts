@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const inputChipComponent: ComponentEntry = {
   id: 'input-chip',
+  demo: { id: 'input-chip', sourceFile: 'InputChipDemo.kt' },
   name: 'InputChip',
   category: 'Material',
   description: '输入 Chip，表示用户输入的信息（如标签、联系人），通常带删除按钮，可选中。',

@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const cardComponent: ComponentEntry = {
   id: 'card',
+  demo: { id: 'card', sourceFile: 'CardDemo.kt' },
   name: 'Card',
   category: 'Material',
   description: 'Material Design 卡片容器，提供圆角、背景色和阴影，可点击时带涟漪效果。',

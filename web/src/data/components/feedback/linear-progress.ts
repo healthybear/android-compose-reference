@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const linearProgressComponent: ComponentEntry = {
   id: 'linear-progress',
+  demo: { id: 'linear-progress', sourceFile: 'LinearProgressDemo.kt' },
   name: 'LinearProgressIndicator',
   category: 'Feedback',
   description: '水平线性进度条，支持确定进度（0~1）和不确定进度（加载中）两种模式。',

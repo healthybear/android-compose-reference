@@ -8,9 +8,10 @@
   },
   "scripts": {
     "dev": "pnpm --filter web dev",
+    "validate:demos": "node scripts/validate-demos.mjs",
     "build:demos": "node scripts/run-gradle.mjs wasmJsBrowserDistribution",
     "build:web": "pnpm --filter web build",
     "verify:dist": "node scripts/verify-dist.mjs",
-    "build": "pnpm run build:demos && pnpm run build:web && pnpm run verify:dist"
+    "build": "pnpm run validate:demos && pnpm run build:demos && pnpm run build:web && pnpm run verify:dist"
   }
 }

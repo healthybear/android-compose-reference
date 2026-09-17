@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const detectTapGesturesComponent: ComponentEntry = {
   id: 'detect-tap-gestures',
+  demo: { id: 'detect-tap-gestures', sourceFile: 'DetectTapGesturesDemo.kt' },
   name: 'detectTapGestures',
   category: 'Gestures',
   description: '在 pointerInput 中检测点击、双击、长按、按下等精细点击手势，比 Modifier.clickable 提供更多控制。',

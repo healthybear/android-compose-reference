@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const colorSchemeComponent: ComponentEntry = {
   id: 'color-scheme',
+  demo: { id: 'color-scheme', sourceFile: 'ColorSchemeDemo.kt' },
   name: 'ColorScheme',
   category: 'Theme',
   description: 'Material3 颜色系统，包含 primary/secondary/tertiary 及其容器色、surface 系列等 30 个语义色。',

@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const shapesComponent: ComponentEntry = {
   id: 'shapes',
+  demo: { id: 'shapes', sourceFile: 'ShapesDemo.kt' },
   name: 'Shapes',
   category: 'Theme',
   description: 'Material3 形状规范，定义 extraSmall 到 extraLarge 五个级别的圆角，统一组件外观。',

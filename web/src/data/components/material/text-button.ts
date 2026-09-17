@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const textButtonComponent: ComponentEntry = {
   id: 'text-button',
+  demo: { id: 'text-button', sourceFile: 'TextButtonDemo.kt' },
   name: 'TextButton',
   category: 'Material',
   description: '无背景无边框的文字按钮，用于低强调操作，如对话框内的操作或内联操作。',

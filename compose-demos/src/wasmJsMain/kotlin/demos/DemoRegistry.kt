@@ -1,0 +1,106 @@
+package demos
+
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+
+private typealias DemoContent = @Composable () -> Unit
+
+object DemoRegistry {
+    private val demos: Map<String, DemoContent> = mapOf(
+        "button" to { ButtonDemo() },
+        "text" to { TextDemo() },
+        "image" to { ImageDemo() },
+        "icon" to { IconDemo() },
+        "canvas" to { CanvasDemo() },
+        "column" to { ColumnDemo() },
+        "row" to { RowDemo() },
+        "box" to { BoxDemo() },
+        "box-with-constraints" to { BoxWithConstraintsDemo() },
+        "spacer" to { SpacerDemo() },
+        "flow-row" to { FlowRowDemo() },
+        "flow-column" to { FlowColumnDemo() },
+        "lazy-column" to { LazyColumnDemo() },
+        "lazy-row" to { LazyRowDemo() },
+        "lazy-vertical-grid" to { LazyVerticalGridDemo() },
+        "lazy-horizontal-grid" to { LazyHorizontalGridDemo() },
+        "horizontal-pager" to { HorizontalPagerDemo() },
+        "vertical-pager" to { VerticalPagerDemo() },
+        "modifier-size" to { ModifierSizeDemo() },
+        "modifier-padding" to { ModifierPaddingDemo() },
+        "modifier-background" to { ModifierBackgroundDemo() },
+        "modifier-clickable" to { ModifierClickableDemo() },
+        "modifier-offset" to { ModifierOffsetDemo() },
+        "modifier-scroll" to { ModifierScrollDemo() },
+        "material-theme" to { MaterialThemeDemo() },
+        "color-scheme" to { ColorSchemeDemo() },
+        "typography" to { TypographyDemo() },
+        "shapes" to { ShapesDemo() },
+        "outlined-button" to { OutlinedButtonDemo() },
+        "text-button" to { TextButtonDemo() },
+        "filled-tonal-button" to { FilledTonalButtonDemo() },
+        "elevated-button" to { ElevatedButtonDemo() },
+        "icon-button" to { IconButtonDemo() },
+        "floating-action-button" to { FabDemo() },
+        "extended-fab" to { ExtendedFabDemo() },
+        "assist-chip" to { AssistChipDemo() },
+        "filter-chip" to { FilterChipDemo() },
+        "input-chip" to { InputChipDemo() },
+        "suggestion-chip" to { SuggestionChipDemo() },
+        "card" to { CardDemo() },
+        "elevated-card" to { ElevatedCardDemo() },
+        "outlined-card" to { OutlinedCardDemo() },
+        "badge" to { BadgeDemo() },
+        "list-item" to { ListItemDemo() },
+        "horizontal-divider" to { HorizontalDividerDemo() },
+        "dropdown-menu" to { DropdownMenuDemo() },
+        "exposed-dropdown-menu" to { ExposedDropdownMenuDemo() },
+        "text-field" to { TextFieldDemo() },
+        "outlined-text-field" to { OutlinedTextFieldDemo() },
+        "checkbox" to { CheckboxDemo() },
+        "radio-button" to { RadioButtonDemo() },
+        "switch" to { SwitchDemo() },
+        "slider" to { SliderDemo() },
+        "range-slider" to { RangeSliderDemo() },
+        "alert-dialog" to { AlertDialogDemo() },
+        "basic-alert-dialog" to { BasicAlertDialogDemo() },
+        "snackbar" to { SnackbarDemo() },
+        "circular-progress" to { CircularProgressDemo() },
+        "linear-progress" to { LinearProgressDemo() },
+        "swipe-to-dismiss" to { SwipeToDismissDemo() },
+        "top-app-bar" to { TopAppBarDemo() },
+        "bottom-app-bar" to { BottomAppBarDemo() },
+        "navigation-drawer" to { NavigationDrawerDemo() },
+        "permanent-navigation-drawer" to { PermanentNavigationDrawerDemo() },
+        "animated-visibility" to { AnimatedVisibilityDemo() },
+        "animated-content" to { AnimatedContentDemo() },
+        "crossfade" to { CrossfadeDemo() },
+        "animate-as-state" to { AnimateAsStateDemo() },
+        "update-transition" to { UpdateTransitionDemo() },
+        "infinite-transition" to { InfiniteTransitionDemo() },
+        "modifier-draggable" to { DraggableDemo() },
+        "modifier-transformable" to { TransformableDemo() },
+        "detect-tap-gestures" to { DetectTapGesturesDemo() },
+        "detect-drag-gestures" to { DetectDragGesturesDemo() },
+        "remember" to { RememberDemo() },
+        "derived-state-of" to { DerivedStateOfDemo() },
+        "launched-effect" to { LaunchedEffectDemo() },
+        "side-effect" to { SideEffectDemo() },
+        "disposable-effect" to { DisposableEffectDemo() },
+        "produce-state" to { ProduceStateDemo() },
+        "composition-local" to { CompositionLocalDemo() },
+        "custom-layout" to { CustomLayoutDemo() },
+        "subcompose-layout" to { SubcomposeLayoutDemo() },
+        "draw-modifier" to { DrawModifierDemo() },
+        "brush" to { BrushDemo() },
+    )
+
+    @Composable
+    fun Render(demoId: String) {
+        val content = demos[demoId]
+        if (content == null) {
+            Text("Demo '$demoId' not found")
+        } else {
+            content()
+        }
+    }
+}

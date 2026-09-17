@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const detectDragGesturesComponent: ComponentEntry = {
   id: 'detect-drag-gestures',
+  demo: { id: 'detect-drag-gestures', sourceFile: 'DetectDragGesturesDemo.kt' },
   name: 'detectDragGestures',
   category: 'Gestures',
   description: '在 pointerInput 中检测任意方向的拖拽手势，比 Modifier.draggable 更灵活，支持二维拖拽。',

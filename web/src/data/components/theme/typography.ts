@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const typographyComponent: ComponentEntry = {
   id: 'typography',
+  demo: { id: 'typography', sourceFile: 'TypographyDemo.kt' },
   name: 'Typography',
   category: 'Theme',
   description: 'Material3 字体排版规范，定义 displayLarge 到 labelSmall 共 15 个文字样式。',

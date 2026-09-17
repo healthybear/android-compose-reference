@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const elevatedButtonComponent: ComponentEntry = {
   id: 'elevated-button',
+  demo: { id: 'elevated-button', sourceFile: 'ElevatedButtonDemo.kt' },
   name: 'ElevatedButton',
   category: 'Material',
   description: '带阴影的低强调按钮，用于需要与背景区分但不需要强调的操作。',

@@ -2,6 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const imageComponent: ComponentEntry = {
   id: 'image',
+  demo: { id: 'image', sourceFile: 'ImageDemo.kt' },
   name: 'Image',
   category: 'Foundation',
   description: '显示图片资源的基础组件，支持 Painter、ImageBitmap、ImageVector 三种来源。',
