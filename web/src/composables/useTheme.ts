@@ -1,7 +1,7 @@
-import { ref, watch } from 'vue'
+import { shallowRef, watch } from 'vue'
 
 // 使用 Element Plus 的暗色模式类名 'dark'
-const isDark = ref(localStorage.getItem('theme') === 'dark')
+const isDark = shallowRef(localStorage.getItem('theme') === 'dark')
 
 watch(
   isDark,

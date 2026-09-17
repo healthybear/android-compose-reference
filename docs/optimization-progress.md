@@ -459,7 +459,7 @@
 - 增加 `ready` / `theme-applied` 握手，iframe 初始化后可靠同步当前主题，并可自动验证主题消息是否被接受。
 - iframe sandbox 仅保留 Kotlin/Wasm 同源运行所需的 `allow-scripts allow-same-origin`，部署文档已明确同源策略和权限理由。
 
-### [ ] OPT-019 拆分过重页面组件并规范响应式状态
+### [x] OPT-019 拆分过重页面组件并规范响应式状态
 
 **问题**
 
@@ -478,6 +478,12 @@
 - 页面行为与布局不回退。
 - 子组件职责单一，公共状态来源明确。
 - 关键交互有测试覆盖后再进行结构调整。
+
+**完成结果**
+
+- `App.vue` 已收敛为页面布局、路由副作用和状态编排层；顶部导航、搜索面板、侧栏导航分别拆为 `AppHeader`、`SearchPalette`、`AppSidebar`。
+- 子组件以明确的 TypeScript props/emits 传递数据和交互命令；搜索浮层显示状态仍由 `App.vue` 统一持有。
+- `useResponsiveLayout` 统一管理移动断点与 `resize` 监听的注册/清理；简单布尔值与搜索关键词使用 `shallowRef`，主滚动容器使用类型化 `useTemplateRef`。
 
 ### [ ] OPT-020 验证文档代码示例的正确性
 

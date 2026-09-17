@@ -1,9 +1,9 @@
-import { computed, ref } from 'vue'
+import { computed, shallowRef } from 'vue'
 import { allComponents } from '@/data/components'
 import type { ComponentEntry } from '@/data/types'
 
 export function useSearch() {
-  const query = ref('')
+  const query = shallowRef('')
 
   const results = computed<ComponentEntry[]>(() => {
     const q = query.value.trim().toLowerCase()
