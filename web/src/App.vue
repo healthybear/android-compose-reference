@@ -37,6 +37,7 @@ function selectSearch(id: string) {
 
 <template>
   <el-container class="h-screen overflow-hidden">
+    <a class="skip-link" href="#main-content">跳至主要内容</a>
     <AppHeader
       :is-mobile="isMobile"
       :drawer-open="drawerOpen"
@@ -75,7 +76,7 @@ function selectSearch(id: string) {
       </Transition>
 
       <!-- 主内容区 -->
-      <el-main class="!p-0 overflow-hidden">
+      <el-main id="main-content" class="!p-0 overflow-hidden" tabindex="-1">
         <el-scrollbar ref="mainScrollbar">
           <div class="p-4 md:p-8 min-h-full">
             <router-view />
@@ -90,6 +91,31 @@ function selectSearch(id: string) {
 html, body, #app {
   height: 100%;
   margin: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 100;
+  padding: 0.5rem 0.75rem;
+  color: var(--el-color-white);
+  background: var(--el-color-primary);
+  border-radius: 0.25rem;
+  transform: translateY(-150%);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
 </style>
 

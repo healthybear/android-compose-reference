@@ -34,13 +34,10 @@ const relatedComponents = computed<ComponentEntry[]>(() =>
   <div v-if="guide" class="max-w-[860px]">
     <!-- 页头 -->
     <div class="mb-2">
-      <div
-        class="flex items-center gap-1 mb-3 text-el-text-secondary text-sm cursor-pointer hover:text-el-primary w-fit"
-        @click="router.push('/guide')"
-      >
+      <router-link to="/guide" class="flex items-center gap-1 mb-3 text-el-text-secondary text-sm hover:text-el-primary w-fit no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-el-color-primary">
         <el-icon><ArrowLeft /></el-icon>
         快速上手
-      </div>
+      </router-link>
       <h1 class="text-[28px] font-bold mt-3 mb-2 text-el-text">{{ guide.title }}</h1>
       <p class="text-[15px] text-el-text-secondary m-0 mb-3 leading-relaxed">{{ guide.description }}</p>
     </div>
@@ -68,6 +65,7 @@ const relatedComponents = computed<ComponentEntry[]>(() =>
           </div>
           <iframe
             :src="step.previewUrl"
+            :title="`${step.title} 预览`"
             class="w-full border-none"
             style="height: 360px;"
             loading="lazy"
@@ -90,31 +88,32 @@ const relatedComponents = computed<ComponentEntry[]>(() =>
       <el-divider />
       <h2 class="text-lg font-semibold m-0 mb-4 text-el-text">相关组件</h2>
       <div class="grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-3 mb-6">
-        <el-card
+        <router-link
           v-for="comp in relatedComponents"
           :key="comp.id"
-          class="cursor-pointer transition-transform hover:-translate-y-0.5"
-          shadow="hover"
-          @click="router.push(`/component/${comp.id}`)"
+          :to="`/component/${comp.id}`"
+          class="block rounded-lg no-underline transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-el-color-primary focus-visible:ring-offset-2"
         >
-          <div class="text-sm font-semibold mb-1 text-el-text">{{ comp.name }}</div>
-          <div class="text-[12px] text-el-text-secondary line-clamp-2">{{ comp.description }}</div>
-        </el-card>
+          <el-card shadow="hover">
+            <div class="text-sm font-semibold mb-1 text-el-text">{{ comp.name }}</div>
+            <div class="text-[12px] text-el-text-secondary line-clamp-2">{{ comp.description }}</div>
+          </el-card>
+        </router-link>
       </div>
     </template>
 
     <!-- 上一篇 / 下一篇 -->
     <el-divider />
     <div class="flex justify-between pb-8">
-      <el-button v-if="prevGuide" @click="router.push(`/guide/${prevGuide.id}`)">
+      <router-link v-if="prevGuide" :to="`/guide/${prevGuide.id}`" class="el-button el-button--default no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-el-color-primary">
         <el-icon><ArrowLeft /></el-icon>
         {{ prevGuide.title }}
-      </el-button>
+      </router-link>
       <span v-else />
-      <el-button v-if="nextGuide" type="primary" @click="router.push(`/guide/${nextGuide.id}`)">
+      <router-link v-if="nextGuide" :to="`/guide/${nextGuide.id}`" class="el-button el-button--primary no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-el-color-primary">
         {{ nextGuide.title }}
         <el-icon><ArrowRight /></el-icon>
-      </el-button>
+      </router-link>
     </div>
   </div>
 

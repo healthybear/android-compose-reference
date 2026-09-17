@@ -107,6 +107,7 @@ onUnmounted(() => window.removeEventListener('message', onMessage))
     <iframe
       ref="iframeRef"
       :src="demoUrl"
+      :title="`${demoId} Compose 交互预览`"
       :style="{ height: iframeHeight + 'px' }"
       width="100%"
       frameborder="0"

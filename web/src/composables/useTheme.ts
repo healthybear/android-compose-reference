@@ -7,6 +7,7 @@ watch(
   isDark,
   (val) => {
     document.documentElement.classList.toggle('dark', val)
+    document.documentElement.style.colorScheme = val ? 'dark' : 'light'
     localStorage.setItem('theme', val ? 'dark' : 'light')
   },
   { immediate: true }

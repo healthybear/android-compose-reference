@@ -10,7 +10,7 @@
  * 5. 支持上一个/下一个组件导航
  */
 import { computed, shallowRef, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { allComponents } from '@/data/components'
 import CodeBlock from '@/components/CodeBlock.vue'
 import ParamsTable from '@/components/ParamsTable.vue'
@@ -19,7 +19,6 @@ import { useRelatedComponents } from '@/composables/useRelatedComponents'
 import { ArrowRight, Loading } from '@element-plus/icons-vue'
 
 const route = useRoute()
-const router = useRouter()
 
 const currentIndex = computed(() =>
   allComponents.findIndex(c => c.id === route.params.id)
@@ -88,8 +87,11 @@ const relatedComponents = useRelatedComponents(() => component.value)
     <template v-if="demo">
       <h2 class="text-lg font-semibold m-0 mb-3 text-el-text">效果预览</h2>
       <WasmDemo :demo-id="demo.id" />
-      <div
-        class="flex items-center gap-1.5 text-[13px] text-el-text-secondary cursor-pointer select-none mb-3 hover:text-el-text transition-colors"
+      <el-button
+        text
+        class="!mb-3"
+        :aria-expanded="sourceExpanded"
+        aria-controls="demo-source"
         @click="toggleSource"
       >
         <el-icon :class="sourceExpanded ? 'rotate-90' : ''" class="transition-transform">
@@ -97,8 +99,8 @@ const relatedComponents = useRelatedComponents(() => component.value)
         </el-icon>
         <span>{{ sourceExpanded ? '收起' : '查看' }}预览源码</span>
         <el-icon v-if="sourceLoading"><Loading /></el-icon>
-      </div>
-      <div v-if="sourceExpanded" class="mb-4">
+      </el-button>
+      <div v-if="sourceExpanded" id="demo-source" class="mb-4">
         <CodeBlock v-if="sourceCode" :code="sourceCode" lang="kotlin" />
       </div>
       <el-divider />
@@ -124,30 +126,31 @@ const relatedComponents = useRelatedComponents(() => component.value)
       <el-divider />
       <h2 class="text-lg font-semibold m-0 mb-4 text-el-text">相关组件</h2>
       <div class="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-3 mb-6">
-        <el-card
+        <router-link
           v-for="rel in relatedComponents"
           :key="rel.id"
-          class="cursor-pointer transition-transform hover:-translate-y-0.5"
-          shadow="hover"
-          @click="router.push(`/component/${rel.id}`)"
+          :to="`/component/${rel.id}`"
+          class="block rounded-lg no-underline transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-el-color-primary focus-visible:ring-offset-2"
         >
-          <div class="text-sm font-semibold mb-1 text-el-text">{{ rel.name }}</div>
-          <div class="text-[12px] text-el-text-secondary leading-relaxed line-clamp-2">{{ rel.description }}</div>
-          <el-tag size="small" type="info" class="mt-2">{{ rel.category }}</el-tag>
-        </el-card>
+          <el-card shadow="hover">
+            <div class="text-sm font-semibold mb-1 text-el-text">{{ rel.name }}</div>
+            <div class="text-[12px] text-el-text-secondary leading-relaxed line-clamp-2">{{ rel.description }}</div>
+            <el-tag size="small" type="info" class="mt-2">{{ rel.category }}</el-tag>
+          </el-card>
+        </router-link>
       </div>
     </template>
 
     <!-- 上一个 / 下一个 -->
     <el-divider />
     <div class="flex justify-between pb-8">
-      <el-button v-if="prevComp" @click="router.push(`/component/${prevComp.id}`)">
+      <router-link v-if="prevComp" :to="`/component/${prevComp.id}`" class="el-button el-button--default no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-el-color-primary">
         ← {{ prevComp.name }}
-      </el-button>
+      </router-link>
       <span v-else />
-      <el-button v-if="nextComp" type="primary" @click="router.push(`/component/${nextComp.id}`)">
+      <router-link v-if="nextComp" :to="`/component/${nextComp.id}`" class="el-button el-button--primary no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-el-color-primary">
         {{ nextComp.name }} →
-      </el-button>
+      </router-link>
     </div>
   </div>
 

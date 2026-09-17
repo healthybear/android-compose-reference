@@ -42,8 +42,8 @@ async function copyCode() {
         {{ copied ? '已复制' : '复制' }}
       </el-button>
     </div>
-    <div v-if="loading" class="px-4 py-3 text-el-text-placeholder text-sm font-mono animate-pulse">
-      加载中...
+    <div v-if="loading" class="px-4 py-3 text-el-text-placeholder text-sm font-mono animate-pulse" role="status" aria-live="polite">
+      加载中…
     </div>
     <div v-else class="code-content" v-html="highlighted" />
   </div>
