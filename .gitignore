@@ -27,3 +27,9 @@ Thumbs.db
 *.iml
 .vscode/
 .kotlin/
+
+# AI
+.claude/
+.codex/
+.cursor/
+.copilot/
