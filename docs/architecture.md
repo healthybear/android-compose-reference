@@ -69,11 +69,11 @@ src/commonMain/composeResources/
     └── NotoSansSC-Regular.otf   # 中文字体，通过 Res.font 加载注入 MaterialTheme
 ```
 
-`Main.kt` 同时监听来自 Vue 的 `postMessage`，实现主题同步：
+`Main.kt` 在 Wasm 启动阶段注册 `postMessage` 监听并发送 `compose-demo:ready`，Vue 收到后同步当前主题；Wasm 应用主题后返回 `compose-demo:theme-applied` 确认。通信双方只接受与当前页面同源、且来自预期窗口对象的消息；主题和高度协议使用 `compose-demo:theme` 与 `compose-demo:height`，并校验字段类型与范围：
 
 ```
 Vue (isDark 变化)
-  → iframe.contentWindow.postMessage({ type: 'theme', dark: true })
+  → iframe.contentWindow.postMessage({ type: 'compose-demo:theme', dark: true }, location.origin)
     → Kotlin 监听 window message 事件
       → 切换 MaterialTheme colorScheme
 ```

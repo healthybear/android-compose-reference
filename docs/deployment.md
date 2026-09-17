@@ -89,6 +89,12 @@ web/dist/
 
 **部署时只需上传 `web/dist/` 目录的全部内容。**
 
+### iframe 通信与部署域名
+
+Wasm Demo 使用 `/demos/` 同源路径加载。父页面和 iframe 的 `postMessage` 均以运行时 `window.location.origin` 为唯一目标 origin，并同时校验发送窗口，因此本地 Vite、预览服务和生产域名无需分别配置白名单。不要将 `demos/` 单独部署到其他域名；如需跨域托管，应先增加显式允许源配置，而不是恢复为 `"*"`。
+
+iframe sandbox 仅启用 `allow-scripts allow-same-origin`：前者用于运行 Kotlin/Wasm，后者用于按同源方式加载 Wasm 与 Compose 资源；未授予表单、弹窗、顶层导航、下载或摄像头等权限。
+
 ---
 
 ## 上传到服务器

@@ -25,15 +25,33 @@ import org.jetbrains.compose.resources.Font
 import org.w3c.dom.MessageEvent
 import org.w3c.dom.events.Event
 
-/**
- * 主题消息接口
- * 用于接收父页面通过 postMessage 发送的主题切换消息
- *
- * 示例消息格式：{ type: "theme", dark: true }
- */
-private external interface ThemeMessage : JsAny {
-    val type: String?    // 消息类型，这里固定为 "theme"
-    val dark: Boolean?   // 是否为深色模式
+private val trustedParentOrigin = window.location.origin
+
+private fun isTrustedThemeMessage(event: MessageEvent, expectedOrigin: String): Boolean =
+    js("event.origin === expectedOrigin && event.source === window.parent && event.data != null && typeof event.data === 'object' && event.data.type === 'compose-demo:theme' && typeof event.data.dark === 'boolean'")
+
+private fun themeMessageDark(event: MessageEvent): Boolean =
+    js("event.data.dark")
+
+private fun buildReadyMessage(): JsAny =
+    js("({ type: 'compose-demo:ready' })")
+
+private fun buildThemeAppliedMessage(dark: Boolean): JsAny =
+    js("({ type: 'compose-demo:theme-applied', dark: dark })")
+
+private val isDark = mutableStateOf(false)
+
+private fun registerParentMessageListener() {
+    val handler: (Event) -> Unit = { event ->
+        val messageEvent = event as MessageEvent
+        if (isTrustedThemeMessage(messageEvent, trustedParentOrigin)) {
+            val dark = themeMessageDark(messageEvent)
+            isDark.value = dark
+            window.parent.postMessage(buildThemeAppliedMessage(dark), trustedParentOrigin)
+        }
+    }
+    window.addEventListener("message", handler)
+    window.parent.postMessage(buildReadyMessage(), trustedParentOrigin)
 }
 
 /**
@@ -50,8 +68,7 @@ private fun reportHeight() {
     val canvas = document.getElementById("ComposeTarget")
     if (canvas != null) {
         val h = canvas.scrollHeight
-        // 向父窗口发送高度消息，"*" 表示不限制目标域名
-        window.parent.postMessage(buildHeightMessage(h), "*")
+        window.parent.postMessage(buildHeightMessage(h), trustedParentOrigin)
     }
 }
 
@@ -59,24 +76,25 @@ private fun reportHeight() {
  * 构建高度消息对象
  *
  * @param height 内容高度（像素）
- * @return JavaScript 对象：{ type: 'height', height: 123 }
+ * @return JavaScript 对象：{ type: 'compose-demo:height', height: 123 }
  */
 private fun buildHeightMessage(height: Int): JsAny =
-    js("({ type: 'height', height: height })")
+    js("({ type: 'compose-demo:height', height: height })")
 
 /**
  * 程序主入口
  *
  * 执行流程：
- * 1. 从 URL 参数解析要展示的组件 ID（如 ?demo=button）
- * 2. 创建 Canvas 窗口并渲染 Compose UI
- * 3. 监听父页面的主题切换消息
+ * 1. 注册父页面消息监听并发送 ready 握手
+ * 2. 从 URL 参数解析要展示的组件 ID（如 ?demo=button）
+ * 3. 创建 Canvas 窗口并渲染 Compose UI
  * 4. 配置中文字体（思源黑体）
- * 5. 应用 Material3 主题
- * 6. 根据 demoId 渲染对应的组件示例
+ * 5. 应用 Material3 主题并根据 demoId 渲染组件示例
  */
 @OptIn(ExperimentalComposeUiApi::class)
 fun main() {
+    registerParentMessageListener()
+
     // ========== 1. 解析 URL 参数，获取要展示的组件 ID ==========
     // 示例：访问 ?demo=button 会得到 demoId = "button"
     // 如果没有参数，默认展示 "button"
@@ -90,28 +108,7 @@ fun main() {
     // ========== 2. 创建 Canvas 窗口 ==========
     // 在网页中 id="ComposeTarget" 的 <canvas> 元素上渲染 Compose UI
     CanvasBasedWindow(canvasElementId = "ComposeTarget") {
-        // ========== 3. 监听主题切换消息 ==========
-        // 用于响应父页面发送的深色/浅色模式切换
-        val isDark = remember { mutableStateOf(false) }  // 当前是否为深色模式
-        DisposableEffect(Unit) {
-            // 定义消息处理函数
-            val handler: (Event) -> Unit = { event ->
-                val data = (event as MessageEvent).data
-                if (data != null) {
-                    val msg = data.unsafeCast<ThemeMessage>()
-                    // 如果收到主题切换消息，更新 isDark 状态
-                    if (msg.type == "theme") {
-                        isDark.value = msg.dark == true
-                    }
-                }
-            }
-            // 注册消息监听器
-            window.addEventListener("message", handler)
-            // 组件销毁时移除监听器，避免内存泄漏
-            onDispose { window.removeEventListener("message", handler) }
-        }
-
-        // ========== 4. 配置中文字体 ==========
+        // ========== 3. 配置中文字体 ==========
         // 加载思源黑体（Noto Sans SC），支持中文显示
         val notoSansSC = FontFamily(
             Font(Res.font.NotoSansSC_Regular, weight = FontWeight.Normal),
@@ -132,7 +129,7 @@ fun main() {
             labelSmall  = defaultTypography.labelSmall.copy(fontFamily = notoSansSC),
         )
 
-        // ========== 5. 应用 Material3 主题 ==========
+        // ========== 4. 应用 Material3 主题 ==========
         // 根据 isDark 状态选择深色或浅色配色方案
         val colorScheme = if (isDark.value) darkColorScheme() else lightColorScheme()
 
@@ -146,7 +143,7 @@ fun main() {
             ) {
                 // 添加 24dp 内边距
                 Box(modifier = Modifier.padding(24.dp)) {
-                    // ========== 6. 根据 demoId 渲染对应的组件 ==========
+                    // ========== 5. 根据 demoId 渲染对应的组件 ==========
                     DemoRegistry.Render(demoId)
                 }
             }

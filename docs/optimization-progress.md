@@ -433,7 +433,7 @@
 - 自动无障碍扫描无严重问题。
 - 屏幕阅读器能识别主要按钮和 iframe 用途。
 
-### [ ] OPT-018 收紧 iframe 与 postMessage 通信
+### [x] OPT-018 收紧 iframe 与 postMessage 通信
 
 **问题**
 
@@ -451,6 +451,13 @@
 - 非预期来源的主题或高度消息会被忽略。
 - 主题同步和高度调整仍正常。
 - 本地开发与生产部署均有明确的 origin 处理策略。
+
+**完成结果**
+
+- 父页面与 Wasm iframe 均使用运行时同源 origin 发送消息，不再使用 `"*"`。
+- Vue 端校验消息 origin、iframe source、类型及有限高度范围；Kotlin 端校验父窗口 origin、source、类型与布尔字段。
+- 增加 `ready` / `theme-applied` 握手，iframe 初始化后可靠同步当前主题，并可自动验证主题消息是否被接受。
+- iframe sandbox 仅保留 Kotlin/Wasm 同源运行所需的 `allow-scripts allow-same-origin`，部署文档已明确同源策略和权限理由。
 
 ### [ ] OPT-019 拆分过重页面组件并规范响应式状态
 
@@ -557,6 +564,7 @@
 | 2026-09-17 | OPT-006 | 新增基于 TypeScript AST 的组件/指南结构与引用校验，并接入根构建 | `validate:data` 校验 116 个组件、9 个指南通过 |
 | 2026-09-17 | OPT-007 | 页面与文档并列标明 Android 文档 Compose 版本和 Wasm Demo 运行时版本 | 版本边界说明已统一，Web 构建与数据校验通过 |
 | 2026-09-17 | OPT-008 | 修正文档统计、架构与新增内容流程，并让 Demo 校验覆盖进度表 | `validate:data`、`validate:demos`、Web 构建通过 |
+| 2026-09-17 | OPT-018 | 收紧 iframe sandbox 与 postMessage 的 origin、source 和消息结构校验 | Web/Wasm 完整构建与产物校验通过 |
 
 ## 维护规则
 
