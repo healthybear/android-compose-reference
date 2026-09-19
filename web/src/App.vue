@@ -36,8 +36,17 @@ function selectSearch(id: string) {
 </script>
 
 <template>
-  <el-container class="h-screen overflow-hidden">
+  <!--
+    注意：Element Plus 的 el-container 有自动布局检测机制：
+    - 包含 el-header/el-footer 时自动变成 flex-direction: column
+    - 包含 el-aside 时自动变成 flex-direction: row
+
+    ⚠️ 但在嵌套使用时，自动检测可能失败，导致内层容器宽度为 0
+    解决方案：明确指定外层容器的 flex-direction，不依赖自动检测
+  -->
+  <el-container class="app-root">
     <a class="skip-link" href="#main-content">跳至主要内容</a>
+
     <AppHeader
       :is-mobile="isMobile"
       :drawer-open="drawerOpen"
@@ -56,41 +65,103 @@ function selectSearch(id: string) {
       @focus-search="searchVisible = true"
     />
 
-    <el-container class="h-[calc(100vh-60px)] overflow-hidden relative">
+    <el-container class="app-content">
       <!-- 移动端遮罩 -->
       <Transition name="fade">
         <div
           v-if="isMobile && drawerOpen"
-          class="absolute inset-0 bg-black/40 z-10"
+          class="overlay"
           @click="drawerOpen = false"
         />
       </Transition>
 
-      <Transition name="slide">
-        <AppSidebar
-          :is-mobile="isMobile"
-          :drawer-open="drawerOpen"
-          :collapsed="collapsed"
-          :route-path="route.path"
-        />
-      </Transition>
+      <AppSidebar
+        :is-mobile="isMobile"
+        :drawer-open="drawerOpen"
+        :collapsed="collapsed"
+        :route-path="route.path"
+      />
 
       <!-- 主内容区 -->
-      <el-main id="main-content" class="!p-0 overflow-hidden" tabindex="-1">
-        <el-scrollbar ref="mainScrollbar">
-          <div class="p-4 md:p-8 min-h-full">
+      <main class="main-content">
+        <el-scrollbar ref="mainScrollbar" class="main-scrollbar">
+          <div id="main-content" class="main-inner" tabindex="-1">
             <router-view />
           </div>
         </el-scrollbar>
-      </el-main>
+      </main>
     </el-container>
   </el-container>
 </template>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 html, body, #app {
   height: 100%;
+  width: 100%;
   margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* 确保 #app 容器正确占据整个视口 */
+#app {
+  display: block !important;
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+/* 应用根容器：垂直布局，包含 header 和内容区 */
+.app-root {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 内容容器：横向布局，包含 sidebar 和主内容 */
+.app-content {
+  display: flex !important;
+  flex-direction: row !important;
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 移动端遮罩 */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+/* 主内容区：占据剩余空间 */
+.main-content {
+  flex: 1;
+  min-width: 0; /* 允许 flex 子元素正确缩小 */
+  overflow: hidden;
+}
+
+.main-scrollbar {
+  width: 100%;
+  height: 100%;
+}
+
+.main-inner {
+  padding: 1rem;
+  min-height: 100%;
+}
+
+@media (min-width: 768px) {
+  .main-inner {
+    padding: 2rem;
+  }
 }
 
 .skip-link {
