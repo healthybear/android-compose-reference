@@ -1,0 +1,324 @@
+/**
+ * Design System - Compose Reference
+ * Generated: 2026-09-19
+ * Style: Swiss Modernism 2.0
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Color Palette */
+  --color-primary: #1E293B;
+  --color-on-primary: #FFFFFF;
+  --color-secondary: #334155;
+  --color-accent: #22C55E;
+  --color-background: #0F172A;
+  --color-foreground: #F8FAFC;
+  --color-muted: #272F42;
+  --color-border: #475569;
+  --color-destructive: #EF4444;
+  --color-ring: #1E293B;
+
+  /* Light mode overrides - Softer colors for eye comfort */
+  --color-bg-light: #FAFAF9;        /* Warm off-white, less harsh than pure white */
+  --color-fg-light: #0F172A;
+  --color-muted-light: #F5F5F4;     /* Subtle gray for cards */
+  --color-border-light: #E7E5E4;    /* Softer border */
+  --color-card-light: #FFFFFF;      /* Pure white for card contrast */
+
+  /* Typography */
+  --font-heading: 'JetBrains Mono', monospace;
+  --font-body: 'IBM Plex Sans', sans-serif;
+
+  /* Spacing (Density: 6/10 - Standard) */
+  --space-xs: 0.25rem;   /* 4px */
+  --space-sm: 0.5rem;    /* 8px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 1.5rem;    /* 24px */
+  --space-xl: 2rem;      /* 32px */
+  --space-2xl: 3rem;     /* 48px */
+  --space-3xl: 4rem;     /* 64px */
+
+  /* Shadow Depths - Border-first strategy for Code Workbench */
+  /* Subtle borders define structure, not dramatic shadows */
+  --shadow-sm: 0 0 0 1px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-xl: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.08);
+
+  /* Active/Interactive glow (for WASM preview) */
+  --glow-active: 0 0 0 1px rgba(34, 197, 94, 0.3), 0 0 8px rgba(34, 197, 94, 0.1);
+  --glow-active-strong: 0 0 0 2px rgba(34, 197, 94, 0.5), 0 0 12px rgba(34, 197, 94, 0.15);
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 300ms ease;
+}
+
+/* Typography Scale - Code Workbench Hierarchy */
+/* Using JetBrains Mono weight variations (400/500/600/700) for strong hierarchy */
+
+.text-hero {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  font-family: var(--font-heading);
+  letter-spacing: -0.03em; /* Tighter tracking for large type */
+}
+
+.text-h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+.text-h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  line-height: 1.3;
+  font-family: var(--font-heading);
+  letter-spacing: -0.01em;
+}
+
+.text-h3 {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.4;
+  font-family: var(--font-heading);
+}
+
+/* Body text with clear weight hierarchy */
+.text-body-lg {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.text-body {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.text-body-sm {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.text-caption {
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.01em; /* Slight loosening for readability at small size */
+}
+
+/* Text hierarchy through weight + opacity (not just size) */
+.text-primary {
+  font-weight: 600;
+  color: var(--color-fg-light);
+  opacity: 1;
+}
+
+.text-secondary {
+  font-weight: 500;
+  color: var(--el-text-color-secondary);
+}
+
+.text-tertiary {
+  font-weight: 400;
+  color: var(--el-text-color-secondary);
+  opacity: 0.8;
+}
+
+.text-muted {
+  font-weight: 400;
+  color: var(--el-text-color-placeholder);
+}
+
+/* Utility Classes */
+.card-elevated {
+  background: var(--color-card-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+  cursor: pointer;
+  border: 1px solid var(--color-border-light);
+}
+
+.card-elevated:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+  border-color: var(--color-accent);
+}
+
+.card-flat {
+  background: var(--color-muted-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  border: 1px solid var(--color-border-light);
+}
+
+/* Code/Editor style card - for code blocks and technical content */
+.card-code {
+  background: var(--color-muted-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border-light);
+  font-family: var(--font-heading);
+  transition: all var(--transition-base);
+}
+
+/* Active/Interactive card - for WASM previews */
+.card-interactive {
+  background: var(--color-card-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  box-shadow: var(--glow-active);
+  transition: all var(--transition-base);
+  position: relative;
+}
+
+.card-interactive::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+    rgba(34, 197, 94, 0) 0%,
+    rgba(34, 197, 94, 0.5) 50%,
+    rgba(34, 197, 94, 0) 100%);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: all var(--transition-base);
+  cursor: pointer;
+  border: none;
+  font-family: var(--font-body);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: all var(--transition-base);
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.btn-secondary:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* Focus States */
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.3);
+  border-color: var(--color-accent);
+}
+
+/* Grid System */
+.grid-auto-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+  gap: var(--space-md);
+}
+
+.grid-auto-fill {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(180px, 100%), 1fr));
+  gap: var(--space-md);
+}
+
+/* Dark Mode Support - Border-first strategy */
+html.dark {
+  --color-bg-light: var(--color-background);
+  --color-fg-light: var(--color-foreground);
+  --color-muted-light: var(--color-muted);
+  --color-border-light: var(--color-border);
+  --color-card-light: var(--color-muted);
+
+  /* Dark mode uses stronger borders, weaker shadows */
+  --shadow-sm: 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --shadow-md: 0 0 0 1px rgba(255, 255, 255, 0.08);
+  --shadow-lg: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 4px 8px rgba(0, 0, 0, 0.4);
+
+  /* Active glow in dark mode */
+  --glow-active: 0 0 0 1px rgba(34, 197, 94, 0.4), 0 0 12px rgba(34, 197, 94, 0.15);
+  --glow-active-strong: 0 0 0 2px rgba(34, 197, 94, 0.6), 0 0 16px rgba(34, 197, 94, 0.2);
+}
+
+html.dark .card-elevated {
+  background: var(--color-muted);
+  border-color: var(--color-border);
+}
+
+html.dark .card-elevated:hover {
+  border-color: var(--color-accent);
+}
+
+html.dark .card-interactive {
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Smooth Scrolling */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Typography Defaults */
+body {
+  font-family: var(--font-body);
+  color: var(--color-fg-light);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}

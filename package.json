@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "pnpm --filter web dev",
+    "check:env": "node scripts/check-build-env.mjs",
     "validate:data": "node scripts/validate-data.mjs",
     "validate:demos": "node scripts/validate-demos.mjs",
     "build:demos": "node scripts/run-gradle.mjs wasmJsBrowserDistribution",

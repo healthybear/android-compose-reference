@@ -55,14 +55,31 @@ AndroidComposeReference/
 
 ### 前置要求
 
-- Node.js 22.x（推荐 22.19.0）
-- pnpm 10.15.1，可通过 Corepack 安装
-- 编译 Wasm Demo 还需要 JDK 17
+#### Web 开发必需
+- **Node.js** 22.x（推荐 22.19.0）
+- **pnpm** 10.15.1，可通过 Corepack 安装
 
 ```bash
 corepack enable
 corepack prepare pnpm@10.15.1 --activate
 ```
+
+#### 完整构建额外要求
+如需编译 Wasm Demo 和字体子集化（`pnpm run build` 完整构建），还需要：
+- **JDK** 17
+- **Python** 3.8+（推荐 3.13）
+- **FontTools**：`python -m pip install fonttools`
+
+**环境检查**：
+```bash
+# 一键检查所有构建环境是否就绪
+pnpm run check:env
+```
+
+**说明**：
+- 字体子集化在每次 Gradle 构建前自动执行，从完整中文字体生成仅包含项目实际使用字符的子集字体
+- 子集字体缓存在 `compose-demos/build/generated/composeResources/font/`，修改 Kotlin 源码或删除该目录后会重新生成
+- Windows 环境下首次构建可能需要配置代理以下载 Binaryen（详见 [Binaryen 下载问题解决方案](docs/binaryen-download-workaround.md)）
 
 ### 启动开发服务器
 

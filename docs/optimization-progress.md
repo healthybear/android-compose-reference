@@ -650,6 +650,8 @@
 | 2026-09-17 | OPT-009 | Shiki 改为仅加载 Kotlin 与两套 GitHub 主题的 Core 单例，并修复异步高亮竞态 | Web 生产构建通过；`assets/` 从 283 个文件降至 9 个 |
 | 2026-09-17 | OPT-011 | 新增 Chrome 实测 Wasm 冷启动与缓存命中基线脚本及 Compose 首帧标记 | `button` Demo 冷启动 557.0 ms，缓存命中 203.4 ms |
 | 2026-09-17 | OPT-012 | 构建时根据 Wasm Kotlin 源码生成 Noto Sans SC 子集字体，并在 CI 安装 FontTools | 字体从 8,331,336 B 降至 287,416 B；字符集校验通过 |
+| 2026-09-23 | OPT-012 补充 | 修复 Windows 环境下字体子集校验脚本的 GBK 编码问题，明确指定 UTF-8 读取字符文件 | Windows 完整构建通过，字体子集化与校验正常 |
+| 2026-09-23 | 文档补充 | 在 README 和部署文档中增加 Python/FontTools 环境要求、字体子集化机制说明和 Binaryen 下载解决方案 | 构建环境要求已明确，Windows 首次构建指引完整 |
 | 2026-09-17 | OPT-013 | 测量 Wasm 首访资源并评估分类拆包，暂保留单一应用入口 | 已记录原始/gzip 大小；OPT-011、OPT-012 基线已具备，待分类入口对比 |
 | 2026-09-17 | OPT-018 | 收紧 iframe sandbox 与 postMessage 的 origin、source 和消息结构校验 | Web/Wasm 完整构建与产物校验通过 |
 | 2026-09-17 | OPT-023 | 迁移弃用的双向图标与 ExposedDropdownMenu 锚点 API | Wasm Kotlin 强制重编译无弃用警告 |

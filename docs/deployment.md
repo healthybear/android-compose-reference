@@ -8,18 +8,45 @@
 
 ## 环境要求（本地构建机）
 
-| 工具 | 版本要求 |
-|------|----------|
-| JDK | 17 |
-| Node.js | 22.x（推荐 22.19.0） |
-| pnpm | 10.15.1 |
+| 工具 | 版本要求 | 用途 |
+|------|----------|------|
+| JDK | 17 | 编译 Kotlin/Wasm |
+| Node.js | 22.x（推荐 22.19.0） | 运行构建脚本和 Vite |
+| pnpm | 10.15.1 | 依赖管理 |
+| Python | 3.8+（推荐 3.13） | 字体子集化 |
+| FontTools | 最新版 | Python 字体处理库 |
 
 ```bash
 # 验证环境
-java -version    # 需要 17
-node -v          # 需要 22.x
-pnpm -v          # 需要 10.15.1
+java -version           # 需要 17
+node -v                 # 需要 22.x
+pnpm -v                 # 需要 10.15.1
+python --version        # 需要 3.8+
+python -m pip list | grep fonttools  # 确认已安装 FontTools
+
+# 安装 FontTools（如未安装）
+python -m pip install fonttools
 ```
+
+### 特殊环境说明
+
+#### Windows 用户
+首次构建可能遇到 Binaryen（Kotlin/Wasm 工具链）从 GitHub 下载失败的问题。解决方案：
+1. 配置网络代理：在 `compose-demos/gradle.properties` 中添加
+   ```properties
+   systemProp.https.proxyHost=你的代理地址
+   systemProp.https.proxyPort=你的代理端口
+   ```
+2. 或使用能访问 GitHub 的网络环境执行一次 `cd compose-demos && gradlew kotlinBinaryenSetup`
+
+详见 [Binaryen 下载问题解决方案](binaryen-download-workaround.md)。
+
+#### 关于字体子集化
+- **触发时机**：每次执行 `pnpm run build:demos` 或 `pnpm run build` 时，Gradle 会在 Kotlin 编译前自动运行字体子集化
+- **工作原理**：扫描 `compose-demos/src/wasmJsMain/kotlin/` 下所有 `.kt` 文件，提取实际使用的字符（中文、ASCII、标点），从 `compose-demos/fonts/NotoSansSC-Regular.otf`（8.3MB）生成仅包含这些字符的子集字体（约 287KB）
+- **缓存机制**：子集字体生成到 `compose-demos/build/generated/composeResources/font/`。只要源码字符集不变，不会重新生成。执行 `gradlew clean` 会清除缓存
+- **增量构建**：修改已有 Demo 文本不会触发重新子集化，除非引入了新字符。新增 Demo 如果使用新字符，会在下次构建时重新生成子集字体
+- **CI/CD**：GitHub Actions 会在每个平台上自动安装 FontTools，无需额外配置
 
 ---
 

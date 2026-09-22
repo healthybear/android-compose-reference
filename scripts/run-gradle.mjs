@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url'
 const repositoryDir = dirname(dirname(fileURLToPath(import.meta.url)))
 const projectDir = join(repositoryDir, 'compose-demos')
 const isWindows = process.platform === 'win32'
-const wrapper = isWindows ? 'gradlew.bat' : './gradlew'
+const wrapper = isWindows ? join(projectDir, 'gradlew.bat') : './gradlew'
 const args = process.argv.slice(2)
 
 if (args.length === 0) {

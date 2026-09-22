@@ -67,7 +67,7 @@ def codepoints(path):
 source, subset, characters = sys.argv[1:]
 source_codepoints = codepoints(source)
 subset_codepoints = codepoints(subset)
-missing = [character for character in set(Path(characters).read_text())
+missing = [character for character in set(Path(characters).read_text(encoding='utf-8'))
            if ord(character) in source_codepoints and ord(character) not in subset_codepoints]
 if missing:
     raise SystemExit(f'Subset is missing {len(missing)} glyphs present in the source font')
