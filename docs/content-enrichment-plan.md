@@ -363,11 +363,11 @@ interface ComponentEntry {
 ### 统计指标
 
 - 组件总数：116
-- 已完成深化：20（P0 全部完成）
-- 待完成：96
+- 已完成深化：36（P0 全部完成 + P1 进行中）
+- 待完成：80
 - 目标完成度：
   - P0 (20个)：✅ 100% **已完成**
-  - P1 (30个)：0%
+  - P1 (30个)：53.3% **进行中**
   - P2 (30个)：0%
   - P3 (36个)：0%
 
@@ -404,12 +404,56 @@ interface ComponentEntry {
 - ✅ DisposableEffect - 清理副作用
 - ✅ rememberSaveable（已在 remember 中说明）
 
+### P1 完成清单（16/30）🚧
+
+#### Modifier（5/10）
+- ✅ Modifier.padding - 内边距
+- ✅ Modifier.size - 尺寸控制
+- ✅ Modifier.background - 背景、边框、裁剪
+- ✅ Modifier.clickable - 点击交互
+- ✅ Modifier.offset - 偏移和变换
+- ⏳ Modifier.weight - 权重（待完成）
+- ⏳ Modifier.fillMax* - 填充（待完成）
+- ⏳ Modifier.clip - 裁剪（待完成）
+- ⏳ Modifier.border - 边框（待完成）
+- ⏳ Modifier.alpha - 透明度（待完成）
+
+#### 基础组件（2/2）
+- ✅ Image - 图片显示
+- ✅ Icon - 图标显示
+
+#### 表单组件（4/4）
+- ✅ Switch - 开关
+- ✅ Checkbox - 复选框
+- ✅ RadioButton - 单选按钮
+- ✅ Slider - 滑块
+
+#### 导航组件（3/5）
+- ✅ Scaffold - 页面脚手架
+- ✅ TopAppBar - 顶部应用栏
+- ✅ NavigationBar - 底部导航栏
+- ⏳ NavigationRail - 侧边导航栏（待完成）
+- ⏳ NavigationDrawer - 抽屉导航（待完成）
+
+#### Material 组件（2/10）
+- ✅ HorizontalDivider - 水平分割线
+- ✅ AssistChip - 辅助操作标签
+- ⏳ FilterChip - 筛选标签（待完成）
+- ⏳ CircularProgressIndicator - 圆形进度（待完成）
+- ⏳ LinearProgressIndicator - 线性进度（待完成）
+- ⏳ Snackbar - 提示条（待完成）
+- ⏳ Badge - 徽章（待完成）
+- ⏳ ListItem - 列表项（待完成）
+- ⏳ AlertDialog - 对话框（待完成）
+- ⏳ ModalBottomSheet - 底部表单（待完成）
+
 ### 里程碑
 
 | 时间点 | 目标 | 完成组件数 | 累计进度 | 状态 |
 |--------|------|-----------|---------|------|
 | 2026-09-23 | P0 完成 | 20 | 17% | ✅ **已完成** |
-| Week 5 | P1 完成 | 50 | 43% | 待开始 |
+| 2026-09-23 | P1 过半 | 36 | 31% | ✅ **已完成** |
+| Week 5 | P1 完成 | 50 | 43% | 🚧 进行中 |
 | Week 9 | P2 完成 | 80 | 69% | 待开始 |
 | Week 12+ | P3 推进 | 100+ | 86%+ | 待开始 |
 
@@ -441,7 +485,8 @@ interface ComponentEntry {
 |------|------|------|
 | 2026-09-17 | 初始版本 | 建立完整扩展计划 |
 | 2026-09-23 | P0 完成 | 完成 20 个 P0 核心组件的深度扩展，包括布局基础、列表滚动、文本输入、Material 组件、状态管理 |
+| 2026-09-23 | P1 过半 | 完成 16 个 P1 组件（Modifier、Image、Icon、表单组件、导航组件、Material 组件），总进度达 36/116（31%） |
 
 ---
 
-**下一步行动**：开始 P1 常用交互组件（Modifier、Image、Icon、Checkbox、Switch 等 30 个组件）的内容深化。
+**下一步行动**：继续完成剩余 14 个 P1 组件（AlertDialog、CircularProgressIndicator、Snackbar、FilterChip 等），目标是完成全部 30 个 P1 常用交互组件。
