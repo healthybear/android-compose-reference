@@ -17,5 +17,9 @@
     "build:web": "pnpm --filter web build",
     "verify:dist": "node scripts/verify-dist.mjs",
     "build": "pnpm run validate:demos && pnpm run validate:data && pnpm run build:demos && pnpm run build:web && pnpm run verify:dist"
+  },
+  "devDependencies": {
+    "unplugin-auto-import": "^21.1.0",
+    "unplugin-vue-components": "^32.1.0"
   }
 }

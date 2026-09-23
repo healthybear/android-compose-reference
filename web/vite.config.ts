@@ -1,6 +1,9 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import UnoCSS from 'unocss/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import path from 'path'
 import fs from 'fs'
 
@@ -34,7 +37,17 @@ function demoSourcesPlugin() {
 }
 
 export default defineConfig({
-  plugins: [UnoCSS(), vue(), demoSourcesPlugin()],
+  plugins: [
+    UnoCSS(),
+    vue(),
+    AutoImport({
+      resolvers: [ElementPlusResolver()],
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()],
+    }),
+    demoSourcesPlugin(),
+  ],
   server: {
     host: true,
   },
