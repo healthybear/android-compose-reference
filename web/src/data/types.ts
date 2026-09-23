@@ -51,6 +51,34 @@ export interface ComponentDemo {
 }
 
 /**
+ * 使用场景说明
+ */
+export interface UseCase {
+  title: string         // 场景标题
+  description: string   // 场景描述
+  code?: string         // 示例代码（可选）
+}
+
+/**
+ * 最佳实践条目
+ */
+export interface BestPractice {
+  title: string         // 实践标题
+  description: string   // 详细说明
+  goodExample?: string  // 好的示例（可选）
+  badExample?: string   // 错误示例（可选）
+}
+
+/**
+ * 注意事项/陷阱
+ */
+export interface Note {
+  type: 'info' | 'warning' | 'tip' | 'danger'  // 类型
+  title: string         // 标题
+  content: string       // 内容
+}
+
+/**
  * 组件条目
  * 表示一个 Compose 组件的完整文档
  */
@@ -63,6 +91,14 @@ export interface ComponentEntry {
   examples: CodeExample[]   // 代码示例列表
   demo?: ComponentDemo    // Wasm Demo 元数据（可选，有则显示交互预览）
   tags: string[]          // 标签（用于搜索和相关推荐）
+
+  // 新增深度内容字段（可选）
+  useCases?: UseCase[]            // 使用场景
+  bestPractices?: BestPractice[]  // 最佳实践
+  notes?: Note[]                  // 注意事项/提示
+  relatedComponents?: string[]    // 相关组件 ID
+  since?: string                  // 引入版本（如 '1.0.0'）
+  experimental?: boolean          // 是否实验性 API
 }
 
 /**

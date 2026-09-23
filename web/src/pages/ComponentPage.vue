@@ -81,6 +81,10 @@ const tocItems = computed<TocItem[]>(() => {
     items.push({ id: 'preview-section', text: '完整示例', level: 1 })
   }
 
+  if (component.value.useCases && component.value.useCases.length > 0) {
+    items.push({ id: 'usecases-section', text: '使用场景', level: 1 })
+  }
+
   if (component.value.params.length > 0) {
     items.push({ id: 'params-section', text: '参数', level: 1 })
   }
@@ -94,6 +98,14 @@ const tocItems = computed<TocItem[]>(() => {
       level: 2
     })
   })
+
+  if (component.value.bestPractices && component.value.bestPractices.length > 0) {
+    items.push({ id: 'bestpractices-section', text: '最佳实践', level: 1 })
+  }
+
+  if (component.value.notes && component.value.notes.length > 0) {
+    items.push({ id: 'notes-section', text: '注意事项', level: 1 })
+  }
 
   if (relatedComponents.value.length > 0) {
     items.push({ id: 'related-section', text: '相关组件', level: 1 })
@@ -245,6 +257,105 @@ const tocItems = computed<TocItem[]>(() => {
 }
 
 .example-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Use Cases Section */
+.usecases-section {
+  margin-bottom: var(--space-xl);
+}
+
+.usecase-item {
+  margin-bottom: var(--space-2xl);
+}
+
+.usecase-item:last-child {
+  margin-bottom: 0;
+}
+
+.usecase-title {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 var(--space-sm) 0;
+  color: var(--color-fg-light);
+}
+
+.usecase-desc {
+  font-size: 0.9375rem;
+  color: var(--el-text-color-secondary);
+  margin: 0 0 var(--space-md) 0;
+  line-height: 1.6;
+}
+
+/* Best Practices Section */
+.bestpractices-section {
+  margin-bottom: var(--space-xl);
+}
+
+.practice-item {
+  margin-bottom: var(--space-2xl);
+}
+
+.practice-item:last-child {
+  margin-bottom: 0;
+}
+
+.practice-title {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 var(--space-sm) 0;
+  color: var(--color-fg-light);
+}
+
+.practice-desc {
+  font-size: 0.9375rem;
+  color: var(--el-text-color-secondary);
+  margin: 0 0 var(--space-md) 0;
+  line-height: 1.6;
+}
+
+.practice-examples {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.practice-example {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.practice-example-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.practice-example.good .practice-example-label {
+  background: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+}
+
+.practice-example.bad .practice-example-label {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+/* Notes Section */
+.notes-section {
+  margin-bottom: var(--space-xl);
+}
+
+.note-item {
+  margin-bottom: var(--space-md);
+}
+
+.note-item:last-child {
   margin-bottom: 0;
 }
 
@@ -452,6 +563,18 @@ const tocItems = computed<TocItem[]>(() => {
 
       <el-divider v-if="demo" class="section-divider" />
 
+      <!-- Use Cases -->
+      <section v-if="component.useCases && component.useCases.length > 0" id="usecases-section" class="usecases-section">
+        <h2 class="section-title">使用场景</h2>
+        <div v-for="(useCase, i) in component.useCases" :key="`usecase-${i}`" class="usecase-item">
+          <h3 class="usecase-title">{{ useCase.title }}</h3>
+          <p class="usecase-desc">{{ useCase.description }}</p>
+          <CodeBlock v-if="useCase.code" :code="useCase.code" />
+        </div>
+      </section>
+
+      <el-divider v-if="component.useCases && component.useCases.length > 0" class="section-divider" />
+
       <!-- Parameters -->
       <section v-if="component.params.length > 0" id="params-section" class="params-section">
         <h2 class="section-title">参数</h2>
@@ -472,6 +595,48 @@ const tocItems = computed<TocItem[]>(() => {
           <p v-if="example.description" class="example-desc">{{ example.description }}</p>
           <CodeBlock :code="example.code" />
         </div>
+      </section>
+
+      <!-- Best Practices -->
+      <section v-if="component.bestPractices && component.bestPractices.length > 0" id="bestpractices-section" class="bestpractices-section">
+        <el-divider class="section-divider" />
+        <h2 class="section-title">最佳实践</h2>
+        <div v-for="(practice, i) in component.bestPractices" :key="`practice-${i}`" class="practice-item">
+          <h3 class="practice-title">{{ practice.title }}</h3>
+          <p class="practice-desc">{{ practice.description }}</p>
+          <div v-if="practice.goodExample || practice.badExample" class="practice-examples">
+            <div v-if="practice.goodExample" class="practice-example good">
+              <div class="practice-example-label">
+                <el-icon><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M512 64a448 448 0 1 1 0 896 448 448 0 0 1 0-896m-55.808 536.384-99.52-99.584a38.4 38.4 0 1 0-54.336 54.336l126.72 126.72a38.272 38.272 0 0 0 54.336 0l262.4-262.464a38.4 38.4 0 1 0-54.272-54.336z"/></svg></el-icon>
+                <span>推荐</span>
+              </div>
+              <CodeBlock :code="practice.goodExample" />
+            </div>
+            <div v-if="practice.badExample" class="practice-example bad">
+              <div class="practice-example-label">
+                <el-icon><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M512 64a448 448 0 1 1 0 896 448 448 0 0 1 0-896m0 393.664L407.936 353.6a38.4 38.4 0 1 0-54.336 54.336L457.664 512 353.6 616.064a38.4 38.4 0 1 0 54.336 54.336L512 566.336 616.064 670.4a38.4 38.4 0 1 0 54.336-54.336L566.336 512 670.4 407.936a38.4 38.4 0 1 0-54.336-54.336z"/></svg></el-icon>
+                <span>不推荐</span>
+              </div>
+              <CodeBlock :code="practice.badExample" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Notes -->
+      <section v-if="component.notes && component.notes.length > 0" id="notes-section" class="notes-section">
+        <el-divider class="section-divider" />
+        <h2 class="section-title">注意事项</h2>
+        <el-alert
+          v-for="(note, i) in component.notes"
+          :key="`note-${i}`"
+          :title="note.title"
+          :type="note.type"
+          :closable="false"
+          class="note-item"
+        >
+          {{ note.content }}
+        </el-alert>
       </section>
 
       <!-- Related Components -->
