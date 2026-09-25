@@ -61,21 +61,28 @@ export interface UseCase {
 
 /**
  * 最佳实践条目
+ * 支持两种格式：
+ * 1. 简单格式：type + title + content（用于 Element Plus Alert）
+ * 2. 详细格式：title + description + goodExample + badExample
  */
 export interface BestPractice {
+  type?: 'primary' | 'success' | 'warning' | 'error' | 'info'  // Element Plus ElAlert 支持的类型（可选）
   title: string         // 实践标题
-  description: string   // 详细说明
+  content?: string      // 简单说明（与 type 一起使用）
+  description?: string  // 详细说明（旧格式）
   goodExample?: string  // 好的示例（可选）
   badExample?: string   // 错误示例（可选）
 }
 
 /**
  * 注意事项/陷阱
+ * 支持两种格式：content（新）或 description（旧）
  */
 export interface Note {
-  type: 'info' | 'warning' | 'tip' | 'danger'  // 类型
+  type: 'primary' | 'success' | 'warning' | 'error' | 'info'  // Element Plus ElAlert 支持的类型
   title: string         // 标题
-  content: string       // 内容
+  content?: string      // 内容（新格式）
+  description?: string  // 内容（旧格式，向后兼容）
 }
 
 /**
@@ -119,6 +126,7 @@ export type ComponentCategory =
   | 'Gestures'
   | 'State'
   | 'Advanced'
+  | 'Composition'
   | 'Ecosystem'
 
 /**
