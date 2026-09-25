@@ -17,7 +17,7 @@ const components = new Map()
 
 const validCategories = new Set([
   'Layout', 'LazyList', 'Foundation', 'Modifier', 'Theme', 'Form', 'Material',
-  'Feedback', 'Navigation', 'Animation', 'Gestures', 'State', 'Advanced', 'Ecosystem',
+  'Feedback', 'Navigation', 'Animation', 'Gestures', 'State', 'Advanced', 'Composition', 'Ecosystem',
 ])
 const validDifficulties = new Set(['beginner', 'intermediate', 'advanced'])
 const validExampleKinds = new Set(['explanatory'])
