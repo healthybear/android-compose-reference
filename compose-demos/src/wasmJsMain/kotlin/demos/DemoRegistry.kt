@@ -94,6 +94,9 @@ object DemoRegistry {
         "brush" to { BrushDemo() },
         "form-composition" to { FormCompositionDemo() },
         "search-bar-composition" to { SearchBarCompositionDemo() },
+        "list-with-dialog-composition" to { ListWithDialogCompositionDemo() },
+        "settings-screen-composition" to { SettingsScreenCompositionDemo() },
+        "onboarding-composition" to { OnboardingCompositionDemo() },
     )
 
     @Composable

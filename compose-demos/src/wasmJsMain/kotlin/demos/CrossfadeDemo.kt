@@ -121,5 +121,227 @@ fun CrossfadeDemo() {
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
+
+        HorizontalDivider()
+
+        // ── 3. 实际场景：主题切换预览 ─────────────────────────
+        SectionLabel("场景示例：主题切换预览")
+
+        var selectedTheme by remember { mutableStateOf("Light") }
+        val themes = listOf("Light", "Dark", "Auto")
+
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant
+            )
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Text(
+                    "选择主题",
+                    style = MaterialTheme.typography.titleSmall
+                )
+
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    themes.forEach { theme ->
+                        FilterChip(
+                            selected = theme == selectedTheme,
+                            onClick = { selectedTheme = theme },
+                            label = { Text(theme) },
+                            leadingIcon = {
+                                Icon(
+                                    when (theme) {
+                                        "Light" -> Icons.Filled.Star
+                                        "Dark" -> Icons.Filled.Face
+                                        else -> Icons.Filled.Build
+                                    },
+                                    contentDescription = null,
+                                    modifier = Modifier.size(16.dp)
+                                )
+                            }
+                        )
+                    }
+                }
+
+                Crossfade(
+                    targetState = selectedTheme,
+                    animationSpec = tween(400),
+                    label = "theme_preview"
+                ) { theme ->
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = CardDefaults.cardColors(
+                            containerColor = when (theme) {
+                                "Light" -> androidx.compose.ui.graphics.Color(0xFFF5F5F5)
+                                "Dark" -> androidx.compose.ui.graphics.Color(0xFF212121)
+                                else -> MaterialTheme.colorScheme.surface
+                            }
+                        )
+                    ) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp),
+                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            Text(
+                                "预览效果",
+                                style = MaterialTheme.typography.bodyLarge,
+                                color = when (theme) {
+                                    "Light" -> androidx.compose.ui.graphics.Color.Black
+                                    "Dark" -> androidx.compose.ui.graphics.Color.White
+                                    else -> MaterialTheme.colorScheme.onSurface
+                                }
+                            )
+                            Text(
+                                when (theme) {
+                                    "Light" -> "浅色主题 - 适合白天使用"
+                                    "Dark" -> "深色主题 - 减少眼睛疲劳"
+                                    else -> "自动主题 - 跟随系统设置"
+                                },
+                                style = MaterialTheme.typography.bodySmall,
+                                color = when (theme) {
+                                    "Light" -> androidx.compose.ui.graphics.Color.Gray
+                                    "Dark" -> androidx.compose.ui.graphics.Color.LightGray
+                                    else -> MaterialTheme.colorScheme.onSurfaceVariant
+                                }
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
+        HorizontalDivider()
+
+        // ── 4. 实际场景：图片轮播 ─────────────────────────────
+        SectionLabel("场景示例：图片轮播切换")
+
+        data class ImageSlide(
+            val title: String,
+            val description: String,
+            val color: androidx.compose.ui.graphics.Color
+        )
+
+        val slides = listOf(
+            ImageSlide("风景图片 1", "美丽的山川河流", androidx.compose.ui.graphics.Color(0xFF42A5F5)),
+            ImageSlide("风景图片 2", "壮观的日落景色", androidx.compose.ui.graphics.Color(0xFFEF5350)),
+            ImageSlide("风景图片 3", "宁静的森林小径", androidx.compose.ui.graphics.Color(0xFF66BB6A))
+        )
+
+        var currentSlide by remember { mutableStateOf(0) }
+
+        LaunchedEffect(Unit) {
+            while (true) {
+                kotlinx.coroutines.delay(3000)
+                currentSlide = (currentSlide + 1) % slides.size
+            }
+        }
+
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant
+            )
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Crossfade(
+                    targetState = currentSlide,
+                    animationSpec = tween(600),
+                    label = "image_slider"
+                ) { index ->
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(180.dp)
+                            .background(
+                                slides[index].color,
+                                RoundedCornerShape(12.dp)
+                            ),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            Icon(
+                                Icons.Filled.Info,
+                                contentDescription = null,
+                                modifier = Modifier.size(48.dp),
+                                tint = androidx.compose.ui.graphics.Color.White
+                            )
+                            Text(
+                                slides[index].title,
+                                style = MaterialTheme.typography.titleMedium,
+                                color = androidx.compose.ui.graphics.Color.White
+                            )
+                            Text(
+                                slides[index].description,
+                                style = MaterialTheme.typography.bodySmall,
+                                color = androidx.compose.ui.graphics.Color.White.copy(alpha = 0.8f)
+                            )
+                        }
+                    }
+                }
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        slides.forEachIndexed { index, _ ->
+                            Box(
+                                modifier = Modifier
+                                    .size(if (index == currentSlide) 24.dp else 8.dp, 8.dp)
+                                    .background(
+                                        if (index == currentSlide)
+                                            MaterialTheme.colorScheme.primary
+                                        else
+                                            MaterialTheme.colorScheme.outline.copy(alpha = 0.3f),
+                                        RoundedCornerShape(4.dp)
+                                    )
+                            )
+                        }
+                    }
+
+                    Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                        IconButton(
+                            onClick = {
+                                currentSlide = if (currentSlide > 0) currentSlide - 1 else slides.size - 1
+                            }
+                        ) {
+                            Icon(Icons.Filled.ArrowBack, contentDescription = "上一张")
+                        }
+                        IconButton(
+                            onClick = {
+                                currentSlide = (currentSlide + 1) % slides.size
+                            }
+                        ) {
+                            Icon(Icons.Filled.ArrowForward, contentDescription = "下一张")
+                        }
+                    }
+                }
+
+                Text(
+                    "每 3 秒自动切换",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+        }
     }
 }

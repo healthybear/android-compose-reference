@@ -4,6 +4,8 @@ import androidx.compose.animation.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -115,6 +117,192 @@ fun AnimatedVisibilityDemo() {
                         .padding(horizontal = 24.dp),
                     contentAlignment = Alignment.Center
                 ) { Text("水平展开 + 淡入", style = MaterialTheme.typography.bodyMedium) }
+            }
+        }
+
+        HorizontalDivider()
+
+        // ── 5. 实际场景：列表项展开 ───────────────────────────
+        SectionLabel("场景示例：列表项展开/收起")
+
+        data class ExpandableItem(
+            val id: Int,
+            val title: String,
+            val details: String,
+            var expanded: Boolean = false
+        )
+
+        val items = remember {
+            mutableStateListOf(
+                ExpandableItem(1, "Jetpack Compose", "现代化的 Android UI 工具包，使用声明式 API 构建原生界面"),
+                ExpandableItem(2, "Material Design 3", "Google 最新的设计系统，提供灵活的主题和组件"),
+                ExpandableItem(3, "Kotlin Coroutines", "用于异步编程的强大库，简化并发代码编写")
+            )
+        }
+
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant
+            )
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                items.forEach { item ->
+                    Card(modifier = Modifier.fillMaxWidth()) {
+                        Column {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(12.dp),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text(
+                                    item.title,
+                                    style = MaterialTheme.typography.bodyLarge,
+                                    modifier = Modifier.weight(1f)
+                                )
+                                IconButton(
+                                    onClick = {
+                                        val index = items.indexOf(item)
+                                        items[index] = item.copy(expanded = !item.expanded)
+                                    }
+                                ) {
+                                    Icon(
+                                        if (item.expanded)
+                                            androidx.compose.material.icons.Icons.Filled.KeyboardArrowUp
+                                        else
+                                            androidx.compose.material.icons.Icons.Filled.KeyboardArrowDown,
+                                        contentDescription = if (item.expanded) "收起" else "展开"
+                                    )
+                                }
+                            }
+
+                            AnimatedVisibility(
+                                visible = item.expanded,
+                                enter = expandVertically() + fadeIn(),
+                                exit = shrinkVertically() + fadeOut()
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .background(MaterialTheme.colorScheme.surfaceVariant)
+                                        .padding(12.dp)
+                                ) {
+                                    Text(
+                                        item.details,
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        HorizontalDivider()
+
+        // ── 6. 实际场景：通知提示 ─────────────────────────────
+        SectionLabel("场景示例：通知提示显示/消失")
+
+        var showNotification by remember { mutableStateOf(false) }
+        var notificationMessage by remember { mutableStateOf("") }
+
+        LaunchedEffect(showNotification) {
+            if (showNotification) {
+                kotlinx.coroutines.delay(3000)
+                showNotification = false
+            }
+        }
+
+        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Button(
+                    onClick = {
+                        notificationMessage = "操作成功！"
+                        showNotification = true
+                    }
+                ) {
+                    Text("显示成功通知")
+                }
+                OutlinedButton(
+                    onClick = {
+                        notificationMessage = "出现错误，请重试"
+                        showNotification = true
+                    }
+                ) {
+                    Text("显示错误通知")
+                }
+            }
+
+            AnimatedVisibility(
+                visible = showNotification,
+                enter = slideInVertically { -it } + fadeIn(),
+                exit = slideOutVertically { -it } + fadeOut()
+            ) {
+                Card(
+                    colors = CardDefaults.cardColors(
+                        containerColor = if (notificationMessage.contains("成功"))
+                            MaterialTheme.colorScheme.primaryContainer
+                        else
+                            MaterialTheme.colorScheme.errorContainer
+                    )
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(12.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                if (notificationMessage.contains("成功"))
+                                    androidx.compose.material.icons.Icons.Filled.CheckCircle
+                                else
+                                    androidx.compose.material.icons.Icons.Filled.Warning,
+                                contentDescription = null,
+                                tint = if (notificationMessage.contains("成功"))
+                                    MaterialTheme.colorScheme.onPrimaryContainer
+                                else
+                                    MaterialTheme.colorScheme.onErrorContainer
+                            )
+                            Text(
+                                notificationMessage,
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = if (notificationMessage.contains("成功"))
+                                    MaterialTheme.colorScheme.onPrimaryContainer
+                                else
+                                    MaterialTheme.colorScheme.onErrorContainer
+                            )
+                        }
+                        IconButton(onClick = { showNotification = false }) {
+                            Icon(
+                                androidx.compose.material.icons.Icons.Filled.Close,
+                                contentDescription = "关闭",
+                                modifier = Modifier.size(18.dp)
+                            )
+                        }
+                    }
+                }
+            }
+
+            if (showNotification) {
+                Text(
+                    "通知将在 3 秒后自动消失",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
             }
         }
     }
