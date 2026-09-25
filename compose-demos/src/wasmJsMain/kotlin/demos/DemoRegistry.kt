@@ -92,6 +92,8 @@ object DemoRegistry {
         "subcompose-layout" to { SubcomposeLayoutDemo() },
         "draw-modifier" to { DrawModifierDemo() },
         "brush" to { BrushDemo() },
+        "form-composition" to { FormCompositionDemo() },
+        "search-bar-composition" to { SearchBarCompositionDemo() },
     )
 
     @Composable

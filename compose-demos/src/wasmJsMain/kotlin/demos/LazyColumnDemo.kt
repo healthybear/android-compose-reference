@@ -5,11 +5,15 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 private val sampleItems = (1..40).map { "Item $it" }
 private val groupedItems = mapOf(
@@ -119,6 +123,121 @@ fun LazyColumnDemo() {
                         )
                         Spacer(Modifier.width(10.dp))
                         Text(item, style = MaterialTheme.typography.bodyMedium)
+                    }
+                }
+            }
+        }
+
+        HorizontalDivider()
+
+        // ── 3. 加载状态和空状态 ───────────────────────────────
+        SectionLabel("加载状态 & 空状态")
+        var isLoading by remember { mutableStateOf(false) }
+        var loadedItems by remember { mutableStateOf<List<String>>(emptyList()) }
+        val scope = rememberCoroutineScope()
+
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Button(
+                    onClick = {
+                        scope.launch {
+                            isLoading = true
+                            delay(1500)
+                            loadedItems = (1..10).map { "加载的项目 $it" }
+                            isLoading = false
+                        }
+                    },
+                    enabled = !isLoading
+                ) {
+                    Text("模拟加载数据")
+                }
+                OutlinedButton(
+                    onClick = { loadedItems = emptyList() },
+                    enabled = !isLoading && loadedItems.isNotEmpty()
+                ) {
+                    Text("清空")
+                }
+            }
+
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(180.dp)
+                    .background(MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(8.dp)),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(4.dp),
+                contentPadding = PaddingValues(12.dp)
+            ) {
+                when {
+                    isLoading -> {
+                        item {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(180.dp),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Column(
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                                ) {
+                                    CircularProgressIndicator()
+                                    Text("加载中…", style = MaterialTheme.typography.bodySmall)
+                                }
+                            }
+                        }
+                    }
+                    loadedItems.isEmpty() -> {
+                        item {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(180.dp),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Column(
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                                ) {
+                                    Icon(
+                                        Icons.Filled.Refresh,
+                                        contentDescription = null,
+                                        modifier = Modifier.size(48.dp),
+                                        tint = MaterialTheme.colorScheme.outline
+                                    )
+                                    Text(
+                                        "暂无数据",
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
+                            }
+                        }
+                    }
+                    else -> {
+                        itemsIndexed(loadedItems, key = { _, item -> item }) { index, item ->
+                            Card(
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(12.dp),
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Text(item, style = MaterialTheme.typography.bodyMedium)
+                                    Text(
+                                        "#${index + 1}",
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = MaterialTheme.colorScheme.primary
+                                    )
+                                }
+                            }
+                        }
                     }
                 }
             }

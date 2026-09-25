@@ -1,11 +1,16 @@
 package demos
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 /**
  * ButtonDemo 演示 Material3 中各种按钮组件的用法与视觉差异。
@@ -144,5 +149,126 @@ fun ButtonDemo() {
                 icon = { Text("+") }
             )
         }
+
+        HorizontalDivider()
+
+        // 实际场景：表单提交流程演示
+        // 展示按钮在真实应用中的状态流转：正常 → 加载 → 成功/失败
+        // ── 6. 实际场景：表单提交流程 ──────────────────────────
+        SectionLabel("场景示例：表单提交流程")
+
+        var submitState by remember { mutableStateOf<SubmitState>(SubmitState.Idle) }
+        val scope = rememberCoroutineScope()
+
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant
+            )
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Text(
+                    "模拟表单提交",
+                    style = MaterialTheme.typography.titleSmall
+                )
+
+                // 提交按钮
+                Button(
+                    onClick = {
+                        scope.launch {
+                            submitState = SubmitState.Loading
+                            delay(2000) // 模拟网络请求
+                            submitState = if ((0..1).random() == 0) {
+                                SubmitState.Success
+                            } else {
+                                SubmitState.Error("网络连接失败，请重试")
+                            }
+                            delay(3000) // 显示结果 3 秒后重置
+                            submitState = SubmitState.Idle
+                        }
+                    },
+                    enabled = submitState != SubmitState.Loading,
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = when (submitState) {
+                        is SubmitState.Success -> ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.primary,
+                            contentColor = MaterialTheme.colorScheme.onPrimary
+                        )
+                        is SubmitState.Error -> ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.errorContainer,
+                            contentColor = MaterialTheme.colorScheme.onErrorContainer
+                        )
+                        else -> ButtonDefaults.buttonColors()
+                    }
+                ) {
+                    when (submitState) {
+                        SubmitState.Idle -> Text("提交表单")
+                        SubmitState.Loading -> {
+                            CircularProgressIndicator(
+                                modifier = Modifier.size(16.dp),
+                                strokeWidth = 2.dp,
+                                color = MaterialTheme.colorScheme.onPrimary
+                            )
+                            Spacer(Modifier.width(8.dp))
+                            Text("提交中…")
+                        }
+                        is SubmitState.Success -> {
+                            Icon(
+                                Icons.Filled.Check,
+                                contentDescription = null,
+                                modifier = Modifier.size(20.dp)
+                            )
+                            Spacer(Modifier.width(8.dp))
+                            Text("提交成功")
+                        }
+                        is SubmitState.Error -> {
+                            Icon(
+                                Icons.Filled.Warning,
+                                contentDescription = null,
+                                modifier = Modifier.size(20.dp)
+                            )
+                            Spacer(Modifier.width(8.dp))
+                            Text("提交失败")
+                        }
+                    }
+                }
+
+                // 状态说明
+                when (val state = submitState) {
+                    SubmitState.Idle -> Text(
+                        "点击按钮模拟表单提交（随机成功/失败）",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    SubmitState.Loading -> Text(
+                        "正在处理请求…",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                    is SubmitState.Success -> Text(
+                        "数据已成功保存！",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                    is SubmitState.Error -> Text(
+                        state.message,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.error
+                    )
+                }
+            }
+        }
     }
+}
+
+private sealed class SubmitState {
+    object Idle : SubmitState()
+    object Loading : SubmitState()
+    object Success : SubmitState()
+    data class Error(val message: String) : SubmitState()
 }

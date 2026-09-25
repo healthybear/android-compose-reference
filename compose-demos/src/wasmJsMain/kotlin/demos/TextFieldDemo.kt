@@ -107,5 +107,53 @@ fun TextFieldDemo() {
             supportingText = { Text("${bio.length} / $maxLen") },
             modifier = Modifier.fillMaxWidth()
         )
+
+        HorizontalDivider()
+
+        // ── 6. 密码输入（显示/隐藏）──────────────────────────
+        SectionLabel("密码输入（显示/隐藏）")
+        var password by remember { mutableStateOf("") }
+        var passwordVisible by remember { mutableStateOf(false) }
+        TextField(
+            value = password,
+            onValueChange = { password = it },
+            label = { Text("密码") },
+            visualTransformation = if (passwordVisible)
+                androidx.compose.ui.text.input.VisualTransformation.None
+            else
+                androidx.compose.ui.text.input.PasswordVisualTransformation(),
+            trailingIcon = {
+                IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                    Icon(
+                        if (passwordVisible) Icons.Filled.Lock else Icons.Filled.AccountCircle,
+                        contentDescription = if (passwordVisible) "隐藏密码" else "显示密码"
+                    )
+                }
+            },
+            supportingText = {
+                Text("密码强度：${when {
+                    password.length < 6 -> "弱"
+                    password.length < 10 -> "中"
+                    else -> "强"
+                }}")
+            },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true
+        )
+
+        HorizontalDivider()
+
+        // ── 7. 多行文本输入 ───────────────────────────────────
+        SectionLabel("多行文本输入")
+        var comment by remember { mutableStateOf("") }
+        TextField(
+            value = comment,
+            onValueChange = { comment = it },
+            label = { Text("评论") },
+            placeholder = { Text("分享你的想法…") },
+            supportingText = { Text("${comment.length} / 200") },
+            modifier = Modifier.fillMaxWidth().height(120.dp),
+            maxLines = 5
+        )
     }
 }
