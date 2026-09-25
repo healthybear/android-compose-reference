@@ -397,22 +397,22 @@ BoxWithConstraints {
       content: 'BoxWithConstraints 需要先测量自己才能确定约束，然后才能组合子内容。这可能导致额外的重组和性能开销'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '约束值单位是 Dp',
       content: 'maxWidth/maxHeight 等返回的是 Dp 类型，可以直接与 dp 值比较。constraints 属性返回原始的 Constraints 对象（单位是像素）'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '断点建议（Material Design）',
       content: 'Compact: 0-599dp（手机竖屏）、Medium: 600-839dp（手机横屏/小平板）、Expanded: 840dp+（平板/桌面）'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免在 BoxWithConstraints 中读取无限约束',
       content: '如果父容器没有提供明确约束（如 LazyColumn 中的 item），maxWidth/maxHeight 可能是 Infinity，需要处理这种情况'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '可与 remember 配合缓存计算',
       content: '基于约束的计算结果可以用 remember(maxWidth) { } 缓存，避免每次重组都重新计算'
     },

@@ -638,7 +638,7 @@ TextField(
       content: 'SearchBar 展开时全屏显示搜索建议，适合顶部应用栏。DockedSearchBar 展开时在原位置显示建议，适合嵌入页面内容中'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 rememberSaveable 保存搜索状态',
       content: '搜索查询和展开状态应使用 rememberSaveable 保存，避免配置更改（如旋转屏幕）时丢失用户输入'
     },
@@ -648,17 +648,17 @@ TextField(
       content: 'SearchBar 展开时会全屏覆盖内容，需要处理好 windowInsets 以避免与系统栏重叠'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '搜索建议应该可交互',
       content: '建议列表中的每一项都应该是可点击的，点击后将建议填入搜索框或直接触发搜索'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免在 onQueryChange 中执行耗时操作',
       content: 'onQueryChange 在每次按键时触发，不要在这里执行网络请求等耗时操作。使用 LaunchedEffect + delay 实现防抖'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'onSearch 触发时机',
       content: 'onSearch 在用户点击键盘的搜索按钮或选择建议时触发，是执行实际搜索的合适时机'
     },

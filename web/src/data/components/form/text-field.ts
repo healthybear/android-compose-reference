@@ -337,17 +337,17 @@ TextField(
       content: 'isError = true 只会改变颜色为红色，不会阻止输入或自动显示错误信息。错误提示需要通过 supportingText 手动添加'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 visualTransformation 实现特殊格式',
       content: '除了 PasswordVisualTransformation，还可以自定义 VisualTransformation 实现电话号码、信用卡号等格式化显示'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'readOnly vs enabled',
       content: 'readOnly = true 允许选择和复制文本但不能编辑；enabled = false 完全禁用交互，文本呈灰色且无法选择'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免在 onValueChange 中执行耗时操作',
       content: 'onValueChange 在每次输入时都会调用。如需验证或格式化，使用 derivedStateOf 或 LaunchedEffect 延迟处理'
     },

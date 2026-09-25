@@ -737,12 +737,12 @@ Card(
       content: 'Shapes 定义了 5 个形状级别，对应不同尺寸的组件。默认值为：extraSmall(4dp)、small(8dp)、medium(12dp)、large(16dp)、extraLarge(28dp)'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'Shape vs clip()',
       content: 'Shape 定义形状规范，需要配合 clip() 或 border() 使用。clip() 裁剪内容，border(shape = ...) 绘制边框，background(color, shape) 绘制带形状的背景'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'CircleShape vs RoundedCornerShape(50%)',
       content: 'CircleShape 始终生成正圆（取宽高最小值），RoundedCornerShape(50) 按百分比计算，矩形会变成胶囊形。按钮通常用百分比，头像用 CircleShape'
     },
@@ -757,12 +757,12 @@ Card(
       content: 'clip() 使用硬件加速的路径裁剪，在某些设备上可能出现轻微锯齿。对于重要视觉元素，考虑使用 Shadow 或 graphicsLayer 优化边缘'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '形状影响点击区域',
       content: 'clip() 会裁剪点击区域。如果组件被裁剪成圆形或复杂形状，裁剪外的区域将无法响应点击。需要完整点击区域时，使用 background(shape = ...) 而非 clip()'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '自定义形状实现',
       content: '实现 Shape 接口的 createOutline() 方法可以创建任意形状。返回 Outline.Rectangle、Outline.Rounded、Outline.Generic(path) 三种类型之一'
     },

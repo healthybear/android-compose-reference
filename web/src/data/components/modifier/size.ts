@@ -291,17 +291,17 @@ Box(
       content: '在 RowScope 中使用 width 可能导致冲突（weight 优先）。在 BoxScope 中 size 影响对齐'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 aspectRatio 保持比例',
       content: 'Modifier.aspectRatio(16f / 9f) 可以根据一个维度自动计算另一个维度，常用于图片和视频'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'defaultMinSize 用于无障碍',
       content: 'defaultMinSize(48.dp, 48.dp) 确保可点击元素满足最小触摸目标尺寸，提升无障碍性'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: 'requiredSize 破坏布局层级',
       content: 'requiredSize 忽略父约束，可能导致内容超出父容器或屏幕边界。仅在明确需要时使用'
     },

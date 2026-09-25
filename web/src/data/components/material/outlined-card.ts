@@ -381,12 +381,12 @@ OutlinedCard { Text("错误信息") }`
       content: 'OutlinedCard 的阴影高度为 0dp，完全依靠边框与背景区分'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '适合密集排列',
       content: 'OutlinedCard 无阴影，多个卡片密集排列时不会产生视觉混乱'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '边框颜色自动适配主题',
       content: 'OutlinedCard 默认使用 outline 颜色，会自动适配浅色/深色主题'
     },
@@ -396,12 +396,12 @@ OutlinedCard { Text("错误信息") }`
       content: '在深色背景上，浅色边框可能难以辨识，需要调整边框颜色或背景色'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '与 Card 和 ElevatedCard 的选择',
       content: 'Card 轻微阴影、OutlinedCard 边框、ElevatedCard 明显阴影，根据视觉层次选择'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免边框颜色与内容冲突',
       content: '自定义边框颜色时，确保与内部文字和图标颜色有足够对比度'
     },

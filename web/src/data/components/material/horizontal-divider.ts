@@ -234,12 +234,12 @@ HorizontalDivider()  // 从最左侧开始，割裂感强`
       content: 'HorizontalDivider 用于垂直布局（Column），VerticalDivider 用于水平布局（Row）'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '默认厚度为 1.dp',
       content: 'Material Design 3 标准分割线厚度为 1.dp，通常不需要修改'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 padding 控制缩进',
       content: 'Modifier.padding(start = 16.dp) 可以让分割线从指定位置开始，对齐内容'
     },

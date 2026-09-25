@@ -652,17 +652,17 @@ Button(onClick = {
       content: '通常在 LaunchedEffect 中调用 requestFocus()，确保组件已经布局完成'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'FocusRequester.createRefs() 简化多个引用',
       content: '创建多个 FocusRequester 时使用 createRefs() 并解构声明，代码更简洁'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 focusProperties 自定义焦点顺序',
       content: 'Modifier.focusProperties { next = ...; previous = ... } 可以自定义 Tab 键的焦点顺序'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'LocalFocusManager 提供全局焦点控制',
       content: 'LocalFocusManager.current.clearFocus() 可以清除当前焦点并隐藏键盘'
     },

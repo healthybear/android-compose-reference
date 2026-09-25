@@ -370,12 +370,12 @@ Modifier.pointerInput(Unit) {
       content: 'onDragStopped 回调的 velocity 参数单位是像素/秒，正值表示正方向，负值表示反方向',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 reverseDirection 反转方向',
       content: '设置 reverseDirection = true 可以反转拖拽方向，向右拖时 delta 为负值',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '结合 offset 修饰符使用',
       content: '通常配合 Modifier.offset { IntOffset(...) } 来实际移动组件位置',
     },
@@ -390,7 +390,7 @@ Modifier.pointerInput(Unit) {
       content: '当 enabled = false 时，拖拽手势被禁用，但不会影响其他修饰符的功能',
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免在回调中执行耗时操作',
       content: 'DraggableState 回调在每一帧都会被调用，避免在其中执行复杂计算或网络请求',
     },

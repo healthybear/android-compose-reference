@@ -328,7 +328,7 @@ LargeTopAppBar(scrollBehavior = scrollBehavior)`
       content: 'LargeTopAppBar 展开时高度约 152dp，折叠后变为普通 TopAppBar 的 64dp'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '滚动时会自动折叠',
       content: '使用 exitUntilCollapsedScrollBehavior 时，向上滚动会将 LargeTopAppBar 折叠成普通 TopAppBar'
     },
@@ -338,17 +338,17 @@ LargeTopAppBar(scrollBehavior = scrollBehavior)`
       content: '使用 scrollBehavior 时，Scaffold 必须添加 nestedScroll 修饰符，否则不会折叠'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'scrolledContainerColor 控制折叠后颜色',
       content: 'colors 的 scrolledContainerColor 参数控制完全折叠后的背景色'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '标题可以是多行内容',
       content: 'title 可以包含多行文本或复杂布局，充分利用大标题的空间'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '不适合内容较少的页面',
       content: 'LargeTopAppBar 占用大量垂直空间，内容较少时会显得空旷'
     },

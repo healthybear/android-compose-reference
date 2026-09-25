@@ -334,17 +334,17 @@ LazyColumn {
       content: '由于 item 会被回收重用，remember 的状态可能不会如预期保留。对于列表项的状态，应该存储在数据模型中或使用 rememberSaveable'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 key 提升性能',
       content: '提供稳定的 key 后，当数据顺序变化时，Compose 可以识别并移动已有的组合，而不是重新创建，大幅提升性能'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'LazyListState 可以保存和恢复',
       content: '使用 rememberSaveable { LazyListState() } 可以在配置变更（如旋转屏幕）时保持滚动位置'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: 'animateScrollToItem 在布局完成前调用可能失败',
       content: '如果在 LazyColumn 首次组合时立即调用 animateScrollToItem，可能因布局尚未完成而失败。建议在 LaunchedEffect 中延迟调用或监听 layoutInfo'
     },

@@ -255,12 +255,12 @@ Column {
       content: 'ElevatedButton 的默认阴影高度为 1.dp，按下时为 3.dp，禁用时为 0.dp'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '阴影在浅色背景上更明显',
       content: 'ElevatedButton 的阴影效果在白色或浅色背景上最明显，深色模式下阴影效果较弱'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '用于替代 OutlinedButton',
       content: '当不希望使用边框但需要与背景区分时，ElevatedButton 是 OutlinedButton 的良好替代'
     },
@@ -270,12 +270,12 @@ Column {
       content: 'ElevatedButton 强调程度低于 FilledButton，不适合页面的主要行动号召（CTA）'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '背景色跟随主题',
       content: 'ElevatedButton 默认使用 surface 颜色作为背景，会自动适配浅色/深色主题'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免在已有阴影的容器中使用',
       content: '不要在 Card、ElevatedCard 等已有阴影的容器中使用 ElevatedButton，会造成阴影层次冲突'
     },

@@ -335,17 +335,17 @@ Card {
       content: 'Material 3 的 Card 默认阴影为 1.dp，非常轻微。如需更明显的层次感，使用 ElevatedCard 或自定义 elevation'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 ElevatedCard 和 OutlinedCard',
       content: 'Compose 提供 ElevatedCard（更高阴影）和 OutlinedCard（描边无填充）两种变体，API 与 Card 完全相同'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'CardElevation 支持交互状态',
       content: 'CardDefaults.cardElevation() 可以为不同状态（默认/按下/拖拽）设置不同阴影高度'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免嵌套可点击元素',
       content: '如果 Card 有 onClick，内部不要再放置 Button 等可点击元素，会导致点击事件冲突。使用 IconButton 或分离交互区域'
     },

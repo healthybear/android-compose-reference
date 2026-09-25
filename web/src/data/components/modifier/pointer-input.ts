@@ -445,12 +445,12 @@ Modifier.pointerInput(Unit) {
       content: '当 key 变化时，当前手势协程会被取消并重启。使用 Unit 表示永不重启',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '高层 API 优先',
       content: '优先使用 detectTapGestures、detectDragGestures 等高层 API，只在需要完全自定义时才使用原始事件',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'PointerInputChange 包含丰富信息',
       content: 'PointerInputChange 提供位置、压力、历史位置、时间戳等信息，可以实现复杂的手势识别',
     },
@@ -465,7 +465,7 @@ Modifier.pointerInput(Unit) {
       content: '如果手势处理需要读取外部状态，要么将状态作为 key，要么使用 rememberUpdatedState',
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '注意手势冲突',
       content: '在滚动容器内使用自定义手势时，需要正确调用 consume() 或配合 nestedScroll 避免冲突',
     },

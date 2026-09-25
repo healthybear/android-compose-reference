@@ -554,17 +554,17 @@ fun SortMenu() {
       content: 'DropdownMenu 必须和触发元素放在同一个 Box 中，才能正确定位'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'offset 参数调整位置',
       content: '使用 offset 参数可以微调菜单相对于锚点的位置，DpOffset(x, y) 中 x 向右为正，y 向下为正'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'DropdownMenuItem 支持三行布局',
       content: 'DropdownMenuItem 支持 leadingIcon、text、trailingIcon 三个插槽，可以创建丰富的菜单项'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免菜单项过多',
       content: '菜单项过多会导致菜单过长，超过 7 个选项应该考虑其他方案，如 ModalBottomSheet'
     },

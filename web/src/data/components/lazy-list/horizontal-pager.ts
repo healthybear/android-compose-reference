@@ -483,12 +483,12 @@ HorizontalPager(
       content: 'currentPage 是当前完全停留的页面，targetPage 是滑动过程中的目标页面（包括手势拖动时的目标）',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 animateScrollToPage 平滑滚动',
       content: '使用 animateScrollToPage(page) 带动画滚动，scrollToPage(page) 立即跳转无动画',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'contentPadding 可实现露出效果',
       content: '设置 contentPadding = PaddingValues(horizontal = 48.dp) 可以让相邻页面露出一部分，提升视觉效果',
     },
@@ -503,7 +503,7 @@ HorizontalPager(
       content: '嵌套的 HorizontalPager 会导致滑动手势冲突，考虑用 TabRow + HorizontalPager 替代',
     },
     {
-      type: 'danger',
+      type: 'error',
       title: 'pageCount 变化时注意索引越界',
       content: '动态改变 pageCount 时，如果 currentPage >= 新的 pageCount，会自动调整到最后一页',
     },

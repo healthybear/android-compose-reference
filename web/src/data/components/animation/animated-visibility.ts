@@ -255,17 +255,17 @@ AnimatedVisibility(
       content: '退出动画播放期间，组件仍然存在于组合树中，只是视觉上不可见。如果需要完全移除，应等待动画完成',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 lambda 计算偏移量',
       content: 'slideIn/slideOut 系列动画的 lambda 参数是组件的完整尺寸，{ -it } 表示从组件外部滑入，{ it/2 } 表示从一半位置开始',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '调试动画',
       content: '使用 label 参数为动画命名，在 Layout Inspector 或动画调试工具中可以更容易识别和调试',
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免频繁切换 visible 状态',
       content: '如果在动画播放期间再次改变 visible 状态，可能导致动画中断或视觉上的跳变。建议使用防抖或等待动画完成',
     },

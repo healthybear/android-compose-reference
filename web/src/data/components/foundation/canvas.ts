@@ -416,22 +416,22 @@ Canvas(modifier = Modifier.size(200.dp)) {
       content: 'Canvas 的 onDraw 在每次重组和重绘时都会执行，避免在其中进行耗时操作或创建大量对象'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'DrawScope 提供的便捷属性',
       content: 'size（画布尺寸）、center（中心点）、drawContext（变换和裁剪）等属性简化绘制逻辑'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 drawIntoCanvas 访问原生 Canvas',
       content: '需要使用 Android 原生 Canvas API 时，可以通过 drawContext.canvas.nativeCanvas 访问'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'Path 可以复用',
       content: '使用 remember 创建 Path 对象，每次绘制前调用 reset() 清空，避免重复创建'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: 'Canvas 不支持触摸事件',
       content: 'Canvas 本身不处理交互，需要配合 Modifier.pointerInput() 实现触摸交互'
     },

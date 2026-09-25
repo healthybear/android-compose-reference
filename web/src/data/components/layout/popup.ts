@@ -503,12 +503,12 @@ fun ContextMenuItem(
       content: 'Popup 内容渲染在单独的窗口层，不会被父组件的 clip 或边界裁剪',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'alignment 相对于锚点组件',
       content: 'Popup 的 alignment 是相对于其父 Box 或调用位置的对齐方式',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 IntOffset 精确控制位置',
       content: 'offset 参数接收 IntOffset(x, y)，单位是像素，可用于跟随手势位置',
     },
@@ -523,7 +523,7 @@ fun ContextMenuItem(
       content: '多层嵌套的 Popup 会导致焦点和关闭逻辑混乱，考虑使用状态机管理',
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '状态管理要正确',
       content: '使用 if (showPopup) 控制显示，避免内存泄漏和状态不一致',
     },

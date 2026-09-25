@@ -386,17 +386,17 @@ TextField(
       content: 'OutlinedTextField 的标签聚焦时会浮动到边框上，如果标签过长可能被裁剪。建议保持标签简短'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'OutlinedTextField 更适合浅色背景',
       content: '描边风格在浅色背景上更清晰。深色背景下，TextField 的填充风格可能视觉效果更好'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 colors 自定义边框颜色',
       content: 'OutlinedTextFieldDefaults.colors() 可以自定义聚焦/未聚焦/错误状态的边框颜色'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免过度使用错误状态',
       content: '不要在用户开始输入时就显示错误。应该在失去焦点或提交表单时验证，避免干扰用户输入'
     },

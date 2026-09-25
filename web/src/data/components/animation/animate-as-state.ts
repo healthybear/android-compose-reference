@@ -271,12 +271,12 @@ items(list) { item ->
       content: 'animate*AsState 是 Compose 中最简单的动画 API，只需改变目标值，动画会自动执行。适合 90% 的简单动画场景',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '默认使用 spring 动画',
       content: 'spring() 是默认的 animationSpec，它会产生自然的弹性效果。如果需要精确控制时长，使用 tween()',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '返回值是 State 对象',
       content: '函数返回 State<T>，建议使用 by 委托获取值。这样当动画值变化时会触发重组',
     },
@@ -286,7 +286,7 @@ items(list) { item ->
       content: '如果 targetValue 在动画播放期间再次改变，之前的动画会被中断，从当前值开始新的动画',
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '不要在 LaunchedEffect 中使用',
       content: '这些函数必须在 Composable 函数中调用，不能在协程或 LaunchedEffect 中使用。如需在协程中控制动画，使用 Animatable',
     },

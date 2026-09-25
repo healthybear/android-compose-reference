@@ -420,17 +420,17 @@ fun App() {
       content: 'compositionLocalOf 值变化时只重组读取该值的组件；staticCompositionLocalOf 值变化时重组整个子树。static 版本读取更快但更新代价更高，适合不常变化的值'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '内置 CompositionLocal 列表',
       content: 'Compose 提供了许多内置 CompositionLocal：LocalContext、LocalConfiguration、LocalDensity、LocalLifecycleOwner、LocalView、LocalFocusManager、LocalSoftwareKeyboardController 等'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '调试 CompositionLocal',
       content: '在 Layout Inspector 中可以查看当前组件可访问的所有 CompositionLocal 值，帮助调试嵌套提供的问题'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免在 CompositionLocal 中存储可变状态',
       content: '不要直接在 CompositionLocal 中存储 mutableStateOf。应该提供一个稳定的对象（如 ViewModel），在其中管理状态'
     },

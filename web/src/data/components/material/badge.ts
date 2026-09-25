@@ -357,17 +357,17 @@ Badge { Text("5") }`,
       content: 'Badge() 不传入内容时，显示为小圆点（6dp 直径）；传入 Text 时显示为带数字的徽标'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '徽标颜色使用 error 色系',
       content: 'Badge 默认使用 error 色（红色），符合用户对未读提示的认知'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'NavigationBarItem 内置徽标支持',
       content: 'NavigationBarItem 的 icon 参数天然支持 BadgedBox，无需额外处理'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免过度使用徽标',
       content: '徽标是强提示，过多使用会分散用户注意力。只在真正需要提醒的地方使用'
     },

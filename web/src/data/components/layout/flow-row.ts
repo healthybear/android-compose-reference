@@ -379,7 +379,7 @@ LazyVerticalGrid(columns = GridCells.Adaptive(100.dp)) {
       content: 'FlowRow 类似 CSS flexbox 的 flex-wrap: wrap，子项超出宽度时自动换到下一行，无需手动计算'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'horizontalArrangement 支持对齐方式',
       content: 'Arrangement.Start、Center、End、SpaceBetween、SpaceAround、SpaceEvenly 以及 spacedBy 组合，控制每行内的子项排列'
     },
@@ -389,17 +389,17 @@ LazyVerticalGrid(columns = GridCells.Adaptive(100.dp)) {
       content: 'FlowRow 会立即组合所有子项。如果子项数量很多（>100），考虑使用 LazyVerticalGrid 或分页加载'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'verticalArrangement 控制行间距',
       content: 'verticalArrangement 控制行与行之间的间距和对齐方式，常用 Arrangement.spacedBy(8.dp) 设置固定行间距'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'maxItemsInEachRow 强制换行',
       content: 'maxItemsInEachRow 限制每行最多显示的子项数量，达到上限后强制换行，即使还有剩余空间'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '注意子项尺寸一致性',
       content: '如果子项宽度差异很大，FlowRow 可能产生不规则的行高。建议子项使用相近的尺寸或固定高度'
     },

@@ -36,12 +36,12 @@ export const settingsScreenCompositionComponent: ComponentEntry = {
   ],
   bestPractices: [
     {
-      type: 'tip',
+      type: 'info',
       title: '分组设置项',
       content: '使用分组标题将相关设置项组织在一起',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '提供实时预览',
       content: '对于字体大小等设置，提供实时预览效果',
     },

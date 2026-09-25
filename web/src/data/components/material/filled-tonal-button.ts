@@ -304,12 +304,12 @@ Row {
       content: 'FilledTonalButton 默认使用 secondaryContainer 作为背景色，onSecondaryContainer 作为内容色'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '强调层次：Button > FilledTonalButton > OutlinedButton > TextButton',
       content: 'FilledTonalButton 在视觉层次中处于中间位置，适合次要但仍需一定强调的操作'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '适合替代 ElevatedButton',
       content: '在需要填充样式但不需要最高强调时，FilledTonalButton 是比 ElevatedButton 更现代的选择'
     },
@@ -319,12 +319,12 @@ Row {
       content: '一个界面中不要使用过多 FilledTonalButton，会降低主按钮的辨识度'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '搭配图标效果更好',
       content: 'FilledTonalButton 配合图标使用时，能更清晰地传达操作意图'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免用于破坏性操作',
       content: '删除、清空等危险操作应使用 OutlinedButton 或 TextButton 降低强调，不要使用 FilledTonalButton'
     },

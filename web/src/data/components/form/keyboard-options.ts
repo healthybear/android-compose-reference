@@ -493,7 +493,7 @@ TextField(
       content: 'KeyboardType 会改变软键盘显示的按键布局。Text 显示全键盘，Number 只显示数字，Email 包含 @ 和 .com 快捷键等'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'ImeAction 常用值',
       content: 'Done（完成）、Next（下一项）、Search（搜索）、Send（发送）、Go（前往）。根据输入场景选择合适的动作，提升用户体验'
     },
@@ -503,17 +503,17 @@ TextField(
       content: '自动纠错默认开启，对于邮箱、密码、代码等精确输入，应设置 autoCorrect = false'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'KeyboardCapitalization 选项',
       content: 'None（不大写）、Characters（全部大写）、Words（单词首字母大写）、Sentences（句首大写）。姓名用 Words，留言用 Sentences'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: 'KeyboardActions 不保证触发',
       content: 'KeyboardActions 回调依赖输入法实现，部分输入法可能不触发。关键操作应同时提供按钮'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'Number vs Decimal vs Phone',
       content: 'Number 只显示整数键盘，Decimal 包含小数点，Phone 包含 + * # 等电话特殊字符'
     },

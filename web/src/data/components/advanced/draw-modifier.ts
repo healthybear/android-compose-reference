@@ -573,12 +573,12 @@ Modifier.drawBehind {
       content: '两个修饰符都提供 DrawScope，可以使用 drawCircle、drawRect、drawLine、drawPath 等绘制函数'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'size 和 center 属性',
       content: 'DrawScope 提供 size（当前组件尺寸）和 center（中心点）属性，方便响应式绘制'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 drawContext 访问高级功能',
       content: 'drawContext.canvas.nativeCanvas 可以访问 Android 原生 Canvas，使用更多绘制功能'
     },

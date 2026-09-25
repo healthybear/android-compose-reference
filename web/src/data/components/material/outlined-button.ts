@@ -293,7 +293,7 @@ OutlinedButton(
       content: 'OutlinedButton 默认使用 1.dp 宽度的 outline 颜色边框，透明背景'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '适合用作对话框取消按钮',
       content: 'Material Design 推荐对话框的取消/否定按钮使用 OutlinedButton 或 TextButton'
     },
@@ -303,17 +303,17 @@ OutlinedButton(
       content: 'OutlinedButton 强调程度低，不应用作页面的主要行动号召（CTA）'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '边框会跟随交互状态变化',
       content: '按下时边框颜色会变化，提供清晰的视觉反馈'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '深色模式下自动适配',
       content: 'OutlinedButton 的边框颜色会自动适配深色主题，确保可见性'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免边框过细或过粗',
       content: '边框宽度应保持在 1-2dp 之间，过细难以辨识，过粗视觉笨重'
     },

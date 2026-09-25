@@ -154,12 +154,12 @@ if (formValid) {
       content: '不要在 Button 内部放置其他可点击组件（如另一个 Button 或 IconButton），这会导致点击事件冲突'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 InteractionSource 自定义交互效果',
       content: '通过 remember { MutableInteractionSource() } 可以监听按钮的按下、释放、悬停等状态，实现自定义交互动画'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '注意无障碍性',
       content: '如果按钮只包含图标，务必为 Icon 提供 contentDescription，以便屏幕阅读器正确识别'
     },

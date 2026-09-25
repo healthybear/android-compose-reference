@@ -403,12 +403,12 @@ AssistChip(
       content: 'FilterChip 不会自动显示选中图标，需要根据 selected 状态手动添加 leadingIcon'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '图标使用 FilterChipDefaults.IconSize',
       content: '确保图标尺寸符合规范（18dp）'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '单选时只需一个 String 状态',
       content: '单选场景只需记录当前选中项，无需为每个选项维护 Boolean 状态'
     },

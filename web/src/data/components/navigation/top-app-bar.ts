@@ -338,17 +338,17 @@ Scaffold(
       content: 'scrollBehavior 只对 LazyColumn/LazyRow/LazyVerticalGrid 等支持 nestedScroll 的容器有效'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '三种 scrollBehavior',
       content: 'pinnedScrollBehavior（固定）、enterAlwaysScrollBehavior（滚动时隐藏/显示）、exitUntilCollapsedScrollBehavior（仅用于 Medium/Large）'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'actions 是 RowScope',
       content: 'actions 中可以使用 Row 的 weight 等修饰符，但通常只放置 IconButton'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '注意使用 AutoMirrored 图标',
       content: '返回箭头应使用 Icons.AutoMirrored.Filled.ArrowBack，在 RTL 布局下自动镜像'
     },

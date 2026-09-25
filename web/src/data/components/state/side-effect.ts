@@ -270,17 +270,17 @@ DisposableEffect(Unit) {
       content: 'SideEffect 是同步的，在主线程执行。不要在其中执行耗时操作、网络请求或数据库操作，这会阻塞 UI'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '适合同步到非 Compose 系统',
       content: 'SideEffect 的典型用途是将 Compose 状态同步到外部系统：Analytics、日志、传统 View、事件总线等'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '副作用应该是幂等的',
       content: '因为 SideEffect 可能在同一状态下执行多次（重组），副作用应该是幂等的，即多次执行产生相同结果'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '不要在 SideEffect 中修改 State',
       content: '在 SideEffect 中修改 Compose State 会导致无限重组循环。SideEffect 用于单向同步到外部，不要反向影响 Compose'
     },

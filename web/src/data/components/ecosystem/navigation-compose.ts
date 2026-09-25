@@ -509,17 +509,17 @@ class HomeViewModel(private val navController: NavController) : ViewModel() {
       content: '使用 @Serializable 注解定义路由，替代字符串拼接，支持复杂参数和编译时类型检查'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 currentBackStackEntryAsState 观察当前路由',
       content: 'val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route 可用于高亮当前导航项'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'popUpTo 和 popUpToInclusive 清理返回栈',
       content: 'popUpTo 指定返回到某路由，inclusive = true 表示该路由也出栈。常用于登录后清除登录页'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 navigation() 创建嵌套导航图',
       content: '嵌套导航图可以组织相关页面（如认证流程），并支持共享 ViewModel 的作用域'
     },
@@ -534,7 +534,7 @@ class HomeViewModel(private val navController: NavController) : ViewModel() {
       content: '只在代码中配置 deepLinks 不够，还需要在 manifest 中声明 intent-filter'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '不要在 Composable 外部调用 navigate',
       content: '在 LaunchedEffect/DisposableEffect 外或初始化时调用 navigate 可能导致导航失败或崩溃'
     },

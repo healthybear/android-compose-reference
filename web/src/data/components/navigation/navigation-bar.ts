@@ -329,12 +329,12 @@ fun ECommerceNavigation() {
       content: 'NavigationBar 只用于应用的顶级页面（首页、搜索、个人中心等），不用于二级页面导航'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'alwaysShowLabel 控制标签显示',
       content: '默认 true 始终显示标签；false 时未选中项隐藏标签，节省空间'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'NavigationBar 自动处理安全区域',
       content: 'windowInsets 参数自动处理系统导航栏，Edge-to-edge 模式下正确显示'
     },

@@ -270,12 +270,12 @@ val uiState by viewModel.uiState.collectAsState()`
       content: '当 Composable 离开组合树时，collectAsState 自动停止收集 Flow，无需手动取消'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'StateFlow vs Flow',
       content: 'StateFlow 有当前值，collectAsState 会立即返回；普通 Flow 需要提供 initial 参数作为初始值，直到 Flow 发射第一个值'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 collectAsStateWithLifecycle 优化性能',
       content: 'collectAsStateWithLifecycle 在应用后台时自动停止收集，前台时恢复，避免不必要的资源消耗。需要添加 lifecycle-runtime-compose 依赖'
     },
@@ -285,12 +285,12 @@ val uiState by viewModel.uiState.collectAsState()`
       content: 'collectAsState 默认在主线程收集 Flow。耗时操作应在 Flow 的上游使用 flowOn(Dispatchers.IO) 切换线程'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'SharedFlow 需要初始值',
       content: 'SharedFlow 没有当前值，collectAsState 必须提供 initial 参数。如果不需要初始状态，考虑使用 LaunchedEffect + collect'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免在 Composable 中创建 Flow',
       content: '不要在 Composable 中直接创建 Flow 并收集，每次重组都会重新创建。Flow 应该来自 ViewModel 或使用 remember 包裹'
     },

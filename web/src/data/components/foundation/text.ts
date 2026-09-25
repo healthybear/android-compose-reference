@@ -210,17 +210,17 @@ Text(formattedText)`,
       content: '省略号截断只有在 Text 有明确宽度约束时才生效。如果父容器是无限宽（如 Row），需要使用 Modifier.width() 或 Modifier.fillMaxWidth() 限制宽度'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 AnnotatedString 实现富文本',
       content: 'Text 支持 AnnotatedString 类型的 text 参数，可以实现部分文字样式变化、点击等富文本效果'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'minLines 用于预留空间',
       content: 'minLines 可以确保 Text 始终占据指定行数的高度，即使实际文本不足，避免布局抖动'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '注意无障碍性',
       content: '对于纯装饰性文本，考虑使用 Modifier.semantics { contentDescription = null } 让屏幕阅读器跳过。对于重要信息，确保文本与背景有足够对比度'
     },

@@ -605,22 +605,22 @@ Text(modifier = Modifier.constrainAs(b) {
       content: 'ConstraintLayout 的约束求解有一定开销。简单布局优先使用 Column/Row/Box，复杂相对定位才用 ConstraintLayout'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'Dimension 提供灵活的尺寸约束',
       content: 'Dimension.fillToConstraints 填满约束空间，Dimension.wrapContent 包裹内容，Dimension.value(dp) 固定尺寸，Dimension.ratio("16:9") 宽高比'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'ChainStyle 控制链式布局',
       content: 'Spread（均匀分布）、SpreadInside（两端贴边，中间均匀）、Packed（集中在中间）'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: 'layoutId 与 constrainAs 不能混用',
       content: '使用 ConstraintSet 时用 layoutId 标识组件，使用内联约束时用 constrainAs，不要在同一个布局中混用'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'Guideline 有三种类型',
       content: 'createGuidelineFromStart(offset/fraction)、createGuidelineFromEnd(offset/fraction)、createGuidelineFromTop/Bottom(offset/fraction)'
     },

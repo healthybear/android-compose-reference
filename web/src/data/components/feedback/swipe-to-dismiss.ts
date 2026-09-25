@@ -612,12 +612,12 @@ SwipeToDismissBox(state = dismissState) {
       content: 'SwipeToDismissBox 是 Material 3 组件，遵循 Material Design 的滑动删除模式和动画规范'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 positionalThreshold 自定义触发阈值',
       content: '默认需要滑动一半距离才触发 dismiss，可以通过 positionalThreshold 参数自定义阈值'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '提供撤销功能',
       content: '删除重要数据时，建议通过 Snackbar 提供撤销选项，避免误操作导致数据丢失'
     },
@@ -632,7 +632,7 @@ SwipeToDismissBox(state = dismissState) {
       content: '如果只需要单向滑动删除，设置 enableDismissFromStartToEnd = false 或 enableDismissFromEndToStart = false'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: 'confirmValueChange 必须返回布尔值',
       content: 'confirmValueChange 返回 false 会阻止 dismiss 并回弹，返回 true 才会执行 dismiss 动画'
     },

@@ -234,17 +234,17 @@ Image(
       content: 'Image 本身不支持网络图片。需要网络图片加载，使用 Coil、Glide 等库提供的 AsyncImage'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'ContentScale 选择指南',
       content: 'Fit - 完整显示；Crop - 填满裁剪；FillWidth/Height - 单边填满；Inside - 不放大；None - 原始尺寸'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 ColorFilter.tint 着色',
       content: 'ColorFilter.tint(color) 可以为矢量图标或单色图片着色，常用于图标适配主题'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免在列表中加载大图',
       content: 'LazyColumn 中的图片应使用缩略图或指定合理尺寸，避免内存溢出和卡顿'
     },

@@ -347,12 +347,12 @@ AnimatedContent(targetState = userState) { user ->
       content: 'content lambda 在 AnimatedContentScope 中执行，可以访问 transition 对象，以及使用 animateEnterExit 为子元素添加独立动画',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'slideIntoContainer vs slideInVertically',
       content: 'slideIntoContainer 会考虑容器边界，适合页面切换；slideInVertically 是固定距离，适合数字等小元素',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'using SizeTransform 的用法',
       content: '使用 using 关键字连接 ContentTransform 和 SizeTransform，实现内容和尺寸的协调动画',
     },
@@ -362,7 +362,7 @@ AnimatedContent(targetState = userState) { user ->
       content: '过渡期间，旧内容和新内容同时在组合树中。如果内容很重（如视频播放器），注意内存和性能影响',
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免频繁切换状态',
       content: '如果状态在动画播放期间频繁变化，可能导致动画混乱。建议添加防抖或等待动画完成后再切换',
     },

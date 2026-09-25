@@ -406,7 +406,7 @@ BottomAppBar {
       content: 'floatingActionButton 参数会自动将 FAB 对齐到 BottomAppBar 的末端'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'BottomAppBar vs NavigationBar',
       content: 'BottomAppBar 用于提供操作按钮，NavigationBar 用于页面导航。不要混用'
     },
@@ -416,17 +416,17 @@ BottomAppBar {
       content: 'actions 在 RowScope 中，内部元素会水平排列。如需特殊布局，使用 Row 包裹'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '滚动时可以隐藏',
       content: '配合 AnimatedVisibility 可以在滚动时隐藏 BottomAppBar，节省屏幕空间'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'tonalElevation 影响背景色',
       content: 'tonalElevation 不是阴影，而是色调高度，会让背景色稍微变亮'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免遮挡重要内容',
       content: 'BottomAppBar 是固定的，确保页面内容使用 Scaffold 的 padding，避免被遮挡'
     },

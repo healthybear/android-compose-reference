@@ -37,12 +37,12 @@ Column {
   ],
   bestPractices: [
     {
-      type: 'tip',
+      type: 'info',
       title: '使用防抖减少搜索次数',
       content: '在用户停止输入后再触发搜索，避免频繁的网络请求',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '保存搜索历史',
       content: '记录用户的搜索历史，提供快速访问',
     },

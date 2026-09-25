@@ -389,17 +389,17 @@ BasicTextField(
       content: 'BasicTextField 不提供任何视觉样式（无背景、无边框、无标签）。如需 Material Design 样式，使用 TextField 或 OutlinedTextField'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'TextFieldState 可保存和观察',
       content: 'TextFieldState.text 是可观察的 State，可以直接在 Composable 中读取并自动重组。使用 state.edit { } 可以批量修改文本'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'inputTransformation 和 outputTransformation 的区别',
       content: 'inputTransformation 影响实际存储的值（如过滤非法字符）；outputTransformation 只影响显示（如格式化显示），不改变实际值'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '自定义 decorator 时注意焦点处理',
       content: '确保 innerTextField() 的父容器可点击且点击会聚焦输入框。避免在装饰器中拦截点击事件'
     },

@@ -534,12 +534,12 @@ fun CustomContainer(backgroundColor: Color) {
       content: 'LocalContentColor 通过 CompositionLocal 机制在组件树中传递。子组件会继承父组件设置的值，除非被显式覆盖'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'Text 和 Icon 默认行为',
       content: 'Text 组件的 color 参数默认值是 Color.Unspecified，这种情况下会使用 LocalContentColor.current。Icon 的 tint 参数同理'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'contentColorFor() 的映射关系',
       content: 'contentColorFor() 函数根据 Material 3 规范返回匹配的内容色：primary → onPrimary、primaryContainer → onPrimaryContainer、surface → onSurface 等'
     },
@@ -554,12 +554,12 @@ fun CustomContainer(backgroundColor: Color) {
       content: '使用透明度降低文字对比度时，确保最终对比度仍符合 WCAG 标准（至少 4.5:1）。过低的透明度（< 0.38）可能导致内容难以阅读'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免硬编码 Color.White/Black',
       content: '硬编码 Color.White 或 Color.Black 会导致深色主题不适配。始终使用 LocalContentColor 或 MaterialTheme.colorScheme 中的语义颜色'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'LocalContentColor 的作用域',
       content: 'CompositionLocalProvider 设置的 LocalContentColor 只影响其 content lambda 内的组件，退出作用域后自动恢复到外层的值'
     },

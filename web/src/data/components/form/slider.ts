@@ -342,17 +342,17 @@ Slider(
       content: 'steps 是中间分隔点数量，不包含起止点。例如 valueRange = 0f..10f, steps = 9 表示 11 个刻度（0,1,2,...,10）'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'onValueChange 持续触发',
       content: 'onValueChange 在拖动过程中持续触发。频繁操作（如网络请求）应放在 onValueChangeFinished 中'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'Slider 自动满足最小触摸目标',
       content: 'Slider 的滑块默认尺寸已满足 48dp 最小触摸目标，无需额外调整'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '注意精度问题',
       content: 'Float 类型有精度限制。需要精确整数值时，使用 value.toInt() 或 value.roundToInt()'
     },

@@ -415,12 +415,12 @@ ElevatedCard { Text("精选推荐") }`,
       content: 'ElevatedCard 的默认阴影高度为 1dp（Card 的阴影接近 0），按下时为 3dp'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '阴影在浅色模式更明显',
       content: 'ElevatedCard 的阴影效果在浅色主题下更明显，深色模式下阴影效果较弱'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '用于浮动内容',
       content: 'ElevatedCard 适合实现浮动工具栏、购物车底栏等覆盖在内容之上的元素'
     },
@@ -430,12 +430,12 @@ ElevatedCard { Text("精选推荐") }`,
       content: 'ElevatedCard 和 Card 的主要区别是阴影高度，API 完全相同，可以互换使用'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '搭配背景色使用',
       content: '在带背景色的页面上，ElevatedCard 的阴影效果能更好地区分层次'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免嵌套使用',
       content: '不要在 ElevatedCard 内嵌套另一个 ElevatedCard，会造成阴影层次混乱'
     },

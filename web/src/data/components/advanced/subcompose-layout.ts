@@ -495,17 +495,17 @@ SubcomposeLayout(state = layoutState) { constraints ->
       content: '由于在测量阶段组合子组件，SubcomposeLayout 的性能开销比普通 Layout 更高。仅在真正需要动态布局时使用'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'BoxWithConstraints 基于 SubcomposeLayout',
       content: 'BoxWithConstraints 内部使用 SubcomposeLayout 实现，允许根据可用空间调整内容'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'slotId 用于组件复用',
       content: '相同 slotId 的 subcompose 调用会复用之前的组件状态。不同 slotId 会创建新的组件实例'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免在 subcompose 中读取外部状态',
       content: 'subcompose 在测量阶段执行，此时读取状态可能导致额外的重组。应该在测量前读取状态'
     },

@@ -428,22 +428,22 @@ BasicAlertDialog(onDismissRequest = { }) {
       content: 'onDismissRequest 只是一个回调，需要在其中手动更新状态来关闭对话框（如 showDialog = false）'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 Material 3 推荐的圆角',
       content: 'Material 3 对话框推荐使用 MaterialTheme.shapes.extraLarge (28.dp 圆角)'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'DialogProperties 提供丰富配置',
       content: 'DialogProperties 可以控制是否允许点击外部关闭、返回键关闭、是否限制宽度、是否铺满系统窗口等'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '适合图片预览和全屏编辑器',
       content: 'BasicAlertDialog 的灵活性使其非常适合实现图片预览、视频播放器、全屏编辑器等非标准对话框'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: 'InputField 可能被键盘遮挡',
       content: '包含输入框的对话框，需要注意键盘弹出时的布局适配。可以使用 imePadding 或在外层添加 verticalScroll'
     },

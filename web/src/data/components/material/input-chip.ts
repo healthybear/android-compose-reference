@@ -482,12 +482,12 @@ Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
       content: 'InputChip 用于展示用户输入的信息（标签、联系人等），通常支持删除操作'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'avatar 和 leadingIcon 不能同时使用',
       content: 'avatar 和 leadingIcon 参数互斥，只能使用其中一个'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '删除图标使用 Close 而非 Cancel',
       content: 'trailingIcon 通常使用 Icons.Default.Close 表示删除/移除操作'
     },
@@ -497,12 +497,12 @@ Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
       content: 'selected 表示激活状态，enabled 表示可交互状态，两者含义不同'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '配合输入框实现标签输入',
       content: 'InputChip 常配合 TextField 实现类似邮件收件人的标签输入功能'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '注意无障碍性',
       content: 'trailingIcon 的删除按钮必须提供 contentDescription，说明删除的是哪个标签'
     },

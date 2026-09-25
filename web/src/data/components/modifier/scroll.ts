@@ -593,12 +593,12 @@ Column(modifier = Modifier.verticalScroll(scrollState)) {
       content: 'nestedScroll 实现父子滚动容器的协调，如 TopAppBar 随内容滚动隐藏、下拉刷新等效果'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'LazyColumn 不需要 verticalScroll',
       content: 'LazyColumn/LazyRow 内置滚动能力，不要再添加 verticalScroll/horizontalScroll 修饰符'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '程序化滚动需要 CoroutineScope',
       content: '使用 scrollTo 或 animateScrollTo 时需要在协程中调用，通常用 rememberCoroutineScope()'
     },

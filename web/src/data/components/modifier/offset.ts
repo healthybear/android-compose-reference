@@ -311,17 +311,17 @@ Box(
       content: 'offset 偏移后的内容可能超出父容器边界被裁剪。如需突破边界，父容器使用 Modifier.clipToBounds(false)'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'graphicsLayer 支持硬件加速',
       content: 'graphicsLayer 的变换在 GPU 层执行，性能优异，适合复杂动画'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'absoluteOffset 用于 RTL 无关的偏移',
       content: 'offset 在 RTL 布局下会镜像，absoluteOffset 始终按绝对方向偏移'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免在 offset lambda 中读取状态',
       content: 'offset { } lambda 在每次布局时调用，避免在其中读取频繁变化的状态，会导致性能问题'
     },

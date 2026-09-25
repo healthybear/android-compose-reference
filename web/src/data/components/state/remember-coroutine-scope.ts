@@ -390,7 +390,7 @@ Button(onClick = {
       content: '返回的 CoroutineScope 在组件离开组合树时自动取消。作用域内启动的所有协程也会被取消'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '用于事件回调中启动协程',
       content: 'rememberCoroutineScope 的主要用途是在事件处理器（onClick、onSwipe 等）中启动协程，因为这些回调不是挂起函数'
     },
@@ -400,17 +400,17 @@ Button(onClick = {
       content: '不要在 Composable 函数体中直接调用 scope.launch，每次重组都会启动新协程。应该在事件回调中使用'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '作用域使用 Main 调度器',
       content: 'rememberCoroutineScope 返回的作用域默认在主线程执行。耗时操作使用 withContext(Dispatchers.IO) 切换线程'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '配合 State API 使用',
       content: '通常配合 Animatable、ScrollState、SnackbarHostState 等提供挂起函数的 API 使用'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免捕获并忽略 CancellationException',
       content: 'catch (e: Exception) 会捕获 CancellationException，导致协程无法正常取消。应该重新抛出或使用 catch (e: Exception) { if (e is CancellationException) throw e }'
     },

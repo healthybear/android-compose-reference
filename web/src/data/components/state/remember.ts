@@ -252,17 +252,17 @@ val focusRequester = FocusRequester()`
       content: 'remember 的 calculation 在组合时同步执行。不要在其中执行耗时操作或挂起函数，应使用 LaunchedEffect + remember 状态'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'remember 支持无键和多键',
       content: 'remember { } 无依赖键，只初始化一次；remember(key1, key2) 多个键，任一变化就重新计算'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 by 简化代码',
       content: 'var state by remember { mutableStateOf(value) } 使用属性委托，比 state.value = newValue 更简洁'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免捕获外部可变变量',
       content: 'remember 闭包中不要捕获外部非 State 的可变变量，值变化时不会触发重新计算，导致状态不一致'
     },

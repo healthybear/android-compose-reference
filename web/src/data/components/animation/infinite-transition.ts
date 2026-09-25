@@ -396,12 +396,12 @@ val scale3 by infiniteTransition.animateFloat(
       content: 'rememberInfiniteTransition 会在组件进入 Composition 时开始动画，离开时自动停止，无需手动管理',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'initialValue 的作用',
       content: 'initialValue 是动画的起始值，targetValue 是目标值。Reverse 模式下动画会在两者之间往返，Restart 模式下会从 initial 跳回起点',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 delayMillis 创建序列动画',
       content: '通过为不同动画设置不同的 delayMillis，可以创建有序的动画序列效果，如波浪、依次加载等',
     },
@@ -416,7 +416,7 @@ val scale3 by infiniteTransition.animateFloat(
       content: '动画值每帧都会更新。避免在使用动画值的地方进行复杂计算，会影响帧率',
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '不要忘记停止动画',
       content: '如果动画只在特定条件下需要（如加载状态），使用条件渲染整个动画组件，而不是一直运行但隐藏',
     },

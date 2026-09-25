@@ -361,17 +361,17 @@ Column {
       content: 'weight 只在 RowScope 和 ColumnScope 中有效，在 Box 等其他布局中无效'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'fill 参数控制填充行为',
       content: 'fill = true（默认）强制填充分配的空间；fill = false 时最多占用分配的空间，但不强制填充'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '权重值可以是任意正数',
       content: 'weight 值不必是整数，可以是 0.5f、1.5f 等。关键是相对比例，weight(2f) 和 weight(4f) 效果等同于 weight(1f) 和 weight(2f)'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免所有子元素都使用固定尺寸',
       content: '如果所有子元素都使用固定尺寸（无 weight），可能导致内容溢出或空间浪费。至少一个子元素应使用 weight 来适应不同屏幕尺寸'
     },

@@ -293,17 +293,17 @@ val data = LaunchedEffect(Unit) {
       content: 'delay()、yield() 等挂起函数会响应取消。如果协程块中有阻塞操作（如 Thread.sleep），需要手动检查 isActive'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 snapshotFlow 监听 State 变化',
       content: 'snapshotFlow { state.value } 可以将 Compose State 转换为 Flow，在 LaunchedEffect 中监听'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'LaunchedEffect 运行在 Main 线程',
       content: 'LaunchedEffect 默认在主线程执行。耗时操作使用 withContext(Dispatchers.IO) 切换到后台线程'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免在 LaunchedEffect 中捕获并忽略 CancellationException',
       content: 'catch (e: Exception) { } 会捕获 CancellationException，导致协程无法正常取消。应使用 catch (e: Exception) { if (e is CancellationException) throw e }'
     },

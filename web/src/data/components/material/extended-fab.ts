@@ -296,12 +296,12 @@ FloatingActionButton(onClick = { }) {
       content: 'expanded = true 时显示图标+文字的胶囊形状，false 时只显示图标的圆形'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '适合长列表和滚动视图',
       content: 'ExtendedFAB 特别适合在长列表顶部展开显示文字，滚动后收缩为图标节省空间'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'derivedStateOf 监听滚动',
       content: '使用 derivedStateOf 监听 LazyListState 的滚动位置，实现平滑的展开/收缩动画'
     },
@@ -311,12 +311,12 @@ FloatingActionButton(onClick = { }) {
       content: '避免快速滚动时 FAB 频繁展开收缩，可以添加阈值或延迟'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'icon 和 text 必须是 @Composable',
       content: 'icon 和 text 参数是 Composable 函数，可以自定义动画和状态'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免遮挡重要内容',
       content: 'ExtendedFAB 展开时占用空间较大，确保不遮挡列表底部的重要内容，使用 contentPadding'
     },

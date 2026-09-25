@@ -344,12 +344,12 @@ class MyApp : Application() {
       content: '可从 lottiefiles.com 下载免费动画，或使用 After Effects + Bodymovin 插件导出自定义动画'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'iterations 参数说明',
       content: 'iterations = 1 播放一次，LottieConstants.IterateForever 无限循环，传入整数指定播放次数'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 rememberLottieAnimatable 完全控制',
       content: 'rememberLottieAnimatable 提供 animate()、snapTo()、stop() 等方法，可精确控制播放进度和时机'
     },
@@ -364,7 +364,7 @@ class MyApp : Application() {
       content: '修改颜色、文本等动态属性时，需要在 After Effects 中查看图层名称。keyPath 不匹配时修改不会生效'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '列表中使用大型动画会导致卡顿',
       content: '在 LazyColumn 中避免使用复杂或大尺寸的 Lottie 动画。考虑使用静态图片或简化的动画版本'
     },

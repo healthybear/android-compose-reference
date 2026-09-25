@@ -395,22 +395,22 @@ Layout { measurables, constraints -> ... }`,
       content: 'Layout 本身不会处理 padding。如果需要内边距，在 modifier 中添加或在放置逻辑中手动处理'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'SubcomposeLayout 用于延迟组合',
       content: 'SubcomposeLayout 允许根据第一批子组件的测量结果来决定后续子组件的组合。适合实现自适应布局'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'layout Modifier 用于单个组件',
       content: 'Modifier.layout 可以在不创建完整 Layout 的情况下调整单个组件的测量和放置'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '每个 Measurable 只能测量一次',
       content: '在同一个布局过程中，每个 Measurable 只能调用一次 measure()。重复测量会抛出异常'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 MeasurePolicy 复用测量逻辑',
       content: '可以创建 MeasurePolicy 对象来复用测量逻辑：val policy = MeasurePolicy { ... }，然后使用 Layout(content, measurePolicy = policy)'
     },

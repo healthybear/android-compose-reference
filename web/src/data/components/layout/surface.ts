@@ -344,17 +344,17 @@ Surface(
       content: 'tonalElevation 通过叠加主题色来表现层次（Material 3），shadowElevation 通过投影表现层次。两者可以独立设置，但推荐主要使用 tonalElevation'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '可点击 Surface 的重载版本',
       content: 'Surface 提供 onClick 参数的重载版本，内置了涟漪效果和交互状态。对于简单点击场景，优先使用这个版本而不是 Modifier.clickable'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'Surface 是响应式的',
       content: 'Surface 会自动适应父容器的约束。使用 Modifier.fillMaxWidth() 或 Modifier.size() 来控制尺寸'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '注意无障碍性',
       content: '可点击的 Surface 应确保有足够的点击目标尺寸（最小 48.dp），并为图标提供 contentDescription'
     },

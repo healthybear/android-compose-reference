@@ -603,12 +603,12 @@ Divider(color = Color.Gray)  // 硬编码，不跟随主题`,
       content: 'ColorScheme 定义了 40 个颜色角色（color roles），包括 primary/secondary/tertiary 三组主色，每组有 base/on/container/onContainer 四种变体，plus surface/background/error 及其变体'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'Dynamic Color 需要 Android 12+',
       content: 'dynamicLightColorScheme() 和 dynamicDarkColorScheme() 从系统壁纸提取颜色，需要 Android 12 (API 31) 及以上。低版本设备需要提供 fallback ColorScheme'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'Surface Tint 自动调整',
       content: 'Surface 组件的 tonalElevation 参数会自动在 surface 色基础上叠加 primary 色的 tint，实现不同层级的视觉区分，无需手动定义多个 surface 颜色'
     },
@@ -623,12 +623,12 @@ Divider(color = Color.Gray)  // 硬编码，不跟随主题`,
       content: 'outline 和 outlineVariant 专门用于边框和分割线，对比度较低，不适合作为文字或图标的背景色'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '确保足够的对比度',
       content: 'WCAG AA 标准要求文字与背景对比度至少 4.5:1（大文字 3:1）。使用 Material Theme Builder 工具验证颜色方案的可访问性'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'Material Theme Builder 工具',
       content: '使用 Google 的 Material Theme Builder (m3.material.io/theme-builder) 生成符合 M3 规范的完整 ColorScheme，可导出为 Compose 代码'
     },

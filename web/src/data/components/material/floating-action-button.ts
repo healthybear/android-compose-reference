@@ -290,17 +290,17 @@ FloatingActionButton(
       content: '如果有多个操作需要突出，考虑使用 BottomAppBar 或展开菜单，而不是放置多个 FAB'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'ExtendedFloatingActionButton 适合首次使用',
       content: '带文本的 ExtendedFAB 更明确，适合用户首次访问页面时使用。滚动后可以收缩为普通 FAB'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'FAB 位置可配置',
       content: 'Scaffold 的 floatingActionButtonPosition 支持 End（默认，右下）和 Center（底部居中，通常与 BottomAppBar 配合）'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '注意 FAB 遮挡内容',
       content: '确保列表等可滚动内容使用 Scaffold 的 paddingValues，避免内容被 FAB 遮挡'
     },

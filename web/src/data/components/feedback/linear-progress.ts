@@ -309,17 +309,17 @@ fun FormWithProgress() {
       content: 'progress 必须在 0f~1f 之间，超出范围会被截断。0f 表示 0%，1f 表示 100%'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '默认高度为 4dp',
       content: 'LinearProgressIndicator 默认高度 4dp，符合 Material Design 规范，一般无需调整'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '线性进度条适合页面级加载',
       content: '页面级加载使用 LinearProgressIndicator；局部加载（按钮、列表项）使用 CircularProgressIndicator'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免嵌套在滚动容器中',
       content: '进度条应固定在顶部，不应随内容滚动。使用 Scaffold 或固定布局'
     },

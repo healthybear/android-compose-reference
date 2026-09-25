@@ -332,7 +332,7 @@ LazyRow {
       content: 'SuggestionChip 展示系统、AI 或算法生成的建议，供用户快速选择'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '适合智能回复和快捷输入',
       content: 'SuggestionChip 非常适合实现智能回复、快捷时间选择、地点建议等功能'
     },
@@ -342,17 +342,17 @@ LazyRow {
       content: 'SuggestionChip 是系统建议，InputChip 是用户输入。建议被采纳后应转换为 InputChip'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '建议应该可点击',
       content: 'SuggestionChip 的 onClick 应该直接应用建议，而不是仅切换选中状态'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '可以动态生成',
       content: 'SuggestionChip 的内容可以根据上下文、用户历史、时间等动态生成'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免建议过多',
       content: '建议数量应该控制在 3-8 个，过多会让用户难以选择'
     },

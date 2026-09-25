@@ -363,12 +363,12 @@ Row {
       content: 'VerticalDivider 会自动填充父容器的高度。通常需要用 Modifier.height() 限制其高度'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'thickness 默认为 1.dp',
       content: 'VerticalDivider 的默认粗细是 1.dp，适合大多数场景。特殊需求可以自定义'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '颜色默认使用 outline 颜色',
       content: 'VerticalDivider 默认使用 MaterialTheme.colorScheme.outline 颜色，与主题自动适配'
     },
@@ -378,7 +378,7 @@ Row {
       content: '如果 Row 没有明确的高度约束，VerticalDivider 可能显示异常。确保父容器有高度'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用场景',
       content: 'VerticalDivider 适合工具栏按钮分组、统计信息分栏、导航项分隔等水平布局场景'
     },

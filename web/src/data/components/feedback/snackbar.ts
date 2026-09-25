@@ -330,17 +330,17 @@ snackbarHostState.showSnackbar("已切换标签")`
       content: 'showSnackbar 会挂起直到 Snackbar 消失或被关闭，需要在协程中调用。多次调用会排队依次显示'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'SnackbarDuration 三种时长',
       content: 'Short（4秒）、Long（10秒）、Indefinite（永久显示，需手动关闭）'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 withDismissAction 显示关闭按钮',
       content: 'withDismissAction = true 会在 Snackbar 右侧显示 X 关闭按钮'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免在 Snackbar 中执行重要操作',
       content: 'Snackbar 会自动消失，不适合承载关键信息或操作。关键操作使用 AlertDialog'
     },

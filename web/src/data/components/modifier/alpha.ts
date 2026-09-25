@@ -321,17 +321,17 @@ Box(Modifier.alpha(alpha))  // 突变，没有过渡`
       content: 'alpha(0f) 的组件虽然不可见，但仍然可以响应点击等事件。如果要完全禁用交互，使用 enabled = false'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'alpha 不影响布局',
       content: 'alpha 只影响视觉渲染，不影响组件在布局中占用的空间。完全透明的组件仍然占据原有空间'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 Color.copy(alpha) 控制颜色透明度',
       content: '对于单一颜色的透明度，可以使用 Color.copy(alpha = 0.5f) 代替 Modifier.alpha'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: 'alpha 影响性能',
       content: '频繁改变 alpha 值（如每帧动画）会触发重绘，影响性能。对于静态透明度，可以考虑使用带透明度的颜色'
     },

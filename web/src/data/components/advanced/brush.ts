@@ -507,12 +507,12 @@ Box(
       content: 'linearGradient 的 start 和 end、radialGradient 的 center 使用 Offset(x, y) 指定像素坐标'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '便捷方法',
       content: 'Brush.horizontalGradient 和 Brush.verticalGradient 是 linearGradient 的便捷方法，自动设置方向'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'TileMode 填充模式',
       content: '当渐变范围小于绘制区域时，TileMode 控制超出部分：Clamp（延伸）、Repeated（重复）、Mirror（镜像）'
     },

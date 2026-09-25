@@ -373,7 +373,7 @@ CenterAlignedTopAppBar(
       content: 'CenterAlignedTopAppBar 的标题会自动居中显示，适合短标题'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '适合详情页和设置页',
       content: 'CenterAlignedTopAppBar 通常用于详情页、设置页等次级页面'
     },
@@ -383,17 +383,17 @@ CenterAlignedTopAppBar(
       content: '如果标题文字过长，会被截断显示省略号。长标题应使用 TopAppBar'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'scrollBehavior 控制滚动行为',
       content: 'scrollBehavior 可以实现滚动时隐藏、固定、折叠等效果'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 nestedScroll 配合滚动',
       content: '使用 scrollBehavior 时，Scaffold 需要添加 nestedScroll 修饰符'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: 'actions 会压缩标题空间',
       content: 'actions 越多，留给标题的空间越少，可能导致标题显示不完整'
     },

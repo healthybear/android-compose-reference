@@ -318,17 +318,17 @@ Box(modifier = Modifier.padding(horizontal = 16.dp)) {
       content: '如果必须嵌套，LazyRow 应该有固定宽度（通常是 fillMaxWidth）。不要让 LazyRow 根据内容自适应宽度'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 key 优化重组性能',
       content: '与 LazyColumn 一样，提供稳定的 key 可以显著提升性能，特别是在数据顺序变化时'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'RTL 布局自动适配',
       content: 'LazyRow 会根据系统语言自动适配 RTL（从右到左）布局，Start/End 会自动镜像'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '注意横向列表的无障碍性',
       content: '确保横向列表的内容也能通过键盘或辅助技术访问，考虑为整个横向列表添加语义描述'
     },

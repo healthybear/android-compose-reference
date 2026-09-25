@@ -304,17 +304,17 @@ Text(
       content: 'Card(onClick = {}) 等本身可点击的组件不要再添加 clickable，会导致双重点击效果'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 indication = null 禁用涟漪',
       content: '某些场景（如选择器、开关）不需要涟漪效果，设置 indication = null 即可'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'combinedClickable 的手势优先级',
       content: 'onDoubleClick > onLongClick > onClick。如果有双击，单击会有延迟以区分双击'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '注意最小触摸目标尺寸',
       content: '可点击元素应至少 48dp x 48dp。使用 Modifier.defaultMinSize(48.dp, 48.dp) 确保无障碍性'
     },

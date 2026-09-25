@@ -395,12 +395,12 @@ MultiChoiceSegmentedButtonRow {
       content: 'SingleChoice 使用 selected + onClick，MultiChoice 使用 checked + onCheckedChange'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '适合并列互斥的选项',
       content: 'SegmentedButton 适合展示并列关系且互斥的选项，如视图模式、时间范围等'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'itemShape 自动处理边缘圆角',
       content: 'itemShape 会根据位置自动设置圆角：第一个左侧圆角，最后一个右侧圆角，中间无圆角'
     },
@@ -410,7 +410,7 @@ MultiChoiceSegmentedButtonRow {
       content: 'SegmentedButton 展示的选项应该是平级关系，不适合主次分明或层级结构'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: 'forEachIndexed 中 index 必须正确',
       content: 'itemShape 的 index 参数必须与实际位置对应，否则圆角显示错误'
     },

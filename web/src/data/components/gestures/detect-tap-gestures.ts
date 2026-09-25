@@ -271,12 +271,12 @@ detectTapGestures(
       content: '所有回调的 Offset 参数都是相对于组件左上角的坐标，可以用来判断点击区域或显示涟漪效果',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'onPress 与其他手势的关系',
       content: 'onPress 会在手指按下时立即触发，而 onTap/onDoubleTap/onLongPress 在手势完成后触发。onPress 可以用来实现按下反馈',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'tryAwaitRelease 返回值',
       content: 'tryAwaitRelease() 返回 Boolean：true 表示正常释放，false 表示手势被取消（如手指移出区域）',
     },
@@ -291,7 +291,7 @@ detectTapGestures(
       content: '双击操作会先触发一次 onTap，然后触发 onDoubleTap。如果业务逻辑不兼容，考虑延迟执行单击操作',
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免在 pointerInput 中读取外部状态',
       content: 'pointerInput 的 lambda 不会因为外部状态变化而重新执行。如果需要读取状态，将状态作为 key 传入 pointerInput(key)',
     },

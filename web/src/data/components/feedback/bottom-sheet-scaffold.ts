@@ -738,12 +738,12 @@ Button(onClick = {
       content: 'PartiallyExpanded（部分展开，显示 peekHeight）和 Expanded（完全展开）',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '适合持久化面板',
       content: '音乐播放器、地图搜索、购物车等需要始终存在但可隐藏的面板适合用 BottomSheetScaffold',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '自定义拖拽把手',
       content: '通过 sheetDragHandle 参数自定义或隐藏拖拽把手',
     },
@@ -758,7 +758,7 @@ Button(onClick = {
       content: '如需面板内滚动，应使用 LazyColumn 且面板高度受限，避免手势冲突',
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '状态管理注意事项',
       content: '使用 rememberBottomSheetScaffoldState() 记住状态，避免配置更改时状态丢失',
     },

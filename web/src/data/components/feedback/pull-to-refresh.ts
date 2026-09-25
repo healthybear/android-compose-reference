@@ -372,12 +372,12 @@ fun FeedScreen(viewModel: FeedViewModel = viewModel()) {
       content: 'isRefreshing = true 时显示刷新动画，false 时隐藏',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '适合垂直滚动内容',
       content: 'LazyColumn、Column.verticalScroll 等垂直滚动容器都支持下拉刷新',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '可以自定义刷新指示器',
       content: '通过 indicator 参数完全自定义刷新指示器的样式',
     },
@@ -392,7 +392,7 @@ fun FeedScreen(viewModel: FeedViewModel = viewModel()) {
       content: '不要在已经滚动的容器内嵌套 PullToRefreshBox',
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '注意内存泄漏',
       content: '确保使用 viewModelScope 或正确取消协程',
     },

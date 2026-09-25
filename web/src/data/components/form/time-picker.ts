@@ -454,22 +454,22 @@ Column {
       content: 'TimePicker 的表盘模式需要较大的显示空间（约 400dp 高度）。在小屏或横屏设备上考虑使用 TimeInput 或 layoutType = Horizontal'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 TimePickerLayoutType 适配不同屏幕',
       content: 'TimePickerLayoutType.Horizontal 适合横屏或空间受限场景，Vertical 适合竖屏。使用 TimePickerDefaults.layoutType() 可自动选择'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'TimeInput 支持键盘快速输入',
       content: 'TimeInput 模式下用户可以直接输入数字，比表盘点击更快捷，适合已知具体时间的场景'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: 'TimePickerState 不会自动保存',
       content: '使用 rememberTimePickerState 创建的状态仅在组合期间保留。如需跨配置更改保存，使用 rememberSaveable { TimePickerState(...) }'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '分钟值始终是整数',
       content: 'TimePicker 不支持秒级精度，minute 值范围为 0-59。如需秒级选择，需要自定义组件'
     },

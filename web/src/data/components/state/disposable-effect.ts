@@ -375,22 +375,22 @@ DisposableEffect(videoUrl) {
       content: 'onDispose 不能是挂起函数。如需异步清理，使用 LaunchedEffect + Job.cancel()'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 remember 创建需要清理的对象',
       content: 'remember + DisposableEffect 是管理有生命周期的对象的标准模式：val player = remember { ExoPlayer.create() } 然后在 DisposableEffect 中清理'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'DisposableEffect 适合桥接传统 Android API',
       content: 'DisposableEffect 是将基于回调的 Android API（生命周期、传感器、广播）集成到 Compose 的标准方式'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '键变化时的执行顺序',
       content: '当依赖键变化时，执行顺序是：1) 调用旧的 onDispose 2) 执行新的副作用块 3) 注册新的 onDispose。确保清理逻辑不依赖新的状态'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免在 onDispose 中访问 Compose 状态',
       content: 'onDispose 可能在组件已销毁后执行，访问状态可能导致异常。只清理外部资源'
     },

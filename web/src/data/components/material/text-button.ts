@@ -283,7 +283,7 @@ Column {
       content: 'TextButton 只有文字和可选图标，仅在按下时显示涟漪效果'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '强调层次最低但仍可交互',
       content: 'TextButton 虽然强调程度最低，但仍然保持可点击状态的视觉反馈'
     },
@@ -293,17 +293,17 @@ Column {
       content: 'TextButton 不应单独作为页面唯一的操作按钮，应配合更高强调的按钮使用'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'contentPadding 默认较小',
       content: 'TextButton 的默认 contentPadding 比其他按钮小，更适合密集排列和内联使用'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '适合导航和链接',
       content: 'TextButton 非常适合用作内部导航链接，配合下划线效果可模拟超链接'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免在复杂背景上使用',
       content: 'TextButton 无背景，在图片或复杂背景上可能难以辨识，应确保有足够对比度'
     },

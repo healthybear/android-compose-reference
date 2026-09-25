@@ -210,7 +210,7 @@ Crossfade(
       content: '在过渡期间，旧内容淡出的同时新内容淡入，两者会短暂重叠。如果内容较重（如列表），可能影响性能',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'AnimatedContent 的简化版',
       content: 'Crossfade 本质上是 AnimatedContent 的一个特例，只支持淡入淡出。如果需要更多过渡效果，使用 AnimatedContent',
     },
@@ -220,12 +220,12 @@ Crossfade(
       content: '每次 targetState 改变时，旧内容会被销毁，新内容会完全重新组合。如果内容有复杂状态，注意保存',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 remember(key) 保持状态',
       content: '如果需要在切换时保持某些状态，可以使用 remember(targetState) { ... } 为每个状态创建独立的状态实例',
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免在 LazyColumn 的 items 中使用',
       content: '在列表项中使用 Crossfade 会严重影响滚动性能。列表项的状态切换应该用 AnimatedVisibility 或简单的条件渲染',
     },

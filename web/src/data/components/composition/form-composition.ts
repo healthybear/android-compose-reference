@@ -51,12 +51,12 @@ Column {
   ],
   bestPractices: [
     {
-      type: 'tip',
+      type: 'info',
       title: '实时验证用户输入',
       content: '在用户输入时提供即时反馈，显示错误提示和验证状态',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '处理加载状态',
       content: '提交时显示加载指示器，防止重复提交',
     },

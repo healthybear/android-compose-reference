@@ -637,12 +637,12 @@ DisposableEffect(Unit) {
       content: 'VerticalPager 更适合全屏内容如视频、图片、文章，而列表数据应使用 LazyColumn',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '视频播放器性能优化',
       content: '使用 DisposableEffect 在页面离开时释放播放器资源，避免内存泄漏',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'currentPage 变化监听',
       content: '使用 LaunchedEffect(pagerState.currentPage) 监听页面切换，执行数据加载、埋点等操作',
     },
@@ -657,7 +657,7 @@ DisposableEffect(Unit) {
       content: 'VerticalPager 内嵌 Column.verticalScroll 时需确保内容滚动到边界后才能触发翻页',
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '视频列表内存管理',
       content: '大量视频页面要及时释放非当前页的播放器实例，使用 DisposableEffect 管理生命周期',
     },

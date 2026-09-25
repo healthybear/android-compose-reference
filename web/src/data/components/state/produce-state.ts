@@ -295,12 +295,12 @@ items?.forEach { }  // 需要判空`
       content: '当组件离开组合或依赖键变化时，produceState 自动取消协程。使用 awaitDispose 在取消时执行清理逻辑'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'produceState 适合适配外部数据源',
       content: 'produceState 是将非 Compose 数据源（回调 API、轮询、WebSocket）转换为 Compose State 的标准方式'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '通过 value 属性更新状态',
       content: 'produceState 提供 ProduceStateScope，可以在协程中通过 value = newValue 更新状态，触发重组'
     },
@@ -310,12 +310,12 @@ items?.forEach { }  // 需要判空`
       content: 'produceState 的协程默认在主线程。耗时操作使用 withContext(Dispatchers.IO) 切换到后台线程'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'awaitDispose vs onDispose',
       content: 'produceState 使用 awaitDispose（挂起函数），DisposableEffect 使用 onDispose（同步）。awaitDispose 会等待协程取消后执行'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免在 producer 中捕获并忽略 CancellationException',
       content: 'catch (e: Exception) 会捕获 CancellationException，导致协程无法正常取消。应使用 catch (e: Exception) { if (e is CancellationException) throw e }'
     },

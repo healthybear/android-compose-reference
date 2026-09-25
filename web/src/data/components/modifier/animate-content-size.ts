@@ -331,12 +331,12 @@ LazyColumn {
       content: 'animateContentSize 会自动检测内容导致的宽度或高度变化，无需手动触发动画',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '与其他动画组合',
       content: 'animateContentSize 可以与 AnimatedVisibility、Crossfade、AnimatedContent 等组合使用，创建更丰富的效果',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'alignment 参数的作用',
       content: 'alignment 决定了内容在尺寸变化时的锚点位置。TopStart 表示左上角固定，内容向右下扩展；Center 表示中心固定，向四周扩展',
     },
@@ -351,7 +351,7 @@ LazyColumn {
       content: 'animateContentSize 应该在 padding、background 等影响尺寸的 Modifier 之前调用，这样动画才能包含这些效果',
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '不要在无限滚动容器中使用',
       content: 'LazyColumn、LazyRow 等组件已经有自己的性能优化，在它们的根节点使用 animateContentSize 会导致严重性能问题',
     },

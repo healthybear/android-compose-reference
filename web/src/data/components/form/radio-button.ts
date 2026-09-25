@@ -349,17 +349,17 @@ RadioButton(selected = true, onClick = { })`
       content: 'RadioButton 组中必须始终有一个选中。需要可取消的选项使用 Checkbox'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 selectable 提供无障碍支持',
       content: 'Modifier.selectable 自动添加单选组的语义信息，比 clickable 更适合 RadioButton'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'RadioButton 自动满足最小触摸目标',
       content: 'RadioButton 默认尺寸已满足 48dp 最小触摸目标，但配合 selectable 扩展整行更友好'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免选项过多',
       content: '超过 7 个选项时，RadioButton 列表过长。考虑使用 DropdownMenu 或分组展示'
     },

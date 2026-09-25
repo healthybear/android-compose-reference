@@ -227,17 +227,17 @@ Column(
       content: '不要在可滚动容器（LazyColumn/ScrollableColumn）中嵌套使用 Column(Modifier.fillMaxHeight())，会导致测量异常和性能问题'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 weight(1f, fill = false) 优化性能',
       content: '当子元素不需要填满分配的空间时，使用 weight(1f, fill = false) 可以避免不必要的重组'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'Arrangement.spacedBy 可以添加首尾间距',
       content: '使用 Arrangement.spacedBy(8.dp, Alignment.Top) 可以在保持间距的同时控制对齐方式'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '注意无障碍性',
       content: '对于复杂的垂直布局，考虑为 Column 添加 semantics { contentDescription = "..." } 帮助屏幕阅读器理解布局结构'
     },

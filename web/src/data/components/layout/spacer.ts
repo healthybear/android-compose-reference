@@ -179,17 +179,17 @@ Row(modifier = Modifier.fillMaxWidth()) {
       content: 'Spacer 必须通过 Modifier 指定至少一个维度的尺寸（width/height/size/weight），否则不会占据任何空间'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'weight 只在 Row/Column 中有效',
       content: 'Modifier.weight() 只能在 RowScope 和 ColumnScope 中使用，在普通 Box 中无效'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '组合使用固定尺寸和 weight',
       content: '可以在同一个布局中混合使用固定尺寸的 Spacer 和 weight 的 Spacer，实现复杂的间距分配'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '调试时可临时添加背景',
       content: '调试布局时，可以为 Spacer 添加 .background(Color.Red) 来可视化其占据的空间'
     },

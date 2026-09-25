@@ -395,22 +395,22 @@ Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
       content: 'FlowColumn 需要知道可用高度来决定何时换列。如果没有高度约束，所有子项会被放在第一列'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'verticalArrangement 控制列内排列',
       content: 'verticalArrangement 控制每列内子项的垂直排列方式，horizontalArrangement 控制列与列之间的间距'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'maxItemsInEachColumn 限制列长度',
       content: 'maxItemsInEachColumn 限制每列最多包含的子项数，达到上限后强制换列，即使还有剩余高度'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: 'FlowColumn 不支持懒加载',
       content: 'FlowColumn 会立即组合所有子项。如果子项数量很多，考虑使用 LazyHorizontalGrid 或分页加载'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'FlowColumn 的使用场景较少',
       content: 'FlowColumn 适用于固定高度容器内的多列布局。大多数场景下，LazyVerticalGrid 或 Row 更合适'
     },

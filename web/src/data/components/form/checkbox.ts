@@ -390,17 +390,17 @@ Checkbox(checked = darkMode, onCheckedChange = { darkMode = it })`
       content: 'onCheckedChange 传 null 时，Checkbox 变为只读，可显示状态但不可切换。外层 clickable 仍可控制'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'TriStateCheckbox 的三种状态',
       content: 'On（全选）、Off（全不选）、Indeterminate（部分选中），通常用于全选功能'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'Checkbox 自动满足最小触摸目标',
       content: 'Checkbox 默认尺寸已满足 48dp 最小触摸目标，但配合 clickable 扩展整行更友好'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免用 Checkbox 控制危险操作',
       content: '删除等不可逆操作不应只用 Checkbox 确认，应使用二次确认对话框'
     },

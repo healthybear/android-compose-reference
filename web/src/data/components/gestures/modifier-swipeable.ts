@@ -448,12 +448,12 @@ AnchoredDraggableState<String>(
       content: 'requireOffset() 在锚点未初始化时会抛异常，offset 返回 Float? 可能为 null。通常在 remember 后使用 requireOffset',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'positionalThreshold 控制切换难度',
       content: '返回值越小，越容易切换到下一个锚点。0.5f 表示需要拖动到两个锚点中间位置才切换',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'velocityThreshold 支持快速滑动',
       content: '当滑动速度超过阈值时，即使没有达到 positionalThreshold 也会切换到下一个锚点',
     },
@@ -468,7 +468,7 @@ AnchoredDraggableState<String>(
       content: '如果锚点位置依赖于布局尺寸，需要在尺寸确定后使用 updateAnchors 更新',
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免在动画过程中修改锚点',
       content: '在 isAnimationRunning 为 true 时修改锚点可能导致动画跳变或崩溃',
     },

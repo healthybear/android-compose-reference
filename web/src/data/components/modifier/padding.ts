@@ -239,17 +239,17 @@ Text(
       content: 'Modifier.size(100.dp).padding(16.dp) 中，padding 不会影响外部尺寸，只会压缩内部空间。padding 应在 size 之前'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 padding 而非 Spacer 更简洁',
       content: '单个组件周围的空白用 padding 比 Spacer 更简洁。Spacer 适合动态间距或 weight 场景'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'PaddingValues 可以解构',
       content: 'val (start, top, end, bottom) = paddingValues.calculateLeftPadding/Top/Right/Bottom(layoutDirection)'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '注意与 clickable 的交互',
       content: 'clickable 放在 padding 之前，点击区域包含 padding；放在之后，点击区域不含 padding。根据需求选择顺序'
     },

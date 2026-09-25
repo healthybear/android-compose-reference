@@ -580,17 +580,17 @@ if (useDrawer) {
       content: 'drawerState.open() 和 drawerState.close() 是挂起函数，需要在协程中调用'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'gesturesEnabled 控制手势',
       content: 'gesturesEnabled = false 可以禁用手势滑动，只能通过按钮控制抽屉'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'ModalDrawerSheet 默认宽度',
       content: 'ModalDrawerSheet 默认宽度根据屏幕尺寸自动调整，通常为屏幕宽度的 80% 或 360dp'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免抽屉中嵌套抽屉',
       content: '不要在 ModalNavigationDrawer 的抽屉内容中再嵌套另一个 ModalNavigationDrawer'
     },

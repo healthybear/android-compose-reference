@@ -290,17 +290,17 @@ Box {
       content: '多层 Box 嵌套会增加布局复杂度和性能开销。如果只是简单的背景和内容，考虑使用 Surface 或 Modifier.background'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'propagateMinConstraints 的用途',
       content: '设置为 true 时，Box 会强制所有子元素填满整个 Box，适用于需要所有子元素统一尺寸的场景'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 Box 实现居中布局',
       content: 'Box(contentAlignment = Alignment.Center) 是实现单个元素居中的最简单方式，比 Column/Row 更轻量'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '注意点击事件遮挡',
       content: '上层元素会遮挡下层元素的点击事件。如需点击穿透，可使用 Modifier.pointerInput { } 或调整布局结构'
     },

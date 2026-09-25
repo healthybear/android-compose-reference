@@ -563,7 +563,7 @@ LazyVerticalGrid(columns = GridCells.Fixed(2)) {
       content: 'LazyVerticalStaggeredGrid 的每列高度独立，新项会被添加到当前最短的列，形成真正的瀑布流效果'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'StaggeredGridCells.Adaptive 自动调整列数',
       content: 'Adaptive(minSize = 150.dp) 根据可用宽度自动计算列数，屏幕越宽列数越多，适合响应式布局'
     },
@@ -573,17 +573,17 @@ LazyVerticalGrid(columns = GridCells.Fixed(2)) {
       content: '如果 item 高度差异过大，可能导致某些列明显偏长。建议 item 高度在合理范围内变化'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'LazyHorizontalStaggeredGrid 用于横向瀑布流',
       content: 'LazyHorizontalStaggeredGrid 是横向滚动的瀑布流，每行宽度独立，适合横向标签流等场景'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免在 item 中使用 Modifier.weight',
       content: 'LazyStaggeredGrid 的 item 不支持 weight 修饰符，使用会导致布局异常'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '性能优化',
       content: '与 LazyColumn 一样，LazyStaggeredGrid 只渲染可见区域的 item。大量数据时性能优异'
     },

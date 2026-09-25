@@ -342,17 +342,17 @@ showDialog2 = true`,
       content: 'onDismissRequest 在点击外部或返回键时触发，必须正确关闭对话框，否则用户无法退出'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 DialogProperties 控制行为',
       content: 'dismissOnBackPress/dismissOnClickOutside 控制是否允许通过返回键或点击外部关闭对话框'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '对话框自动处理返回键',
       content: 'AlertDialog 自动拦截返回键并调用 onDismissRequest，无需手动处理'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免在对话框中执行耗时操作',
       content: '确认按钮的 onClick 应立即关闭对话框，耗时操作放在 LaunchedEffect 中异步执行'
     },

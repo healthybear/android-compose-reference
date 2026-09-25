@@ -446,12 +446,12 @@ fun ChatScreen() {
       content: 'SelectionContainer 内的多个 Text 可以连续选择，选择范围可以跨越不同的 Text 组件'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 DisableSelection 排除区域',
       content: '在 SelectionContainer 内部使用 DisableSelection 可以禁用特定区域的文字选择，适用于按钮、链接等交互元素'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '选择后自动显示系统菜单',
       content: '选择文字后会自动弹出系统的复制菜单，无需额外代码即可实现复制功能'
     },

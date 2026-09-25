@@ -51,12 +51,12 @@ Column {
   ],
   bestPractices: [
     {
-      type: 'tip',
+      type: 'info',
       title: '提供跳过按钮',
       content: '允许用户跳过引导，直接进入应用',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用页面指示器',
       content: '显示当前页面位置和总页数',
     },

@@ -250,17 +250,17 @@ IconButton(onClick = { cancel() }) {
       content: 'IconButton 本身不提供悬停工具提示。如需提示文本，使用 TooltipBox 包裹（桌面端）'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 IconToggleButton 实现状态切换',
       content: 'IconToggleButton 专为双态切换设计（如静音/取消静音），比手动管理状态的 IconButton 更语义化'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '四种 IconButton 变体',
       content: 'IconButton（无背景）、FilledIconButton（填充背景）、FilledTonalIconButton（色调背景）、OutlinedIconButton（描边）'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '注意颜色对比度',
       content: '使用自定义颜色时，确保图标与背景有足够对比度（至少 4.5:1），特别是 FilledIconButton'
     },

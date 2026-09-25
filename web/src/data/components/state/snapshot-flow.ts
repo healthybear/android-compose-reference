@@ -304,7 +304,7 @@ snapshotFlow { state.value }
       content: 'collectAsState 将 Flow 转为 State，snapshotFlow 将 State 转为 Flow。两者配合可以在 Compose 和协程之间双向转换'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'snapshotFlow 自动追踪读取的 State',
       content: 'lambda 中读取的任何 State 都会被自动追踪，任一 State 变化时都会发射新值。不需要手动指定依赖'
     },
@@ -314,17 +314,17 @@ snapshotFlow { state.value }
       content: '如果 lambda 中读取了多个 State，任何一个变化都会发射。使用 distinctUntilChanged 和其他 Flow 操作符控制发射频率'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '适合桥接 Compose 和协程世界',
       content: 'snapshotFlow 让你可以在协程中使用 Flow 的强大操作符（debounce、filter、map 等）处理 Compose 状态'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '不要在 snapshotFlow 中修改 State',
       content: '在 snapshotFlow 的 lambda 中修改 State 会导致无限循环。lambda 应该是只读的'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'snapshotFlow 返回冷流',
       content: 'snapshotFlow 返回冷 Flow，每次收集都会重新开始观察。如需热流，使用 shareIn 或 stateIn 转换'
     },

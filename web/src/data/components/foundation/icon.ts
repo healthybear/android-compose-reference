@@ -277,17 +277,17 @@ fun StatusIcon(status: Status) {
       content: 'tint 会将图标重新着色为单一颜色。对于多色图标（如品牌 Logo），应使用 Image 并设置 tint = null'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'Material Icons 有五种风格',
       content: 'Icons.Filled（默认）、Icons.Outlined、Icons.Rounded、Icons.Sharp、Icons.TwoTone，选择适合设计风格的'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'Icon 自动使用 LocalContentColor',
       content: 'Icon 默认使用当前作用域的内容色，与 Text 颜色保持一致，无需手动设置'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '注意图标尺寸对可访问性的影响',
       content: '可点击图标应至少 48.dp x 48.dp（包括 padding）。单独的小图标可能难以点击'
     },

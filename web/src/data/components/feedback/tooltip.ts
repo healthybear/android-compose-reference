@@ -360,17 +360,17 @@ fun NewFeatureButton() {
       content: 'TooltipBox 的 content 参数是被提示的目标组件，tooltip 参数是提示内容'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'PlainTooltip vs RichTooltip',
       content: 'PlainTooltip 用于简短文字提示；RichTooltip 支持标题、多行文本和操作按钮'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'isPersistent 控制持久显示',
       content: 'isPersistent = true 时，Tooltip 不会自动消失，需要用户手动关闭或点击操作按钮'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免 Tooltip 中包含关键信息',
       content: 'Tooltip 是辅助提示，不应该包含用户必须看到的关键信息。关键信息应该直接显示在界面上'
     },

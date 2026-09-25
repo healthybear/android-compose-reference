@@ -248,17 +248,17 @@ Row {
       content: '不要在可滚动容器（LazyRow/ScrollableRow）中嵌套使用 Row(Modifier.fillMaxWidth())，会导致测量异常和性能问题'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'weight() 与固定尺寸组合使用',
       content: '常见模式：固定尺寸的图标 + weight(1f) 的文本 + 固定尺寸的操作按钮，实现响应式布局'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'Arrangement.spacedBy 控制统一间距',
       content: '使用 Arrangement.spacedBy(8.dp) 比手动添加多个 Spacer 更简洁，且自动处理首尾元素'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: 'RTL 布局支持',
       content: '对于需要支持从右到左布局的应用，使用 Arrangement.Start/End 而不是 Arrangement.Left/Right，确保在 RTL 语言环境下正确镜像'
     },

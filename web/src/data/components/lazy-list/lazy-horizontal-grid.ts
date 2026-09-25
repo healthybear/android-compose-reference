@@ -479,22 +479,22 @@ LazyHorizontalGrid(
       content: 'LazyHorizontalGrid 需要知道总高度来分配每行的高度。如果没有高度约束，可能显示异常'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'GridCells.Adaptive 根据高度自适应行数',
       content: 'GridCells.Adaptive(minSize = 80.dp) 会根据容器高度自动计算行数，类似 LazyVerticalGrid 的列数自适应'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '适合首页横向推荐列表',
       content: 'LazyHorizontalGrid 非常适合首页多行横向滚动的推荐内容，用户可以左右滑动浏览更多内容'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免嵌套横向滚动',
       content: '不要在 LazyRow 或 HorizontalPager 中嵌套 LazyHorizontalGrid，会导致手势冲突'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '行高由最高的 item 决定',
       content: '每行的高度由该行中最高的 item 决定，其他 item 会垂直对齐（根据 verticalArrangement）'
     },

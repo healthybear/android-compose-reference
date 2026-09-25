@@ -330,17 +330,17 @@ Brush.radialGradient(
       content: 'clip 会裁剪组件本身和所有子元素。如果只想裁剪背景，使用 background 的 shape 参数'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 Brush 创建复杂效果',
       content: 'Brush 支持线性渐变、径向渐变、扫描渐变，还可以自定义 ShaderBrush 实现特殊效果'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'border 在 background 之后',
       content: '通常 border 放在 background 之后，这样边框在背景之上。如果 border 在前，背景会覆盖边框'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免多层 background 叠加',
       content: '多个 background 会完全覆盖前面的，只有最后一个生效。如需叠加效果，使用 Box 嵌套或自定义 Painter'
     },

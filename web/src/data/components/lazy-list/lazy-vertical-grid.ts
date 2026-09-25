@@ -347,17 +347,17 @@ LazyVerticalGrid(columns = GridCells.Fixed(3)) {
       content: 'LazyVerticalGrid 的每行高度相同（由该行最高的项决定）。如需真正的瀑布流（每列独立高度），使用 LazyVerticalStaggeredGrid'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 key 提升性能',
       content: '与 LazyColumn 一样，为每个 item 提供稳定的 key 可以优化重组和动画性能'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'span 函数中可访问当前行列信息',
       content: 'span lambda 提供 maxLineSpan 和 maxCurrentLineSpan 参数，可以根据当前位置动态决定跨度'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '注意网格项的点击区域',
       content: '小尺寸网格项（如图标）应确保点击区域至少 48.dp，使用 Modifier.minimumInteractiveComponentSize() 或增加 padding'
     },

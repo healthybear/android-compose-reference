@@ -336,12 +336,12 @@ AsyncImage(
       content: 'Coil 3.x 包名从 io.coil-kt:coil-compose 变为 io.coil-kt.coil3:coil-compose，支持 Kotlin Multiplatform'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '优先使用 AsyncImage 而非 rememberAsyncImagePainter',
       content: 'AsyncImage 是更高级的 API，内部处理了 painter 状态管理。只有需要完全自定义绘制时才使用 rememberAsyncImagePainter'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 SubcomposeAsyncImage 自定义加载状态',
       content: 'SubcomposeAsyncImage 允许根据加载状态（Loading/Success/Error）显示完全自定义的 UI，比 placeholder/error 参数更灵活'
     },
@@ -356,7 +356,7 @@ AsyncImage(
       content: '推荐 200-400ms。过长的淡入动画会让界面感觉迟缓，尤其在快速滚动的列表中'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '列表中未指定尺寸会导致 OOM',
       content: '在 LazyColumn/LazyGrid 中加载图片时，务必使用 ImageRequest.Builder().size() 限制解码尺寸，否则可能加载原图导致内存溢出'
     },

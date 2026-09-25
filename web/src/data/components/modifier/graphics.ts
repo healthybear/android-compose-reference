@@ -462,17 +462,17 @@ Modifier.rotate(rotation)  // 突变，没有过渡`,
       content: 'graphicsLayer 利用 RenderNode 硬件加速，性能优于直接使用 Canvas 绘制'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '旋转角度单位是度',
       content: 'rotate(45f) 表示顺时针旋转 45 度，负值表示逆时针旋转'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'TransformOrigin 控制变换中心',
       content: '默认以组件中心为原点，可通过 transformOrigin 修改为其他位置（值范围 0f-1f）'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'cameraDistance 控制透视强度',
       content: '3D 旋转时，较小的 cameraDistance 产生更强烈的透视效果，通常使用 8f-30f * density'
     },

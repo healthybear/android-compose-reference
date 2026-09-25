@@ -430,17 +430,17 @@ if (useRail) {
       content: 'NavigationRail 适合平板和桌面，手机屏幕宽度不足，应使用 NavigationBar'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'NavigationRail 宽度固定 80dp',
       content: 'NavigationRail 默认宽度 80dp，符合 Material Design 规范，一般无需调整'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'alwaysShowLabel 控制标签显示',
       content: '默认 true 始终显示标签；false 时未选中项隐藏标签，节省空间'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免 NavigationRail 和 NavigationBar 同时显示',
       content: '同一界面只应该有一种导航方式，根据屏幕尺寸选择 NavigationRail 或 NavigationBar'
     },

@@ -331,7 +331,7 @@ fun AccessibleRatingBar(
       content: 'Modifier.semantics 为 TalkBack、开关控制等辅助技术提供组件信息，是构建可访问应用的关键'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'mergeDescendants vs clearAndSetSemantics',
       content: 'mergeDescendants 保留子节点语义并合并，clearAndSetSemantics 完全清除子节点语义并替换为自定义内容'
     },
@@ -341,17 +341,17 @@ fun AccessibleRatingBar(
       content: 'Compose 的大多数组件已经内置了合理的语义。只在需要自定义或补充时使用 semantics'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '测试无障碍功能',
       content: '使用真实设备启用 TalkBack 测试应用，确保所有功能都可以通过语音导航和操作'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '装饰性内容必须标记',
       content: '纯装饰性的图标、分隔线等必须设置 contentDescription = null 或使用 invisibleToUser()，避免干扰无障碍用户'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '自定义操作提升可用性',
       content: 'customActions 允许用户通过 TalkBack 的操作菜单执行额外操作，如编辑、删除、分享等，无需离开当前焦点'
     },

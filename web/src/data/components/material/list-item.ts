@@ -383,17 +383,17 @@ leadingContent = {
       content: 'ListItem 本身没有 onClick 参数，需要通过 Modifier.clickable { } 实现点击'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'overlineContent 显示在标题上方',
       content: '用于显示分类、时间戳等辅助信息，字号较小'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'trailingContent 支持多个元素',
       content: '可以使用 Row 在右侧放置多个按钮或图标'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免 ListItem 内容过于复杂',
       content: 'ListItem 设计用于简单内容展示，过于复杂的布局应使用自定义 Row 或 Card'
     },

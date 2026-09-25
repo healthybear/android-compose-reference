@@ -338,17 +338,17 @@ Switch(checked = enabled, onCheckedChange = { enabled = it })`
       content: 'onCheckedChange 传 null 时，Switch 变为只读，可显示状态但不可切换。外层 clickable 仍可控制'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'thumbContent 自动适配尺寸',
       content: '使用 SwitchDefaults.IconSize 确保图标尺寸合适。图标过大会被裁剪'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'Switch 自动满足最小触摸目标',
       content: 'Switch 默认尺寸已满足 48dp 最小触摸目标，无需额外 padding'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免用 Switch 控制危险操作',
       content: '删除数据、格式化等不可逆操作不应使用 Switch，应使用需要确认的按钮'
     },

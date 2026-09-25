@@ -517,17 +517,17 @@ ModalBottomSheet(
       content: 'onDismissRequest 在下滑关闭或点击遮罩时触发，必须正确关闭面板，否则用户无法退出'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '默认显示拖拽把手',
       content: 'ModalBottomSheet 顶部默认显示拖拽把手，提示用户可以下滑关闭。设置 dragHandle = null 可隐藏'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'content 自动放在 Column 中',
       content: 'ModalBottomSheet 的 content 参数类型是 ColumnScope，内容会自动垂直排列'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免在面板中嵌套面板',
       content: '不要在 ModalBottomSheet 中再打开另一个 ModalBottomSheet，会困惑用户'
     },

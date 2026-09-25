@@ -325,17 +325,17 @@ val displayOffset by remember {
       content: 'derivedStateOf 在依赖状态变化时立即重新计算，而不是延迟到读取时。如果计算耗时，考虑使用 LaunchedEffect + 普通 State'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 by 委托简化代码',
       content: 'val result by remember { derivedStateOf { ... } } 可以直接读取 result，无需 .value'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'derivedStateOf 使用结构相等性',
       content: 'derivedStateOf 使用 == 比较新旧值。对于自定义类，确保正确实现 equals() 和 hashCode()'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免循环依赖',
       content: '不要在 derivedStateOf 中读取另一个 derivedStateOf，可能导致无限循环或性能问题'
     },

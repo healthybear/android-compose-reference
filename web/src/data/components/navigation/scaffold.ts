@@ -377,17 +377,17 @@ Scaffold { paddingValues ->
       content: '忽略 paddingValues 会导致内容被 TopBar 或 BottomBar 遮挡。LazyColumn 使用 contentPadding，普通内容使用 Modifier.padding()'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'FAB 位置可配置',
       content: 'floatingActionButtonPosition 支持 End（右下，默认）和 Center（底部居中，通常配合 BottomAppBar）'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'Scaffold 可嵌套使用',
       content: '可以在 NavigationDrawer 或其他容器中嵌套 Scaffold，但通常一个页面只需要一个 Scaffold'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '注意 contentWindowInsets',
       content: 'Edge-to-edge 布局时需要正确配置 contentWindowInsets，否则内容可能被系统栏遮挡'
     },

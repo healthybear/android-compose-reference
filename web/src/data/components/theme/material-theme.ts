@@ -484,12 +484,12 @@ fun MyTheme(content: @Composable () -> Unit) {
       content: 'MaterialTheme 通过 CompositionLocalProvider 向子树注入 LocalColorScheme、LocalTypography、LocalShapes 等值，子组件通过 MaterialTheme.colorScheme 等属性访问'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'Dynamic Color 支持',
       content: 'Android 12+ 支持动态颜色（Material You），使用 dynamicLightColorScheme(context) 和 dynamicDarkColorScheme(context) 从系统壁纸提取颜色'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '主题继承',
       content: '如果只传入部分参数，未指定的参数会继承外层 MaterialTheme 的值。例如只覆盖 colorScheme 时，typography 和 shapes 保持不变'
     },
@@ -504,12 +504,12 @@ fun MyTheme(content: @Composable () -> Unit) {
       content: '改变主题参数会导致所有依赖主题值的组件重组。大型应用中频繁切换主题可能影响性能，建议配合 remember 缓存主题配置'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免在组件内部创建主题',
       content: '不要在频繁重组的组件内部创建 ColorScheme/Typography/Shapes 对象，应该使用 remember 或定义为顶层变量，否则每次重组都会创建新对象'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '预览主题',
       content: '使用 @Preview 时需要用 MaterialTheme 包裹组件才能正确显示主题效果：@Preview @Composable fun PreviewCard() { MaterialTheme { CardComponent() } }'
     },

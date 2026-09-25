@@ -176,12 +176,12 @@ Card(modifier = Modifier.fillMaxWidth()) {
       content: 'progress 必须在 0f~1f 之间，超出范围会被截断。0f 表示 0%，1f 表示 100%'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '默认尺寸为 48dp',
       content: 'CircularProgressIndicator 默认尺寸 48dp，使用 Modifier.size() 可以调整'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'strokeCap 影响端点样式',
       content: 'StrokeCap.Round（圆润）适合大多数场景，StrokeCap.Butt（平直）适合完整圆环'
     },

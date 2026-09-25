@@ -399,7 +399,7 @@ MediumTopAppBar(title = { Text("标题") })`
       content: 'MediumTopAppBar 展开时高度约 112dp，介于 TopAppBar (64dp) 和 LargeTopAppBar (152dp) 之间'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '适合列表和网格页面',
       content: 'MediumTopAppBar 适合照片网格、文件列表、联系人列表等内容密集的页面'
     },
@@ -409,17 +409,17 @@ MediumTopAppBar(title = { Text("标题") })`
       content: '使用 scrollBehavior 时，Scaffold 必须添加 nestedScroll 修饰符'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '标题可以包含副标题',
       content: 'title 可以使用 Column 组合主标题和副标题，显示更多信息'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '折叠后变为普通 TopAppBar',
       content: '使用 exitUntilCollapsedScrollBehavior 时，滚动会将其折叠为 64dp 的 TopAppBar'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '不要在次要详情页使用',
       content: 'MediumTopAppBar 有一定强调作用，不适合深层级的详情页'
     },

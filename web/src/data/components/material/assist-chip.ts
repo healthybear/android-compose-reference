@@ -344,12 +344,12 @@ FlowRow {
       content: '筛选功能应使用 FilterChip，它支持选中状态。AssistChip 只触发一次性操作'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'leadingIcon 比 trailingIcon 更常用',
       content: 'AssistChip 通常只使用前置图标。后置图标一般只用于 InputChip 的关闭按钮'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'Chip 可以不带图标',
       content: '简单的辅助操作可以省略图标，只使用文字标签'
     },

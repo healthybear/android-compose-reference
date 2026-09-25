@@ -292,12 +292,12 @@ offset = Offset(
       content: 'onDrag 回调中的 dragAmount 是本次移动的增量（delta），不是累计位移。需要累加到当前位置：offset += dragAmount',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '与 Modifier.draggable 的区别',
       content: 'detectDragGestures 支持二维自由拖拽，而 Modifier.draggable 只支持单方向（水平或垂直）拖拽但提供更高级的功能如 DraggableState',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 BoxWithConstraints 获取边界',
       content: 'BoxWithConstraints 提供父容器尺寸信息，用于计算拖拽边界限制',
     },
@@ -312,7 +312,7 @@ offset = Offset(
       content: '拖拽时每帧都会触发重组。避免在 onDrag 中进行复杂计算，保持回调轻量',
     },
     {
-      type: 'danger',
+      type: 'error',
       title: 'offset 需要使用 remember',
       content: '拖拽位置必须用 remember 保存，否则每次重组都会重置位置',
     },

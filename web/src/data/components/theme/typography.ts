@@ -660,12 +660,12 @@ Text("正文", fontSize = 14.sp)  // 硬编码尺寸`,
       content: 'Typography 定义了 15 个文字样式，分为 5 个类别（Display/Headline/Title/Body/Label），每个类别 3 个尺寸（Large/Medium/Small），覆盖从展示标题到小标签的所有场景'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '默认字体回退',
       content: '如果未指定 fontFamily，Compose 使用系统默认字体。Android 系统默认是 Roboto，可以通过 FontFamily.Default 显式指定'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'TextStyle.merge() 的优先级',
       content: 'merge() 方法中，参数中的非空属性会覆盖调用者的属性。例如 baseStyle.merge(emphasisStyle)，emphasisStyle 的属性优先'
     },
@@ -680,12 +680,12 @@ Text("正文", fontSize = 14.sp)  // 硬编码尺寸`,
       content: 'letterSpacing 使用 sp 单位，正值增加间距，负值减少间距。过大或过小的字间距都会影响可读性，建议在 -0.25sp 到 0.5sp 之间'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '避免极端字体大小',
       content: '过小的字体（< 12sp）影响可读性，过大的字体（> 100sp）可能导致布局问题。关键内容字体至少 14sp，确保符合可访问性标准'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'Downloadable Fonts',
       content: '使用 Google Fonts 的 Downloadable Fonts 功能可以减小 APK 大小，系统会按需下载字体。配置方式：Font(resId, weight, GoogleFont("Roboto"))'
     },

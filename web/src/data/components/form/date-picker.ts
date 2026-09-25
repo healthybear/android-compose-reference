@@ -357,22 +357,22 @@ val date = Date(selectedMillis!!)  // 不推荐`
       content: 'DatePickerState 返回的时间戳是 UTC 00:00 的毫秒数。转换为 LocalDate 时必须指定时区，建议使用 ZoneId.systemDefault()'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '初始化已选日期',
       content: '使用 rememberDatePickerState(initialSelectedDateMillis = ...) 设置初始日期。将 LocalDate 转换为毫秒时：date.atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli()'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '年份范围控制',
       content: 'yearRange 参数控制日历显示的年份范围，默认为 IntRange(1900, 2100)。对于生日选择等场景，建议设置合理范围'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: 'DatePickerState 不会自动保存',
       content: '使用 rememberDatePickerState 创建的状态仅在组合期间保留。如需跨配置更改保存，使用 rememberSaveable { DatePickerState(...) }'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: 'DateRangePicker 要求起始日期早于结束日期',
       content: '用户必须先选择起始日期，再选择结束日期。如果先选了结束日期，会自动将其设为起始日期'
     },

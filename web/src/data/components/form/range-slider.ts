@@ -407,22 +407,22 @@ RangeSlider(
       content: 'steps 是区间内的分隔点数量，不包括起点和终点。例如 valueRange = 0f..100f, steps = 9 会产生 0, 10, 20, ..., 100 共 11 个点'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 steps = 0 实现连续滑动',
       content: 'steps = 0（默认值）时滑块连续滑动，适合价格、百分比等连续值。设置 steps 可实现离散步进'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '范围顺序自动纠正',
       content: 'RangeSlider 会自动确保 start <= endInclusive，用户拖动时不会出现反向范围'
     },
     {
-      type: 'danger',
+      type: 'error',
       title: 'valueRange 必须是有效范围',
       content: 'valueRange.start 必须小于 valueRange.endInclusive，否则会抛出异常'
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '配合 LaunchedEffect 实现防抖',
       content: '如果范围变化触发耗时操作（如网络请求），使用 LaunchedEffect + delay 实现防抖，避免频繁调用'
     },

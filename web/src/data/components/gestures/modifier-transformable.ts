@@ -450,12 +450,12 @@ onTransformStopped = {
       content: 'rotationChange 是本次旋转的角度增量（单位：度），需要累加到当前 rotation：rotation += rotationChange',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '双指捏合触发缩放',
       content: '两根手指同时按下并改变距离时触发缩放，改变相对角度时触发旋转，同时移动时触发平移',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '结合 detectTapGestures 实现双击',
       content: '在 transformable 外层使用 pointerInput + detectTapGestures 可以同时支持双击和变换手势',
     },
@@ -470,7 +470,7 @@ onTransformStopped = {
       content: 'rememberTransformableState 回调在每一帧都会执行，避免复杂计算或状态读取',
     },
     {
-      type: 'danger',
+      type: 'error',
       title: '注意浮点数精度问题',
       content: '连续的旋转和缩放可能导致浮点数累积误差，必要时添加归一化或重置逻辑',
     },

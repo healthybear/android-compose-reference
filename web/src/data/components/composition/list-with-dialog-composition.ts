@@ -43,12 +43,12 @@ if (showDialog) {
   ],
   bestPractices: [
     {
-      type: 'tip',
+      type: 'info',
       title: '使用 AnimatedVisibility 实现平滑展开',
       content: '列表项展开收起时添加动画，提升用户体验',
     },
     {
-      type: 'tip',
+      type: 'info',
       title: '重要操作需要二次确认',
       content: '删除等不可逆操作应使用对话框确认',
     },
