@@ -239,7 +239,7 @@ fun SettingsScreenCompositionDemo() {
                             Text(
                                 "预览文字效果",
                                 style = MaterialTheme.typography.bodyMedium.copy(
-                                    fontSize = androidx.compose.ui.unit.sp(fontSize.toInt())
+                                    fontSize = androidx.compose.ui.unit.TextUnit(fontSize, androidx.compose.ui.unit.TextUnitType.Sp)
                                 )
                             )
                         }

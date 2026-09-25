@@ -23,6 +23,21 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+private enum class Priority(val label: String, val color: androidx.compose.ui.graphics.Color) {
+    HIGH("高优先级", androidx.compose.ui.graphics.Color(0xFFEF5350)),
+    MEDIUM("中优先级", androidx.compose.ui.graphics.Color(0xFFFFA726)),
+    LOW("低优先级", androidx.compose.ui.graphics.Color(0xFF66BB6A))
+}
+
+private data class TodoItem(
+    val id: Int,
+    val title: String,
+    val description: String,
+    val priority: Priority,
+    var completed: Boolean = false,
+    var expanded: Boolean = false
+)
+
 /**
  * ListWithDialogCompositionDemo 演示列表与对话框的组合场景。
  *
@@ -45,21 +60,6 @@ fun ListWithDialogCompositionDemo() {
         Text("列表+对话框组合示例", style = MaterialTheme.typography.titleMedium)
 
         SectionLabel("任务列表管理")
-
-        data class TodoItem(
-            val id: Int,
-            val title: String,
-            val description: String,
-            val priority: Priority,
-            var completed: Boolean = false,
-            var expanded: Boolean = false
-        )
-
-        enum class Priority(val label: String, val color: androidx.compose.ui.graphics.Color) {
-            HIGH("高优先级", androidx.compose.ui.graphics.Color(0xFFEF5350)),
-            MEDIUM("中优先级", androidx.compose.ui.graphics.Color(0xFFFFA726)),
-            LOW("低优先级", androidx.compose.ui.graphics.Color(0xFF66BB6A))
-        }
 
         val todos = remember {
             mutableStateListOf(
