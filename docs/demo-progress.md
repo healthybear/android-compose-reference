@@ -56,6 +56,10 @@
 | [x] | `ModifierClickableDemo.kt` | `modifier-clickable` | 点击计数、ripple、combinedClickable 长按 |
 | [x] | `ModifierOffsetDemo.kt` | `modifier-offset` | 滑块拖动改变 offset |
 | [x] | `ModifierScrollDemo.kt` | `modifier-scroll` | verticalScroll / horizontalScroll |
+| [x] | `ModifierAlphaDemo.kt` | `modifier-alpha` | 透明度控制（0f-1f）、禁用状态视觉反馈 |
+| [x] | `ModifierAnimateContentSizeDemo.kt` | `modifier-animate-content-size` | 内容大小变化自动动画 |
+| [x] | `ModifierWeightDemo.kt` | `modifier-weight` | Row/Column 中按权重分配空间 |
+| [x] | `ModifierPointerInputDemo.kt` | `modifier-pointer-input` | 检测点击、长按、双击手势 |
 | [-] | `ModifierSemanticsDemo.kt` | — | 无障碍属性无法在 Wasm 中直观演示，跳过 |
 
 ---
@@ -144,6 +148,8 @@
 | [x] | `CircularProgressDemo.kt` | `circular-progress` | 不确定进度 + 确定进度动画 |
 | [x] | `LinearProgressDemo.kt` | `linear-progress` | 不确定进度 + 确定进度动画 |
 | [x] | `SwipeToDismissDemo.kt` | `swipe-to-dismiss` | 左滑删除列表项 |
+| [x] | `TooltipDemo.kt` | `tooltip` | 悬浮提示组件 |
+| [x] | `ModalBottomSheetDemo.kt` | `modal-bottom-sheet` | 从底部弹出的模态对话框 |
 | [-] | — | — | PullToRefresh：下拉刷新手势在 Wasm Canvas 中受限，跳过 |
 
 ---
@@ -153,9 +159,13 @@
 | 状态 | Demo 文件 | demoId | 演示要点 |
 |------|-----------|--------|---------|
 | [x] | `TopAppBarDemo.kt` | `top-app-bar` | 标题居中、navigationIcon、actions |
+| [x] | `CenterAlignedTopAppBarDemo.kt` | `center-aligned-top-app-bar` | 标题居中的顶部应用栏 |
+| [x] | `MediumTopAppBarDemo.kt` | `medium-top-app-bar` | 中等大小标题的顶部应用栏 |
+| [x] | `LargeTopAppBarDemo.kt` | `large-top-app-bar` | 大标题顶部应用栏，支持滚动折叠 |
 | [x] | `BottomAppBarDemo.kt` | `bottom-app-bar` | 底部操作栏 + FAB |
 | [x] | `NavigationDrawerDemo.kt` | `navigation-drawer` | 侧边抽屉开关、选中项高亮 |
 | [x] | `PermanentNavigationDrawerDemo.kt` | `permanent-navigation-drawer` | 常驻侧边栏 |
+| [x] | `NavigationRailDemo.kt` | `navigation-rail` | 垂直导航栏，适合平板设备 |
 
 ---
 
@@ -194,6 +204,8 @@
 | [x] | `SideEffectDemo.kt` | `side-effect` | 每次重组同步外部计数器 |
 | [x] | `DisposableEffectDemo.kt` | `disposable-effect` | 模拟订阅/取消订阅生命周期 |
 | [x] | `ProduceStateDemo.kt` | `produce-state` | 模拟异步加载（delay + 状态切换） |
+| [x] | `RememberCoroutineScopeDemo.kt` | `remember-coroutine-scope` | 响应用户交互启动协程 |
+| [x] | `SnapshotFlowDemo.kt` | `snapshot-flow` | 将 Compose 状态转换为 Kotlin Flow |
 | [-] | — | — | CollectAsState：需要 ViewModel/Flow，Wasm 中用 produceState 替代演示，跳过 |
 
 ---
@@ -203,10 +215,23 @@
 | 状态 | Demo 文件 | demoId | 演示要点 |
 |------|-----------|--------|---------|
 | [x] | `CompositionLocalDemo.kt` | `composition-local` | 自定义 LocalColor，子组件读取 |
+| [x] | `LocalContentColorDemo.kt` | `local-content-color` | LocalContentColor 内容颜色继承 |
 | [x] | `CustomLayoutDemo.kt` | `custom-layout` | Layout 自定义测量/放置（瀑布流简版） |
 | [x] | `SubcomposeLayoutDemo.kt` | `subcompose-layout` | 先测量内容再决定容器尺寸 |
 | [x] | `DrawModifierDemo.kt` | `draw-modifier` | drawBehind / drawWithContent 自定义绘制 |
 | [x] | `BrushDemo.kt` | `brush` | linearGradient / radialGradient / sweepGradient |
+
+---
+
+## Composition
+
+| 状态 | Demo 文件 | demoId | 演示要点 |
+|------|-----------|--------|---------|
+| [x] | `FormCompositionDemo.kt` | `form-composition` | 完整注册表单（验证、加载、反馈） |
+| [x] | `SearchBarCompositionDemo.kt` | `search-bar-composition` | 实时搜索（防抖、历史记录） |
+| [x] | `ListWithDialogCompositionDemo.kt` | `list-with-dialog-composition` | 任务列表管理（展开、对话框、删除确认） |
+| [x] | `SettingsScreenCompositionDemo.kt` | `settings-screen-composition` | 完整设置页面（Switch、Slider、Dialog） |
+| [x] | `OnboardingCompositionDemo.kt` | `onboarding-composition` | 应用引导流程（HorizontalPager、页面指示器） |
 
 ---
 
@@ -222,9 +247,9 @@
 
 ## 汇总
 
-- 组件文档条目：**116**
-- 已完成并注册 Demo：**85**
+- 组件文档条目：**127**
+- 已完成并注册 Demo：**103**
 - 明确跳过项：**8**
-- 交互预览覆盖：**85 / 116**（约 73.3%）
+- 交互预览覆盖：**103 / 127**（约 81.1%）
 
 > 统计口径：组件数来自 Web 组件数据；Demo 数以组件 `demo` 元数据、`DemoRegistry.kt`、Kotlin 源文件和上方 `[x]` 表格四方一致为准。`pnpm run validate:demos` 会在任一处遗漏或汇总数字过期时失败。
