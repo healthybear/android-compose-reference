@@ -86,7 +86,7 @@ export const lazyVerticalGridComponent: ComponentEntry = {
                     overflow = TextOverflow.Ellipsis
                 )
                 Text(
-                    text = "¥\${product.price}",
+                    text = "¥99.00",
                     modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.error

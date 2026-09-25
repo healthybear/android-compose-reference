@@ -9,6 +9,7 @@ import { modifierScrollComponent } from './scroll'
 import { modifierSemanticsComponent } from './semantics'
 import { pointerInputComponent } from './pointer-input'
 import { graphicsModifierComponent } from './graphics'
+import { modifierAnimateContentSizeComponent } from './animate-content-size'
 
 export const modifierComponents = [
   modifierSizeComponent,
@@ -22,4 +23,5 @@ export const modifierComponents = [
   modifierSemanticsComponent,
   pointerInputComponent,
   graphicsModifierComponent,
+  modifierAnimateContentSizeComponent,
 ]

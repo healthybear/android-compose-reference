@@ -152,6 +152,51 @@ fun AccelerometerSensor(
     }
 }`,
     },
+    {
+      title: '数据库观察者',
+      code: `@Composable
+fun DatabaseObserver(
+    query: String,
+    onDataChanged: (List<Item>) -> Unit
+) {
+    val database = LocalDatabase.current
+
+    DisposableEffect(query) {
+        val observer = object : InvalidationTracker.Observer("items") {
+            override fun onInvalidated(tables: Set<String>) {
+                val items = database.itemDao().query(query)
+                onDataChanged(items)
+            }
+        }
+
+        database.invalidationTracker.addObserver(observer)
+
+        onDispose {
+            database.invalidationTracker.removeObserver(observer)
+        }
+    }
+}`,
+    },
+    {
+      title: '定时器管理',
+      code: `@Composable
+fun TimerComponent(intervalMs: Long, onTick: () -> Unit) {
+    DisposableEffect(intervalMs) {
+        val timer = Timer()
+        val task = object : TimerTask() {
+            override fun run() {
+                onTick()
+            }
+        }
+
+        timer.scheduleAtFixedRate(task, 0L, intervalMs)
+
+        onDispose {
+            timer.cancel()
+        }
+    }
+}`,
+    },
   ],
 
   useCases: [
@@ -293,6 +338,29 @@ DisposableEffect(userId) {
     }
 }`,
     },
+    {
+      title: '配合 remember 使用',
+      description: '需要清理的对象应该用 remember 创建，避免每次重组都重新创建',
+      goodExample: `val player = remember { ExoPlayer.Builder(context).build() }
+
+DisposableEffect(videoUrl) {
+    player.setMediaItem(MediaItem.fromUri(videoUrl))
+    player.play()
+
+    onDispose {
+        player.release()
+    }
+}`,
+      badExample: `DisposableEffect(videoUrl) {
+    // 每次重组都创建新的 player，旧的未释放导致内存泄漏
+    val player = ExoPlayer.Builder(context).build()
+    player.play()
+
+    onDispose {
+        player.release()
+    }
+}`
+    },
   ],
 
   notes: [
@@ -309,8 +377,7 @@ DisposableEffect(userId) {
     {
       type: 'tip',
       title: '使用 remember 创建需要清理的对象',
-      description: 'remember + DisposableEffect 是管理有生命周期的对象的标准模式',
-      content: 'val player = remember { ExoPlayer.create() }; DisposableEffect(Unit) { onDispose { player.release() } }'
+      content: 'remember + DisposableEffect 是管理有生命周期的对象的标准模式：val player = remember { ExoPlayer.create() } 然后在 DisposableEffect 中清理'
     },
     {
       type: 'tip',
@@ -318,9 +385,19 @@ DisposableEffect(userId) {
       content: 'DisposableEffect 是将基于回调的 Android API（生命周期、传感器、广播）集成到 Compose 的标准方式'
     },
     {
+      type: 'tip',
+      title: '键变化时的执行顺序',
+      content: '当依赖键变化时，执行顺序是：1) 调用旧的 onDispose 2) 执行新的副作用块 3) 注册新的 onDispose。确保清理逻辑不依赖新的状态'
+    },
+    {
       type: 'danger',
       title: '避免在 onDispose 中访问 Compose 状态',
       content: 'onDispose 可能在组件已销毁后执行，访问状态可能导致异常。只清理外部资源'
+    },
+    {
+      type: 'warning',
+      title: '避免内存泄漏',
+      content: '未正确清理的监听器、回调、订阅会导致内存泄漏。确保每个注册操作都有对应的注销操作在 onDispose 中'
     },
   ],
 

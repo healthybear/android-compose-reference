@@ -123,7 +123,7 @@ fun SelectAllExample() {
                     onCheckedChange = null
                 )
                 Spacer(Modifier.width(8.dp))
-                Text("选项 \${index + 1}")
+                Text("选项 " + (index + 1))
             }
         }
     }
@@ -236,7 +236,7 @@ fun BatchOperationList(items: List<Item>) {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text("已选择 \${selectedIds.size} 项")
+                Text("已选择 3 项")
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     IconButton(onClick = { /* 删除 */ }) {
                         Icon(Icons.Default.Delete, contentDescription = "删除")

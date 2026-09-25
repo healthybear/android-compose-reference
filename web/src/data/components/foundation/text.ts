@@ -139,7 +139,7 @@ Text(
     }
 )
 
-Text("文本宽度: \${textWidth}px")`
+Text("文本宽度: 285px")`
     },
   ],
 

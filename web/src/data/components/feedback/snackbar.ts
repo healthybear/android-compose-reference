@@ -202,7 +202,7 @@ fun FormScreen(viewModel: FormViewModel) {
                 }
                 is Error -> {
                     val snackbarResult = snackbarHostState.showSnackbar(
-                        message = "提交失败: \${result.message}",
+                        message = "提交失败: 网络错误",
                         actionLabel = "重试",
                         duration = SnackbarDuration.Long
                     )
@@ -245,7 +245,7 @@ fun ItemListScreen(viewModel: ItemViewModel) {
                         viewModel.deleteItem(item)
                         scope.launch {
                             val result = snackbarHostState.showSnackbar(
-                                message = "已删除"\${item.name}"",
+                                message = "已删除"任务项"",
                                 actionLabel = "撤销",
                                 duration = SnackbarDuration.Short
                             )

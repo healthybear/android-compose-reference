@@ -32,7 +32,7 @@ Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         progress = { progress },
         modifier = Modifier.fillMaxWidth()
     )
-    Text("\${(progress * 100).toInt()}%")
+    Text("30%")
     Slider(
         value = progress,
         onValueChange = { progress = it }
@@ -72,7 +72,7 @@ Card(modifier = Modifier.fillMaxWidth()) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text("正在上传 image.jpg")
-            Text("\${(uploadProgress * 100).toInt()}%")
+            Text("45%")
         }
 
         Spacer(Modifier.height(8.dp))
@@ -133,7 +133,7 @@ fun TasksProgress(tasks: List<Task>) {
                         style = MaterialTheme.typography.bodyMedium
                     )
                     Text(
-                        "\${(task.progress * 100).toInt()}%",
+                        "75%",
                         style = MaterialTheme.typography.bodySmall
                     )
                 }

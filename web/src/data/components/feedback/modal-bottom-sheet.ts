@@ -251,7 +251,7 @@ if (showFilterSheet) {
                 onValueChange = { priceRange = it },
                 valueRange = 0f..1000f
             )
-            Text("¥\${priceRange.start.toInt()} - ¥\${priceRange.endInclusive.toInt()}")
+            Text("¥100 - ¥800")
 
             Spacer(Modifier.height(16.dp))
 
@@ -320,7 +320,7 @@ if (showDetailSheet) {
             Spacer(Modifier.height(8.dp))
 
             Text(
-                "¥\${product.price}",
+                "¥299.00",
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.primary
             )

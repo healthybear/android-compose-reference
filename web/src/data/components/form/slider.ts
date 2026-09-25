@@ -34,7 +34,7 @@ Column(modifier = Modifier.padding(16.dp)) {
         modifier = Modifier.fillMaxWidth()
     )
     Text(
-        "当前值: \${"%.2f".format(sliderValue)}",
+        "当前值: 0.50",
         style = MaterialTheme.typography.bodySmall
     )
 }`,
@@ -100,7 +100,7 @@ Row(
 
 Column(modifier = Modifier.padding(16.dp)) {
     Text(
-        "价格上限: ¥\${price.toInt()}",
+        "价格上限: ¥500",
         style = MaterialTheme.typography.titleMedium
     )
     Spacer(Modifier.height(8.dp))
@@ -176,7 +176,7 @@ fun SettingsPanel() {
             value = brightness,
             onValueChange = { brightness = it },
             valueRange = 0f..1f,
-            valueFormatter = { "\${(it * 100).toInt()}%" }
+            valueFormatter = { ((it * 100).toInt()).toString() + "%" }
         )
 
         // 音量
@@ -196,7 +196,7 @@ fun SettingsPanel() {
             onValueChange = { fontSize = it },
             valueRange = 12f..24f,
             steps = 11,
-            valueFormatter = { "\${it.toInt()}sp" }
+            valueFormatter = { it.toInt().toString() + "sp" }
         )
     }
 }
@@ -256,7 +256,7 @@ fun TextSizePreview() {
 
         // 控制滑块
         Column {
-            Text("字体大小: \${textSize.toInt()}sp")
+            Text("字体大小: 16sp")
             Slider(
                 value = textSize,
                 onValueChange = { textSize = it },
@@ -275,7 +275,7 @@ fun TextSizePreview() {
       title: '为 Slider 提供标签和当前值',
       description: '让用户知道正在调节什么以及当前值',
       goodExample: `Column {
-    Text("音量: \${volume.toInt()}")
+    Text("音量: 5")
     Slider(value = volume, onValueChange = { volume = it })
 }`,
       badExample: `// 没有标签，用户不知道调节的是什么

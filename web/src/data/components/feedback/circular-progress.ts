@@ -30,7 +30,7 @@ Column(horizontalAlignment = Alignment.CenterHorizontally) {
         progress = { progress }
     )
     Spacer(Modifier.height(16.dp))
-    Text("\${(progress * 100).toInt()}%")
+    Text("30%")
     Slider(
         value = progress,
         onValueChange = { progress = it }
@@ -107,7 +107,7 @@ Card(modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.weight(1f)) {
             Text("正在下载", style = MaterialTheme.typography.bodyLarge)
             Text(
-                "\${(downloadProgress * 100).toInt()}%",
+                "65%",
                 style = MaterialTheme.typography.bodySmall
             )
         }

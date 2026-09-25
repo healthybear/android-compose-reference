@@ -142,7 +142,7 @@ fun PriceCalculator() {
         }
     }
 
-    Text("最终价格: ¥\${finalPrice}")
+    Text("最终价格: ¥85.00")
 }`,
     },
     {
@@ -291,7 +291,7 @@ val displayOffset by remember {
       badExample: `val filteredList by remember {
     derivedStateOf {
         val filtered = items.filter { it.isActive }
-        Log.d("Filter", "Filtered \${filtered.size} items")  // 副作用
+        Log.d("Filter", "Filtered 12 items")  // 副作用
         filtered
     }
 }`

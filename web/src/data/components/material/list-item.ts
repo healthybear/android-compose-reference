@@ -124,7 +124,7 @@ fun ChatListItem(chat: Chat) {
                 }
             },
             modifier = Modifier.clickable {
-                navController.navigate("contact/\${contact.id}")
+                navController.navigate("contact/" + contact.id)
             }
         )
         HorizontalDivider()

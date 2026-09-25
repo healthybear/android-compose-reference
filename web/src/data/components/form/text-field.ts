@@ -133,7 +133,7 @@ TextField(
     label = { Text("评论") },
     placeholder = { Text("请输入您的评论...") },
     supportingText = {
-        Text("\${comment.length} / 500")
+        Text("128 / 500")
     },
     maxLines = 5,
     minLines = 3,

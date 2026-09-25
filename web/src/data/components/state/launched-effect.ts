@@ -134,7 +134,7 @@ fun LocationTracker(locationFlow: Flow<Location>) {
     }
 
     currentLocation?.let { location ->
-        Text("当前位置: \${location.latitude}, \${location.longitude}")
+        Text("当前位置: 39.9042, 116.4074")
     }
 }`,
     },

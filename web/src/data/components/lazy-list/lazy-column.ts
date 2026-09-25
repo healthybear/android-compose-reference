@@ -72,8 +72,8 @@ LazyColumn {
     items(
         items = feedItems,
         key = { item -> when (item) {
-            is FeedItem.Header -> "header_\${item.title}"
-            is FeedItem.Post -> "post_\${item.id}"
+            is FeedItem.Header -> "header_" + item.title
+            is FeedItem.Post -> "post_" + item.id
         }},
         contentType = { item -> item::class }  // 相同类型复用组合项
     ) { item ->

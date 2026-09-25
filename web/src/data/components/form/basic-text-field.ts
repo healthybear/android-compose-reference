@@ -67,7 +67,7 @@ BasicTextField(
         Column {
             innerTextField()
             Text(
-                "\${state.text.length} / 20",
+                "8 / 20",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )

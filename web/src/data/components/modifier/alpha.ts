@@ -161,12 +161,12 @@ Column(
         contentAlignment = Alignment.Center
     ) {
         Text(
-            "alpha = \${(alpha * 100).toInt()}%",
+            "alpha = " + (alpha * 100).toInt() + "%",
             color = Color.White
         )
     }
 
-    Text("透明度: \${(alpha * 100).toInt()}%")
+    Text("透明度: " + (alpha * 100).toInt() + "%")
 
     Slider(
         value = alpha,

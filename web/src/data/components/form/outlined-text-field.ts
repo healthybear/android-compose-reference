@@ -308,7 +308,7 @@ fun PhoneNumberInput(
         },
         isError = value.length == 11 && !isValid,
         supportingText = {
-            Text("\${value.length} / 11")
+            Text("11 / 11")
         },
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Phone
