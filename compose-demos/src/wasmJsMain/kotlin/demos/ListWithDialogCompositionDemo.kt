@@ -34,8 +34,8 @@ private data class TodoItem(
     val title: String,
     val description: String,
     val priority: Priority,
-    var completed: Boolean = false,
-    var expanded: Boolean = false
+    val completed: Boolean = false,
+    val expanded: Boolean = false
 )
 
 /**
@@ -200,9 +200,9 @@ fun ListWithDialogCompositionDemo() {
                                         modifier = Modifier
                                             .fillMaxWidth()
                                             .clickable {
-                                                val index = todos.indexOf(item)
+                                                val index = todos.indexOfFirst { it.id == item.id }
                                                 if (index >= 0) {
-                                                    todos[index] = item.copy(expanded = !item.expanded)
+                                                    todos[index] = todos[index].copy(expanded = !todos[index].expanded)
                                                 }
                                             }
                                             .padding(12.dp),
@@ -239,9 +239,9 @@ fun ListWithDialogCompositionDemo() {
                                         Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                                             IconButton(
                                                 onClick = {
-                                                    val index = todos.indexOf(item)
+                                                    val index = todos.indexOfFirst { it.id == item.id }
                                                     if (index >= 0) {
-                                                        todos[index] = item.copy(completed = !item.completed)
+                                                        todos[index] = todos[index].copy(completed = !todos[index].completed)
                                                     }
                                                 }
                                             ) {

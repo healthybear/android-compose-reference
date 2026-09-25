@@ -123,7 +123,7 @@ fun LinearProgressDemo() {
         // ── 5. 实际场景：批量任务处理 ─────────────────────────
         SectionLabel("场景示例：批量任务处理")
 
-        data class Task(val name: String, var progress: Float, var status: String)
+        data class Task(val name: String, val progress: Float, val status: String)
 
         val tasks = remember {
             mutableStateListOf(
@@ -136,15 +136,15 @@ fun LinearProgressDemo() {
 
         LaunchedEffect(processingTasks) {
             if (processingTasks) {
-                tasks.forEachIndexed { index, task ->
-                    tasks[index] = task.copy(status = "处理中", progress = 0f)
+                tasks.forEachIndexed { index, _ ->
+                    tasks[index] = tasks[index].copy(status = "处理中", progress = 0f)
                     while (tasks[index].progress < 1f) {
                         kotlinx.coroutines.delay(50)
                         tasks[index] = tasks[index].copy(
                             progress = (tasks[index].progress + 0.05f).coerceAtMost(1f)
                         )
                     }
-                    tasks[index] = task.copy(status = "已完成", progress = 1f)
+                    tasks[index] = tasks[index].copy(status = "已完成", progress = 1f)
                 }
                 processingTasks = false
             }

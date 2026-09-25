@@ -129,7 +129,7 @@ fun AnimatedVisibilityDemo() {
             val id: Int,
             val title: String,
             val details: String,
-            var expanded: Boolean = false
+            val expanded: Boolean = false
         )
 
         val items = remember {
@@ -169,8 +169,10 @@ fun AnimatedVisibilityDemo() {
                                 )
                                 IconButton(
                                     onClick = {
-                                        val index = items.indexOf(item)
-                                        items[index] = item.copy(expanded = !item.expanded)
+                                        val index = items.indexOfFirst { it.id == item.id }
+                                        if (index >= 0) {
+                                            items[index] = items[index].copy(expanded = !items[index].expanded)
+                                        }
                                     }
                                 ) {
                                     Icon(

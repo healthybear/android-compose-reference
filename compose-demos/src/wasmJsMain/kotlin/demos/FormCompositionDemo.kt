@@ -193,7 +193,7 @@ fun FormCompositionDemo() {
                 }
 
                 // 错误提示
-                if (errorMessage != null) {
+                errorMessage?.let { message ->
                     Card(
                         colors = CardDefaults.cardColors(
                             containerColor = MaterialTheme.colorScheme.errorContainer
@@ -212,7 +212,7 @@ fun FormCompositionDemo() {
                                 tint = MaterialTheme.colorScheme.error
                             )
                             Text(
-                                errorMessage!!,
+                                message,
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onErrorContainer
                             )
