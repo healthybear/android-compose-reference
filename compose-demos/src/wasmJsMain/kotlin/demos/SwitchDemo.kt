@@ -104,5 +104,150 @@ fun SwitchDemo() {
                 Text("禁用关", style = MaterialTheme.typography.bodySmall)
             }
         }
+
+        HorizontalDivider()
+
+        // ── 5. 实际场景：权限管理 ─────────────────────────────
+        SectionLabel("场景示例：应用权限管理")
+
+        data class Permission(
+            val name: String,
+            val description: String,
+            val icon: androidx.compose.ui.graphics.vector.ImageVector,
+            var enabled: Boolean,
+            val required: Boolean = false
+        )
+
+        val permissions = remember {
+            mutableStateListOf(
+                Permission("位置访问", "获取您的精确位置信息", Icons.Filled.LocationOn, true, required = true),
+                Permission("相机", "拍照和录制视频", Icons.Filled.AddCircle, false),
+                Permission("麦克风", "录制音频", Icons.Filled.AccountBox, false),
+                Permission("通知", "显示推送通知", Icons.Filled.Notifications, true),
+                Permission("存储", "读写设备存储", Icons.Filled.Star, true)
+            )
+        }
+
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant
+            )
+        ) {
+            Column(
+                modifier = Modifier.padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Text(
+                    "应用权限",
+                    style = MaterialTheme.typography.titleSmall,
+                    modifier = Modifier.padding(bottom = 4.dp)
+                )
+
+                permissions.forEachIndexed { index, permission ->
+                    Card(
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(12.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Row(
+                                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier.weight(1f)
+                            ) {
+                                Icon(
+                                    permission.icon,
+                                    contentDescription = null,
+                                    tint = if (permission.enabled)
+                                        MaterialTheme.colorScheme.primary
+                                    else
+                                        MaterialTheme.colorScheme.outline
+                                )
+                                Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                                    Row(
+                                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                                        verticalAlignment = Alignment.CenterVertically
+                                    ) {
+                                        Text(
+                                            permission.name,
+                                            style = MaterialTheme.typography.bodyMedium
+                                        )
+                                        if (permission.required) {
+                                            AssistChip(
+                                                onClick = { },
+                                                label = {
+                                                    Text(
+                                                        "必需",
+                                                        style = MaterialTheme.typography.labelSmall
+                                                    )
+                                                },
+                                                modifier = Modifier.height(20.dp),
+                                                colors = AssistChipDefaults.assistChipColors(
+                                                    containerColor = MaterialTheme.colorScheme.errorContainer,
+                                                    labelColor = MaterialTheme.colorScheme.onErrorContainer
+                                                )
+                                            )
+                                        }
+                                    }
+                                    Text(
+                                        permission.description,
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
+                            }
+                            Switch(
+                                checked = permission.enabled,
+                                onCheckedChange = {
+                                    if (!permission.required || it) {
+                                        permissions[index] = permission.copy(enabled = it)
+                                    }
+                                },
+                                enabled = !permission.required || permission.enabled,
+                                thumbContent = if (permission.enabled) {
+                                    {
+                                        Icon(
+                                            Icons.Filled.Check,
+                                            contentDescription = null,
+                                            modifier = Modifier.size(SwitchDefaults.IconSize)
+                                        )
+                                    }
+                                } else null
+                            )
+                        }
+                    }
+                }
+
+                HorizontalDivider()
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        "已授权：${permissions.count { it.enabled }} / ${permissions.size}",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    TextButton(
+                        onClick = {
+                            permissions.forEachIndexed { i, p ->
+                                if (!p.required) {
+                                    permissions[i] = p.copy(enabled = false)
+                                }
+                            }
+                        }
+                    ) {
+                        Text("全部禁用", style = MaterialTheme.typography.labelSmall)
+                    }
+                }
+            }
+        }
     }
 }

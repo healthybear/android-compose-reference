@@ -117,5 +117,122 @@ fun LinearProgressDemo() {
                 enabled = !downloading
             ) { Text(if (downloadProgress >= 1f) "重新下载" else "开始下载") }
         }
+
+        HorizontalDivider()
+
+        // ── 5. 实际场景：批量任务处理 ─────────────────────────
+        SectionLabel("场景示例：批量任务处理")
+
+        data class Task(val name: String, var progress: Float, var status: String)
+
+        val tasks = remember {
+            mutableStateListOf(
+                Task("处理图片压缩", 0f, "等待中"),
+                Task("生成缩略图", 0f, "等待中"),
+                Task("上传到服务器", 0f, "等待中")
+            )
+        }
+        var processingTasks by remember { mutableStateOf(false) }
+
+        LaunchedEffect(processingTasks) {
+            if (processingTasks) {
+                tasks.forEachIndexed { index, task ->
+                    tasks[index] = task.copy(status = "处理中", progress = 0f)
+                    while (tasks[index].progress < 1f) {
+                        kotlinx.coroutines.delay(50)
+                        tasks[index] = tasks[index].copy(
+                            progress = (tasks[index].progress + 0.05f).coerceAtMost(1f)
+                        )
+                    }
+                    tasks[index] = task.copy(status = "已完成", progress = 1f)
+                }
+                processingTasks = false
+            }
+        }
+
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant
+            )
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
+                ) {
+                    Text(
+                        "批量处理任务",
+                        style = MaterialTheme.typography.titleSmall
+                    )
+                    Text(
+                        "${tasks.count { it.status == "已完成" }} / ${tasks.size}",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
+
+                tasks.forEach { task ->
+                    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
+                        ) {
+                            Text(
+                                task.name,
+                                style = MaterialTheme.typography.bodyMedium
+                            )
+                            Text(
+                                task.status,
+                                style = MaterialTheme.typography.labelSmall,
+                                color = when (task.status) {
+                                    "已完成" -> MaterialTheme.colorScheme.primary
+                                    "处理中" -> MaterialTheme.colorScheme.secondary
+                                    else -> MaterialTheme.colorScheme.outline
+                                }
+                            )
+                        }
+                        LinearProgressIndicator(
+                            progress = { task.progress },
+                            modifier = Modifier.fillMaxWidth(),
+                            color = if (task.status == "已完成")
+                                MaterialTheme.colorScheme.primary
+                            else
+                                MaterialTheme.colorScheme.secondary
+                        )
+                    }
+                }
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Button(
+                        onClick = { processingTasks = true },
+                        enabled = !processingTasks,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text("开始处理")
+                    }
+                    OutlinedButton(
+                        onClick = {
+                            tasks.forEachIndexed { i, task ->
+                                tasks[i] = task.copy(progress = 0f, status = "等待中")
+                            }
+                        },
+                        enabled = !processingTasks && tasks.any { it.progress > 0f }
+                    ) {
+                        Text("重置")
+                    }
+                }
+            }
+        }
     }
 }

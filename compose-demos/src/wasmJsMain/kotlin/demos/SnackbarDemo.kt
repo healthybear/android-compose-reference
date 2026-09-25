@@ -1,6 +1,8 @@
 package demos
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -119,5 +121,194 @@ fun SnackbarDemo() {
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
+
+        HorizontalDivider()
+
+        // ── 4. 实际场景：操作反馈 ─────────────────────────────
+        SectionLabel("场景示例：操作反馈与撤销")
+
+        data class Item(val id: Int, val name: String)
+
+        val items = remember {
+            mutableStateListOf(
+                Item(1, "项目 A"),
+                Item(2, "项目 B"),
+                Item(3, "项目 C")
+            )
+        }
+        var deletedItem by remember { mutableStateOf<Item?>(null) }
+        var showDeleteSnackbar by remember { mutableStateOf(false) }
+
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant
+            )
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Text(
+                    "我的项目 (${items.size})",
+                    style = MaterialTheme.typography.titleSmall
+                )
+
+                if (items.isEmpty()) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 20.dp),
+                        contentAlignment = androidx.compose.ui.Alignment.Center
+                    ) {
+                        Text(
+                            "暂无项目",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.outline
+                        )
+                    }
+                } else {
+                    items.forEach { item ->
+                        Card(
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(12.dp),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
+                            ) {
+                                Text(
+                                    item.name,
+                                    style = MaterialTheme.typography.bodyMedium
+                                )
+                                IconButton(
+                                    onClick = {
+                                        deletedItem = item
+                                        items.remove(item)
+                                        showDeleteSnackbar = true
+                                    }
+                                ) {
+                                    Icon(
+                                        androidx.compose.material.icons.Icons.Filled.Delete,
+                                        contentDescription = "删除",
+                                        tint = MaterialTheme.colorScheme.error
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Snackbar
+                if (showDeleteSnackbar && deletedItem != null) {
+                    Snackbar(
+                        action = {
+                            TextButton(
+                                onClick = {
+                                    deletedItem?.let { items.add(it) }
+                                    showDeleteSnackbar = false
+                                    deletedItem = null
+                                }
+                            ) {
+                                Text("撤销")
+                            }
+                        },
+                        dismissAction = {
+                            IconButton(
+                                onClick = {
+                                    showDeleteSnackbar = false
+                                    deletedItem = null
+                                }
+                            ) {
+                                Icon(
+                                    androidx.compose.material.icons.Icons.Filled.Close,
+                                    contentDescription = "关闭",
+                                    modifier = Modifier.size(18.dp)
+                                )
+                            }
+                        },
+                        containerColor = MaterialTheme.colorScheme.inverseSurface,
+                        contentColor = MaterialTheme.colorScheme.inverseOnSurface
+                    ) {
+                        Text("已删除「${deletedItem?.name}」")
+                    }
+                }
+            }
+        }
+
+        HorizontalDivider()
+
+        // ── 5. 实际场景：网络状态提示 ─────────────────────────
+        SectionLabel("场景示例：状态提示")
+
+        var networkStatus by remember { mutableStateOf("在线") }
+        var showStatusSnackbar by remember { mutableStateOf(false) }
+
+        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Button(
+                    onClick = {
+                        networkStatus = "离线"
+                        showStatusSnackbar = true
+                    }
+                ) {
+                    Text("模拟离线")
+                }
+                OutlinedButton(
+                    onClick = {
+                        networkStatus = "在线"
+                        showStatusSnackbar = true
+                    }
+                ) {
+                    Text("恢复在线")
+                }
+            }
+
+            if (showStatusSnackbar) {
+                Snackbar(
+                    containerColor = if (networkStatus == "离线")
+                        MaterialTheme.colorScheme.errorContainer
+                    else
+                        MaterialTheme.colorScheme.primaryContainer,
+                    contentColor = if (networkStatus == "离线")
+                        MaterialTheme.colorScheme.onErrorContainer
+                    else
+                        MaterialTheme.colorScheme.onPrimaryContainer,
+                    dismissAction = {
+                        IconButton(onClick = { showStatusSnackbar = false }) {
+                            Icon(
+                                androidx.compose.material.icons.Icons.Filled.Close,
+                                contentDescription = "关闭",
+                                modifier = Modifier.size(18.dp)
+                            )
+                        }
+                    }
+                ) {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            if (networkStatus == "离线")
+                                androidx.compose.material.icons.Icons.Filled.Warning
+                            else
+                                androidx.compose.material.icons.Icons.Filled.Check,
+                            contentDescription = null,
+                            modifier = Modifier.size(20.dp)
+                        )
+                        Text(
+                            if (networkStatus == "离线")
+                                "网络连接已断开"
+                            else
+                                "网络连接已恢复"
+                        )
+                    }
+                }
+            }
+        }
     }
 }

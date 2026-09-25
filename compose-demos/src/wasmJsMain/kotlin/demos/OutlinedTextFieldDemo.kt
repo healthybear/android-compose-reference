@@ -110,5 +110,109 @@ fun OutlinedTextFieldDemo() {
             maxLines = 5,
             modifier = Modifier.fillMaxWidth()
         )
+
+        HorizontalDivider()
+
+        // ── 6. 实际场景：登录表单 ─────────────────────────────
+        SectionLabel("场景示例：登录表单")
+
+        var loginEmail by remember { mutableStateOf("") }
+        var loginPassword by remember { mutableStateOf("") }
+        var loginPasswordVisible by remember { mutableStateOf(false) }
+        var rememberMe by remember { mutableStateOf(false) }
+
+        val emailValid = loginEmail.isEmpty() || loginEmail.contains("@")
+        val passwordValid = loginPassword.isEmpty() || loginPassword.length >= 6
+        val canLogin = loginEmail.contains("@") && loginPassword.length >= 6
+
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant
+            )
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Text(
+                    "登录",
+                    style = MaterialTheme.typography.titleMedium
+                )
+
+                OutlinedTextField(
+                    value = loginEmail,
+                    onValueChange = { loginEmail = it },
+                    label = { Text("邮箱") },
+                    placeholder = { Text("your@email.com") },
+                    leadingIcon = { Icon(Icons.Filled.Email, contentDescription = null) },
+                    isError = !emailValid,
+                    supportingText = {
+                        if (!emailValid) Text("请输入有效的邮箱地址")
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true,
+                    keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(
+                        keyboardType = androidx.compose.ui.text.input.KeyboardType.Email
+                    )
+                )
+
+                OutlinedTextField(
+                    value = loginPassword,
+                    onValueChange = { loginPassword = it },
+                    label = { Text("密码") },
+                    leadingIcon = { Icon(Icons.Filled.Lock, contentDescription = null) },
+                    trailingIcon = {
+                        IconButton(onClick = { loginPasswordVisible = !loginPasswordVisible }) {
+                            Icon(
+                                if (loginPasswordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff,
+                                contentDescription = if (loginPasswordVisible) "隐藏密码" else "显示密码"
+                            )
+                        }
+                    },
+                    visualTransformation = if (loginPasswordVisible)
+                        androidx.compose.ui.text.input.VisualTransformation.None
+                    else
+                        androidx.compose.ui.text.input.PasswordVisualTransformation(),
+                    isError = !passwordValid,
+                    supportingText = {
+                        if (!passwordValid) Text("密码至少 6 个字符")
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true
+                )
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Checkbox(
+                        checked = rememberMe,
+                        onCheckedChange = { rememberMe = it }
+                    )
+                    Text(
+                        "记住我",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                }
+
+                Button(
+                    onClick = { /* 登录逻辑 */ },
+                    enabled = canLogin,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("登录")
+                }
+
+                TextButton(
+                    onClick = { /* 忘记密码 */ },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("忘记密码？")
+                }
+            }
+        }
     }
 }

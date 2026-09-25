@@ -87,5 +87,131 @@ fun RadioButtonDemo() {
                 Text("禁用未选", style = MaterialTheme.typography.bodySmall)
             }
         }
+
+        HorizontalDivider()
+
+        // ── 4. 实际场景：配送方式选择 ─────────────────────────
+        SectionLabel("场景示例：配送方式选择")
+
+        data class ShippingOption(
+            val name: String,
+            val price: String,
+            val duration: String,
+            val description: String
+        )
+
+        val shippingOptions = listOf(
+            ShippingOption("标准配送", "¥0", "3-5 天", "免费配送，工作日送达"),
+            ShippingOption("加急配送", "¥15", "1-2 天", "加急处理，次日可达"),
+            ShippingOption("当日达", "¥30", "当日", "12:00 前下单当日送达")
+        )
+
+        var selectedShipping by remember { mutableStateOf(shippingOptions[0]) }
+
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant
+            )
+        ) {
+            Column(
+                modifier = Modifier.padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Text(
+                    "选择配送方式",
+                    style = MaterialTheme.typography.titleSmall,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+
+                shippingOptions.forEach { option ->
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = CardDefaults.cardColors(
+                            containerColor = if (option == selectedShipping)
+                                MaterialTheme.colorScheme.primaryContainer
+                            else
+                                MaterialTheme.colorScheme.surface
+                        )
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(8.dp)
+                        ) {
+                            RadioButton(
+                                selected = option == selectedShipping,
+                                onClick = { selectedShipping = option }
+                            )
+                            Column(
+                                modifier = Modifier.weight(1f),
+                                verticalArrangement = Arrangement.spacedBy(2.dp)
+                            ) {
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Text(
+                                        option.name,
+                                        style = MaterialTheme.typography.bodyLarge
+                                    )
+                                    Text(
+                                        option.price,
+                                        style = MaterialTheme.typography.titleSmall,
+                                        color = if (option.price == "¥0")
+                                            MaterialTheme.colorScheme.primary
+                                        else
+                                            MaterialTheme.colorScheme.onSurface
+                                    )
+                                }
+                                Text(
+                                    option.description,
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                                AssistChip(
+                                    onClick = { },
+                                    label = {
+                                        Text(
+                                            "预计 ${option.duration}",
+                                            style = MaterialTheme.typography.labelSmall
+                                        )
+                                    },
+                                    leadingIcon = {
+                                        Icon(
+                                            Icons.Filled.DateRange,
+                                            contentDescription = null,
+                                            modifier = Modifier.size(16.dp)
+                                        )
+                                    },
+                                    modifier = Modifier.height(24.dp)
+                                )
+                            }
+                        }
+                    }
+                    Spacer(Modifier.height(4.dp))
+                }
+
+                HorizontalDivider()
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        "配送费用：",
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                    Text(
+                        selectedShipping.price,
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
+            }
+        }
     }
 }

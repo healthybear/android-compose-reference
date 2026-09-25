@@ -119,5 +119,112 @@ fun CircularProgressDemo() {
                 Text(if (done) "✓ 完成" else "提交")
             }
         }
+
+        HorizontalDivider()
+
+        // ── 5. 实际场景：文件上传进度 ─────────────────────────
+        SectionLabel("场景示例：文件上传")
+
+        var uploading by remember { mutableStateOf(false) }
+        var uploadProgress by remember { mutableStateOf(0f) }
+        val animatedProgress by androidx.compose.animation.core.animateFloatAsState(
+            targetValue = uploadProgress,
+            animationSpec = androidx.compose.animation.core.tween(300),
+            label = "upload_progress"
+        )
+
+        LaunchedEffect(uploading) {
+            if (uploading) {
+                uploadProgress = 0f
+                while (uploadProgress < 1f) {
+                    kotlinx.coroutines.delay(100)
+                    uploadProgress = (uploadProgress + 0.05f).coerceAtMost(1f)
+                }
+                kotlinx.coroutines.delay(500)
+                uploading = false
+            }
+        }
+
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant
+            )
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Box(contentAlignment = Alignment.Center) {
+                    // 背景圆环
+                    CircularProgressIndicator(
+                        progress = { 1f },
+                        modifier = Modifier.size(80.dp),
+                        strokeWidth = 6.dp,
+                        color = MaterialTheme.colorScheme.surfaceVariant,
+                        trackColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f)
+                    )
+                    // 进度圆环
+                    if (uploading || uploadProgress > 0f) {
+                        CircularProgressIndicator(
+                            progress = { animatedProgress },
+                            modifier = Modifier.size(80.dp),
+                            strokeWidth = 6.dp,
+                            color = if (uploadProgress >= 1f)
+                                MaterialTheme.colorScheme.primary
+                            else
+                                MaterialTheme.colorScheme.secondary
+                        )
+                    }
+                    // 中心文字
+                    Text(
+                        if (uploadProgress >= 1f) "✓"
+                        else if (uploading) "${(animatedProgress * 100).toInt()}%"
+                        else "待上传",
+                        style = if (uploadProgress >= 1f)
+                            MaterialTheme.typography.headlineMedium
+                        else
+                            MaterialTheme.typography.titleMedium,
+                        color = if (uploadProgress >= 1f)
+                            MaterialTheme.colorScheme.primary
+                        else
+                            MaterialTheme.colorScheme.onSurface
+                    )
+                }
+
+                Text(
+                    when {
+                        uploadProgress >= 1f -> "上传完成"
+                        uploading -> "正在上传文件…"
+                        else -> "准备上传"
+                    },
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Button(
+                        onClick = { uploading = true },
+                        enabled = !uploading && uploadProgress < 1f
+                    ) {
+                        Text("开始上传")
+                    }
+                    if (uploadProgress > 0f) {
+                        OutlinedButton(
+                            onClick = {
+                                uploading = false
+                                uploadProgress = 0f
+                            },
+                            enabled = !uploading
+                        ) {
+                            Text("重置")
+                        }
+                    }
+                }
+            }
+        }
     }
 }

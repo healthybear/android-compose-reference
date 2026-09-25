@@ -109,5 +109,166 @@ fun SliderDemo() {
         // ── 5. 禁用状态 ───────────────────────────────────────
         SectionLabel("禁用状态")
         Slider(value = 0.4f, onValueChange = {}, enabled = false)
+
+        HorizontalDivider()
+
+        // ── 6. 实际场景：价格区间筛选 ─────────────────────────
+        SectionLabel("场景示例：价格筛选")
+
+        var minPrice by remember { mutableStateOf(0f) }
+        var maxPrice by remember { mutableStateOf(1000f) }
+        val priceRange = 0f..1000f
+
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant
+            )
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Text(
+                    "价格区间",
+                    style = MaterialTheme.typography.titleSmall
+                )
+
+                // 最小价格
+                Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            "最低价格",
+                            style = MaterialTheme.typography.labelMedium
+                        )
+                        Text(
+                            "¥${minPrice.roundToInt()}",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                    Slider(
+                        value = minPrice,
+                        onValueChange = {
+                            minPrice = it.coerceAtMost(maxPrice - 50f)
+                        },
+                        valueRange = priceRange
+                    )
+                }
+
+                // 最大价格
+                Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            "最高价格",
+                            style = MaterialTheme.typography.labelMedium
+                        )
+                        Text(
+                            "¥${maxPrice.roundToInt()}",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                    Slider(
+                        value = maxPrice,
+                        onValueChange = {
+                            maxPrice = it.coerceAtLeast(minPrice + 50f)
+                        },
+                        valueRange = priceRange
+                    )
+                }
+
+                HorizontalDivider()
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
+                ) {
+                    Text(
+                        "已选范围：¥${minPrice.roundToInt()} - ¥${maxPrice.roundToInt()}",
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                    Button(
+                        onClick = { /* 应用筛选 */ },
+                        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+                    ) {
+                        Text("应用")
+                    }
+                }
+            }
+        }
+
+        HorizontalDivider()
+
+        // ── 7. 实际场景：亮度调节 ─────────────────────────────
+        SectionLabel("场景示例：亮度调节")
+
+        var brightness by remember { mutableStateOf(0.7f) }
+
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant
+            )
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector = androidx.compose.material.icons.Icons.Filled.Star,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.outline
+                    )
+                    Slider(
+                        value = brightness,
+                        onValueChange = { brightness = it },
+                        modifier = Modifier.weight(1f)
+                    )
+                    Icon(
+                        imageVector = androidx.compose.material.icons.Icons.Filled.Star,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                }
+
+                // 预览效果
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(60.dp)
+                        .background(
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = brightness),
+                            shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp)
+                        ),
+                    contentAlignment = androidx.compose.ui.Alignment.Center
+                ) {
+                    Text(
+                        "亮度：${(brightness * 100).roundToInt()}%",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = if (brightness > 0.5f)
+                            MaterialTheme.colorScheme.surface
+                        else
+                            MaterialTheme.colorScheme.onSurface
+                    )
+                }
+            }
+        }
     }
 }
