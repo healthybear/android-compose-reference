@@ -97,6 +97,19 @@ object DemoRegistry {
         "list-with-dialog-composition" to { ListWithDialogCompositionDemo() },
         "settings-screen-composition" to { SettingsScreenCompositionDemo() },
         "onboarding-composition" to { OnboardingCompositionDemo() },
+        "tooltip" to { TooltipDemo() },
+        "modal-bottom-sheet" to { ModalBottomSheetDemo() },
+        "center-aligned-top-app-bar" to { CenterAlignedTopAppBarDemo() },
+        "medium-top-app-bar" to { MediumTopAppBarDemo() },
+        "large-top-app-bar" to { LargeTopAppBarDemo() },
+        "navigation-rail" to { NavigationRailDemo() },
+        "modifier-alpha" to { ModifierAlphaDemo() },
+        "modifier-animate-content-size" to { ModifierAnimateContentSizeDemo() },
+        "modifier-weight" to { ModifierWeightDemo() },
+        "modifier-pointer-input" to { ModifierPointerInputDemo() },
+        "snapshot-flow" to { SnapshotFlowDemo() },
+        "remember-coroutine-scope" to { RememberCoroutineScopeDemo() },
+        "local-content-color" to { LocalContentColorDemo() },
     )
 
     @Composable
