@@ -2,7 +2,7 @@ import type { ComponentEntry } from '../../types'
 
 export const pointerInputComponent: ComponentEntry = {
   id: 'modifier-pointer-input',
-  demo: { id: 'modifier-pointer-input', sourceFile: 'PointerInputDemo.kt' },
+  demo: { id: 'modifier-pointer-input', sourceFile: 'ModifierPointerInputDemo.kt' },
   name: 'Modifier.pointerInput',
   category: 'Modifier',
   description: '底层指针输入处理，通过 PointerInputScope 挂起函数处理原始触摸/鼠标事件，是 detectTapGestures 等高层 API 的基础。',

@@ -22,6 +22,7 @@ import { gesturesComponents } from './gestures/index'
 import { stateComponents } from './state/index'
 import { advancedComponents } from './advanced/index'
 import { ecosystemComponents } from './ecosystem/index'
+import { compositionComponents } from './composition/index'
 
 // Android Jetpack Compose 文档目标版本
 export const composeVersion: ComposeVersion = {
@@ -56,7 +57,8 @@ export const componentGroups: ComponentGroup[] = [
   { label: '手势',       icon: 'Pointer',      categories: ['Gestures'] },
   { label: '状态',       icon: 'DataLine',     categories: ['State'] },
   { label: '进阶',       icon: 'Tools',        categories: ['Advanced'] },
-  { label: '生态集成',   icon: 'Connection',   categories: ['Ecosystem'] },
+  { label: '组合示例',   icon: 'Connection',   categories: ['Composition'] },
+  { label: '生态集成',   icon: 'Link',         categories: ['Ecosystem'] },
 ]
 
 // 汇总所有分类的组件
@@ -75,6 +77,7 @@ export const sampleComponents = [
   ...gesturesComponents,
   ...stateComponents,
   ...advancedComponents,
+  ...compositionComponents,
   ...ecosystemComponents,
 ]
 
