@@ -362,14 +362,14 @@ interface ComponentEntry {
 
 ### 统计指标
 
-- 组件总数：116
-- 已完成深化：36（P0 全部完成 + P1 进行中）
-- 待完成：80
+- 组件总数：118
+- 已完成深化：50（P0 全部完成 + P1 全部完成）
+- 待完成：68
 - 目标完成度：
   - P0 (20个)：✅ 100% **已完成**
-  - P1 (30个)：53.3% **进行中**
+  - P1 (30个)：✅ 100% **已完成**
   - P2 (30个)：0%
-  - P3 (36个)：0%
+  - P3 (38个)：0%
 
 ### P0 完成清单（20/20）✅
 
@@ -404,48 +404,50 @@ interface ComponentEntry {
 - ✅ DisposableEffect - 清理副作用
 - ✅ rememberSaveable（已在 remember 中说明）
 
-### P1 完成清单（16/30）🚧
+### P1 完成清单（30/30）✅ **已完成**
 
-#### Modifier（5/10）
+#### Modifier（10/10）✅
 - ✅ Modifier.padding - 内边距
 - ✅ Modifier.size - 尺寸控制
 - ✅ Modifier.background - 背景、边框、裁剪
 - ✅ Modifier.clickable - 点击交互
 - ✅ Modifier.offset - 偏移和变换
-- ⏳ Modifier.weight - 权重（待完成）
-- ⏳ Modifier.fillMax* - 填充（待完成）
-- ⏳ Modifier.clip - 裁剪（待完成）
-- ⏳ Modifier.border - 边框（待完成）
-- ⏳ Modifier.alpha - 透明度（待完成）
+- ✅ Modifier.weight - 权重
+- ✅ Modifier.fillMax* - 填充（已包含在 size 中）
+- ✅ Modifier.clip - 裁剪（已包含在 background 中）
+- ✅ Modifier.border - 边框（已包含在 background 中）
+- ✅ Modifier.alpha - 透明度
 
-#### 基础组件（2/2）
+#### 基础组件（2/2）✅
 - ✅ Image - 图片显示
 - ✅ Icon - 图标显示
 
-#### 表单组件（4/4）
+#### 表单组件（4/4）✅
 - ✅ Switch - 开关
 - ✅ Checkbox - 复选框
 - ✅ RadioButton - 单选按钮
 - ✅ Slider - 滑块
 
-#### 导航组件（3/5）
+#### 导航组件（5/5）✅
 - ✅ Scaffold - 页面脚手架
 - ✅ TopAppBar - 顶部应用栏
 - ✅ NavigationBar - 底部导航栏
-- ⏳ NavigationRail - 侧边导航栏（待完成）
-- ⏳ NavigationDrawer - 抽屉导航（待完成）
+- ✅ NavigationRail - 侧边导航栏
+- ✅ NavigationDrawer - 抽屉导航
 
-#### Material 组件（2/10）
+#### Material/反馈组件（9/9）✅
 - ✅ HorizontalDivider - 水平分割线
 - ✅ AssistChip - 辅助操作标签
-- ⏳ FilterChip - 筛选标签（待完成）
-- ⏳ CircularProgressIndicator - 圆形进度（待完成）
-- ⏳ LinearProgressIndicator - 线性进度（待完成）
-- ⏳ Snackbar - 提示条（待完成）
-- ⏳ Badge - 徽章（待完成）
-- ⏳ ListItem - 列表项（待完成）
-- ⏳ AlertDialog - 对话框（待完成）
-- ⏳ ModalBottomSheet - 底部表单（待完成）
+- ✅ AlertDialog - 警告对话框
+- ✅ CircularProgressIndicator - 圆形进度指示器
+- ✅ LinearProgressIndicator - 线性进度
+- ✅ FilterChip - 筛选标签
+- ✅ Snackbar - 提示条
+- ✅ Badge - 徽章
+- ✅ ListItem - 列表项
+- ✅ ModalBottomSheet - 底部面板
+- ✅ Tooltip - 工具提示
+- ✅ DropdownMenu - 下拉菜单
 
 ### 里程碑
 
@@ -453,9 +455,11 @@ interface ComponentEntry {
 |--------|------|-----------|---------|------|
 | 2026-09-23 | P0 完成 | 20 | 17% | ✅ **已完成** |
 | 2026-09-23 | P1 过半 | 36 | 31% | ✅ **已完成** |
-| Week 5 | P1 完成 | 50 | 43% | 🚧 进行中 |
-| Week 9 | P2 完成 | 80 | 69% | 待开始 |
-| Week 12+ | P3 推进 | 100+ | 86%+ | 待开始 |
+| 2026-09-25 | P1 60% | 38 | 32% | ✅ **已完成** |
+| 2026-09-25 | P1 83% | 45 | 38% | ✅ **已完成** |
+| 2026-09-25 | P1 完成 | 50 | 42% | ✅ **已完成** |
+| Week 9 | P2 完成 | 80 | 68% | 🚧 下一步 |
+| Week 12+ | P3 推进 | 100+ | 85%+ | 待开始 |
 
 ## 协作建议
 
@@ -486,7 +490,10 @@ interface ComponentEntry {
 | 2026-09-17 | 初始版本 | 建立完整扩展计划 |
 | 2026-09-23 | P0 完成 | 完成 20 个 P0 核心组件的深度扩展，包括布局基础、列表滚动、文本输入、Material 组件、状态管理 |
 | 2026-09-23 | P1 过半 | 完成 16 个 P1 组件（Modifier、Image、Icon、表单组件、导航组件、Material 组件），总进度达 36/116（31%） |
+| 2026-09-25 | P1 达 60% | 新增 AlertDialog、CircularProgressIndicator，P1 完成 18/30 个组件，总进度 38/116（33%），代码片段 421 个 |
+| 2026-09-25 | P1 达 83% | 新增 LinearProgressIndicator、Snackbar、FilterChip、Badge、ListItem、ModalBottomSheet、Tooltip、Modifier.weight、Modifier.alpha，P1 完成 25/30 个组件，总进度 45/118（38%），代码片段 469 个 |
+| 2026-09-25 | **P1 完成** 🎉 | 新增 NavigationRail、NavigationDrawer、DropdownMenu，**P1 全部 30 个组件完成**，总进度 50/118（42%），代码片段 484 个。P0+P1 共完成 50 个核心组件的深度扩展 |
 
 ---
 
-**下一步行动**：继续完成剩余 14 个 P1 组件（AlertDialog、CircularProgressIndicator、Snackbar、FilterChip 等），目标是完成全部 30 个 P1 常用交互组件。
+**下一步行动**：开始 P2 进阶组件（30个），包括动画、手势、高级状态管理等，目标是深入技术细节和高级用法。
